@@ -1,0 +1,185 @@
+﻿<!ENTITY bonus.title "Bonus">
+
+<!ENTITY bonus.selectors "  Selectors">
+
+<!ENTITY bonus.hacks "  Hacks">
+
+<!ENTITY bonus.support "  Support">
+
+
+
+<!ENTITY bonus.SelName "Selector">
+<!ENTITY bonus.desc "Description">
+
+<!ENTITY bonus.sel.anyEl "*">
+<!ENTITY bonus.sel.anyDesc "any element">
+
+<!ENTITY bonus.sel.elE "E">
+<!ENTITY bonus.sel.elEdesc "an element of type E ">
+
+<!ENTITY bonus.sel.Efoo "E[foo]">
+<!ENTITY bonus.sel.Efoodesc 'an E element with a "foo" attribute'>
+
+<!ENTITY bonus.sel.Efoobar 'E[foo="bar"]'>
+<!ENTITY bonus.sel.Efoobardesc 'an E element whose "foo" attribute value is exactly equal to "bar" '>
+
+<!ENTITY bonus.sel.EfooTilbar 'E[foo~="bar"]'>
+<!ENTITY bonus.sel.EfooTilbardesc 'an E element whose "foo" attribute value is a list of whitespace-separated values, one of which is exactly equal to "bar" '>
+
+<!ENTITY bonus.sel.EfooBegbar 'E[foo^="bar"] '>
+<!ENTITY bonus.sel.EfooBegbarDesc 'an E element whose "foo" attribute value begins exactly with the string "bar" '>
+
+<!ENTITY bonus.sel.EfooDolbar 'E[foo$="bar"] '>
+<!ENTITY bonus.sel.EfooDolbarDesc 'an E element whose "foo" attribute value ends exactly with the string "bar"'>
+
+<!ENTITY bonus.sel.EfooStbar 'E[foo*="bar"]'>
+<!ENTITY bonus.sel.EfooStbarDesc 'an E element whose "foo" attribute value contains the substring "bar"'>
+
+<!ENTITY bonus.sel.EfooStickbar 'E[foo|="en"]'>
+<!ENTITY bonus.sel.EfooStickbarDesc 'an E element whose "foo" attribute has a hyphen-separated list of values beginning (from the left) with "en"'>
+
+<!ENTITY bonus.sel.Eroot 'E:root'>
+<!ENTITY bonus.sel.ErootDesc 'an E element, root of the document '>
+
+<!ENTITY bonus.sel.Enthch 'E:nth-child(n) '>
+<!ENTITY bonus.sel.EnthchDesc 'an E element, the n-th child of its parent '>
+
+<!ENTITY bonus.sel.Enthlast 'E:nth-last-child(n)'>
+<!ENTITY bonus.sel.EnthlastDesc 'an E element, the n-th child of its parent, counting from the last one'>
+
+<!ENTITY bonus.sel.Enthtype 'E:nth-of-type(n) '>
+<!ENTITY bonus.sel.EnthtypeDesc 'an E element, the n-th sibling of its type '>
+
+<!ENTITY bonus.sel.Enthlasttype 'E:nth-last-of-type(n)'>
+<!ENTITY bonus.sel.EnthlasttypeDesc 'an E element, the n-th sibling of its type, counting from the last one '>
+
+<!ENTITY bonus.sel.Efirstch 'E:first-child'>
+<!ENTITY bonus.sel.EfirstchDesc 'an E element, first child of its parent '>
+
+<!ENTITY bonus.sel.Elastch 'E:last-child'>
+<!ENTITY bonus.sel.ElastchDesc 'an E element, last child of its parent '>
+
+<!ENTITY bonus.sel.Efirsttype 'E:first-of-type'>
+<!ENTITY bonus.sel.EfirsttypeDesc 'an E element, first sibling of its type '>
+
+<!ENTITY bonus.sel.Elasttype 'E:last-of-type '>
+<!ENTITY bonus.sel.ElasttypeDesc 'an E element, last sibling of its type '>
+
+<!ENTITY bonus.sel.Eonlych 'E:only-child '>
+<!ENTITY bonus.sel.EonlychDesc 'an E element, only child of its parent'>
+
+<!ENTITY bonus.sel.Eonlyoftype 'E:only-of-type'>
+<!ENTITY bonus.sel.EonlyoftypeDesc 'an E element, only sibling of its type '>
+
+<!ENTITY bonus.sel.Eempty 'E:empty'>
+<!ENTITY bonus.sel.EemptyDesc 'an E element that has no children (including text nodes)'>
+
+<!ENTITY bonus.sel.Elink 'E:link'>
+<!ENTITY bonus.sel.ElinkDesc 'an E element being the source anchor of a hyperlink of which the target is not yet visited (:link'>
+
+<!ENTITY bonus.sel.Evisit 'E:visited '>
+<!ENTITY bonus.sel.EvisitDesc 'an E element being the source anchor of a hyperlink of which the target is already visited (:visited) '>
+
+<!ENTITY bonus.sel.Ehover 'E:hover'>
+<!ENTITY bonus.sel.Eactive 'E:active'>
+<!ENTITY bonus.sel.Efocus 'E:focus '>
+<!ENTITY bonus.sel.EhoveractivefocusDesc 'an E element during certain user actions'>
+
+<!ENTITY bonus.sel.Etarget 'E:target'>
+<!ENTITY bonus.sel.EtargetDesc 'an E element being the target of the referring URI'>
+
+<!ENTITY bonus.sel.Elang 'E:lang(fr)'>
+<!ENTITY bonus.sel.ElangDesc 'an element of type E in language "fr" (the document language specifies how language is determined) '>
+
+<!ENTITY bonus.sel.Een 'E:enabled'>
+<!ENTITY bonus.sel.EenDesc 'a user interface element E which is enabled'>
+
+<!ENTITY bonus.sel.Edis 'E:disabled'>
+<!ENTITY bonus.sel.EdisDesc 'a user interface element E which is disabled'>
+
+<!ENTITY bonus.sel.Echecked 'E:checked'>
+<!ENTITY bonus.sel.EcheckedDesc 'a user interface element E which is checked (for instance a radio-button or checkbox) '>
+
+<!ENTITY bonus.sel.Efirstline 'E::first-line'>
+<!ENTITY bonus.sel.EfirstlineDesc 'the first formatted line of an E element '>
+
+<!ENTITY bonus.sel.Efirstletter 'E::first-letter'>
+<!ENTITY bonus.sel.EfirstletterDesc 'the first formatted letter of an E element'>
+
+<!ENTITY bonus.sel.Ebefore 'E::before '>
+<!ENTITY bonus.sel.EbeforeDesc 'generated content before an E element'>
+
+<!ENTITY bonus.sel.Eafter 'E::after '>
+<!ENTITY bonus.sel.EafterDesc 'generated content after an E element '>
+
+<!ENTITY bonus.sel.Ewarn 'E.warning '>
+<!ENTITY bonus.sel.EwarnDesc 'an E element whose class is "warning" (the document language specifies how class is determined). '>
+
+<!ENTITY bonus.sel.Emyid 'E#myid'>
+<!ENTITY bonus.sel.EmyidDesc 'an E element with ID equal to "myid".'>
+
+<!ENTITY bonus.sel.Enot 'E:not(s)'>
+<!ENTITY bonus.sel.EnotDesc 'an E element that does not match simple selector s '>
+
+<!ENTITY bonus.sel.EF  'E F '>
+<!ENTITY bonus.sel.EFDesc 'an F element descendant of an E element '>
+
+<!ENTITY bonus.sel.EbolF 'E &#62; F'>
+<!ENTITY bonus.sel.EbolFDesc 'an F element child of an E element '>
+
+<!ENTITY bonus.sel.EplusF 'E + F'>
+<!ENTITY bonus.sel.EplusFDesc 'an F element immediately preceded by an E element '>
+
+<!ENTITY bonus.sel.EtilF 'E ~ F'>
+<!ENTITY bonus.sel.EtilFDesc 'an F element preceded by an E element'>
+
+
+
+
+<!-- hacks -->
+
+<!ENTITY bonus.hack.conHead 'Conditional comments'>
+<!ENTITY bonus.hack.allIE '&#8226; For all versions of IE'>
+<!ENTITY bonus.hack.IE7 '&#8226; For the 7-th version'>
+<!ENTITY bonus.hack.IE56 '&#8226; For 5.01, 5.5 and 6.0'>
+<!ENTITY bonus.hack.cond 'Conditions'>
+<!ENTITY bonus.hack.conIEall '&#8226; IE (all versions of IE)'>
+<!ENTITY bonus.hack.ltIE '&#8226; lt IE version (Below this version)'>
+<!ENTITY bonus.hack.lteIE '&#8226; lte IE version (below and equal to this version)'>
+<!ENTITY bonus.hack.IEvers '&#8226; IE version (Only this version)'>
+<!ENTITY bonus.hack.gteIE '&#8226; gte IE version (greater than or equal to this version)'>
+<!ENTITY bonus.hack.gtIE '&#8226; gt IE version (higher than this version)'>
+<!ENTITY bonus.hack.minmax 'Min-width and Max-width'>
+<!ENTITY bonus.hack.minWid 'The minimal width'>
+<!ENTITY bonus.hack.minmaxWid 'Minimal and maximal together'>
+<!ENTITY bonus.hack.filtB 'Filtering CSS for the browser'>
+<!ENTITY bonus.hack.IE6less '&#8226; IE 6 and below '>
+<!ENTITY bonus.hack.IE7less '&#8226;IE 7 and below '>
+<!ENTITY bonus.hack.IE7only '&#8226; Only IE 7 '>
+<!ENTITY bonus.hack.IE7nNew '&#8226; Only IE 7 and modern browsers '>
+<!ENTITY bonus.hack.NewnotIE7 '&#8226; All modern browsers except IE 7'>
+<!ENTITY bonus.hack.Opera9 '&#8226; Opera 9 and below'>
+<!ENTITY bonus.hack.MacIE '&#8226; MacIE '>
+<!ENTITY bonus.hack.MozFF '&#8226; Mozilla FireFox '>
+<!ENTITY bonus.hack.IE6winOnly '&#8226; ie6 win only'>
+
+
+
+<!-- SUPPORT -->
+
+
+<!ENTITY bonus.support.txt 'All your suggestions and comments on the work of the plug-in, please send to address'>
+<!ENTITY bonus.support.email 'razumyeyenko@gmail.com'>
+
+
+
+
+
+
+
+
+
+
+
+
+

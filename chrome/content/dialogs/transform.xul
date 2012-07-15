@@ -1,0 +1,124 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+    <?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
+    ?>
+        <!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
+        <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:html="http://www.w3.org/1999/xhtml" id="transformDialog" title="&transform.title;"
+        buttons="disabled" onload="SIR.transform.init();">
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
+            <grid>
+                <columns>
+                    <column>
+                        <box id="transformField">
+                            <html:div id="transformDiv"></html:div>
+                        </box>
+                    </column>
+                    <column>
+                        <rows>
+                            <row>
+                                <box class="transformControlBox">
+                                    <vbox>
+                                        <hbox class="transformLabels">
+                                            <label value="Rotate:" />
+                                        </hbox>
+                                    </vbox>
+                                    <vbox class="transformScaleVbox">
+                                        <hbox>
+                                            <scale min="0" max="360" increment="1" id="TrotDeg" onchange="SIR.transform.onParamsChange();"
+                                            />
+                                            <label id="rotVal" value="" />
+                                        </hbox>
+                                    </vbox>
+                                </box>
+                            </row>
+                            <row>
+                                <groupbox>
+                                    <caption label="Scale" />
+                                    <box class="transformControlBox">
+                                        <vbox>
+                                            <hbox class="transformLabels">
+                                                <label value="Scale X:" />
+                                            </hbox>
+                                            <hbox class="transformLabels">
+                                                <label value="Scale Y:" />
+                                            </hbox>
+                                        </vbox>
+                                        <vbox class="transformScaleVbox">
+                                            <hbox>
+                                                <scale min="1" max="20" increment="1" id="scaleX" onchange="SIR.transform.onParamsChange();"
+                                                />
+                                                <label id="scaleXval" value="" />
+                                            </hbox>
+                                            <hbox>
+                                                <scale min="1" max="20" increment="1" id="scaleY" onchange="SIR.transform.onParamsChange();"
+                                                />
+                                                <label id="scaleYval" value="" />
+                                            </hbox>
+                                        </vbox>
+                                    </box>
+                                </groupbox>
+                            </row>
+                            <row>
+                                <groupbox>
+                                    <caption label="Skew" />
+                                    <box class="transformControlBox">
+                                        <vbox>
+                                            <hbox class="transformLabels">
+                                                <label value="Skew X:" />
+                                            </hbox>
+                                            <hbox class="transformLabels">
+                                                <label value="Skew Y:" />
+                                            </hbox>
+                                        </vbox>
+                                        <vbox class="transformScaleVbox">
+                                            <hbox>
+                                                <scale min="-180" max="180" increment="1" id="skewX" onchange="SIR.transform.onParamsChange();"
+                                                />
+                                                <label id="skewXval" value="" />
+                                            </hbox>
+                                            <hbox>
+                                                <scale min="-180" max="180" increment="1" id="skewY" onchange="SIR.transform.onParamsChange();"
+                                                />
+                                                <label id="skewYval" value="" />
+                                            </hbox>
+                                        </vbox>
+                                    </box>
+                                </groupbox>
+                            </row>
+                            <row>
+                                <groupbox>
+                                    <caption label="Translate" />
+                                    <box class="transformControlBox">
+                                        <vbox>
+                                            <hbox class="transformLabels">
+                                                <label value="Translate X:" />
+                                            </hbox>
+                                            <hbox class="transformLabels">
+                                                <label value="Translate Y:" />
+                                            </hbox>
+                                        </vbox>
+                                        <vbox class="transformScaleVbox">
+                                            <hbox>
+                                                <scale min="-100" max="100" increment="1" id="TranslateX" onchange="SIR.transform.onParamsChange();"
+                                                />
+                                                <label id="TranslateXval" value="" />
+                                            </hbox>
+                                            <hbox>
+                                                <scale min="-100" max="100" increment="1" id="TranslateY" onchange="SIR.transform.onParamsChange();"
+                                                />
+                                                <label id="TranslateYval" value="" />
+                                            </hbox>
+                                        </vbox>
+                                    </box>
+                                </groupbox>
+                            </row>
+                        </rows>
+                    </column>
+                </columns>
+            </grid>
+            <label value="&transform.code;" />
+            <textbox id="transformResult" multiline="true" readonly="true" rows="10"
+            />
+        </dialog>

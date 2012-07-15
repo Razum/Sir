@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+    <?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
+    ?>
+        <!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
+        <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:html="http://www.w3.org/1999/xhtml" id="gradientDialog" title="&gradient.title;"
+        buttons="disabled" onload="SIR.gradient.init();">
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
+            <panel id="colorPicker" style="width:500; height: 276; padding-bottom: 15px;"
+            onpopuphiding="">
+                <html:canvas id="myCanvas" width="500" height="276"></html:canvas>
+            </panel>
+            <grid>
+                <columns>
+                    <column>
+                        <box id="gradientField"></box>
+                    </column>
+                    <column>
+                        <rows>
+                            <row>
+                                <box class="gradientControlBox">
+                                    <vbox>
+                                        <hbox class="gradientLabels">
+                                            <label value="Orientation:" />
+                                        </hbox>
+                                        <hbox class="gradientLabels">
+                                            <label value="From:" />
+                                        </hbox>
+                                        <hbox class="gradientLabels">
+                                            <label value="To:" />
+                                        </hbox>
+                                    </vbox>
+                                    <vbox class="gradientScaleVbox">
+                                        <hbox>
+                                            <menulist width="150px" id="dir" style="font-size: 20px; line-height: 22px;"
+                                            oncommand="SIR.gradient.onParamsChange()">
+                                                <menupopup>
+                                                    <menuitem value="ltrt" label="&#8594;" style="font-size: 20px;" selected="true"
+                                                    />
+                                                    <menuitem value="ltlb" label="&#8595;" style="font-size: 20px;" />
+                                                    <menuitem value="ltrb" label="&#8600;" style="font-size: 20px;" />
+                                                    <menuitem value="lbrt" label="&#8599;" style="font-size: 20px;" />
+                                                </menupopup>
+                                            </menulist>
+                                        </hbox>
+                                        <hbox class="gradHbox">
+                                            <colorpicker id="colorButtonFrom" type="button" disabled="true" color="#fff" />
+                                            <textbox id="txtColorFrom" value="#FFFFFF" readonly="true" onchange="SIR.gradient.onParamsChange();" />
+                                        </hbox>
+                                        <hbox class="gradHbox">
+                                            <colorpicker id="colorButtonTo" type="button" disabled="true" color="#fff" />
+                                            <textbox id="txtColorTo" value="#FFFFFF" readonly="true" onchange="SIR.gradient.onParamsChange();" />
+                                        </hbox>
+                                    </vbox>
+                                </box>
+                            </row>
+                        </rows>
+                    </column>
+                </columns>
+            </grid>
+            <label value="&gradient.code;" />
+            <textbox id="gradientResult" multiline="true" readonly="true" rows="10"
+            />
+        </dialog>

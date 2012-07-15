@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+    <?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
+    ?>
+        <!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
+        <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:html="http://www.w3.org/1999/xhtml" id="rgbaDialog" title="&rgba.title;"
+        buttons="disabled" onload="SIR.rgba.init();">
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
+            <grid>
+                <columns>
+                    <column>
+                        <box id="rgbaField">
+                            <html:div id="rgbaDiv"></html:div>
+                        </box>
+                    </column>
+                    <column>
+                        <rows>
+                            <row>
+                                <box id="controlBox">
+                                    <vbox>
+                                        <hbox class="rgbaLabels">
+                                            <label value="R:" style="color: red;" />
+                                        </hbox>
+                                        <hbox class="rgbaLabels">
+                                            <label value="G:" style="color: green;" />
+                                        </hbox>
+                                        <hbox class="rgbaLabels">
+                                            <label value="B:" style="color: blue;" />
+                                        </hbox>
+                                        <hbox class="rgbaLabels">
+                                            <label value="Opacity:" />
+                                        </hbox>
+                                    </vbox>
+                                    <vbox id="rgbaScaleVbox">
+                                        <hbox>
+                                            <scale min="0" max="255" id="R" onchange="SIR.rgba.onColorChange();" />
+                                            <label id="Rvalue" value="" />
+                                        </hbox>
+                                        <hbox>
+                                            <scale min="0" max="255" id="G" onchange="SIR.rgba.onColorChange();" />
+                                            <label id="Gvalue" value="" />
+                                        </hbox>
+                                        <hbox>
+                                            <scale min="0" max="255" id="B" onchange="SIR.rgba.onColorChange();" />
+                                            <label id="Bvalue" value="" />
+                                        </hbox>
+                                        <hbox>
+                                            <scale min="0" max="100" increment="10" id="opacity" onchange="SIR.rgba.onColorChange();"
+                                            />
+                                            <label id="Opacityvalue" value="" />
+                                        </hbox>
+                                    </vbox>
+                                </box>
+                            </row>
+                        </rows>
+                    </column>
+                </columns>
+            </grid>
+            <label value="&rgba.code;" />
+            <textbox id="rgbaResult" multiline="true" readonly="true" rows="10" />
+        </dialog>

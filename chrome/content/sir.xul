@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"?>
+    <overlay id="sir-Overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    
+    <script type="application/x-javascript" src="scripts/main.js"></script>
+    <keyset>
+        <key id="sir-showBonus" key ="B" modifiers="alt,shift" oncommand="window.openDialog('chrome://sir/content/dialogs/bonus.xul', 'bonusDialog', '')"/>
+      </keyset>
+        <toolbarpalette id="BrowserToolbarPalette">
+        
+            <toolbarbutton id="sir-toolbarbutton" label="CSSsir" type="menu-button" removable="true" class="toolbarbutton-1 chromeclass-toolbar-additional" role="button">
+                <menupopup>
+                    <menuitem id="sir-toolbar-button-textshadow" label="Text-shadow" image="chrome://sir/skin/images/txtshadow.png" class="menuitem-iconic" onclick="openDialog('chrome://sir/content/dialogs/txtShadow.xul', 'txtShadowDialog', '')"
+                    />
+                    <menuitem id="sir-toolbar-button-rgba" label="RGBA" image="chrome://sir/skin/images/rgba.png"
+                    class="menuitem-iconic" onclick="openDialog('chrome://sir/content/dialogs/rgba.xul', 'rgbaDialog', '')"
+                    />
+                    <menuitem id="sir-toolbar-button-textrotation" label="Text-rotation" image="chrome://sir/skin/images/rotation.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/txtRotation.xul', 'txtRotationDialog', '')"
+                    />
+                    <menuitem id="sir-toolbar-button-transform" label="Transform"  image="chrome://sir/skin/images/transform.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/transform.xul', 'txtRotationDialog', '')"
+                    />
+                    <menuitem id="sir-toolbar-button-boxtshadow" label="Box-shadow" image="chrome://sir/skin/images/boxShadow.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/boxShadow.xul', 'boxShadowDialog', '')"
+                    />
+                    <menuitem id="sir-toolbar-button-borderradius" label="Border-radius" image="chrome://sir/skin/images/borderRadius.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/borderRadius.xul', 'borderRadiusDialog', '')"
+                    />
+                    <menuitem id="sir-toolbar-button-outline" label="Outline" image="chrome://sir/skin/images/outline.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/outline.xul', 'outlineDialog', '')"
+                    />
+                    <menuitem id="sir-toolbar-button-multcolumn" label="Multiple Columns" image="chrome://sir/skin/images/columns.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/txtColumn.xul', 'txtColumnDialog', '')"
+                    />
+                    <menuitem id="sir-toolbar-button-gradient" label="Gradient" image="chrome://sir/skin/images/gradient.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/gradient.xul', 'gradientDialog', '')"
+                    />
+                    <menuitem id="sir-toolbar-button-converter" label="Converter" image="chrome://sir/skin/images/converter.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/converter.xul', 'converterDialog', '')"
+                    />
+                    <menuitem id="sir-toolbar-button-cleaner" label="Tag Cleaner" image="chrome://sir/skin/images/cleaner.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/tagCleaner.xul', 'CleanerDialog', '')"
+                    />
+                    <menuitem id="sir-toolbar-button-bonus" label="Bonus  (ALT+SHIFT+B)" image="chrome://sir/skin/images/bonus.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/bonus.xul', 'bonusDialog', '')"
+                    />
+                    
+
+                </menupopup>
+            </toolbarbutton>
+        </toolbarpalette>
+    </overlay>

@@ -1,0 +1,29 @@
+﻿<!ENTITY rgba.title "RGBA">
+<!ENTITY rgba.code "Код:">
+
+<!ENTITY txtShadow.title "Text-shadow">
+<!ENTITY txtShadow.code "Код:">
+
+<!ENTITY txtRotation.title "Text-rotation">
+<!ENTITY txtRotation.code "Код:">
+
+<!ENTITY transform.title "Transform">
+<!ENTITY transform.code "Код:">
+
+<!ENTITY boxShadow.title "Box-shadow">
+<!ENTITY boxShadow.code "Код:">
+
+<!ENTITY borderRadius.title "Border-radius">
+<!ENTITY borderRadius.code "Код:">
+
+<!ENTITY txtColumn.title "Multiple Columns">
+<!ENTITY txtColumn.code "Код:">
+
+<!ENTITY gradient.title "Gradient">
+<!ENTITY gradient.code "Код:">
+
+<!ENTITY converter.title "Converter">
+<!ENTITY tagcleaner.title "Tag Cleaber">
+
+<!ENTITY outline.title "Outline">
+<!ENTITY outline.code "Code:">

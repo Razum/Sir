@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+    <?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
+    ?>
+        <!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
+        <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:html="http://www.w3.org/1999/xhtml" id="CleanerDialog" title="&tagcleaner.title;"
+        buttons="disabled" onload="SIR.Cleaner.init();">
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
+            
+            <hbox>
+            <vbox>
+            <label value="Paste HTML code:" />
+            <textbox multiline="true" rows="35" id="tagCleanerTxtBox" /></vbox>
+            
+            <vbox id="cleanVboxChk">
+            <hbox><checkbox id="delTags" label="Remove Tags " oncommand="SIR.Cleaner.onParamsChange();"/></hbox>
+            <hbox><checkbox id="delAttr" label="Remove Attributes" /></hbox>
+            <hbox><checkbox id="delSpec" label="Remove Special Characters" /></hbox>
+            <hbox><checkbox id="delEmptylines" label="Remove line breaks" /></hbox>
+            <hbox><checkbox id="delExtrSpace" label="Remove extra spaces" /></hbox>
+            <hbox pack="center"><button id="cleanButton" label="Clean" onclick="SIR.Cleaner.txtClean();" /></hbox>
+            </vbox>
+            </hbox>
+            
+            
+        </dialog>

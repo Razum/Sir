@@ -1,0 +1,80 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+    <?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
+    ?>
+        <!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
+        <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:html="http://www.w3.org/1999/xhtml" id="outlineDialog" title="&outline.title;"
+        buttons="disabled" onload="SIR.outline.init();">
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
+            <panel id="colorPicker" style="width:500; height: 276; padding-bottom: 15px;">
+                <html:canvas id="myCanvas" width="500" height="276"></html:canvas>
+            </panel>
+            <grid>
+                <columns>
+                    <column>
+                        <box id="outlineField">
+                            <box id="outlineBox"></box>
+                        </box>
+                    </column>
+                    <column>
+                        <rows>
+                            <row>
+                                <box class="outlineControlBox">
+                                    <vbox>
+                                        <hbox class="outlineLabels">
+                                            <label value="Style:" />
+                                        </hbox>
+                                        <hbox class="outlineLabels">
+                                            <label value="Width:" />
+                                        </hbox>
+                                        <hbox class="outlineLabels">
+                                            <label value="Offset:" />
+                                        </hbox>
+                                        <hbox class="outlineLabels">
+                                            <label value="Color:" />
+                                        </hbox>
+                                    </vbox>
+                                    <vbox class="outlineScaleVbox">
+                                        <hbox>
+                                            <menulist width="150px" id="outline-style-selector" oncommand="SIR.outline.onParamsChange()">
+                                                <menupopup>
+                                                    <menuitem value="none" label="none"/>
+                                                    <menuitem value="dotted" label="dotted" />
+                                                    <menuitem value="dashed" label="dashed" />
+                                                    <menuitem value="solid" label="solid"  selected="true"/>
+                                                    <menuitem value="double" label="double" />
+                                                    <menuitem value="groove" label="groove" />
+                                                    <menuitem value="ridge" label="ridge" />
+                                                    <menuitem value="outset" label="outset" />
+                                                </menupopup>
+                                            </menulist>
+                                        </hbox>
+                                        <hbox>
+                                            <scale min="0" max="30" increment="1" id="outlineWidth" onchange="SIR.outline.onParamsChange();"
+                                            />
+                                            <label id="outlineWidthVal" value="" />
+                                        </hbox>
+                                        <hbox>
+                                            <scale min="0" max="30" increment="1" id="outlineOffset" onchange="SIR.outline.onParamsChange();"
+                                            />
+                                            <label id="outlineOffsetVal" value="" />
+                                        </hbox>
+                                        <hbox>
+                                            <colorpicker id="colorButton" type="button" disabled="true" color="#fff"
+                                            onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false, SIR.utils.panelLoad(this, document.getElementById('txtColor')));"
+                                            />
+                                            <textbox id="txtColor" value="#FFFFFF" readonly="true" onchange="SIR.outline.onParamsChange();"
+                                            />
+                                        </hbox>
+                                    </vbox>
+                                </box>
+                            </row>
+                        </rows>
+                    </column>
+                </columns>
+            </grid>
+            <label value="&outline.code;" />
+            <textbox id="outlineResult" multiline="true" readonly="true" rows="7" />
+        </dialog>

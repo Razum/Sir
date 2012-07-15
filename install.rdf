@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+	<Description about="urn:mozilla:install-manifest">
+		<em:id>{0103572f-d20f-4039-9eaa-ded7c4a97124}</em:id>
+        <em:type>2</em:type> 
+		<em:name>CSSsir</em:name>
+		<em:version>0.1.20120708</em:version>		
+		<em:description>CSS3-rules generator.</em:description>
+		<em:creator>Roman Razumyeyenko</em:creator>		
+	    <em:iconURL>chrome://sir/skin/images/CSSsir.png</em:iconURL>		
+		<em:targetApplication>
+			<Description>
+				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+				<em:minVersion>5.0</em:minVersion>
+				<em:maxVersion>14.0a1</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+	</Description>
+</RDF>

@@ -1,0 +1,770 @@
+#sir-toolbarbutton{
+    list-style-image: url("chrome://sir/skin/images/small_sir.png");
+}
+
+toolbar[iconsize="small"] #sir-toolbarbutton {
+  list-style-image: url("chrome://sir/skin/images/small_sir.png");
+}
+
+
+
+/****************** RGBA ********************/
+#rgbaDialog{
+    width:750px;
+    height: 450px;
+    min-height: 450px;
+    min-width: 600px;
+}
+
+ .rgbaLabels{
+    margin-top: 1px;
+    margin-bottom: 16px;
+ }
+ 
+ #rgbaScaleVbox scale{
+    width: 200px;
+    margin-bottom: 10px;
+ }
+ 
+#controlBox{
+    padding: 40px 15px 0 15px;
+    
+}
+ 
+#rgbaField{
+    
+    width: 350px;
+    height: 200px;
+    background-color: #fff; 
+    text-align: center;  
+    margin-bottom: 15px;
+    border: 1px solid #dedede;
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    -moz-border-radius: 10px;
+    background-color: #F7F7F7;
+    overflow: hidden;
+}
+
+#rgbaDiv{
+    width: 150px;
+    height: 150px;
+    margin: 25px 100px 25px 100px;
+    border: 1px solid #E0DEDE;
+    
+}
+
+#rgbaResult{
+    
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    background-color: #F7F7F7;
+    padding-left: 12px;
+    line-height: 1.5;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 12px;
+    
+    
+}
+
+/************************** text-shadow ************************/
+
+#txtShadowDialog{
+    width:750px;
+    height: 450px;
+    min-height: 450px;
+    min-width: 600px;
+}
+
+ .txtShadowLabels{
+    margin-top: 1px;
+    margin-bottom: 16px;
+ }
+ 
+ #txtShadowScaleVbox scale{
+    width: 200px;
+    margin-bottom: 10px;
+ }
+ 
+#controlBox{
+    padding: 40px 15px 0 15px;
+    
+}
+ 
+#txtShadowField{
+    
+    width: 350px;
+    height: 200px;
+    background-color: #fff; 
+    text-align: center;  
+    margin-bottom: 15px;
+    border: 1px solid #dedede;
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    -moz-border-radius: 10px;
+    background-color: #F7F7F7;
+}
+
+#TSinscription{
+    font-size: 20px;
+    font-weight: 700;
+    margin: 75px 120px;
+    
+}
+
+#txtShadowResult{
+    
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    background-color: #F7F7F7;
+    padding-left: 12px;
+    line-height: 1.5;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 12px;
+    
+    
+}
+
+
+
+/************************** text-rotation ************************/
+
+#txtRotationDialog{
+    width:800px;
+    height: 450px;
+    min-height: 450px;
+    min-width: 600px;
+}
+
+ .txtRotationLabels{
+    margin-top: 1px;
+    margin-bottom: 6px;
+ }
+ 
+ #txtRotationScaleVbox scale{
+    width: 300px;
+ }
+ 
+#controlBox{
+    padding: 40px 15px 0 15px;
+    
+}
+
+#TRinscription{
+    font-size: 20px;
+    font-weight: 700;
+    margin: 75px 120px;
+    
+}
+ 
+#txtRotationField{
+    
+    width: 350px;
+    height: 200px;
+    background-color: #fff; 
+    text-align: center;  
+    margin-bottom: 15px;
+    border: 1px solid #dedede;
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    -moz-border-radius: 10px;
+    background-color: #F7F7F7;
+}
+
+
+#txtRotationResult{
+    
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    background-color: #F7F7F7;
+    padding-left: 12px;
+    line-height: 1.5;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 12px;
+    
+    
+}
+
+
+
+
+/****************** Transform ********************/
+
+
+#transformDialog{
+    width:900px;
+    height: 550px;
+    min-height: 550px;
+    min-width: 900px;
+}
+
+ .transformLabels{
+    margin-top: 1px;
+    margin-bottom: 6px;
+ }
+ 
+ .transformScaleVbox scale{
+    width: 300px;
+ }
+ 
+
+ .transformControlBox{
+     padding: 5px 15px 0 15px;
+     
+ }
+
+ 
+#transformField{
+    
+    width: 400px;
+    height: 300px;
+    background-color: #fff; 
+    text-align: center;  
+    margin-bottom: 15px;
+    border: 1px solid #dedede;
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    -moz-border-radius: 10px;
+    background-color: #F7F7F7;
+    overflow: hidden;
+}
+
+#transformDiv{
+    width: 150px;
+    height: 100px;
+    margin: 100px 120px;
+    border: 1px solid #E0DEDE;
+    background-color: #80A1C9;
+    
+}
+
+#transformResult{
+    
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    background-color: #F7F7F7;
+    padding-left: 12px;
+    line-height: 1.5;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 12px;
+    
+    
+}
+
+
+
+/************************** box-shadow ************************/
+
+#boxShadowDialog{
+    width:760px;
+    height: 450px;
+    min-height: 450px;
+    min-width: 600px;
+}
+
+ .boxShadowLabels{
+    margin-top: 1px;
+    margin-bottom: 16px;
+ }
+ 
+ #boxShadowScaleVbox scale{
+    width: 200px;
+    margin-bottom: 10px;
+ }
+ 
+
+ 
+#boxField{
+    
+    width: 400px;
+    height: 250px;
+    background-color: #fff; 
+    text-align: center;  
+    margin-bottom: 15px;
+    border: 1px solid #dedede;
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    -moz-border-radius: 10px;
+    background-color: #F7F7F7;
+    overflow: hidden;
+}
+
+#boxDiv{
+    width: 200px;
+    height: 150px;
+    margin: 75px 100px;
+    border: 1px solid #E0DEDE;
+    background-color: #80A1C9;
+    -moz-border-radius: 15px;
+    
+}
+
+
+#boxShadowResult{
+    
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    background-color: #F7F7F7;
+    padding-left: 12px;
+    line-height: 1.5;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 12px;
+    
+    
+}
+
+
+
+
+
+/****************** border-Radius ********************/
+
+
+#borderRadiusDialog{
+    width:900px;
+    height: 550px;
+    min-height: 550px;
+    min-width: 900px;
+}
+
+ .borderRadiusLabels{
+    margin-top: 1px;
+    margin-bottom: 20px;
+ }
+ 
+ .borderRadiusScaleVbox scale{
+    width: 300px;
+    margin-bottom: 15px;
+ }
+.borderRadiusScaleVbox menulist{
+    margin-bottom: 10px;
+    
+}
+
+ .borderRadiusControlBox{
+     padding: 5px 15px 0 15px;
+     
+ }
+
+ 
+#borderRadiusField{
+    
+    width: 400px;
+    height: 300px;
+    background-color: #fff; 
+    text-align: center;  
+    margin-bottom: 15px;
+    border: 1px solid #dedede;
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    -moz-border-radius: 10px;
+    background-color: #F7F7F7;
+    overflow: hidden;
+}
+
+#borderRadiusDiv{
+    width: 300px;
+    height: 150px;
+    margin: 75px 50px;
+    border: 1px solid #E0DEDE;
+    background-color: #80A1C9;
+    
+}
+
+#borderRadiusResult{
+    
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    background-color: #F7F7F7;
+    padding-left: 12px;
+    line-height: 1.5;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 12px;
+    
+    
+}
+
+
+/************************** Multiple Columns ************************/
+
+#txtColumnDialog{
+    width:900px;
+    height: 600px;
+    min-height: 600px;
+    min-width: 800px;
+}
+
+ .txtColumnLabels{
+    margin-top: 3px;
+    margin-bottom: 16px;
+ }
+ 
+ #txtColumnScaleVbox scale{
+    width: 150px;
+    margin-bottom: 10px;
+ }
+ 
+
+ #txtColumnControlBox{
+     padding: 40px 15px 0 15px;
+     
+ }
+ 
+
+#txtColDesc{
+    font-size: 1em;
+    font-weight: 200;
+    color:#000;
+    width: 570px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    
+}
+ 
+#txtColumnField{
+    
+    width: 500px;
+    height: 350px;
+    padding: 5px 5px;
+    background-color: #fff; 
+    text-align: center;  
+    margin-bottom: 15px;
+    border: 1px solid #dedede;
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    -moz-border-radius: 10px;
+    background-color: #F7F7F7;
+}
+
+
+#txtColumnResult{
+    
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    background-color: #F7F7F7;
+    padding-left: 12px;
+    line-height: 1.5;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 12px;
+    
+    
+}
+
+
+
+/****************** Gradient ********************/
+
+
+#gradientDialog{
+    width:900px;
+    height: 550px;
+    min-height: 550px;
+    min-width: 900px;
+}
+
+ .gradientLabels{
+    margin-top: 10px;
+    margin-bottom: 15px;
+ }
+ 
+.gradHbox{
+    margin-top: 14px;
+}
+
+
+
+ .gradientControlBox{
+     padding: 5px 15px 0 15px;
+     
+ }
+
+ 
+#gradientField{
+    
+    width: 400px;
+    height: 300px;
+    background-color: #fff; 
+    text-align: center;  
+    margin-bottom: 15px;
+    border: 1px solid #dedede;
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    -moz-border-radius: 10px;
+    background-color: #F7F7F7;
+    overflow: hidden;
+}
+
+
+#gradientResult{
+    
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    background-color: #F7F7F7;
+    padding-left: 12px;
+    line-height: 1.5;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 12px;
+    
+    
+}
+
+
+/************************ Converter *************************/
+
+#converterDialog{
+    width:700px;
+    height: 600px;
+    min-height: 600px;
+    min-width: 700px;
+}
+
+/***** EM <-> PX *******/
+.converterTxtbox{
+    width: 42px;
+    height: 22px;
+    
+}
+
+#converterExmpBox{
+    font-size: 16px;
+    background-color: #F7F4F7;
+    margin-bottom: 10px;
+}
+
+#converterExmpBox label{
+    margin-left: -3px;
+}
+
+
+#userPXEMBox{
+    font-size: 16px;
+    margin: 40px 0 40px 0;
+    
+}
+
+#measure{
+    width: 55px;
+}
+
+/***** RGB <-> HEX *******/
+#tp_rgbhex groupbox{
+    min-height: 200px;
+    
+}
+
+
+.rgbhexLabels{
+    font-size: 16px;
+    margin-bottom: 15px;
+    margin-top: 1px;
+}
+
+.rgbhexVbox textbox{
+    margin-bottom: 11px;
+    font-size: 16px;
+    width: 40px;
+    
+}
+
+.rgbtohexButtonVbox{
+    margin-top: 42px;
+    
+    
+}
+
+.HEXbox{
+    margin-top: 44px;
+    font-size: 16px;
+    
+}
+
+.HEXbox textbox{
+    width:80px;
+    margin-top: -1px;
+}
+
+
+.ConverterExmpBox{ 
+    margin: 22px 0 0 15px; 
+    width: 70px; 
+    height: 70px;
+    border: 1px solid #000;
+    
+}
+
+
+
+/****************** Outline ********************/
+
+
+#outlineDialog{
+    width:750px;
+    height: 500px;
+    min-height: 500px;
+    min-width: 750px;
+}
+
+ .outlineLabels{
+    margin-top: 1px;
+    margin-bottom: 20px;
+ }
+ 
+ .outlineScaleVbox scale{
+    width: 200px;
+    margin-bottom: 15px;
+ }
+.outlineScaleVbox menulist{
+    margin-bottom: 10px;
+    
+}
+
+ .outlineControlBox{
+     padding: 5px 15px 0 15px;
+     
+ }
+
+ 
+#outlineField{
+    
+    width: 400px;
+    height: 300px;
+    background-color: #fff; 
+    text-align: center;  
+    margin-bottom: 15px;
+    border: 1px solid #dedede;
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    -moz-border-radius: 10px;
+    background-color: #F7F7F7;
+    overflow: hidden;
+}
+
+#outlineBox{
+    width: 200px;
+    height: 150px;
+    margin: 75px 100px;
+    border: 1px solid #E0DEDE;
+    background-color: #80A1C9;
+    
+}
+
+#outlineResult{
+    
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    background-color: #F7F7F7;
+    padding-left: 12px;
+    line-height: 1.5;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 12px;
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+/************** CLEANER ****************/
+#CleanerDialog{
+    width: 750px;
+    height: 650px;
+    min-height: 650px;
+    min-width: 750px;
+}
+
+/********* Tag Cleaber ************/
+#tagCleanerTxtBox{
+    width: 500px;
+}
+
+#cleanVboxChk{
+    padding-top: 15px;
+}
+
+
+/************************ BONUS *************************/
+/************ selectors **************/
+#bonusDialog{
+    width:850px;
+    height: 600px;
+    min-height: 600px;
+    min-width: 800px;
+}
+
+#tp_selector{
+    height: 550px;
+}
+
+#selName{
+    width: 150px;
+    text-align: center;
+    font-weight: 700;
+}
+
+#selDesc{
+    font-weight: 700;
+}
+
+
+
+
+/************ hacks **************/
+
+#tp_hack{
+    height: 550px;
+    overflow-y: scroll;
+}
+
+.hackHeader{
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.ulLia{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.codeBlock{
+    border: 1px solid #E5E5E5;
+    color: #2F913E;
+    margin-left: 50px;
+    padding: 2px 5px 1px 5px;
+}
+
+
+
+/************** px to em ****************/
+
+#pxtoemList{
+    height: 550px;
+    
+}
+
+#pxtoemList listhead{
+    text-align: center;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+#pxtoemList listitem{
+    text-align: center;
+    font-size: 16px;
+}
+
+#emtopxLabel{
+    text-align: center;
+    font-size: 16px;
+    background-color: #FCF4FA;
+}
+
+
+
+/*************** support ****************/
+#supBox{
+    font-size: 20px;
+    text-align: center;
+    margin-top: 200px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

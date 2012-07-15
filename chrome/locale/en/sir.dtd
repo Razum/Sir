@@ -1,0 +1,26 @@
+<!ENTITY rgba.title "RGBA">
+<!ENTITY rgba.code "Code:">
+
+<!ENTITY txtShadow.title "Text-shadow">
+<!ENTITY txtShadow.code "Code:">
+
+<!ENTITY txtRotation.title "Text-rotation">
+<!ENTITY txtRotation.code "Code:">
+
+<!ENTITY transform.title "Transform">
+<!ENTITY transform.code "Code:">
+
+<!ENTITY boxShadow.title "Box-shadow">
+<!ENTITY boxShadow.code "Code:">
+
+<!ENTITY borderRadius.title "Border-radius">
+<!ENTITY borderRadius.code "Code:">
+
+<!ENTITY txtColumn.title "Multiple Columns">
+<!ENTITY txtColumn.code "Code:">
+
+<!ENTITY gradient.title "Gradient">
+<!ENTITY gradient.code "Code:">
+
+<!ENTITY outline.title "Outline">
+<!ENTITY outline.code "Code:">

@@ -1,0 +1,193 @@
+﻿<!ENTITY bonus.title "Bonus">
+
+
+<!ENTITY bonus.selectors "  Селекторы">
+
+<!ENTITY bonus.hacks "  Хаки">
+
+<!ENTITY bonus.support "  Поддержка">
+
+<!ENTITY bonus.SelName "Селектор">
+<!ENTITY bonus.desc "Описание">
+
+<!ENTITY bonus.sel.anyEl "*">
+<!ENTITY bonus.sel.anyDesc "Выберет все элементы на странице.">
+
+<!ENTITY bonus.sel.elE "E">
+<!ENTITY bonus.sel.elEdesc "Сопоставляется любому элементу E (т.е. элементу типа E).">
+
+<!ENTITY bonus.sel.Efoo "E[foo]">
+<!ENTITY bonus.sel.Efoodesc 'Сопоставляется любому элементу E с набором атрибутов "foo" (независимо от значения).'>
+
+<!ENTITY bonus.sel.Efoobar 'E[foo="bar"]'>
+<!ENTITY bonus.sel.Efoobardesc 'Сопоставляется любому элементу E, у которого значение атрибута "foo" в точности равно "bar" '>
+
+<!ENTITY bonus.sel.EfooTilbar 'E[foo~="bar"]'>
+<!ENTITY bonus.sel.EfooTilbardesc 'Выберет все элементы Е с атрибутом foo содержащим в значении подстроку "bar" отделенную пробелами от остального содержимого.'>
+
+<!ENTITY bonus.sel.EfooBegbar 'E[foo^="bar"] '>
+<!ENTITY bonus.sel.EfooBegbarDesc 'Выберет все элементы имеющие атрибут foo со значением начинающимся на "bar".'>
+
+<!ENTITY bonus.sel.EfooDolbar 'E[foo$="bar"] '>
+<!ENTITY bonus.sel.EfooDolbarDesc 'Выберет все элементы имеющие атрибут foo со значением заканчивающимся на "bar".'>
+
+<!ENTITY bonus.sel.EfooStbar 'E[foo*="bar"]'>
+<!ENTITY bonus.sel.EfooStbarDesc 'Позволяет выбрать все элементы имеющие атрибут foo со значением содержащим подстроку "bar".'>
+
+<!ENTITY bonus.sel.EfooStickbar 'E[foo|="en"]'>
+<!ENTITY bonus.sel.EfooStickbarDesc 'Сопоставляется любому элементу E, атрибут "foo" которого имеет список значений, разделенных знаками дефиса, начинающийся (слева) со значения "en".'>
+
+<!ENTITY bonus.sel.Eroot 'E:root'>
+<!ENTITY bonus.sel.ErootDesc 'Позволяет выбрать корневой элемент документа.'>
+
+<!ENTITY bonus.sel.Enthch 'E:nth-child(n) '>
+<!ENTITY bonus.sel.EnthchDesc 'Позволяет выбрать все элементы E являющиеся n-ми по счету в родительском.'>
+
+<!ENTITY bonus.sel.Enthlast 'E:nth-last-child(n)'>
+<!ENTITY bonus.sel.EnthlastDesc 'Позволяет выбрать все элементы E являющиеся n-ми потомками в родительском с конца.'>
+
+<!ENTITY bonus.sel.Enthtype 'E:nth-of-type(n) '>
+<!ENTITY bonus.sel.EnthtypeDesc 'Выберет все элементы Е, которые являются n-м ребенком Е их родителей'>
+
+<!ENTITY bonus.sel.Enthlasttype 'E:nth-last-of-type(n)'>
+<!ENTITY bonus.sel.EnthlasttypeDesc 'Выберет все элементы Е, которые являются n-м ребенком Е их родителей начиная с конца'>
+
+<!ENTITY bonus.sel.Efirstch 'E:first-child'>
+<!ENTITY bonus.sel.EfirstchDesc 'Сопоставляется элементу E, если он является первым дочерним элементом своего родительского элемента.'>
+
+<!ENTITY bonus.sel.Elastch 'E:last-child'>
+<!ENTITY bonus.sel.ElastchDesc 'Сопоставляется элементу E, если он является последним дочерним элементом своего родительского элемента.'>
+
+<!ENTITY bonus.sel.Efirsttype 'E:first-of-type'>
+<!ENTITY bonus.sel.EfirsttypeDesc 'Выберет все элементы Е, которые являются первым элементом Е их родителей'>
+
+<!ENTITY bonus.sel.Elasttype 'E:last-of-type '>
+<!ENTITY bonus.sel.ElasttypeDesc 'Выберет все элементы Е, которые являются последним элементом Е их родителей'>
+
+<!ENTITY bonus.sel.Eonlych 'E:only-child '>
+<!ENTITY bonus.sel.EonlychDesc 'Выберет все элементы Е, которые являются единственным элементом их родителей'>
+
+<!ENTITY bonus.sel.Eonlyoftype 'E:only-of-type'>
+<!ENTITY bonus.sel.EonlyoftypeDesc 'Выберет все элементы Е, которые являются единственным элементом Е их родителей'>
+
+<!ENTITY bonus.sel.Eempty 'E:empty'>
+<!ENTITY bonus.sel.EemptyDesc 'Выберет все элементы E, которые не имеют детей (включая текстовые блоки)'>
+
+<!ENTITY bonus.sel.Elink 'E:link'>
+<!ENTITY bonus.sel.ElinkDesc 'Выберет все не посещенные ссылки на странице. (:link).'>
+
+<!ENTITY bonus.sel.Evisit 'E:visited '>
+<!ENTITY bonus.sel.EvisitDesc 'Выберет все посещенные ссылки на странице. (:visited).'>
+
+<!ENTITY bonus.sel.Ehover 'E:hover'>
+<!ENTITY bonus.sel.Eactive 'E:active'>
+<!ENTITY bonus.sel.Efocus 'E:focus '>
+<!ENTITY bonus.sel.EhoveractivefocusDesc 'Сопоставляется элементу E во время определенных действий пользователя.'>
+
+<!ENTITY bonus.sel.Etarget 'E:target'>
+<!ENTITY bonus.sel.EtargetDesc 'Текущий активный элемент E (нажатие на URL, содержит это имя якоря)'>
+
+<!ENTITY bonus.sel.Elang 'E:lang(fr)'>
+<!ENTITY bonus.sel.ElangDesc 'Сопоставляется элементу E, если он присутствует в (разговорном) языке (язык документа указывает, каким образом определяется разговорный язык).'>
+
+<!ENTITY bonus.sel.Een 'E:enabled'>
+<!ENTITY bonus.sel.EenDesc 'Выберет все доступные элементы ввода'>
+
+<!ENTITY bonus.sel.Edis 'E:disabled'>
+<!ENTITY bonus.sel.EdisDesc 'Выберет все недоступные элементы ввода'>
+
+<!ENTITY bonus.sel.Echecked 'E:checked'>
+<!ENTITY bonus.sel.EcheckedDesc 'Выберет все отмеченные флажки'>
+
+<!ENTITY bonus.sel.Efirstline 'E:first-line'>
+<!ENTITY bonus.sel.EfirstlineDesc 'Первая строка всех элементов E'>
+
+<!ENTITY bonus.sel.Efirstletter 'E:first-letter'>
+<!ENTITY bonus.sel.EfirstletterDesc 'Первая буква всех элементов Е'>
+
+<!ENTITY bonus.sel.Ebefore 'E:before '>
+<!ENTITY bonus.sel.EbeforeDesc 'Вставит произвольное содержимое перед элементом E.'>
+
+<!ENTITY bonus.sel.Eafter 'E:after '>
+<!ENTITY bonus.sel.EafterDesc 'Вставит произвольное содержимое после элемента E.'>
+
+<!ENTITY bonus.sel.Ewarn 'E.warning '>
+<!ENTITY bonus.sel.EwarnDesc 'Выберет все элементы Е, у которых class="warning"'>
+
+<!ENTITY bonus.sel.Emyid 'E#myid'>
+<!ENTITY bonus.sel.EmyidDesc 'Сопоставляется любому элементу E с атрибутом ID равным "myid".'>
+
+<!ENTITY bonus.sel.Enot 'E:not(s)'>
+<!ENTITY bonus.sel.EnotDesc 'Выберет все элементы на странице кроме элементов s.'>
+
+<!ENTITY bonus.sel.EF  'E F '>
+<!ENTITY bonus.sel.EFDesc 'Сопоставляется любому элементу F, который является потомком элемента E.'>
+
+<!ENTITY bonus.sel.EbolF 'E &#62; F'>
+<!ENTITY bonus.sel.EbolFDesc 'Сопоставляется любому элементу F, который является дочерним элементом элемента E.'>
+
+<!ENTITY bonus.sel.EplusF 'E + F'>
+<!ENTITY bonus.sel.EplusFDesc 'Сопоставляется любому элементу F, которому непосредственно предшествует сестринский элемент E.'>
+
+<!ENTITY bonus.sel.EtilF 'E ~ F'>
+<!ENTITY bonus.sel.EtilFDesc 'Выберет элементы F, следующие за элементом E.'>
+
+
+
+
+
+
+
+<!-- hacks -->
+
+<!ENTITY bonus.hack.conHead 'Условные комментарии'>
+<!ENTITY bonus.hack.allIE '&#8226; Для всех версий IE'>
+<!ENTITY bonus.hack.IE7 '&#8226; Для 7-й версии'>
+<!ENTITY bonus.hack.IE56 '&#8226; Для 5.01, 5.5 и 6.0'>
+<!ENTITY bonus.hack.cond 'Условия'>
+<!ENTITY bonus.hack.conIEall '&#8226; IE (Все версии IE)'>
+<!ENTITY bonus.hack.ltIE '&#8226; lt IE version (Ниже указанной версии)'>
+<!ENTITY bonus.hack.lteIE '&#8226; lte IE version (ниже и равно указанной версии)'>
+<!ENTITY bonus.hack.IEvers '&#8226; IE version (только для этой версии)'>
+<!ENTITY bonus.hack.gteIE '&#8226; gte IE version (выше или равной указанной версии)'>
+<!ENTITY bonus.hack.gtIE '&#8226; gt IE version (выше указанной версии)'>
+<!ENTITY bonus.hack.minmax 'Min-width и Max-width'>
+<!ENTITY bonus.hack.minWid 'Минимальная ширина'>
+<!ENTITY bonus.hack.minmaxWid 'Минимальная и максимальная одновременно'>
+<!ENTITY bonus.hack.filtB 'Фильтрация CSS по браузеру'>
+<!ENTITY bonus.hack.IE6less '&#8226; IE 6 и ниже '>
+<!ENTITY bonus.hack.IE7less '&#8226;IE 7 и ниже '>
+<!ENTITY bonus.hack.IE7only '&#8226; Только IE 7 '>
+<!ENTITY bonus.hack.IE7nNew '&#8226; Только IE 7 и все современные браузеры '>
+<!ENTITY bonus.hack.NewnotIE7 '&#8226; Все современные браузеры, кроме IE 7'>
+<!ENTITY bonus.hack.Opera9 '&#8226; Opera 9 и ниже'>
+<!ENTITY bonus.hack.MacIE '&#8226; MacIE '>
+<!ENTITY bonus.hack.MozFF '&#8226; Mozilla FireFox '>
+<!ENTITY bonus.hack.IE6winOnly '&#8226; ie6 win only'>
+
+
+
+
+
+
+
+<!-- SUPPORT -->
+
+
+<!ENTITY bonus.support.txt 'Все пожелания и замечания по работе плагина просьба отсылать по адресу'>
+<!ENTITY bonus.support.email 'razumyeyenko@gmail.com'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

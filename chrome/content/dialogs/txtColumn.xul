@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+    <?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
+    ?>
+        <!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
+        <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:html="http://www.w3.org/1999/xhtml" id="txtColumnDialog" title="&txtColumn.title;"
+        buttons="disabled" onload="SIR.txtColumn.init();">
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
+            <!--<script type="application/x-javascript" src="chrome://sir/content/libs/jscolor/jscolor.js"></script>-->
+            <grid>
+                <columns>
+                    <column>
+                        <box id="txtColumnField">
+                            <html:div id="txtColDesc" />
+                        </box>
+                    </column>
+                    <column>
+                        <rows>
+                            <row>
+                                <box id="txtColumnControlBox">
+                                    <vbox>
+                                        <hbox class="txtColumnLabels">
+                                            <label value="Column's count:" />
+                                        </hbox>
+                                        <hbox class="txtColumnLabels">
+                                            <label value="Column Gap:" />
+                                        </hbox>
+                                        <hbox class="txtColumnRule">
+                                            <label value="Column rule:" />
+                                        </hbox>
+                                    </vbox>
+                                    <vbox id="txtColumnScaleVbox">
+                                        <hbox>
+                                            <scale min="1" max="4" value="1" id="txtColumnCount" onchange="SIR.txtColumn.onParamsChange();"
+                                            />
+                                            <label id="txtColumnCountValue" value="" />
+                                        </hbox>
+                                        <hbox>
+                                            <scale min="0" max="35" id="txtColumnGap" onchange="SIR.txtColumn.onParamsChange();"
+                                            />
+                                            <label id="txtColumnGapValue" value="" />
+                                        </hbox>
+                                        <hbox>
+                                            <menulist width="150px" id="column-rule-selector" oncommand="SIR.txtColumn.onParamsChange()">
+                                                <menupopup>
+                                                    <menuitem value="none" label="none" selected="true" />
+                                                    <menuitem value="dotted" label="dotted" />
+                                                    <menuitem value="dashed" label="dashed" />
+                                                    <menuitem value="solid" label="solid" />
+                                                    <menuitem value="double" label="double" />
+                                                    <menuitem value="groove" label="groove" />
+                                                    <menuitem value="ridge" label="ridge" />
+                                                    <menuitem value="outset" label="outset" />
+                                                </menupopup>
+                                            </menulist>
+                                        </hbox>
+                                    </vbox>
+                                </box>
+                            </row>
+                        </rows>
+                    </column>
+                </columns>
+            </grid>
+            <label value="&txtColumn.code;" />
+            <textbox id="txtColumnResult" multiline="true" readonly="true" rows="10"
+            />
+        </dialog>
