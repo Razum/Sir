@@ -22,5 +22,9 @@
 <!ENTITY gradient.title "Gradient">
 <!ENTITY gradient.code "Code:">
 
+<!ENTITY converter.title "Converter">
+
+<!ENTITY tagcleaner.title "Tag Cleaber">
+
 <!ENTITY outline.title "Outline">
 <!ENTITY outline.code "Code:">
