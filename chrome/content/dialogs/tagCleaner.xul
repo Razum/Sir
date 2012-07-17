@@ -8,21 +8,39 @@
         buttons="disabled" onload="SIR.Cleaner.init();">
             <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
             <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
-            
             <hbox>
-            <vbox>
-            <label value="Paste HTML code:" />
-            <textbox multiline="true" rows="35" id="tagCleanerTxtBox" /></vbox>
-            
-            <vbox id="cleanVboxChk">
-            <hbox><checkbox id="delTags" label="Remove Tags " oncommand="SIR.Cleaner.onParamsChange();"/></hbox>
-            <hbox><checkbox id="delAttr" label="Remove Attributes" /></hbox>
-            <hbox><checkbox id="delSpec" label="Remove Special Characters" /></hbox>
-            <hbox><checkbox id="delEmptylines" label="Remove line breaks" /></hbox>
-            <hbox><checkbox id="delExtrSpace" label="Remove extra spaces" /></hbox>
-            <hbox pack="center"><button id="cleanButton" label="Clean" onclick="SIR.Cleaner.txtClean();" /></hbox>
-            </vbox>
+                <vbox>
+                    <label value="&tagcleaner.pasteCode;" />
+                    <textbox multiline="true" rows="35" id="tagCleanerTxtBox" />
+                </vbox>
+                <vbox id="cleanVboxChk">
+                    <tooltip id="delTagsTip" label="&tagcleaner.delTagsTip;"></tooltip>
+                    <groupbox id="delTagGroup">
+                        <caption>
+                            <checkbox id="delTags" tooltip="delTagsTip" label="&tagcleaner.delTagsLbl;" oncommand="SIR.Cleaner.onParamsChange();" />
+                        </caption>
+                        <label id="exTagLbl" value="&tagcleaner.exTags;" />
+                        <textbox class="cleanerTxt" id="tagEx" value="img,p,a" />
+                    </groupbox>
+                    <tooltip id="delAttrTip" label="&tagcleaner.delAttrTip;" />
+                    <hbox>
+                        <checkbox id="delAttr" tooltip="delAttrTip" label="&tagcleaner.delAttrLbl;" oncommand="SIR.Cleaner.onParamsChange();" />
+                    </hbox>
+                    <tooltip id="delSpecTip" label="&tagcleaner.delSpecTip;" />
+                    <hbox>
+                        <checkbox id="delSpec" tooltip="delSpecTip" label="&tagcleaner.delSpecLbl;" />
+                    </hbox>
+                    <tooltip id="delEmptylinesTip" label="&tagcleaner.delEmptylinesTip;" />
+                    <hbox>
+                        <checkbox id="delEmptylines" tooltip="delEmptylinesTip" label="&tagcleaner.delEmptylinesLbl;" />
+                    </hbox>
+                    <tooltip id="delExtrSpaceTip" label="&tagcleaner.delExtrSpaceTip;" />
+                    <hbox>
+                        <checkbox id="delExtrSpace" tooltip="delExtrSpaceTip" label="&tagcleaner.delExtrSpaceLbl;" />
+                    </hbox>
+                    <hbox pack="center">
+                        <button id="cleanButton" label="&tagcleaner.CleanButton;" onclick="SIR.Cleaner.txtClean();" />
+                    </hbox>
+                </vbox>
             </hbox>
-            
-            
         </dialog>

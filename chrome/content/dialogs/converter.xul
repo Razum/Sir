@@ -111,7 +111,7 @@
                     
                     <tabpanel id="tp_pxem" orient="vertical">
                         <hbox id="converterExmpBox" pack="center">
-                            <label value="Base pixel size " />
+                            <label value="&converter.basePXsize;" />
                             <textbox id="basePX" class="converterTxtbox" maxlength="3" value="16" />
                             <label value="px = " />
                             <label value="1em = " />

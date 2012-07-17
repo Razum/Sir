@@ -23,8 +23,26 @@
 <!ENTITY gradient.code "Code:">
 
 <!ENTITY converter.title "Converter">
+<!ENTITY converter.basePXsize "Base pixel size ">
 
 <!ENTITY tagcleaner.title "Tag Cleaber">
+<!ENTITY tagcleaner.delTagsTip "Remove all tags leaving tags from exception list">
+<!ENTITY tagcleaner.delTagsLbl "Remove Tags">
+<!ENTITY tagcleaner.exTags "Exception Tags:">
+<!ENTITY tagcleaner.delAttrTip "Remove all attributes">
+<!ENTITY tagcleaner.delAttrLbl "Remove Attributes">
+<!ENTITY tagcleaner.pasteCode "Paste HTML code:">
+<!ENTITY tagcleaner.delSpecTip "Remove all HTML special characters">
+<!ENTITY tagcleaner.delSpecLbl "Remove Special Characters">
+<!ENTITY tagcleaner.delEmptylinesTip "Remove Empty Lines">
+<!ENTITY tagcleaner.delEmptylinesLbl "Remove Empty Lines">
+<!ENTITY tagcleaner.delExtrSpaceTip "Remove Extra spaces">
+<!ENTITY tagcleaner.delExtrSpaceLbl "Remove Extra spaces">
+<!ENTITY tagcleaner.CleanButton "Remove">
+
+
+
+
 
 <!ENTITY outline.title "Outline">
 <!ENTITY outline.code "Code:">

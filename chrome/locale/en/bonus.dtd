@@ -164,6 +164,11 @@
 <!ENTITY bonus.hack.IE6winOnly '&#8226; ie6 win only'>
 
 
+<!-- EMtoPX -->
+
+<!ENTITY bonus.emtopx.base 'Base size - 16px'>
+
+
 
 <!-- SUPPORT -->
 

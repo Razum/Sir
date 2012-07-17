@@ -23,8 +23,25 @@
 <!ENTITY gradient.code "Код:">
 
 <!ENTITY converter.title "Converter">
+<!ENTITY converter.basePXsize "Базовый размер шрифта ">
 
 <!ENTITY tagcleaner.title "Tag Cleaber">
+<!ENTITY tagcleaner.delTagsTip "Удалить все теги, кроме тегов из списка исключений">
+<!ENTITY tagcleaner.delTagsLbl "Удалить Теги">
+<!ENTITY tagcleaner.exTags "Теги - исключения:">
+<!ENTITY tagcleaner.delAttrTip "Удалить все атрибуты тегов">
+<!ENTITY tagcleaner.delAttrLbl "Удалить Атрибуты">
+<!ENTITY tagcleaner.pasteCode "Вставить HTML-код:">
+<!ENTITY tagcleaner.delSpecTip "Удалить все HTML спецсимволы">
+<!ENTITY tagcleaner.delSpecLbl "Удалить все HTML спецсимволы">
+<!ENTITY tagcleaner.delEmptylinesTip "Удалить пустые строки">
+<!ENTITY tagcleaner.delEmptylinesLbl "Удалить пустые строки">
+<!ENTITY tagcleaner.delExtrSpaceTip "Удалить лишние пробелы">
+<!ENTITY tagcleaner.delExtrSpaceLbl "Удалить лишние пробелы">
+<!ENTITY tagcleaner.CleanButton "Очистить">
+
+
+
 
 <!ENTITY outline.title "Outline">
-<!ENTITY outline.code "Code:">
+<!ENTITY outline.code "Код:">

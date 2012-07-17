@@ -669,6 +669,11 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     padding-top: 15px;
 }
 
+.cleanerTxt{
+    width: 200px;
+    border-radius: 10px;
+}
+
 
 /************************ BONUS *************************/
 /************ selectors **************/

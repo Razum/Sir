@@ -384,7 +384,7 @@
                     
                     <tabpanel id="tp_emtopx" orient="vertical">
                     
-                    <label id="emtopxLabel" value="Базовый размер - 16px" />
+                    <label id="emtopxLabel" value="&bonus.emtopx.base;" />
 <listbox id="pxtoemList">
   <listhead>
     <listheader label="Pixels"/>
@@ -533,17 +533,8 @@
     <listcell label="150%"/>
     <listcell label="18pt"/>
   </listitem>
-  
-  
-
 </listbox>
-
-
-
-
-
-
-                    </tabpanel>
+</tabpanel>
                     
                     
                     
