@@ -19,7 +19,7 @@ SIR.load = function() {
 				SIR.installButton("addon-bar", "sir-toolbarbutton");
 			}
             
-            if(!SIR.sirPrefs.get("version") && SIR.sirPrefs.get("version") !== addon.version){
+            if(SIR.sirPrefs.get("version") && SIR.sirPrefs.get("version") !== addon.version){
                 SIR.sirPrefs.set('version', addon.version);
 				SIR.installButton("nav-bar", "sir-toolbarbutton");
 				SIR.installButton("addon-bar", "sir-toolbarbutton");
@@ -36,7 +36,7 @@ SIR.load = function() {
 			SIR.installButton("addon-bar", "sir-toolbarbutton");
 		}
         
-        if(!SIR.sirPrefs.get("version") && SIR.sirPrefs.get("version") !== addon.version){
+        if(SIR.sirPrefs.get("version") && SIR.sirPrefs.get("version") !== addon.version){
                 SIR.sirPrefs.set('version', addon.version);
 				SIR.installButton("nav-bar", "sir-toolbarbutton");
 				SIR.installButton("addon-bar", "sir-toolbarbutton");
