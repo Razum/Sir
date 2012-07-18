@@ -24,6 +24,9 @@
 
 <!ENTITY converter.title "Converter">
 <!ENTITY converter.basePXsize "Базовый размер шрифта ">
+<!ENTITY converter.dataError "Ошибка ввода данных ">
+
+
 
 <!ENTITY tagcleaner.title "Tag Cleaber">
 <!ENTITY tagcleaner.delTagsTip "Удалить все теги, кроме тегов из списка исключений">

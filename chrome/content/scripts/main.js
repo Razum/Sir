@@ -18,6 +18,13 @@ SIR.load = function() {
 				// The "addon-bar" is available since Firefox 4  
 				SIR.installButton("addon-bar", "sir-toolbarbutton");
 			}
+            
+            if(!SIR.sirPrefs.get("version") && SIR.sirPrefs.get("version") !== addon.version){
+                SIR.sirPrefs.set('version', addon.version);
+				SIR.installButton("nav-bar", "sir-toolbarbutton");
+				SIR.installButton("addon-bar", "sir-toolbarbutton");
+                
+            }
 		});
 	} catch (e) {
 		var gExtensionManager = Components.classes["@mozilla.org/extensions/manager;1"].getService(Components.interfaces.nsIExtensionManager);
@@ -28,6 +35,13 @@ SIR.load = function() {
 			// The "addon-bar" is available since Firefox 4  
 			SIR.installButton("addon-bar", "sir-toolbarbutton");
 		}
+        
+        if(!SIR.sirPrefs.get("version") && SIR.sirPrefs.get("version") !== addon.version){
+                SIR.sirPrefs.set('version', addon.version);
+				SIR.installButton("nav-bar", "sir-toolbarbutton");
+				SIR.installButton("addon-bar", "sir-toolbarbutton");
+                
+            }
 	}
 };
 SIR.getLibs = function() {

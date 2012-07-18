@@ -54,7 +54,7 @@
                             <vbox id="rgbError" hidden="true" pack="center" height="50px" style='border: 1px groove red; background: #FCF4F4;'>
                                 <hbox pack="center">
                                     <image src="chrome://sir/skin/images/error.png" />
-                                    <label style="font-size: 16px; font-weight: bold;" value="Data Error" />
+                                    <label style="font-size: 16px; font-weight: bold;" value="&converter.dataError;" />
                                 </hbox>
                             </vbox>
                         </groupbox>
@@ -97,7 +97,7 @@
                             <vbox id="hexError" hidden="true" pack="center" height="50px" style='border: 1px groove red; background: #FCF4F4;'>
                                 <hbox pack="center">
                                     <image src="chrome://sir/skin/images/error.png" />
-                                    <label style="font-size: 16px; font-weight: bold;" value="Data Error" />
+                                    <label style="font-size: 16px; font-weight: bold;" value="&converter.dataError;" />
                                 </hbox>
                             </vbox>
                         </groupbox>
@@ -133,7 +133,7 @@
                             <vbox id="emtopxError" hidden="true" pack="center" height="50px" style='border: 1px groove red; background: #FCF4F4;'>
                                 <hbox pack="center">
                                     <image src="chrome://sir/skin/images/error.png" />
-                                    <label style="font-size: 16px; font-weight: bold;" value="Data Error" />
+                                    <label style="font-size: 16px; font-weight: bold;" value="&converter.dataError;" />
                                 </hbox>
                             </vbox>
                         </groupbox>

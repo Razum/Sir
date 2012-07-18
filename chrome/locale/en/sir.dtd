@@ -24,6 +24,7 @@
 
 <!ENTITY converter.title "Converter">
 <!ENTITY converter.basePXsize "Base pixel size ">
+<!ENTITY converter.dataError "Data Error">
 
 <!ENTITY tagcleaner.title "Tag Cleaber">
 <!ENTITY tagcleaner.delTagsTip "Remove all tags leaving tags from exception list">
