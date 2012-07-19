@@ -503,11 +503,11 @@ SIR.converter = {
                         var par;
                         switch (type) {
                         case "em":
-                                par = /^([0-9]\.[0-9]{3}|[1-9][0-9]\.[0-9]{3}|[1-9][0-9]|[1-9])$/.test(obj.value);
+                                par = /^([0-9]\.[0-9]{1,2}|[1-9][0-9]\.[0-9]|[1-9][0-9]{1,3}|[1-9])$/.test(obj.value);
                                 this.emtopxError.setAttribute("hidden", par);
                                 break;
                         case "px":
-                                par = /^([1-9][0-9]{2}|[1-9][0-9]|[1-9])$/.test(obj.value);
+                                par = /^([1-9][0-9]{1,3}|[1-9])$/.test(obj.value);
                                 this.emtopxError.setAttribute("hidden", par);
                                 break;
                         }
