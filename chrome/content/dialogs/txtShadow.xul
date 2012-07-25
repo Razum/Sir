@@ -1,71 +1,45 @@
 ﻿<?xml version="1.0" ?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
-    <?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css" ?>
+    <?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
+    ?>
         <!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
         <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
         xmlns:html="http://www.w3.org/1999/xhtml" id="txtShadowDialog" title="&txtShadow.title;"
         buttons="disabled" onload="SIR.txtShadow.init()">
             <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
             <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
-            <!--<script type="application/x-javascript" src="chrome://sir/content/libs/jscolor/jscolor.js"></script>-->
             <panel id="colorPicker" style="width:500; height: 276; padding-bottom: 15px;">
                 <html:canvas id="myCanvas" width="500" height="276"></html:canvas>
             </panel>
-            <grid>
-                <columns>
-                    <column>
-                        <box id="txtShadowField">
-                            <label id="TSinscription" value="Text-shadow" />
-                        </box>
-                    </column>
-                    <column>
-                        <rows>
-                            <row>
-                                <box id="controlBox">
-                                    <vbox>
-                                        <hbox class="txtShadowLabels">
-                                            <label value="Horizontal Length:" />
-                                        </hbox>
-                                        <hbox class="txtShadowLabels">
-                                            <label value="Vertical Length:" />
-                                        </hbox>
-                                        <hbox class="txtShadowLabels">
-                                            <label value="Blur Radius:" />
-                                        </hbox>
-                                        <hbox class="txtShadowLabels">
-                                            <label value="Shadow Color:" />
-                                        </hbox>
-                                    </vbox>
-                                    <vbox id="txtShadowScaleVbox">
-                                        <hbox>
-                                            <scale min="-75" max="75" id="TShorLen" onchange="SIR.txtShadow.onParamsChange();"
-                                            />
-                                            <label id="TShorLenvalue" value="" />
-                                        </hbox>
-                                        <hbox>
-                                            <scale min="-75" max="75" id="TSverLen" onchange="SIR.txtShadow.onParamsChange();"
-                                            />
-                                            <label id="TSverLenvalue" value="" />
-                                        </hbox>
-                                        <hbox>
-                                            <scale min="0" max="50" id="TSblurRadius" onchange="SIR.txtShadow.onParamsChange();"
-                                            />
-                                            <label id="TSblurRadiusvalue" value="" />
-                                        </hbox>
-                                        <hbox>
-                                            <colorpicker id="colorButton" type="button" disabled="true" color="#fff"
-                                            onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false, SIR.utils.panelLoad(this, document.getElementById('txtColor')));"
-                                            />
-                                            <textbox id="txtColor" value="#FFFFFF" readonly="true" onchange="SIR.txtShadow.onParamsChange();"
-                                            />
-                                        </hbox>
-                                    </vbox>
-                                </box>
-                            </row>
-                        </rows>
-                    </column>
-                </columns>
-            </grid>
+            <hbox>
+                <vbox id="txtShadowField">
+                    <label id="TSinscription" value="Text-shadow" />
+                </vbox>
+                <vbox id="controlBox">
+                    <hbox class="controlHBox">
+                        <label class="txtShadowLabels" value="Horizontal Length:" />
+                        <scale min="-75" max="75" id="TShorLen" onchange="SIR.txtShadow.onParamsChange();" />
+                        <label id="TShorLenvalue" value="" />
+                    </hbox>
+                    <hbox class="controlHBox">
+                        <label class="txtShadowLabels" value="Vertical Length:" />
+                        <scale min="-75" max="75" id="TSverLen" onchange="SIR.txtShadow.onParamsChange();" />
+                        <label id="TSverLenvalue" value="" />
+                    </hbox>
+                    <hbox class="controlHBox">
+                        <label class="txtShadowLabels" value="Blur Radius:" />
+                        <scale min="0" max="50" id="TSblurRadius" onchange="SIR.txtShadow.onParamsChange();" />
+                        <label id="TSblurRadiusvalue" value="" />
+                    </hbox>
+                    <hbox>
+                        <label class="txtShadowLabels" value="Shadow Color:" />
+                        <colorpicker id="colorButton" type="button" disabled="true" color="#fff"
+                        onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false, SIR.utils.panelLoad(this, document.getElementById('txtColor')));" />
+                        <textbox id="txtColor" value="#FFFFFF" readonly="true" onchange="SIR.txtShadow.onParamsChange();"
+                        />
+                    </hbox>
+                </vbox>
+            </hbox>
             <label value="&txtShadow.code;" />
             <textbox id="txtShadowResult" multiline="true" readonly="true" rows="10"
             />

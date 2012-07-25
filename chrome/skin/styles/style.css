@@ -7,27 +7,40 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 }
 
 
+.controlHBox{
+    margin-bottom: 20px;
+}
+
+
 
 /****************** RGBA ********************/
 #rgbaDialog{
-    width:750px;
-    height: 450px;
+    width:770px;
+    height: 460px;
     min-height: 450px;
     min-width: 600px;
 }
 
  .rgbaLabels{
-    margin-top: 1px;
-    margin-bottom: 16px;
+    width: 70px;
+    margin-top: 2px;
  }
- 
- #rgbaScaleVbox scale{
-    width: 200px;
-    margin-bottom: 10px;
- }
+
  
 #controlBox{
-    padding: 40px 15px 0 15px;
+    margin-top: -15px;
+    padding: 0 15px 0 15px;
+    
+}
+
+#controlBox label{
+    font-weight: 600;
+    font-size: 15px;
+    
+}
+
+#controlBox scale{
+    width: 220px;
     
 }
  
@@ -35,17 +48,16 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     
     width: 350px;
     height: 200px;
-    background-color: #fff; 
-    text-align: center;  
-    margin-bottom: 15px;
+    text-align: center;
+    -moz-box-pack: center;  
     border: 1px solid #dedede;
     -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    -moz-border-radius: 10px;
+    -moz-border-radius: 15px;
     background-color: #F7F7F7;
     overflow: hidden;
 }
 
-#rgbaDiv{
+#rgbaBox{
     width: 150px;
     height: 150px;
     margin: 25px 100px 25px 100px;
@@ -68,37 +80,53 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 /************************** text-shadow ************************/
 
 #txtShadowDialog{
-    width:750px;
-    height: 450px;
+    width:820px;
+    height: 475px;
     min-height: 450px;
     min-width: 600px;
 }
 
- .txtShadowLabels{
-    margin-top: 1px;
-    margin-bottom: 16px;
+ .txtShadowLabels{    
+    width: 135px;
  }
  
- #txtShadowScaleVbox scale{
-    width: 200px;
-    margin-bottom: 10px;
- }
+
  
 #controlBox{
-    padding: 40px 15px 0 15px;
+    margin-top: -15px;
+    padding: 0 15px 0 15px;
     
 }
+
+#controlBox label{
+    font-weight: 600;
+    font-size: 15px;
+    
+}
+
+#controlBox scale{
+    width: 220px;
+    
+}
+
+#controlBox textbox{
+    width: 100px;
+}
+
  
+
+
+
 #txtShadowField{
     
     width: 350px;
     height: 200px;
-    background-color: #fff; 
     text-align: center;  
     margin-bottom: 15px;
     border: 1px solid #dedede;
     -moz-box-shadow: 2px 1px 5px #E2E2E2;
     -moz-border-radius: 10px;
+    -moz-box-pack: center;
     background-color: #F7F7F7;
 }
 
