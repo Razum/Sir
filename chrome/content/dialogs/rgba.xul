@@ -12,7 +12,7 @@
                 <vbox id="rgbaField">
                     <box id="rgbaBox"></box>
                 </vbox>
-                    <vbox id="controlBox">
+                    <vbox id="rgbaControlBox">
                     
                     <hbox class="controlHBox"><label class="rgbaLabels" value="R:" style="color: red;" /><scale min="0" max="255" id="R" onchange="SIR.rgba.onColorChange();" />
                                 <label id="Rvalue" value="" /></hbox>

@@ -8,7 +8,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
 
 .controlHBox{
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 
@@ -16,31 +16,31 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 /****************** RGBA ********************/
 #rgbaDialog{
     width:770px;
-    height: 460px;
+    height: 450px;
     min-height: 450px;
-    min-width: 600px;
+    min-width: 770px;
 }
 
  .rgbaLabels{
-    width: 70px;
+    width: 60px;
     margin-top: 2px;
  }
 
  
-#controlBox{
+#rgbaControlBox{
     margin-top: -15px;
-    padding: 0 15px 0 15px;
+    padding: 25px 15px 0 15px;
     
 }
 
-#controlBox label{
+#rgbaControlBox label{
     font-weight: 600;
-    font-size: 15px;
+    font-size: 14px;
     
 }
 
-#controlBox scale{
-    width: 220px;
+#rgbaControlBox scale{
+    width: 260px;
     
 }
  
@@ -80,10 +80,10 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 /************************** text-shadow ************************/
 
 #txtShadowDialog{
-    width:820px;
-    height: 475px;
-    min-height: 450px;
-    min-width: 600px;
+    width:830px;
+    height: 460px;
+    min-height: 460px;
+    min-width: 800px;
 }
 
  .txtShadowLabels{    
@@ -92,30 +92,26 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
  
 
  
-#controlBox{
+#txtShadowControlBox{
     margin-top: -15px;
-    padding: 0 15px 0 15px;
+    padding: 30px 15px 0 15px;
     
 }
 
-#controlBox label{
+#txtShadowControlBox label{
     font-weight: 600;
-    font-size: 15px;
+    font-size: 14px;
     
 }
 
-#controlBox scale{
-    width: 220px;
+#txtShadowControlBox scale{
+    width: 240px;
     
 }
 
-#controlBox textbox{
+#txtShadowControlBox textbox{
     width: 100px;
 }
-
- 
-
-
 
 #txtShadowField{
     
@@ -154,23 +150,29 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 /************************** text-rotation ************************/
 
 #txtRotationDialog{
-    width:800px;
-    height: 450px;
+    width:820px;
+    height: 455px;
     min-height: 450px;
     min-width: 600px;
 }
 
  .txtRotationLabels{
-    margin-top: 1px;
-    margin-bottom: 6px;
+    width: 70px;
  }
  
- #txtRotationScaleVbox scale{
-    width: 300px;
- }
- 
-#controlBox{
+#txtRotationControlBox{
     padding: 40px 15px 0 15px;
+    
+}
+
+#txtRotationControlBox label{
+    font-weight: 600;
+    font-size: 14px;
+    
+}
+
+#txtRotationControlBox scale{
+    width: 270px;
     
 }
 
@@ -185,12 +187,12 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     
     width: 350px;
     height: 200px;
-    background-color: #fff; 
     text-align: center;  
     margin-bottom: 15px;
     border: 1px solid #dedede;
     -moz-box-shadow: 2px 1px 5px #E2E2E2;
     -moz-border-radius: 10px;
+    -moz-box-pack: center;
     background-color: #F7F7F7;
 }
 
@@ -276,21 +278,34 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 /************************** box-shadow ************************/
 
 #boxShadowDialog{
-    width:760px;
+    width:840px;
     height: 450px;
     min-height: 450px;
-    min-width: 600px;
+    min-width: 840px;
 }
 
  .boxShadowLabels{
-    margin-top: 1px;
-    margin-bottom: 16px;
+    width: 130px;
  }
  
- #boxShadowScaleVbox scale{
-    width: 200px;
-    margin-bottom: 10px;
+ 
+ #boxShcontrolBox{
+    padding: 30px 15px 0 15px;
  }
+ 
+ #boxShcontrolBox label{
+    font-weight: 600;
+    font-size: 14px;
+ }
+ 
+ #boxShcontrolBox scale{
+    width: 220px;
+ }
+ 
+  #boxShcontrolBox textbox{
+    width: 100px;
+ }
+ 
  
 
  
@@ -298,20 +313,20 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     
     width: 400px;
     height: 250px;
-    background-color: #fff; 
     text-align: center;  
     margin-bottom: 15px;
     border: 1px solid #dedede;
     -moz-box-shadow: 2px 1px 5px #E2E2E2;
     -moz-border-radius: 10px;
+    -moz-box-pack: center;
     background-color: #F7F7F7;
     overflow: hidden;
 }
 
-#boxDiv{
+#boxShBox{
     width: 200px;
-    height: 150px;
-    margin: 75px 100px;
+    height: 110px;
+    margin: 60px 100px;
     border: 1px solid #E0DEDE;
     background-color: #80A1C9;
     -moz-border-radius: 15px;
@@ -346,22 +361,31 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 }
 
  .borderRadiusLabels{
-    margin-top: 1px;
-    margin-bottom: 20px;
+    width: 100px;
+    
  }
  
- .borderRadiusScaleVbox scale{
-    width: 300px;
-    margin-bottom: 15px;
+ #borderRadiusControlBox{
+    padding: 20px 15px 0 15px;
  }
-.borderRadiusScaleVbox menulist{
-    margin-bottom: 10px;
-    
-}
+ 
+#borderRadiusControlBox label{
+    font-size:14px;
+    font-weight: 600;
 
- .borderRadiusControlBox{
-     padding: 5px 15px 0 15px;
+ }
+#borderRadiusControlBox scale{
+     width: 300px;
      
+ }
+
+ #borderRadiusControlBox menulist{
+    margin-top: -2px;
+     
+ }
+ 
+ #borderRadiusControlBox textbox{
+    width: 100px;
  }
 
  
@@ -379,7 +403,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     overflow: hidden;
 }
 
-#borderRadiusDiv{
+#borderRadiusBox{
     width: 300px;
     height: 150px;
     margin: 75px 50px;
@@ -404,26 +428,33 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 /************************** Multiple Columns ************************/
 
 #txtColumnDialog{
-    width:900px;
+    width:925px;
     height: 600px;
     min-height: 600px;
-    min-width: 800px;
+    min-width: 925px;
 }
 
  .txtColumnLabels{
-    margin-top: 3px;
-    margin-bottom: 16px;
- }
- 
- #txtColumnScaleVbox scale{
-    width: 150px;
-    margin-bottom: 10px;
+    width: 100px;
  }
  
 
  #txtColumnControlBox{
      padding: 40px 15px 0 15px;
      
+ }
+ 
+ #txtColumnControlBox scale{
+    width: 150px;
+ }
+ 
+ #txtColumnControlBox label{
+    font-size: 14px;
+    font-weight: 600;
+ }
+ 
+ #txtColumnControlBox menulist{
+    margin-top: -1px;
  }
  
 
@@ -459,8 +490,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     line-height: 1.5;
     font-family:"Courier New", Courier, monospace;
     font-size: 12px;
-    
-    
+   
 }
 
 
@@ -476,18 +506,39 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 }
 
  .gradientLabels{
-    margin-top: 10px;
-    margin-bottom: 15px;
+    width: 80px;
+
+ }
+ .controlGradHBox{
+    margin-bottom: 25px;
  }
  
-.gradHbox{
-    margin-top: 14px;
-}
 
 
-
- .gradientControlBox{
-     padding: 5px 15px 0 15px;
+ #gradientControlBox{
+     padding: 25px 15px 0 15px;
+     
+ }
+ 
+ #gradientControlBox label{
+    font-size:14px;
+    font-weight: 600;
+     
+ }
+ 
+ #gradientControlBox menulist{
+    margin-top: -3px;
+ }
+ 
+ #gradientControlBox menulist label{
+    font-size:23px;
+    font-weight: 600;
+    text-align: center;
+     
+ }
+ 
+ #gradientControlBox textbox{
+    width:100px;
      
  }
 
@@ -496,8 +547,6 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     
     width: 400px;
     height: 300px;
-    background-color: #fff; 
-    text-align: center;  
     margin-bottom: 15px;
     border: 1px solid #dedede;
     -moz-box-shadow: 2px 1px 5px #E2E2E2;
@@ -568,6 +617,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     font-size: 16px;
     margin-bottom: 15px;
     margin-top: 1px;
+    font-weight: 600;
 }
 
 .rgbhexVbox textbox{
@@ -616,28 +666,38 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 }
 
  .outlineLabels{
-    margin-top: 1px;
-    margin-bottom: 20px;
+    width: 70px;
+
  }
  
- .outlineScaleVbox scale{
+ #outlineControlBox scale{
     width: 200px;
-    margin-bottom: 15px;
+
  }
-.outlineScaleVbox menulist{
-    margin-bottom: 10px;
-    
+ 
+ #outlineControlBox label{
+    font-size: 14px;
+    font-weight: 600;
+
+ }
+ 
+ #outlineControlBox menulist{
+    margin-top: -2px; 
 }
 
- .outlineControlBox{
-     padding: 5px 15px 0 15px;
+ #outlineControlBox textbox{
+    width:100px; 
+}
+
+ #outlineControlBox{
+     padding: 20px 15px 0 15px;
      
  }
 
  
 #outlineField{
     
-    width: 400px;
+    width: 380px;
     height: 300px;
     background-color: #fff; 
     text-align: center;  

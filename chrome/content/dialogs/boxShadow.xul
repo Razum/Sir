@@ -8,70 +8,45 @@
         buttons="disabled" onload="SIR.boxShadow.init()">
             <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
             <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
-            <!--<script type="application/x-javascript" src="chrome://sir/content/libs/jscolor/jscolor.js"></script>-->
             <panel id="colorPicker" style="width:500; height: 276; padding-bottom: 15px;">
                 <html:canvas id="myCanvas" width="500" height="276"></html:canvas>
             </panel>
-            <grid>
-                <columns>
-                    <column>
-                        <box id="boxField">
-                            <html:div id="boxDiv"></html:div>
-                        </box>
-                    </column>
-                    <column>
-                        <rows>
-                            <row>
-                                <box id="controlBox">
-                                    <vbox>
-                                        <hbox class="boxShadowLabels">
-                                            <label value="Horizontal Length:" />
-                                        </hbox>
-                                        <hbox class="boxShadowLabels">
-                                            <label value="Vertical Length:" />
-                                        </hbox>
-                                        <hbox class="boxShadowLabels">
-                                            <label value="Blur Radius:" />
-                                        </hbox>
-                                        <hbox class="boxShadowLabels">
-                                            <label value="Shadow Color:" />
-                                        </hbox>
-                                        <hbox>
-                                            <checkbox id="insetCheck" label="Inset" oncommand="SIR.boxShadow.onParamsChange();"
-                                            />
-                                        </hbox>
-                                    </vbox>
-                                    <vbox id="boxShadowScaleVbox">
-                                        <hbox>
-                                            <scale min="-75" max="75" id="BShorLen" onchange="SIR.boxShadow.onParamsChange();"
-                                            />
-                                            <label id="BShorLenvalue" value="" />
-                                        </hbox>
-                                        <hbox>
-                                            <scale min="-75" max="75" id="BSverLen" onchange="SIR.boxShadow.onParamsChange();"
-                                            />
-                                            <label id="BSverLenvalue" value="" />
-                                        </hbox>
-                                        <hbox>
-                                            <scale min="0" max="50" id="BSblurRadius" onchange="SIR.boxShadow.onParamsChange();"
-                                            />
-                                            <label id="BSblurRadiusvalue" value="" />
-                                        </hbox>
-                                        <hbox>
-                                            <colorpicker id="colorButton" type="button" disabled="true" color="#fff"
-                                            onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false, SIR.utils.panelLoad(this, document.getElementById('txtColor')));"
-                                            />
-                                            <textbox id="txtColor" value="#FFFFFF" readonly="true" onchange="SIR.boxShadow.onParamsChange();"
-                                            />
-                                        </hbox>
-                                    </vbox>
-                                </box>
-                            </row>
-                        </rows>
-                    </column>
-                </columns>
-            </grid>
+            <hbox>
+                <vbox id="boxField">
+                    <box id="boxShBox"></box>
+                </vbox>
+                
+                
+                
+                <vbox id="boxShcontrolBox">
+                    <hbox class="controlHBox">
+                        <label class="boxShadowLabels" value="Horizontal Length:" />
+                        <scale min="-75" max="75" id="BShorLen" onchange="SIR.boxShadow.onParamsChange();" />
+                        <label id="BShorLenvalue" value="" />
+                    </hbox>
+                    <hbox class="controlHBox">
+                        <label class="boxShadowLabels" value="Vertical Length:" />
+                        <scale min="-75" max="75" id="BSverLen" onchange="SIR.boxShadow.onParamsChange();" />
+                        <label id="BSverLenvalue" value="" />
+                    </hbox>
+                    <hbox class="controlHBox">
+                        <label class="boxShadowLabels" value="Blur Radius:" />
+                        <scale min="0" max="50" id="BSblurRadius" onchange="SIR.boxShadow.onParamsChange();" />
+                        <label id="BSblurRadiusvalue" value="" />
+                    </hbox>
+                    <hbox>
+                        <label class="boxShadowLabels" value="Shadow Color:" />
+                        <colorpicker id="colorButton" type="button" disabled="true" color="#fff"
+                        onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false, SIR.utils.panelLoad(this, document.getElementById('txtColor')));" />
+                        <textbox id="txtColor" value="#FFFFFF" readonly="true" onchange="SIR.boxShadow.onParamsChange();"
+                        />
+                    </hbox>
+                    <hbox style="margin-top:20px;">
+                        <checkbox id="insetCheck" label="Inset" oncommand="SIR.boxShadow.onParamsChange();" />
+                    </hbox>
+                </vbox>
+            </hbox>
             <label value="&boxShadow.code;" />
-            <textbox id="boxShadowResult" multiline="true" readonly="true" rows="10"
+            <textbox id="boxShadowResult" multiline="true" readonly="true" rows="7"
             />
         </dialog>

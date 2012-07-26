@@ -8,42 +8,24 @@
         buttons="disabled" onload="SIR.txtColumn.init();">
             <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
             <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
-            <!--<script type="application/x-javascript" src="chrome://sir/content/libs/jscolor/jscolor.js"></script>-->
-            <grid>
-                <columns>
-                    <column>
+<hbox>
                         <box id="txtColumnField">
                             <html:div id="txtColDesc" />
                         </box>
-                    </column>
-                    <column>
-                        <rows>
-                            <row>
-                                <box id="txtColumnControlBox">
-                                    <vbox>
-                                        <hbox class="txtColumnLabels">
-                                            <label value="Column's count:" />
-                                        </hbox>
-                                        <hbox class="txtColumnLabels">
-                                            <label value="Column Gap:" />
-                                        </hbox>
-                                        <hbox class="txtColumnRule">
-                                            <label value="Column rule:" />
-                                        </hbox>
-                                    </vbox>
-                                    <vbox id="txtColumnScaleVbox">
-                                        <hbox>
-                                            <scale min="1" max="4" value="1" id="txtColumnCount" onchange="SIR.txtColumn.onParamsChange();"
+                    
+                    
+                                
+                                <vbox id="txtColumnControlBox">
+                                
+                                <hbox class="controlHBox"><label  class="txtColumnLabels" value="Column's count:" /><scale min="1" max="4" value="1" id="txtColumnCount" onchange="SIR.txtColumn.onParamsChange();"
                                             />
-                                            <label id="txtColumnCountValue" value="" />
-                                        </hbox>
-                                        <hbox>
-                                            <scale min="0" max="35" id="txtColumnGap" onchange="SIR.txtColumn.onParamsChange();"
+                                            <label id="txtColumnCountValue" value="" /></hbox>
+                                
+                                <hbox class="controlHBox"><label class="txtColumnLabels" value="Column Gap:" /><scale min="0" max="35" id="txtColumnGap" onchange="SIR.txtColumn.onParamsChange();"
                                             />
-                                            <label id="txtColumnGapValue" value="" />
-                                        </hbox>
-                                        <hbox>
-                                            <menulist width="150px" id="column-rule-selector" oncommand="SIR.txtColumn.onParamsChange()">
+                                            <label id="txtColumnGapValue" value="" /></hbox>
+                                
+                                <hbox><label class="txtColumnLabels" value="Column rule:" /><menulist width="150px" id="column-rule-selector" oncommand="SIR.txtColumn.onParamsChange()">
                                                 <menupopup>
                                                     <menuitem value="none" label="none" selected="true" />
                                                     <menuitem value="dotted" label="dotted" />
@@ -54,15 +36,12 @@
                                                     <menuitem value="ridge" label="ridge" />
                                                     <menuitem value="outset" label="outset" />
                                                 </menupopup>
-                                            </menulist>
-                                        </hbox>
-                                    </vbox>
-                                </box>
-                            </row>
-                        </rows>
-                    </column>
-                </columns>
-            </grid>
+                                            </menulist></hbox>
+                                </vbox>
+                                
+                                
+</hbox>
+
             <label value="&txtColumn.code;" />
             <textbox id="txtColumnResult" multiline="true" readonly="true" rows="10"
             />

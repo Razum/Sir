@@ -11,43 +11,24 @@
             <panel id="colorPicker" style="width:500; height: 276; padding-bottom: 15px;">
                 <html:canvas id="myCanvas" width="500" height="276"></html:canvas>
             </panel>
-            <grid>
-                <columns>
-                    <column>
-                        <box id="borderRadiusField">
-                            <html:div id="borderRadiusDiv"></html:div>
-                        </box>
-                    </column>
-                    <column>
-                        <rows>
-                            <row>
-                                <box class="borderRadiusControlBox">
-                                    <vbox>
-                                        <hbox class="borderRadiusLabels">
-                                            <label value="Style:" />
-                                        </hbox>
-                                        <hbox class="borderRadiusLabels">
-                                            <label value="Width:" />
-                                        </hbox>
-                                        <hbox class="borderRadiusLabels">
-                                            <label value="Radius T-Left:" />
-                                        </hbox>
-                                        <hbox class="borderRadiusLabels">
-                                            <label value="Radius T-Right:" />
-                                        </hbox>
-                                        <hbox class="borderRadiusLabels">
-                                            <label value="Radius B-Left:" />
-                                        </hbox>
-                                        <hbox class="borderRadiusLabels">
-                                            <label value="Radius B-Right:" />
-                                        </hbox>
-                                        <hbox class="borderRadiusLabels">
-                                            <label value="Color:" />
-                                        </hbox>
-                                    </vbox>
-                                    <vbox class="borderRadiusScaleVbox">
-                                        <hbox>
-                                            <menulist width="150px" id="border-style-selector" oncommand="SIR.borderRadius.onParamsChange()">
+            
+       <hbox>   
+            
+            
+            
+            
+
+                        <vbox id="borderRadiusField">
+                            <box id="borderRadiusBox"></box>
+                        </vbox>
+ 
+ 
+ 
+ 
+ 
+                                <vbox id="borderRadiusControlBox">
+                                
+                                <hbox class="controlHBox"><label class="borderRadiusLabels" value="Style:" /><menulist width="150px" id="border-style-selector" oncommand="SIR.borderRadius.onParamsChange()">
                                                 <menupopup>
                                                     <menuitem value="none" label="none" />
                                                     <menuitem value="dotted" label="dotted" />
@@ -58,47 +39,43 @@
                                                     <menuitem value="ridge" label="ridge" />
                                                     <menuitem value="outset" label="outset" />
                                                 </menupopup>
-                                            </menulist>
-                                        </hbox>
-                                        <hbox>
-                                            <scale min="0" max="30" increment="1" id="borderRadiusWidth" onchange="SIR.borderRadius.onParamsChange();"
+                                            </menulist></hbox>
+                                
+                                <hbox class="controlHBox"><label class="borderRadiusLabels" value="Width:" /><scale min="0" max="30" increment="1" id="borderRadiusWidth" onchange="SIR.borderRadius.onParamsChange();"
                                             />
-                                            <label id="borderRadiusWidthVal" value="" />
-                                        </hbox>
-                                        <hbox>
-                                            <scale min="0" max="90" increment="1" id="borderRadiusTLeft" onchange="SIR.borderRadius.onParamsChange();"
+                                            <label id="borderRadiusWidthVal" value="" /></hbox>
+                                
+                                <hbox class="controlHBox"><label class="borderRadiusLabels" value="Radius T-Left:" /><scale min="0" max="90" increment="1" id="borderRadiusTLeft" onchange="SIR.borderRadius.onParamsChange();"
                                             />
-                                            <label id="borderRadiusTLeftVal" value="" />
-                                        </hbox>
-                                        <hbox>
-                                            <scale min="0" max="90" increment="1" id="borderRadiusTRight" onchange="SIR.borderRadius.onParamsChange();"
+                                            <label id="borderRadiusTLeftVal" value="" /></hbox>
+                                
+                                <hbox class="controlHBox"><label class="borderRadiusLabels" value="Radius T-Right:" /><scale min="0" max="90" increment="1" id="borderRadiusTRight" onchange="SIR.borderRadius.onParamsChange();"
                                             />
-                                            <label id="borderRadiusTRightVal" value="" />
-                                        </hbox>
-                                        <hbox>
-                                            <scale min="0" max="90" increment="1" id="borderRadiusBLeft" onchange="SIR.borderRadius.onParamsChange();"
+                                            <label id="borderRadiusTRightVal" value="" /></hbox>
+                                
+                                <hbox class="controlHBox"><label class="borderRadiusLabels" value="Radius B-Left:" /><scale min="0" max="90" increment="1" id="borderRadiusBLeft" onchange="SIR.borderRadius.onParamsChange();"
                                             />
-                                            <label id="borderRadiusBLeftVal" value="" />
-                                        </hbox>
-                                        <hbox>
-                                            <scale min="0" max="90" increment="1" id="borderRadiusBRight" onchange="SIR.borderRadius.onParamsChange();"
+                                            <label id="borderRadiusBLeftVal" value="" /></hbox>
+                                
+                                <hbox class="controlHBox"><label class="borderRadiusLabels" value="Radius B-Right:" /><scale min="0" max="90" increment="1" id="borderRadiusBRight" onchange="SIR.borderRadius.onParamsChange();"
                                             />
-                                            <label id="borderRadiusBRightVal" value="" />
-                                        </hbox>
-                                        <hbox>
-                                            <colorpicker id="colorButton" type="button" disabled="true" color="#fff"
+                                            <label id="borderRadiusBRightVal" value="" /></hbox>
+                                
+                                <hbox><label class="borderRadiusLabels" value="Color:" /><colorpicker id="colorButton" type="button" disabled="true" color="#fff"
                                             onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false, SIR.utils.panelLoad(this, document.getElementById('txtColor')));"
                                             />
                                             <textbox id="txtColor" value="#FFFFFF" readonly="true" onchange="SIR.borderRadius.onParamsChange();"
-                                            />
-                                        </hbox>
-                                    </vbox>
-                                </box>
-                            </row>
-                        </rows>
-                    </column>
-                </columns>
-            </grid>
+                                            /></hbox>
+
+                                </vbox>
+                                
+                                
+                                
+                                
+
+           
+           
+  </hbox>           
             <label value="&borderRadius.code;" />
             <textbox id="borderRadiusResult" multiline="true" readonly="true" rows="10"
             />

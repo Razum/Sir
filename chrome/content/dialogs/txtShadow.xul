@@ -15,7 +15,7 @@
                 <vbox id="txtShadowField">
                     <label id="TSinscription" value="Text-shadow" />
                 </vbox>
-                <vbox id="controlBox">
+                <vbox id="txtShadowControlBox">
                     <hbox class="controlHBox">
                         <label class="txtShadowLabels" value="Horizontal Length:" />
                         <scale min="-75" max="75" id="TShorLen" onchange="SIR.txtShadow.onParamsChange();" />

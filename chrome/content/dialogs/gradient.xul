@@ -12,54 +12,42 @@
             onpopuphiding="">
                 <html:canvas id="myCanvas" width="500" height="276"></html:canvas>
             </panel>
-            <grid>
-                <columns>
-                    <column>
+
+<hbox>
+
                         <box id="gradientField"></box>
-                    </column>
-                    <column>
-                        <rows>
-                            <row>
-                                <box class="gradientControlBox">
-                                    <vbox>
-                                        <hbox class="gradientLabels">
-                                            <label value="Orientation:" />
-                                        </hbox>
-                                        <hbox class="gradientLabels">
-                                            <label value="From:" />
-                                        </hbox>
-                                        <hbox class="gradientLabels">
-                                            <label value="To:" />
-                                        </hbox>
-                                    </vbox>
-                                    <vbox class="gradientScaleVbox">
-                                        <hbox>
-                                            <menulist width="150px" id="dir" style="font-size: 20px; line-height: 22px;"
-                                            oncommand="SIR.gradient.onParamsChange()">
+
+
+
+                                <vbox id="gradientControlBox">
+                                
+                                <hbox class="controlGradHBox"><label class="gradientLabels" value="Orientation:" /><menulist width="150px" id="dir" oncommand="SIR.gradient.onParamsChange()">
                                                 <menupopup>
-                                                    <menuitem value="ltrt" label="&#8594;" style="font-size: 20px;" selected="true"
+                                                    <menuitem value="ltrt" label="&#8594;" selected="true"
                                                     />
-                                                    <menuitem value="ltlb" label="&#8595;" style="font-size: 20px;" />
-                                                    <menuitem value="ltrb" label="&#8600;" style="font-size: 20px;" />
-                                                    <menuitem value="lbrt" label="&#8599;" style="font-size: 20px;" />
+                                                    <menuitem value="ltlb" label="&#8595;"/>
+                                                    <menuitem value="ltrb" label="&#8600;"/>
+                                                    <menuitem value="lbrt" label="&#8599;"/>
                                                 </menupopup>
-                                            </menulist>
-                                        </hbox>
-                                        <hbox class="gradHbox">
-                                            <colorpicker id="colorButtonFrom" type="button" disabled="true" color="#fff" />
-                                            <textbox id="txtColorFrom" value="#FFFFFF" readonly="true" onchange="SIR.gradient.onParamsChange();" />
-                                        </hbox>
-                                        <hbox class="gradHbox">
-                                            <colorpicker id="colorButtonTo" type="button" disabled="true" color="#fff" />
-                                            <textbox id="txtColorTo" value="#FFFFFF" readonly="true" onchange="SIR.gradient.onParamsChange();" />
-                                        </hbox>
-                                    </vbox>
-                                </box>
-                            </row>
-                        </rows>
-                    </column>
-                </columns>
-            </grid>
+                                            </menulist></hbox>
+                                            <spacer />
+                                
+                                <hbox class="controlGradHBox"><label class="gradientLabels" value="From:" /><colorpicker id="colorButtonFrom" type="button" disabled="true" color="#fff" />
+                                            <textbox id="txtColorFrom" value="#FFFFFF" readonly="true" onchange="SIR.gradient.onParamsChange();" /></hbox>
+                                <spacer />
+                                <hbox class="controlGradHBox"><label class="gradientLabels" value="To:" /><colorpicker id="colorButtonTo" type="button" disabled="true" color="#fff" />
+                                            <textbox id="txtColorTo" value="#FFFFFF" readonly="true" onchange="SIR.gradient.onParamsChange();" /></hbox>
+                                
+                                
+
+                                </vbox>
+
+
+
+
+</hbox>
+
+
             <label value="&gradient.code;" />
             <textbox id="gradientResult" multiline="true" readonly="true" rows="10"
             />

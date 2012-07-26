@@ -8,36 +8,20 @@
         buttons="disabled" onload="SIR.txtRotation.init();">
             <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
             <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
-            <!--<script type="application/x-javascript" src="chrome://sir/content/libs/jscolor/jscolor.js"></script>-->
-            <grid>
-                <columns>
-                    <column>
-                        <box id="txtRotationField">
+<hbox>
+                        <vbox id="txtRotationField">
                             <label id="TRinscription" value="Text-Rotation" />
-                        </box>
-                    </column>
-                    <column>
-                        <rows>
-                            <row>
-                                <box id="controlBox">
-                                    <vbox>
-                                        <hbox class="txtRotationLabels">
-                                            <label value="Rotate:" />
-                                        </hbox>
-                                    </vbox>
-                                    <vbox id="txtRotationScaleVbox">
-                                        <hbox>
-                                            <scale min="0" max="360" increment="1" id="TRrotDeg" onchange="SIR.txtRotation.onParamsChange();"
+                        </vbox>
+
+                                <vbox id="txtRotationControlBox">
+                                    <hbox><label class="txtRotationLabels" value="Rotate:" /><scale min="0" max="360" increment="1" id="TRrotDeg" onchange="SIR.txtRotation.onParamsChange();"
                                             />
-                                            <label id="TRrotDegValue" value="" />
-                                        </hbox>
-                                    </vbox>
-                                </box>
-                            </row>
-                        </rows>
-                    </column>
-                </columns>
-            </grid>
+                                            <label id="TRrotDegValue" value="" /></hbox>
+                                            </vbox>
+                                    
+
+</hbox>                                
+
             <label value="&txtRotation.code;" />
             <textbox id="txtRotationResult" multiline="true" readonly="true" rows="10"
             />
