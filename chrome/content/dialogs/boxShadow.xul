@@ -21,24 +21,24 @@
                 <vbox id="boxShcontrolBox">
                     <hbox class="controlHBox">
                         <label class="boxShadowLabels" value="Horizontal Length:" />
-                        <scale min="-75" max="75" id="BShorLen" onchange="SIR.boxShadow.onParamsChange();" />
+                        <scale min="-75" max="75" value="9" id="BShorLen" onchange="SIR.boxShadow.onParamsChange();" />
                         <label id="BShorLenvalue" value="" />
                     </hbox>
                     <hbox class="controlHBox">
                         <label class="boxShadowLabels" value="Vertical Length:" />
-                        <scale min="-75" max="75" id="BSverLen" onchange="SIR.boxShadow.onParamsChange();" />
+                        <scale min="-75" max="75" value="6" id="BSverLen" onchange="SIR.boxShadow.onParamsChange();" />
                         <label id="BSverLenvalue" value="" />
                     </hbox>
                     <hbox class="controlHBox">
                         <label class="boxShadowLabels" value="Blur Radius:" />
-                        <scale min="0" max="50" id="BSblurRadius" onchange="SIR.boxShadow.onParamsChange();" />
+                        <scale min="0" max="50" value="11" id="BSblurRadius" onchange="SIR.boxShadow.onParamsChange();" />
                         <label id="BSblurRadiusvalue" value="" />
                     </hbox>
                     <hbox>
                         <label class="boxShadowLabels" value="Shadow Color:" />
-                        <colorpicker id="colorButton" type="button" disabled="true" color="#fff"
+                        <colorpicker id="colorButton" type="button" disabled="true" color="#6D6B6B"
                         onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false, SIR.utils.panelLoad(this, document.getElementById('txtColor')));" />
-                        <textbox id="txtColor" value="#FFFFFF" readonly="true" onchange="SIR.boxShadow.onParamsChange();"
+                        <textbox id="txtColor" value="#6D6B6B" readonly="true" onchange="SIR.boxShadow.onParamsChange();"
                         />
                     </hbox>
                     <hbox style="margin-top:20px;">

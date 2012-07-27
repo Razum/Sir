@@ -33,22 +33,22 @@
                     </hbox>
                     <hbox class="controlHBox">
                         <label class="outlineLabels" value="Width:" />
-                        <scale min="0" max="30" increment="1" id="outlineWidth" onchange="SIR.outline.onParamsChange();"
+                        <scale min="0" max="30" value="6" increment="1" id="outlineWidth" onchange="SIR.outline.onParamsChange();"
                         />
                         <label id="outlineWidthVal" value="" />
                     </hbox>
                     <hbox class="controlHBox">
                         <label class="outlineLabels" value="Offset:" />
-                        <scale min="0" max="30" increment="1" id="outlineOffset" onchange="SIR.outline.onParamsChange();"
+                        <scale min="0" max="30" value="6" increment="1" id="outlineOffset" onchange="SIR.outline.onParamsChange();"
                         />
                         <label id="outlineOffsetVal" value="" />
                     </hbox>
                     <hbox>
                         <label class="outlineLabels" value="Color:" />
-                        <colorpicker id="colorButton" type="button" disabled="true" color="#fff"
+                        <colorpicker id="colorButton" type="button" disabled="true" color="#181783"
                         onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false, SIR.utils.panelLoad(this, document.getElementById('txtColor')));"
                         />
-                        <textbox id="txtColor" value="#FFFFFF" readonly="true" onchange="SIR.outline.onParamsChange();"
+                        <textbox id="txtColor" value="#181783" readonly="true" onchange="SIR.outline.onParamsChange();"
                         />
                     </hbox>
                 </vbox>

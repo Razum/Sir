@@ -80,10 +80,10 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 /************************** text-shadow ************************/
 
 #txtShadowDialog{
-    width:830px;
+    width:845px;
     height: 460px;
     min-height: 460px;
-    min-width: 800px;
+    min-width: 845px;
 }
 
  .txtShadowLabels{    
@@ -278,10 +278,10 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 /************************** box-shadow ************************/
 
 #boxShadowDialog{
-    width:840px;
+    width:850px;
     height: 450px;
-    min-height: 450px;
-    min-width: 840px;
+    min-height: 455px;
+    min-width: 855px;
 }
 
  .boxShadowLabels{

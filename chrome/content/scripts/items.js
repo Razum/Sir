@@ -60,20 +60,20 @@ SIR.txtShadow = {
                 this.horLenlbl = document.getElementById("TShorLenvalue");
                 this.verLenlbl = document.getElementById("TSverLenvalue");
                 this.blurRadiuslbl = document.getElementById("TSblurRadiusvalue");
-                this.horLen.value = 0;
-                this.verLen.value = 0;
-                this.blurRadius.value = 0;
-                this.colorButton.color = "#fff";
-                this.horLenlbl.value = 0;
-                this.verLenlbl.value = 0;
-                this.blurRadiuslbl.value = 0;
-                this.inscription.style.textShadow = "0 0 0 #fff";
+                this.horLen.value = 3;
+                this.verLen.value = 3;
+                this.blurRadius.value = 3;
+                this.colorButton.color = "#6D6B6B";
+                this.horLenlbl.value = this.horLen.value + "px";
+                this.verLenlbl.value = this.verLen.value + "px";
+                this.blurRadiuslbl.value = this.blurRadius.value + "px";
+                this.inscription.style.textShadow = "3px 3px 3px #6D6B6B";
                 this.showCode(this.horLen.value, this.verLen.value, this.blurRadius.value, this.colorButton.color);
         },
         onParamsChange: function() {
-                this.horLenlbl.value = this.horLen.value;
-                this.verLenlbl.value = this.verLen.value;
-                this.blurRadiuslbl.value = this.blurRadius.value;
+                this.horLenlbl.value = this.horLen.value + "px";
+                this.verLenlbl.value = this.verLen.value + "px";
+                this.blurRadiuslbl.value = this.blurRadius.value + "px";
                 this.inscription.style.textShadow = this.horLen.value + "px " + this.verLen.value + "px " + this.blurRadius.value + "px " + this.colorButton.color;
                 this.showCode(this.horLen.value, this.verLen.value, this.blurRadius.value, this.colorButton.color);
         },
@@ -194,21 +194,21 @@ SIR.boxShadow = {
                 this.horLenlbl = document.getElementById("BShorLenvalue");
                 this.verLenlbl = document.getElementById("BSverLenvalue");
                 this.blurRadiuslbl = document.getElementById("BSblurRadiusvalue");
-                this.BoxShorLen.value = 0;
-                this.BoxSverLen.value = 0;
-                this.BoxSblurRadius.value = 0;
-                this.colorButton.color = "#fff";
-                this.horLenlbl.value = 0;
-                this.verLenlbl.value = 0;
-                this.blurRadiuslbl.value = 0;
-                this.rect.style.boxShadow = "0 0 0 #fff";
-                this.showCode(0, 0, 0, "#fff", false);
+                this.BoxShorLen.value = 9;
+                this.BoxSverLen.value = 6;
+                this.BoxSblurRadius.value = 11;
+                this.colorButton.color = "#6D6B6B";
+                this.horLenlbl.value = this.BoxShorLen.value + "px";
+                this.verLenlbl.value = this.BoxSverLen.value + "px";
+                this.blurRadiuslbl.value = this.BoxSblurRadius.value + "px";
+                this.rect.style.boxShadow = "9px 6px 11px #6D6B6B";
+                this.showCode(this.BoxShorLen.value, this.BoxSverLen.value, this.BoxSblurRadius.value, this.colorButton.color, false);
         },
         onParamsChange: function() {
                 var inset = "";
-                this.horLenlbl.value = this.BoxShorLen.value;
-                this.verLenlbl.value = this.BoxSverLen.value;
-                this.blurRadiuslbl.value = this.BoxSblurRadius.value;
+                this.horLenlbl.value = this.BoxShorLen.value + "px";
+                this.verLenlbl.value = this.BoxSverLen.value + "px";
+                this.blurRadiuslbl.value = this.BoxSblurRadius.value + "px";
                 if (this.inset.checked) {
                         inset = "inset ";
                 }
@@ -600,14 +600,14 @@ SIR.outline = {
                 this.rect = document.getElementById("outlineBox");
                 this.outWidthlbl = document.getElementById("outlineWidthVal");
                 this.outOffsetlbl = document.getElementById("outlineOffsetVal");
-                this.outWidth.value = 0;
-                this.outOffset.value = 0;
-                this.outWidthlbl.value = 0 + "px";
-                this.outOffsetlbl.value = 0 + "px";
-                this.colorButton.color = "#fff";
-                this.rect.style.outline = "0px solid #fff";
-                this.rect.style.outlineOffset = "0px";
-                this.showCode(0, "solid", "#fff", 0);
+                this.outWidth.value = 6;
+                this.outOffset.value = 6;
+                this.outWidthlbl.value = this.outWidth.value + "px";
+                this.outOffsetlbl.value = this.outOffset.value + "px";
+                this.colorButton.color = "#181783";
+                this.rect.style.outline = "6px solid #181783";
+                this.rect.style.outlineOffset = "6px";
+                this.showCode(this.outWidth.value, "solid", this.colorButton.color, this.outOffset.value);
         },
         onParamsChange: function() {
                 this.outWidthlbl.value = this.outWidth.value + "px";
