@@ -20,7 +20,7 @@
                                 <label id="Gvalue" value="" /></hbox>
                     <hbox class="controlHBox"><label class="rgbaLabels" value="B:" style="color: blue;" /><scale min="0" max="255" id="B" onchange="SIR.rgba.onColorChange();" />
                                 <label id="Bvalue" value="" /></hbox>
-                    <hbox><label class="rgbaLabels" value="Opacity:" /><scale min="0" max="100" increment="10" id="opacity" onchange="SIR.rgba.onColorChange();"
+                    <hbox><label class="rgbaLabels" value="Opacity:" /><scale min="0" max="100" value="50" increment="10" id="opacity" onchange="SIR.rgba.onColorChange();"
                                 />
                                 <label id="Opacityvalue" value="" /></hbox>
 

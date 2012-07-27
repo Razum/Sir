@@ -19,13 +19,13 @@ SIR.rgba = {
                 this.R.value = 0;
                 this.G.value = 0;
                 this.B.value = 0;
-                this.opacity.value = 0;
-                this.Rlbl.value = 0;
-                this.Glbl.value = 0;
-                this.Blbl.value = 0;
-                this.opacitylbl.value = 0;
+                this.opacity.value = 50;
+                this.Rlbl.value = this.R.value;
+                this.Glbl.value = this.G.value;
+                this.Blbl.value = this.B.value;
+                this.opacitylbl.value = this.opacity.value/100;
                 this.rgbaRect.style.backgroundColor = "#" + this.R.value + this.G.value + this.B.value;
-                this.rgbaRect.style.opacity = this.opacity.value;
+                this.rgbaRect.style.opacity = this.opacity.value/100;
                 this.showCode(this.R.value, this.G.value, this.B.value, this.opacity.value / 100);
         },
         onColorChange: function() {
@@ -365,16 +365,16 @@ SIR.gradient = {
                 this.to = document.getElementById("colorButtonTo");
                 this.rect = document.getElementById("gradientField");
                 this.txtBox = document.getElementById("gradientResult");
-                this.from.color = "#fff";
-                this.to.color = "#fff";
-                this.rect.style.backgroundImage = '-moz-linear-gradient(left top, #fff, #fff)';
+                this.from.color = "#1301FE";
+                this.to.color = "#F4F60C";
+                this.rect.style.backgroundImage = '-moz-linear-gradient(top, #1301FE, #F4F60C)';
                 document.getElementById("colorButtonFrom").onclick = function(e) {
                         document.getElementById('colorPicker').openPopup(e.target, 'after_start', 0, 0, false, SIR.utils.panelLoad(e.target, document.getElementById('txtColorFrom')));
                 }
                 document.getElementById("colorButtonTo").onclick = function(e) {
                         document.getElementById('colorPicker').openPopup(e.target, 'after_start', 0, 0, false, SIR.utils.panelLoad(e.target, document.getElementById('txtColorTo')));
                 }
-                this.showCode("ltrt", "#fff", "#fff");
+                this.showCode("ltlb", this.from.color, this.to.color);
         },
         onParamsChange: function() {
                 var direction = {

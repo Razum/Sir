@@ -23,20 +23,19 @@
                                 
                                 <hbox class="controlGradHBox"><label class="gradientLabels" value="Orientation:" /><menulist width="150px" id="dir" oncommand="SIR.gradient.onParamsChange()">
                                                 <menupopup>
-                                                    <menuitem value="ltrt" label="&#8594;" selected="true"
-                                                    />
-                                                    <menuitem value="ltlb" label="&#8595;"/>
+                                                    <menuitem value="ltrt" label="&#8594;"/>
+                                                    <menuitem value="ltlb" label="&#8595;" selected="true"/>
                                                     <menuitem value="ltrb" label="&#8600;"/>
                                                     <menuitem value="lbrt" label="&#8599;"/>
                                                 </menupopup>
                                             </menulist></hbox>
                                             <spacer />
                                 
-                                <hbox class="controlGradHBox"><label class="gradientLabels" value="From:" /><colorpicker id="colorButtonFrom" type="button" disabled="true" color="#fff" />
-                                            <textbox id="txtColorFrom" value="#FFFFFF" readonly="true" onchange="SIR.gradient.onParamsChange();" /></hbox>
+                                <hbox class="controlGradHBox"><label class="gradientLabels" value="From:" /><colorpicker id="colorButtonFrom" type="button" disabled="true" color="#1301FE" />
+                                            <textbox id="txtColorFrom" value="#1301FE" readonly="true" onchange="SIR.gradient.onParamsChange();" /></hbox>
                                 <spacer />
-                                <hbox class="controlGradHBox"><label class="gradientLabels" value="To:" /><colorpicker id="colorButtonTo" type="button" disabled="true" color="#fff" />
-                                            <textbox id="txtColorTo" value="#FFFFFF" readonly="true" onchange="SIR.gradient.onParamsChange();" /></hbox>
+                                <hbox class="controlGradHBox"><label class="gradientLabels" value="To:" /><colorpicker id="colorButtonTo" type="button" disabled="true" color="#F4F60C" />
+                                            <textbox id="txtColorTo" value="#F4F60C" readonly="true" onchange="SIR.gradient.onParamsChange();" /></hbox>
                                 
                                 
 

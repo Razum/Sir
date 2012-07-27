@@ -127,7 +127,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 }
 
 #TSinscription{
-    font-size: 20px;
+    font-size: 23px;
     font-weight: 700;
     margin: 75px 120px;
     
@@ -150,18 +150,18 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 /************************** text-rotation ************************/
 
 #txtRotationDialog{
-    width:820px;
+    width:850px;
     height: 455px;
-    min-height: 450px;
-    min-width: 600px;
+    min-height: 455px;
+    min-width: 850px;
 }
 
  .txtRotationLabels{
-    width: 70px;
+    width: 50px;
  }
  
 #txtRotationControlBox{
-    padding: 40px 15px 0 15px;
+    padding: 40px 15px 0 5px;
     
 }
 
@@ -172,12 +172,12 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 }
 
 #txtRotationControlBox scale{
-    width: 270px;
+    width: 290px;
     
 }
 
 #TRinscription{
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 700;
     margin: 75px 120px;
     
@@ -279,8 +279,8 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
 #boxShadowDialog{
     width:850px;
-    height: 450px;
-    min-height: 455px;
+    height: 470px;
+    min-height: 470px;
     min-width: 855px;
 }
 
@@ -312,7 +312,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 #boxField{
     
     width: 400px;
-    height: 250px;
+    height: 270px;
     text-align: center;  
     margin-bottom: 15px;
     border: 1px solid #dedede;
@@ -326,7 +326,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 #boxShBox{
     width: 200px;
     height: 110px;
-    margin: 60px 100px;
+    margin: 80px 100px;
     border: 1px solid #E0DEDE;
     background-color: #80A1C9;
     -moz-border-radius: 15px;
@@ -742,7 +742,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
 /************** CLEANER ****************/
 #CleanerDialog{
-    width: 750px;
+    width: 800px;
     height: 650px;
     min-height: 650px;
     min-width: 750px;
@@ -767,9 +767,9 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 /************ selectors **************/
 #bonusDialog{
     width:850px;
-    height: 600px;
-    min-height: 600px;
-    min-width: 800px;
+    height: 630px;
+    min-height: 630px;
+    min-width: 850px;
 }
 
 #tp_selector{
