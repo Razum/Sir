@@ -41,7 +41,7 @@
                                                 </menupopup>
                                             </menulist></hbox>
                                 
-                                <hbox class="controlHBox"><label class="borderRadiusLabels" value="Width:" /><scale min="0" max="30" increment="1" id="borderRadiusWidth" onchange="SIR.borderRadius.onParamsChange();"
+                                <hbox class="controlHBox"><label class="borderRadiusLabels" value="Width:" /><scale min="0" max="30" value="2" increment="1" id="borderRadiusWidth" onchange="SIR.borderRadius.onParamsChange();"
                                             />
                                             <label id="borderRadiusWidthVal" value="" /></hbox>
                                 
@@ -61,10 +61,10 @@
                                             />
                                             <label id="borderRadiusBRightVal" value="" /></hbox>
                                 
-                                <hbox><label class="borderRadiusLabels" value="Color:" /><colorpicker id="colorButton" type="button" disabled="true" color="#fff"
+                                <hbox><label class="borderRadiusLabels" value="Color:" /><colorpicker id="colorButton" type="button" disabled="true" color="#000"
                                             onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false, SIR.utils.panelLoad(this, document.getElementById('txtColor')));"
                                             />
-                                            <textbox id="txtColor" value="#FFFFFF" readonly="true" onchange="SIR.borderRadius.onParamsChange();"
+                                            <textbox id="txtColor" value="#000000" readonly="true" onchange="SIR.borderRadius.onParamsChange();"
                                             /></hbox>
 
                                 </vbox>

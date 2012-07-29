@@ -23,9 +23,9 @@ SIR.rgba = {
                 this.Rlbl.value = this.R.value;
                 this.Glbl.value = this.G.value;
                 this.Blbl.value = this.B.value;
-                this.opacitylbl.value = this.opacity.value/100;
+                this.opacitylbl.value = this.opacity.value / 100;
                 this.rgbaRect.style.backgroundColor = "#" + this.R.value + this.G.value + this.B.value;
-                this.rgbaRect.style.opacity = this.opacity.value/100;
+                this.rgbaRect.style.opacity = this.opacity.value / 100;
                 this.showCode(this.R.value, this.G.value, this.B.value, this.opacity.value / 100);
         },
         onColorChange: function() {
@@ -149,14 +149,14 @@ SIR.transform = {
                 this.skewY.value = 0;
                 this.TranslateX.value = 0;
                 this.TranslateY.value = 0;
-                this.rotDeglbl.value = 0 + "\u00B0";
-                this.scaleXlbl.value = "\u292b" + 1;
-                this.scaleYlbl.value = "\u292b" + 1;
-                this.skewXlbl.value = 0 + "\u00B0";
-                this.skewYlbl.value = 0 + "\u00B0";
-                this.TranslateXlbl.value = 0 + "px";
-                this.TranslateYlbl.value = 0 + "px";
-                this.rect.style.MozTransform = 'rotate(0deg) scale(1, 1) skew(0deg, 0deg) translate(0, 0)';
+                this.rotDeglbl.value = this.rotDeg.value + "\u00B0";
+                this.scaleXlbl.value = "\u292b" + this.scaleX.value / 10;
+                this.scaleYlbl.value = "\u292b" + this.scaleY.value / 10;
+                this.skewXlbl.value = this.skewX.value + "\u00B0";
+                this.skewYlbl.value = this.skewY.value + "\u00B0";
+                this.TranslateXlbl.value = this.TranslateX.value + "px";
+                this.TranslateYlbl.value = this.TranslateY.value + "px";
+                this.rect.style.MozTransform = 'rotate(0deg) scale(1, 1) skewX(0deg) skewY(0deg) translate(0, 0)';
                 this.showCode(0, 1, 1, 0, 0, 0, 0);
         },
         onParamsChange: function() {
@@ -167,12 +167,12 @@ SIR.transform = {
                 this.skewYlbl.value = this.skewY.value + "\u00B0";
                 this.TranslateXlbl.value = this.TranslateX.value + "px";
                 this.TranslateYlbl.value = this.TranslateY.value + "px";
-                this.rect.style.MozTransform = 'rotate(' + this.rotDeg.value + 'deg) scale(' + this.scaleX.value / 10 + ', ' + this.scaleY.value / 10 + ') skew(' + this.skewX.value + 'deg, ' + this.skewY.value + 'deg) translate(' + this.TranslateX.value + 'px, ' + this.TranslateY.value + 'px)';
+                this.rect.style.MozTransform = 'rotate(' + this.rotDeg.value + 'deg) scale(' + this.scaleX.value / 10 + ', ' + this.scaleY.value / 10 + ') skewX(' + this.skewX.value + 'deg) skewY(' + this.skewY.value + 'deg) translate(' + this.TranslateX.value + 'px, ' + this.TranslateY.value + 'px)';
                 this.showCode(this.rotDeg.value, this.scaleX.value / 10, this.scaleY.value / 10, this.skewX.value, this.skewY.value, this.TranslateX.value, this.TranslateY.value);
         },
         showCode: function(rot, scX, scY, skX, skY, trX, trY) {
                 var str = "transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);\n";
-                str += "-moz-transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/* FF3.5+ */\n";
+                str += "-moz-transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skewX(" + skX + "deg) skewY(" + skY + "deg) translate(" + trX + "px, " + trY + "px);/* FF3.5+ */\n";
                 str += "-webkit-transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/*Saf3.1+, Chrome*/\n";
                 str += "-o-transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/* Opera 10.5 */\n";
                 str += "-ms-transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/* IE 9 */\n";
@@ -253,23 +253,23 @@ SIR.borderRadius = {
                 this.brdRadTRlbl = document.getElementById("borderRadiusTRightVal");
                 this.brdRadBLlbl = document.getElementById("borderRadiusBLeftVal");
                 this.brdRadBRlbl = document.getElementById("borderRadiusBRightVal");
-                this.brdWidth.value = 0;
+                this.brdWidth.value = 2;
                 this.brdRadTL.value = 0;
                 this.brdRadTR.value = 0;
                 this.brdRadBL.value = 0;
                 this.brdRadBR.value = 0;
-                this.colorButton.color = "#fff";
-                this.brdWidthlbl.value = 0 + "px";
-                this.brdRadTLlbl.value = 0 + "px";
-                this.brdRadTRlbl.value = 0 + "px";
-                this.brdRadBLlbl.value = 0 + "px";
-                this.brdRadBRlbl.value = 0 + "px";
-                this.rect.style.border = "0px solid #fff"
+                this.colorButton.color = "#000";
+                this.brdWidthlbl.value = this.brdWidth.value + "px";
+                this.brdRadTLlbl.value = this.brdRadTL.value + "px";
+                this.brdRadTRlbl.value = this.brdRadTR.value + "px";
+                this.brdRadBLlbl.value = this.brdRadBL.value + "px";
+                this.brdRadBRlbl.value = this.brdRadBR.value + "px";
+                this.rect.style.border = "2px solid #000"
                 this.rect.style.borderTopLeftRadius = "0px";
                 this.rect.style.borderTopRightRadius = "0px";
                 this.rect.style.borderBottomLeftRadius = "0px";
                 this.rect.style.borderBottomRightRadius = "0px";
-                this.showCode(0, "solid", "#fff", 0, 0, 0, 0);
+                this.showCode(this.brdWidth.value, "solid", this.colorButton.color, this.brdRadTL.value, this.brdRadTR.value, this.brdRadBL.value, this.brdRadBR.value);
         },
         onParamsChange: function() {
                 this.brdWidthlbl.value = this.brdWidth.value + "px";
@@ -329,9 +329,9 @@ SIR.txtColumn = {
                 this.colGaplbl = document.getElementById("txtColumnGapValue");
                 this.colCount.value = 1;
                 this.colGap.value = 0;
-                this.colCountlbl.value = 0;
-                this.colGaplbl.value = 0;
-                this.desc.style.MozColumnCount = 0;
+                this.colCountlbl.value = this.colCount.value;
+                this.colGaplbl.value = this.colGap.value;
+                this.desc.style.MozColumnCount = 1;
                 this.desc.style.MozColumnGap = "0px";
                 this.desc.style.MozColumnRule = "none";
                 this.showCode(1, 0, "none");

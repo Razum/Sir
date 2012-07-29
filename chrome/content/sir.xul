@@ -17,7 +17,7 @@
                     />
                     <menuitem id="sir-toolbar-button-textrotation" label="Text-rotation" image="chrome://sir/skin/images/rotation.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/txtRotation.xul', 'txtRotationDialog', '')"
                     />
-                    <menuitem id="sir-toolbar-button-transform" label="Transform"  image="chrome://sir/skin/images/transform.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/transform.xul', 'txtRotationDialog', '')"
+                    <menuitem id="sir-toolbar-button-transform" label="Transform"  image="chrome://sir/skin/images/transform.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/transform.xul', 'transformDialog', '')"
                     />
                     <menuitem id="sir-toolbar-button-boxtshadow" label="Box-shadow" image="chrome://sir/skin/images/boxShadow.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/boxShadow.xul', 'boxShadowDialog', '')"
                     />

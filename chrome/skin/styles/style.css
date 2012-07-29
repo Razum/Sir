@@ -223,16 +223,21 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 }
 
  .transformLabels{
-    margin-top: 1px;
-    margin-bottom: 6px;
+    width: 80px;
  }
  
- .transformScaleVbox scale{
-    width: 300px;
+ #transformControlBox scale{
+    width: 310px;
  }
+ 
+ #transformControlBox label{
+    font-weight: 600;
+    font-size: 14px;
+    
+}
  
 
- .transformControlBox{
+ #transformControlBox{
      padding: 5px 15px 0 15px;
      
  }
@@ -355,8 +360,8 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
 #borderRadiusDialog{
     width:900px;
-    height: 550px;
-    min-height: 550px;
+    height: 575px;
+    min-height: 575px;
     min-width: 900px;
 }
 
@@ -459,7 +464,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
  
 
 #txtColDesc{
-    font-size: 1em;
+    font-size: 12px;
     font-weight: 200;
     color:#000;
     width: 570px;
@@ -767,7 +772,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 /************ selectors **************/
 #bonusDialog{
     width:850px;
-    height: 630px;
+    height: 650px;
     min-height: 630px;
     min-width: 850px;
 }
@@ -812,6 +817,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     color: #2F913E;
     margin-left: 50px;
     padding: 2px 5px 1px 5px;
+    font-size: 12px;
 }
 
 
