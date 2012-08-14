@@ -6,11 +6,12 @@
         <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
         xmlns:html="http://www.w3.org/1999/xhtml" id="outlineDialog" title="&outline.title;"
         buttons="disabled" onload="SIR.outline.init();">
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js"></script>
             <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
-            <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
-            <panel id="colorPicker" style="width:500; height: 276; padding-bottom: 15px;">
-                <html:canvas id="myCanvas" width="500" height="276"></html:canvas>
-            </panel>
+            
+            <panel id="colorPicker" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="Choose Colour">
+			</panel>
+            
             <hbox>
                 <vbox id="outlineField">
                     <box id="outlineBox"></box>
@@ -46,11 +47,7 @@
                     <hbox>
                         <label class="outlineLabels" value="Color:" />
                         <colorpicker id="colorButton" type="button" disabled="true" color="#181783"
-                        onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false, SIR.utils.panelLoad(this, document.getElementById('txtColor')));"
-                        />
-                        <textbox id="txtColor" value="#181783" readonly="true" onchange="SIR.outline.onParamsChange();"
-                        />
-                    </hbox>
+                        onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false);"/></hbox>
                 </vbox>
             </hbox>
             <label value="&outline.code;" />

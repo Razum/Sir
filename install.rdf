@@ -4,7 +4,7 @@
 		<em:id>{0103572f-d20f-4039-9eaa-ded7c4a97124}</em:id>
         <em:type>2</em:type> 
 		<em:name>CSSsir</em:name>
-		<em:version>0.2.20120727</em:version>		
+		<em:version>0.3.20120814</em:version>		
 		<em:description>CSS3-rules generator.</em:description>
 		<em:creator>Roman Razumyeyenko</em:creator>		
 	    <em:iconURL>chrome://sir/skin/images/CSSsir.png</em:iconURL>		

@@ -1,53 +1,43 @@
 <?xml version="1.0" ?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
-    <?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
-    ?>
-        <!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
-        <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        xmlns:html="http://www.w3.org/1999/xhtml" id="gradientDialog" title="&gradient.title;"
-        buttons="disabled" onload="SIR.gradient.init();">
-            <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
-            <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
-            <panel id="colorPicker" style="width:500; height: 276; padding-bottom: 15px;"
-            onpopuphiding="">
-                <html:canvas id="myCanvas" width="500" height="276"></html:canvas>
-            </panel>
-
-<hbox>
-
-                        <box id="gradientField"></box>
-
-
-
-                                <vbox id="gradientControlBox">
-                                
-                                <hbox class="controlGradHBox"><label class="gradientLabels" value="Orientation:" /><menulist width="150px" id="dir" oncommand="SIR.gradient.onParamsChange()">
-                                                <menupopup>
-                                                    <menuitem value="ltrt" label="&#8594;"/>
-                                                    <menuitem value="ltlb" label="&#8595;" selected="true"/>
-                                                    <menuitem value="ltrb" label="&#8600;"/>
-                                                    <menuitem value="lbrt" label="&#8599;"/>
-                                                </menupopup>
-                                            </menulist></hbox>
-                                            <spacer />
-                                
-                                <hbox class="controlGradHBox"><label class="gradientLabels" value="From:" /><colorpicker id="colorButtonFrom" type="button" disabled="true" color="#1301FE" />
-                                            <textbox id="txtColorFrom" value="#1301FE" readonly="true" onchange="SIR.gradient.onParamsChange();" /></hbox>
-                                <spacer />
-                                <hbox class="controlGradHBox"><label class="gradientLabels" value="To:" /><colorpicker id="colorButtonTo" type="button" disabled="true" color="#F4F60C" />
-                                            <textbox id="txtColorTo" value="#F4F60C" readonly="true" onchange="SIR.gradient.onParamsChange();" /></hbox>
-                                
-                                
-
-                                </vbox>
-
-
-
-
-</hbox>
-
-
-            <label value="&gradient.code;" />
-            <textbox id="gradientResult" multiline="true" readonly="true" rows="10"
-            />
-        </dialog>
+	<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css" ?>
+		<!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
+		<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml" id="gradientDialog" title="&gradient.title;" buttons="disabled" onload="SIR.gradient.init();">
+			<script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js"></script>
+			<script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
+			
+            <panel id="colorPickerFrom" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="Choose Colour">
+			</panel>
+			<panel id="colorPickerTo" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="Choose Colour">
+			</panel>
+			
+            <hbox>
+				<box id="gradientField">
+				</box>
+				<vbox id="gradientControlBox">
+					<hbox class="controlGradHBox">
+						<label class="gradientLabels" value="Orientation:" />
+						<menulist width="150px" id="dir" oncommand="SIR.gradient.onParamsChange()">
+							<menupopup>
+								<menuitem value="ltrt" label="&#8594;"/>
+								<menuitem value="ltlb" label="&#8595;" selected="true"/>
+								<menuitem value="ltrb" label="&#8600;"/>
+								<menuitem value="lbrt" label="&#8599;"/>
+							</menupopup>
+						</menulist>
+					</hbox>
+					<spacer />
+					<hbox class="controlGradHBox">
+						<label class="gradientLabels" value="From:" />
+						<colorpicker id="colorButtonFrom" type="button" disabled="true" color="#1301FE" onclick="document.getElementById('colorPickerFrom').openPopup(this, 'after_start', 0, 0, false);" />
+					</hbox>
+					<spacer />
+					<hbox class="controlGradHBox">
+						<label class="gradientLabels" value="To:" />
+						<colorpicker id="colorButtonTo" type="button" disabled="true" color="#F4F60C" onclick="document.getElementById('colorPickerTo').openPopup(this, 'after_start', 0, 0, false);" />
+					</hbox>
+				</vbox>
+			</hbox>
+			<label value="&gradient.code;" />
+			<textbox id="gradientResult" multiline="true" readonly="true" rows="10" />
+		</dialog>

@@ -33,6 +33,8 @@
                     />
                     <menuitem id="sir-toolbar-button-cleaner" label="Tag Cleaner" image="chrome://sir/skin/images/cleaner.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/tagCleaner.xul', 'CleanerDialog', '')"
                     />
+                    <menuitem id="sir-toolbar-button-colorpicker" label="Colorpicker" image="" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/colorpicker.xul', 'colorpickerDialog', '')"
+                    />
                     <menuitem id="sir-toolbar-button-bonus" label="Bonus  (ALT+SHIFT+B)" image="chrome://sir/skin/images/bonus.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/bonus.xul', 'bonusDialog', '')"
                     />
                     

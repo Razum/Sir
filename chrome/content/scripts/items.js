@@ -51,6 +51,7 @@ SIR.rgba = {
 ///////////////////////
 SIR.txtShadow = {
         init: function() {
+            var self = this;
                 this.horLen = document.getElementById("TShorLen");
                 this.verLen = document.getElementById("TSverLen");
                 this.blurRadius = document.getElementById("TSblurRadius");
@@ -60,6 +61,10 @@ SIR.txtShadow = {
                 this.horLenlbl = document.getElementById("TShorLenvalue");
                 this.verLenlbl = document.getElementById("TSverLenvalue");
                 this.blurRadiuslbl = document.getElementById("TSblurRadiusvalue");
+                
+                this.ColorPicker = new SIR.ColourPicker(document.getElementById('colorPicker'), 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(109, 107, 107));
+                this.ColorPicker.addChangeListener(function(){SIR.txtShadow.onParamsChange.call(self);});
+                
                 this.horLen.value = 3;
                 this.verLen.value = 3;
                 this.blurRadius.value = 3;
@@ -74,6 +79,7 @@ SIR.txtShadow = {
                 this.horLenlbl.value = this.horLen.value + "px";
                 this.verLenlbl.value = this.verLen.value + "px";
                 this.blurRadiuslbl.value = this.blurRadius.value + "px";
+                this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
                 this.inscription.style.textShadow = this.horLen.value + "px " + this.verLen.value + "px " + this.blurRadius.value + "px " + this.colorButton.color;
                 this.showCode(this.horLen.value, this.verLen.value, this.blurRadius.value, this.colorButton.color);
         },
@@ -184,6 +190,7 @@ SIR.transform = {
 ///////////////////////
 SIR.boxShadow = {
         init: function() {
+                var self = this;
                 this.BoxShorLen = document.getElementById("BShorLen");
                 this.BoxSverLen = document.getElementById("BSverLen");
                 this.BoxSblurRadius = document.getElementById("BSblurRadius");
@@ -194,6 +201,10 @@ SIR.boxShadow = {
                 this.horLenlbl = document.getElementById("BShorLenvalue");
                 this.verLenlbl = document.getElementById("BSverLenvalue");
                 this.blurRadiuslbl = document.getElementById("BSblurRadiusvalue");
+                
+                this.ColorPicker = new SIR.ColourPicker(document.getElementById('colorPicker'), 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(109, 107, 107));
+                this.ColorPicker.addChangeListener(function(){SIR.boxShadow.onParamsChange.call(self);});
+                
                 this.BoxShorLen.value = 9;
                 this.BoxSverLen.value = 6;
                 this.BoxSblurRadius.value = 11;
@@ -209,6 +220,7 @@ SIR.boxShadow = {
                 this.horLenlbl.value = this.BoxShorLen.value + "px";
                 this.verLenlbl.value = this.BoxSverLen.value + "px";
                 this.blurRadiuslbl.value = this.BoxSblurRadius.value + "px";
+                this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
                 if (this.inset.checked) {
                         inset = "inset ";
                 }
@@ -239,6 +251,8 @@ SIR.boxShadow = {
 ///////////////////////
 SIR.borderRadius = {
         init: function() {
+            
+            var self = this;
                 this.brdStl = document.getElementById("border-style-selector");
                 this.brdWidth = document.getElementById("borderRadiusWidth");
                 this.brdRadTL = document.getElementById("borderRadiusTLeft");
@@ -253,6 +267,10 @@ SIR.borderRadius = {
                 this.brdRadTRlbl = document.getElementById("borderRadiusTRightVal");
                 this.brdRadBLlbl = document.getElementById("borderRadiusBLeftVal");
                 this.brdRadBRlbl = document.getElementById("borderRadiusBRightVal");
+                
+                this.ColorPicker = new SIR.ColourPicker(document.getElementById('colorPicker'), 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(0, 0, 0));
+                this.ColorPicker.addChangeListener(function(){SIR.borderRadius.onParamsChange.call(self);});
+                
                 this.brdWidth.value = 2;
                 this.brdRadTL.value = 0;
                 this.brdRadTR.value = 0;
@@ -277,13 +295,15 @@ SIR.borderRadius = {
                 this.brdRadTRlbl.value = this.brdRadTR.value + "px";
                 this.brdRadBLlbl.value = this.brdRadBL.value + "px";
                 this.brdRadBRlbl.value = this.brdRadBR.value + "px";
+                this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
+                
                 this.rect.style.borderWidth = this.brdWidth.value + "px";
                 this.rect.style.borderStyle = this.brdStl.value;
                 this.rect.style.borderColor = this.colorButton.color;
                 this.rect.style.borderTopLeftRadius = this.brdRadTL.value + "px";
                 this.rect.style.borderTopRightRadius = this.brdRadTR.value + "px";
                 this.rect.style.borderBottomLeftRadius = this.brdRadBL.value + "px";
-                this.rect.style.borderBottomRightRadius = this.brdRadBR.value + "px";
+                this.rect.style.borderBottomRightRadius = this.brdRadBR.value + "px";                               
                 this.showCode(this.brdWidth.value, this.brdStl.value, this.colorButton.color, this.brdRadTL.value, this.brdRadTR.value, this.brdRadBL.value, this.brdRadBR.value);
         },
         showCode: function(width, style, color, TL, TR, BL, BR) {
@@ -360,59 +380,75 @@ SIR.txtColumn = {
 ///////////////////////
 SIR.gradient = {
         init: function() {
+            
+                var self = this;
+            
                 this.dir = document.getElementById("dir");
                 this.from = document.getElementById("colorButtonFrom");
                 this.to = document.getElementById("colorButtonTo");
                 this.rect = document.getElementById("gradientField");
                 this.txtBox = document.getElementById("gradientResult");
+              
+                this.ColorPickerFrom = new SIR.ColourPicker(document.getElementById('colorPickerFrom'), 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(19, 1, 254));
+                this.ColorPickerTo = new SIR.ColourPicker(document.getElementById('colorPickerTo'), 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(244, 246, 12));
+              
+              
                 this.from.color = "#1301FE";
                 this.to.color = "#F4F60C";
                 this.rect.style.backgroundImage = '-moz-linear-gradient(top, #1301FE, #F4F60C)';
-                document.getElementById("colorButtonFrom").onclick = function(e) {
-                        document.getElementById('colorPicker').openPopup(e.target, 'after_start', 0, 0, false, SIR.utils.panelLoad(e.target, document.getElementById('txtColorFrom')));
-                }
-                document.getElementById("colorButtonTo").onclick = function(e) {
-                        document.getElementById('colorPicker').openPopup(e.target, 'after_start', 0, 0, false, SIR.utils.panelLoad(e.target, document.getElementById('txtColorTo')));
-                }
+                 
+                this.ColorPickerFrom.addChangeListener(function(){SIR.gradient.onParamsChange.call(self);});
+                this.ColorPickerTo.addChangeListener(function(){SIR.gradient.onParamsChange.call(self);});
+                 
                 this.showCode("ltlb", this.from.color, this.to.color);
+
+       
         },
-        onParamsChange: function() {
-                var direction = {
-                        ltrt: "left, ",
-                        ltlb: "top, ",
-                        ltrb: "-45deg, ",
-                        lbrt: "45deg, "
-                }
-                this.rect.style.backgroundImage = '-moz-linear-gradient(' + direction[this.dir.value] + this.from.color + ',' + this.to.color + ')';
-                this.showCode(this.dir.value, this.from.color, this.to.color);
-        },
-        showCode: function(dir, from, to) {
-                var moz = "",
-                    ie = "",
-                    web = "";
-                switch (dir) {
-                case "ltrt":
-                        moz = "left, ";
-                        ie = "1";
-                        web = "left top, right top,"
-                        break;
-                case "ltlb":
-                        moz = "top, ";
-                        ie = "0";
-                        web = "left top, left bottom,"
-                        break;
-                case "ltrb":
-                        moz = "-45deg, ";
-                        ie = "1";
-                        web = "left top, right bottom,"
-                        break;
-                case "lbrt":
-                        moz = "45deg, ";
-                        ie = "1";
-                        web = "left bottom, right top,"
-                        break;
-                }
-                var str = "";
+                 onParamsChange: function() {
+                         var direction = {
+                                 ltrt: "left, ",
+                                 ltlb: "top, ",
+                                 ltrb: "-45deg, ",
+                                 lbrt: "45deg, "
+                         }
+                         
+                         this.from.color =  this.ColorPickerFrom.getColour().getCSSHexadecimalRGB();
+                         this.to.color =   this.ColorPickerTo.getColour().getCSSHexadecimalRGB();
+                         
+                         
+                         
+                          this.rect.style.backgroundImage = '-moz-linear-gradient(' + direction[ this.dir.value] +  this.from.color + ',' +  this.to.color + ')';
+                          this.showCode( this.dir.value,  this.from.color,  this.to.color);
+                 },
+                 
+                 showCode: function(dir, from, to) {
+                         var moz = "",
+                             ie = "",
+                             web = "";
+                         switch (dir) {
+                         case "ltrt":
+                                 moz = "left, ";
+                                 ie = "1";
+                                 web = "left top, right top,"
+                                 break;
+                         case "ltlb":
+                                 moz = "top, ";
+                                 ie = "0";
+                                 web = "left top, left bottom,"
+                                 break;
+                         case "ltrb":
+                                 moz = "-45deg, ";
+                                 ie = "1";
+                                 web = "left top, right bottom,"
+                                 break;
+                         case "lbrt":
+                                 moz = "45deg, ";
+                                 ie = "1";
+                                 web = "left bottom, right top,"
+                                 break;
+                         }
+                         var str = "";
+         
                 str += "background: " + from + "; /* for non-css3 browsers */\n";
                 str += "background: -moz-linear-gradient(" + moz + from + ",  " + to + "); /* for firefox 3.6+ */ \n";
                 str += "background: -webkit-gradient(linear, " + web + " from(" + from + "), to(" + to + ")); /* for webkit browsers */\n";
@@ -592,6 +628,7 @@ SIR.Cleaner = {
 ///////////////////////
 SIR.outline = {
         init: function() {
+            var self = this;
                 this.outStyle = document.getElementById("outline-style-selector");
                 this.outWidth = document.getElementById("outlineWidth");
                 this.outOffset = document.getElementById("outlineOffset");
@@ -600,6 +637,10 @@ SIR.outline = {
                 this.rect = document.getElementById("outlineBox");
                 this.outWidthlbl = document.getElementById("outlineWidthVal");
                 this.outOffsetlbl = document.getElementById("outlineOffsetVal");
+                
+                this.ColorPicker = new SIR.ColourPicker(document.getElementById('colorPicker'), 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(24, 23, 131));
+                this.ColorPicker.addChangeListener(function(){SIR.outline.onParamsChange.call(self);});
+                
                 this.outWidth.value = 6;
                 this.outOffset.value = 6;
                 this.outWidthlbl.value = this.outWidth.value + "px";
@@ -612,6 +653,7 @@ SIR.outline = {
         onParamsChange: function() {
                 this.outWidthlbl.value = this.outWidth.value + "px";
                 this.outOffsetlbl.value = this.outOffset.value + "px";
+                this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
                 this.rect.style.outline = this.outWidth.value + "px " + this.outStyle.value + " " + this.colorButton.color;
                 this.rect.style.outlineOffset = this.outOffset.value + "px";
                 this.showCode(this.outWidth.value, this.outStyle.value, this.colorButton.color, this.outOffset.value);
@@ -625,3 +667,15 @@ SIR.outline = {
                 this.txtBox.value = str;
         }
 };
+
+
+SIR.colorSelector = {
+    
+    init: function(){
+        
+        var colourPicker = new SIR.ColourPicker(document.getElementById('colourPicker'), 'chrome://sir/skin/images/colorpicker/');
+
+    }
+    
+    
+}
