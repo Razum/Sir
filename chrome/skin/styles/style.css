@@ -880,6 +880,31 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
 
 
+/************* Crossbrowser color names ***************/
+
+#crossColorList{
+    height: 600px; 
+    
+}
+
+#crossColorList listhead{
+    text-align: center;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+#crossColorList listitem{
+    text-align: center;
+    font-size: 16px;
+}
+
+#crossColorList listcell{
+    width: 200px;
+}
+
+
+
+
 /*************** support ****************/
 #supBox{
     font-size: 20px;

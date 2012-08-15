@@ -669,6 +669,11 @@ SIR.outline = {
 };
 
 
+
+////////////////////////////////
+//       COLOR SELECTOR      //
+//////////////////////////////
+
 SIR.colorSelector = {
     
     init: function(){
