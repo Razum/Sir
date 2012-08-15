@@ -768,6 +768,38 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 }
 
 
+
+/************* Colorpicker ***************/
+#colorpickerDialog{
+    width:550px;
+    height: 360px;
+    min-width: 550px;
+    min-height: 360px;
+    
+    
+}
+
+#colorpickerDialog groupbox{
+    margin-top: 10px;
+}
+
+#colorpickerDialog caption{
+    font-size: 14px;
+    font-weight: 600;
+    
+}
+
+#colorpickerDialog label{
+    font-size: 14px;
+    font-weight: 600;
+    
+}
+
+
+
+
+
+
 /************************ BONUS *************************/
 /************ selectors **************/
 #bonusDialog{

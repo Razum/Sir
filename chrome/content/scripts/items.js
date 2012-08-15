@@ -673,7 +673,23 @@ SIR.colorSelector = {
     
     init: function(){
         
-        var colourPicker = new SIR.ColourPicker(document.getElementById('colourPicker'), 'chrome://sir/skin/images/colorpicker/');
+        var self = this;
+        
+        this.cpTxtRGB = document.getElementById("cpTxtRGB");
+        this.cpTxtHSL = document.getElementById("cpTxtHSL");
+        
+        this.ColorPicker = new SIR.ColourPicker(document.getElementById('colourPicker'), 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(0, 0, 0));
+        //window.opener.Firebug.Console.log(this.ColorPicker.getColour().getCSSIntegerRGB)
+        this.cpTxtRGB.value = this.ColorPicker.getColour().getCSSIntegerRGB();
+        this.cpTxtHSL.value = this.ColorPicker.getColour().getCSSHSL();
+        
+        this.ColorPicker.addChangeListener(function(){
+            self.cpTxtRGB.value = self.ColorPicker.getColour().getCSSIntegerRGB();
+            self.cpTxtHSL.value = self.ColorPicker.getColour().getCSSHSL();
+            
+            
+            
+        });
 
     }
     

@@ -14,6 +14,8 @@
                     />
                     <tab id="emtopx-tab" label="Pixels to Ems" image='chrome://sir/skin/images/pxem.png'
                     />
+                    <tab id="crossColor-tab" label="Cross-browser color names" image='chrome://sir/skin/images/crosbrColor.png'
+                    />
                     <tab id="support-tab" label="&bonus.support;" image='chrome://sir/skin/images/support.png'
                     />
                 </tabs>
@@ -539,7 +541,9 @@
                     
                     
                     
-                    
+             <tabpanel id="tp_crossColor" orient="vertical">
+
+                    </tabpanel>       
                     
                     
                     

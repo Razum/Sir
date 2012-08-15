@@ -84,7 +84,7 @@ SIR.Colour = function(){
     var rgb = this.getIntegerRGB();
 
     // return the CSS RGB colour value
-    return 'rgb(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ')';
+    return 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')';
 
   };
 
@@ -140,7 +140,7 @@ SIR.Colour = function(){
     var hsl = this.getHSL();
 
     // return the CSS HSL colour value
-    return 'hsl(' + hsl.h + ',' + hsl.s + '%,' + hsl.l + '%)';
+    return 'hsl(' + Math.round(hsl.h) + ', ' + Math.round(hsl.s) + '%, ' + Math.round(hsl.l) + '%)';
 
   };
 
