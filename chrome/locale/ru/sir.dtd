@@ -48,3 +48,6 @@
 
 <!ENTITY outline.title "Outline">
 <!ENTITY outline.code "Код:">
+
+<!ENTITY transition.title "Transition">
+<!ENTITY transition.code "Код:">

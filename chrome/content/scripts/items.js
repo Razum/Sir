@@ -699,4 +699,70 @@ SIR.colorSelector = {
     }
     
     
-}
+};
+
+
+
+////////////////////////////
+//       TRANSITION      //
+//////////////////////////
+
+
+
+SIR.transition = {
+        init: function() {
+            var self = this;
+            
+            this.propSel = document.getElementById("transition-property-selector");
+            this.duration = document.getElementById("transitionDuration");
+            this.timing = document.getElementById("transition-timing-selector");
+            
+            this.txtBox = document.getElementById("transitionResult");
+            this.rect = document.getElementById("transitionBox");                                                
+            
+            this.durationlbl = document.getElementById("transitionDurationVal");
+            
+            this.duration.value = 10;
+            
+            this.durationlbl.value = this.duration.value/10 + "s";
+            
+            this.rect.style.MozTransition = "all 1s ease";
+            
+            this.showCode("all", 1, "ease");
+
+        },
+        onParamsChange: function() {
+            
+            var dur = this.duration.value / 10;
+            this.durationlbl.value = dur + "s";
+            
+            this.rect.style.MozTransition = this.propSel.value + " " + dur +"s " + this.timing.value;
+            
+            this.showCode(this.propSel.value, dur, this.timing.value);
+
+        },
+        showCode: function(prop, dur, timing) {
+            var str = "";
+            
+            str += "elem {\n";
+            str += "\t/****** Use any CSS-rule ******/\n";
+            str += "\tborder: 1px solid #E0DEDE;\n\tbackground: #5776bd;\n\tcolor: #f3f128;\n\tpadding: 100px 0 0 80px;\n\n";
+            
+            str+="\t-webkit-transition: "+prop+" "+dur+"s "+timing+";/* Safari 3.2+, Chrome */\n";
+            str+="\t-moz-transition: "+prop+" "+dur+"s "+timing+";/* Firefox 4-15 */\n";
+            str+="\t-o-transition: "+prop+" "+dur+"s "+timing+";/* Opera 10.5-12.00 */\n";
+            str+="\ttransition: "+prop+" "+dur+"s "+timing+";/* Firefox 16+, Opera 12.50+ */\n";
+            
+            
+            str += "}\n\n"
+            
+            str += "elem:hover {\n";
+            str += "\tborder: 40px solid #5776bd;\n\tbackground: #f3f128;\n\tcolor: #5776bd;\n\tpadding: 60px 0 0 40px;\n";
+            str += "}\n\n"
+            
+            this.txtBox.value = str;
+            
+            
+
+        }
+};

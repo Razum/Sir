@@ -798,6 +798,102 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
 
 
+/****************** Transition ********************/
+
+
+#transitionDialog{
+    width:820px;
+    height: 530px;
+    min-height: 530px;
+    min-width: 820px;
+}
+
+ .transitionLabels{
+    width: 70px;
+
+ }
+ 
+ #transitionControlBox scale{
+    width: 300px;
+
+ }
+ 
+ #transitionControlBox label{
+    font-size: 14px;
+    font-weight: 600;
+
+ }
+ 
+ #transitionControlBox menulist{
+    margin-top: -2px; 
+}
+
+ #transitionControlBox textbox{
+    width:100px; 
+}
+
+ #transitionControlBox{
+     padding: 20px 15px 0 15px;
+     
+ }
+
+ 
+#transitionField{
+    
+    width: 350px;
+    height: 280px;
+    background-color: #fff; 
+    text-align: center;  
+    margin-bottom: 15px;
+    border: 1px solid #dedede;
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    -moz-border-radius: 10px;
+    background-color: #F7F7F7;
+    overflow: hidden;
+}
+
+#transitionBox{
+    width: 280px;
+    height: 230px;
+    margin: 25px 25px;
+    font-size: 22px;
+    font-weight: 700;    
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    
+    
+    border: 1px solid #E0DEDE;
+    background: #5776bd;
+    color: #f3f128;
+    padding: 100px 0 0 80px;
+    
+}
+
+
+
+#transitionBox:hover{       
+    border: 40px solid #5776bd;
+    background: #f3f128;
+    color: #5776bd;
+    padding: 60px 0 0 40px; 
+    
+}
+
+#transitionResult{
+    
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    background-color: #F7F7F7;
+    padding-left: 12px;
+    line-height: 1.5;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 12px;
+    
+    
+}
+
+
+
+
 
 
 /************************ BONUS *************************/

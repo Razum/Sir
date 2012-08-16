@@ -35,6 +35,8 @@
                     />
                     <menuitem id="sir-toolbar-button-colorpicker" label="Colorpicker" image="chrome://sir/skin/images/palette.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/colorpicker.xul', 'colorpickerDialog', '')"
                     />
+                    <menuitem id="sir-toolbar-button-transition" label="Transition" image="chrome://sir/skin/images/transition.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/transition.xul', 'transitionDialog', '')"
+                    />
                     <menuitem id="sir-toolbar-button-bonus" label="Bonus  (ALT+SHIFT+B)" image="chrome://sir/skin/images/bonus.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/bonus.xul', 'bonusDialog', '')"
                     />
                     

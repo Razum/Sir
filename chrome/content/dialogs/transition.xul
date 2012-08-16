@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+    <?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
+    ?>
+        <!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
+        <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:html="http://www.w3.org/1999/xhtml" id="transitionDialog" title="&transition.title;"
+        buttons="disabled" onload="SIR.transition.init();">
+        
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
+
+            
+            <hbox>
+                <vbox id="transitionField">
+                    <box id="transitionBox">
+                    HOVER HERE
+                    </box>
+                </vbox>
+                <vbox id="transitionControlBox">
+                    <hbox class="controlHBox">
+                        <label class="transitionLabels" value="Style:" />
+                        <menulist width="150px" id="transition-property-selector" oncommand="SIR.transition.onParamsChange()">
+                            <menupopup>
+                                <menuitem value="all" label="all" selected="true"/>
+                                <menuitem value="background" label="background" />
+                                <menuitem value="color" label="color" />
+                                <menuitem value="border" label="border" />
+                                <menuitem value="padding" label="padding" />
+                            </menupopup>
+                        </menulist>
+                    </hbox>
+                    <hbox class="controlHBox">
+                        <label class="transitionLabels" value="Duration:" />
+                        <scale min="1" max="50" value="10" increment="1" id="transitionDuration" onchange="SIR.transition.onParamsChange();"
+                        />
+                        <label id="transitionDurationVal" value="" />
+                    </hbox>
+                    <hbox class="controlHBox">
+                    
+                    <label class="transitionLabels" value="Timing:" />
+                        <menulist width="150px" id="transition-timing-selector" oncommand="SIR.transition.onParamsChange()">
+                            <menupopup>
+                                <menuitem value="ease" label="ease" selected="true"/>
+                                <menuitem value="linear" label="linear" />
+                                <menuitem value="ease-in" label="ease-in" />
+                                <menuitem value="ease-out" label="ease-out" />
+                                <menuitem value="ease-in-out" label="ease-in-out" />
+                            </menupopup>
+                        </menulist>
+
+                    </hbox>
+                    <hbox class="controlHBox"><label value="(To see the result hover over left field.)" /></hbox>
+                </vbox>
+            </hbox>
+            <label value="&transition.code;" />
+            <textbox id="transitionResult" multiline="true" readonly="true" rows="10"
+            />
+        </dialog>
