@@ -1,34 +1,36 @@
-﻿<!ENTITY rgba.title "RGBA">
+﻿<!ENTITY colorpicker.panel.title "CSSsir Colour Picker">
+
+<!ENTITY rgba.title "CSSsir RGBA">
 <!ENTITY rgba.code "Код:">
 
-<!ENTITY txtShadow.title "Text-shadow">
+<!ENTITY txtShadow.title "CSSsir Text-shadow">
 <!ENTITY txtShadow.code "Код:">
 
-<!ENTITY txtRotation.title "Text-rotation">
+<!ENTITY txtRotation.title "CSSsir Text-rotation">
 <!ENTITY txtRotation.code "Код:">
 
-<!ENTITY transform.title "Transform">
+<!ENTITY transform.title "CSSsir Transform">
 <!ENTITY transform.code "Код:">
 
-<!ENTITY boxShadow.title "Box-shadow">
+<!ENTITY boxShadow.title "CSSsir Box-shadow">
 <!ENTITY boxShadow.code "Код:">
 
-<!ENTITY borderRadius.title "Border-radius">
+<!ENTITY borderRadius.title "CSSsir Border-radius">
 <!ENTITY borderRadius.code "Код:">
 
-<!ENTITY txtColumn.title "Multiple Columns">
+<!ENTITY txtColumn.title "CSSsir Multiple Columns">
 <!ENTITY txtColumn.code "Код:">
 
-<!ENTITY gradient.title "Gradient">
+<!ENTITY gradient.title "CSSsir Gradient">
 <!ENTITY gradient.code "Код:">
 
-<!ENTITY converter.title "Converter">
+<!ENTITY converter.title "CSSsir Converter">
 <!ENTITY converter.basePXsize "Базовый размер шрифта ">
 <!ENTITY converter.dataError "Ошибка ввода данных ">
 
 
 
-<!ENTITY tagcleaner.title "Tag Cleaber">
+<!ENTITY tagcleaner.title "CSSsir Tag Cleaber">
 <!ENTITY tagcleaner.delTagsTip "Удалить все теги, кроме тегов из списка исключений">
 <!ENTITY tagcleaner.delTagsLbl "Удалить Теги">
 <!ENTITY tagcleaner.exTags "Теги - исключения:">
@@ -43,14 +45,15 @@
 <!ENTITY tagcleaner.delExtrSpaceLbl "Удалить лишние пробелы">
 <!ENTITY tagcleaner.CleanButton "Очистить">
 
+<!ENTITY colorpicker.title "CSSsir Colour Picker">
 
 
-
-<!ENTITY outline.title "Outline">
+<!ENTITY outline.title "CSSsir Outline">
 <!ENTITY outline.code "Код:">
 
-<!ENTITY transition.title "Transition">
+<!ENTITY transition.title "CSSsir Transition">
+<!ENTITY transition.label "Чтобы увидеть результат наведите курсор на область слева.">
 <!ENTITY transition.code "Код:">
 
-<!ENTITY textfont.title "Text and Font Style">
+<!ENTITY textfont.title "CSSsir Text and Font Style">
 <!ENTITY textfont.code "Код:">

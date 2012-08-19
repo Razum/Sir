@@ -1,32 +1,34 @@
-<!ENTITY rgba.title "RGBA">
+<!ENTITY colorpicker.panel.title "CSSsir Colour Picker">
+
+<!ENTITY rgba.title "CSSsir RGBA">
 <!ENTITY rgba.code "Code:">
 
-<!ENTITY txtShadow.title "Text-shadow">
+<!ENTITY txtShadow.title "CSSsir Text-shadow">
 <!ENTITY txtShadow.code "Code:">
 
-<!ENTITY txtRotation.title "Text-rotation">
+<!ENTITY txtRotation.title "CSSsir Text-rotation">
 <!ENTITY txtRotation.code "Code:">
 
-<!ENTITY transform.title "Transform">
+<!ENTITY transform.title "CSSsir Transform">
 <!ENTITY transform.code "Code:">
 
-<!ENTITY boxShadow.title "Box-shadow">
+<!ENTITY boxShadow.title "CSSsir Box-shadow">
 <!ENTITY boxShadow.code "Code:">
 
-<!ENTITY borderRadius.title "Border-radius">
+<!ENTITY borderRadius.title "CSSsir Border-radius">
 <!ENTITY borderRadius.code "Code:">
 
-<!ENTITY txtColumn.title "Multiple Columns">
+<!ENTITY txtColumn.title "CSSsir Multiple Columns">
 <!ENTITY txtColumn.code "Code:">
 
-<!ENTITY gradient.title "Gradient">
+<!ENTITY gradient.title "CSSsir Gradient">
 <!ENTITY gradient.code "Code:">
 
-<!ENTITY converter.title "Converter">
+<!ENTITY converter.title "CSSsir Converter">
 <!ENTITY converter.basePXsize "Base pixel size ">
 <!ENTITY converter.dataError "Data Error">
 
-<!ENTITY tagcleaner.title "Tag Cleaber">
+<!ENTITY tagcleaner.title "CSSsir Tag Cleaber">
 <!ENTITY tagcleaner.delTagsTip "Remove all tags leaving tags from exception list">
 <!ENTITY tagcleaner.delTagsLbl "Remove Tags">
 <!ENTITY tagcleaner.exTags "Exception Tags:">
@@ -42,12 +44,13 @@
 <!ENTITY tagcleaner.CleanButton "Remove">
 
 
+<!ENTITY colorpicker.title "CSSsir Colour Picker">
 
 
-
-<!ENTITY transition.title "Transition">
+<!ENTITY transition.title "CSSsir Transition">
+<!ENTITY transition.label "To see the result hover over left field.">
 <!ENTITY transition.code "Code:">
 
 
-<!ENTITY textfont.title "Text and Font Style">
+<!ENTITY textfont.title "CSSsir Text and Font Style">
 <!ENTITY textfont.code "Code:">

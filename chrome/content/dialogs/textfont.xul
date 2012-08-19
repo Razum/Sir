@@ -7,9 +7,9 @@
 			</script>
 			<script type="application/x-javascript" src="chrome://sir/content/scripts/items.js">
 			</script>
-			<panel id="colorText" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="Choose Colour">
+			<panel id="colorText" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="&colorpicker.panel.title;">
 			</panel>
-			<panel id="colorBack" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="Choose Colour">
+			<panel id="colorBack" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="&colorpicker.panel.title;">
 			</panel>
 			<hbox>
 				<vbox id="textfontField">

@@ -783,6 +783,10 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     margin-top: 10px;
 }
 
+#colorpickerDialog textbox{
+    width: 110px;
+}
+
 #colorpickerDialog caption{
     font-size: 14px;
     font-weight: 600;
@@ -803,8 +807,8 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
 #transitionDialog{
     width:820px;
-    height: 530px;
-    min-height: 530px;
+    height: 545px;
+    min-height: 545px;
     min-width: 820px;
 }
 
@@ -856,7 +860,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     width: 280px;
     height: 230px;
     margin: 25px 25px;
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 700;    
     -moz-border-radius: 12px;
     border-radius: 12px;
@@ -865,7 +869,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     border: 1px solid #E0DEDE;
     background: #5776bd;
     color: #f3f128;
-    padding: 100px 0 0 80px;
+    padding: 95px 0 0 75px;
     
 }
 
@@ -875,7 +879,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     border: 40px solid #5776bd;
     background: #f3f128;
     color: #5776bd;
-    padding: 60px 0 0 40px; 
+    padding: 56px 0 0 36px; 
     
 }
 

@@ -49,7 +49,7 @@
                         </menulist>
 
                     </hbox>
-                    <hbox class="controlHBox"><label value="(To see the result hover over left field.)" /></hbox>
+                    <hbox class="controlHBox"><label value="&transition.label;" style="color: #424040;" /></hbox>
                 </vbox>
             </hbox>
             <label value="&transition.code;" />

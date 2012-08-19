@@ -2,7 +2,7 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
 	<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css" ?>
 		<!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
-		<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml" id="colorpickerDialog" title="" buttons="disabled" onload="SIR.colorSelector.init();">
+		<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml" id="colorpickerDialog" title="&colorpicker.title;" buttons="disabled" onload="SIR.colorSelector.init();">
 			<script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js">
 			</script>
 			<script type="application/x-javascript" src="chrome://sir/content/scripts/items.js">

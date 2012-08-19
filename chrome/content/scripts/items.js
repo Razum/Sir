@@ -698,14 +698,14 @@ SIR.transition = {
 		var str = "";
 		str += "elem {\n";
 		str += "\t/****** Use any CSS-rule ******/\n";
-		str += "\tborder: 1px solid #E0DEDE;\n\tbackground: #5776bd;\n\tcolor: #f3f128;\n\tpadding: 100px 0 0 80px;\n\n";
+		str += "\tborder: 1px solid #E0DEDE;\n\tbackground: #5776bd;\n\tcolor: #f3f128;\n\tpadding: 95px 0 0 75px;\n\n";
 		str += "\t-webkit-transition: " + prop + " " + dur + "s " + timing + ";/* Safari 3.2+, Chrome */\n";
 		str += "\t-moz-transition: " + prop + " " + dur + "s " + timing + ";/* Firefox 4-15 */\n";
 		str += "\t-o-transition: " + prop + " " + dur + "s " + timing + ";/* Opera 10.5-12.00 */\n";
 		str += "\ttransition: " + prop + " " + dur + "s " + timing + ";/* Firefox 16+, Opera 12.50+ */\n";
 		str += "}\n\n"
 		str += "elem:hover {\n";
-		str += "\tborder: 40px solid #5776bd;\n\tbackground: #f3f128;\n\tcolor: #5776bd;\n\tpadding: 60px 0 0 40px;\n";
+		str += "\tborder: 40px solid #5776bd;\n\tbackground: #f3f128;\n\tcolor: #5776bd;\n\tpadding: 56px 0 0 36px;\n";
 		str += "}\n\n"
 		this.txtBox.value = str;
 	}
