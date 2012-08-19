@@ -51,3 +51,6 @@
 
 <!ENTITY transition.title "Transition">
 <!ENTITY transition.code "Код:">
+
+<!ENTITY textfont.title "Text and Font Style">
+<!ENTITY textfont.code "Код:">

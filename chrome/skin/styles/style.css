@@ -895,6 +895,96 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
 
 
+/****************** Text and Font ********************/
+
+
+#textfontDialog{
+    width:1024px;
+    height: 680px;
+    min-height: 680px;
+    min-width: 1024px;
+}
+
+ .textfontLabels{
+    width: 95px;
+
+ }
+ 
+ .textfontNewLabels{
+    width: 70px;
+
+ }
+ 
+ .textfontControlBox scale{
+    width: 250px;
+
+ }
+ 
+ .textfontControlBox label{
+    font-size: 13px;
+    font-weight: 600;
+
+ }
+ 
+  .textfontControlBox menulist label{
+    font-size: 12px;
+    font-weight: 500;
+
+ }
+ 
+ .textfontControlBox menulist{
+    margin-top: -2px; 
+}
+
+ .textfontControlBox textbox{
+    width:100px; 
+}
+
+ .textfontControlBox column{
+    width: 250px; 
+}
+
+ .textfontControlBox{
+     padding: 20px 15px 0 15px;
+     margin-right: 10px;
+     
+ }
+
+ 
+#textfontField{
+    
+    width: 450px;
+    height: 300px;
+    margin-bottom: 15px;
+    border: 1px solid #dedede;
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    -moz-border-radius: 10px;
+    background-color: #F7F7F7;
+    overflow-y: auto;
+}
+
+#TFinscription{
+    margin: 2px 2px;
+    
+}
+
+
+#textfontResult{
+    
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    background-color: #F7F7F7;
+    padding-left: 12px;
+    line-height: 1.5;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 12px;
+    
+    
+}
+
+
+
+
+
 
 /************************ BONUS *************************/
 /************ selectors **************/

@@ -37,6 +37,8 @@
                     />
                     <menuitem id="sir-toolbar-button-transition" label="Transition" image="chrome://sir/skin/images/transition.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/transition.xul', 'transitionDialog', '')"
                     />
+                    <menuitem id="sir-toolbar-button-textfont" label="Text and Font Style" image="chrome://sir/skin/images/textfont.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/textfont.xul', 'textfontDialog', '')"
+                    />
                     <menuitem id="sir-toolbar-button-bonus" label="Bonus  (ALT+SHIFT+B)" image="chrome://sir/skin/images/bonus.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/bonus.xul', 'bonusDialog', '')"
                     />
                     

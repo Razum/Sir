@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+	<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css" ?>
+		<!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
+		<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml" id="textfontDialog" title="&textfont.title;" buttons="disabled" onload="SIR.textfont.init();">
+			<script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js">
+			</script>
+			<script type="application/x-javascript" src="chrome://sir/content/scripts/items.js">
+			</script>
+			<panel id="colorText" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="Choose Colour">
+			</panel>
+			<panel id="colorBack" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="Choose Colour">
+			</panel>
+			<hbox>
+				<vbox id="textfontField">
+					<label id="TFinscription">
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+						scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+					</label>
+				</vbox>
+				<vbox class="textfontControlBox">
+					<grid>
+						<columns>
+							<column flex="1">
+								<rows>
+									<row>
+										<hbox class="controlHBox">
+											<label class="textfontLabels" value="font-family:" />
+											<menulist width="130px" id="textfont-fontFamily" oncommand="SIR.textfont.onParamsChange()">
+												<menupopup>
+													<menuitem value="Arial" label="Arial" selected="true"/>
+													<menuitem value="Arial Black" label="Arial Black"/>
+													<menuitem value="Comic Sans MS" label="Comic Sans MS" />
+													<menuitem value="Courier New" label="Courier New" />
+													<menuitem value="Georgia" label="Georgia" />
+													<menuitem value="Impact" label="Impact" />
+													<menuitem value="Times New Roman" label="Times New Roman" />
+													<menuitem value="Trebuchet MS" label="Trebuchet MS" />
+													<menuitem value="Verdana" label="Verdana" />
+												</menupopup>
+											</menulist>
+										</hbox>
+									</row>
+									<row>
+										<hbox class="controlHBox">
+											<label class="textfontLabels" value="text-align:" />
+											<menulist width="130px" id="textfont-textAlign" oncommand="SIR.textfont.onParamsChange()">
+												<menupopup>
+													<menuitem value="left" label="left" selected="true"/>
+													<menuitem value="right" label="right"/>
+													<menuitem value="center" label="center"/>
+													<menuitem value="justify" label="justify"/>
+												</menupopup>
+											</menulist>
+										</hbox>
+									</row>
+									<row>
+										<hbox class="controlHBox">
+											<label class="textfontLabels" value="font-weight:" />
+											<menulist width="130px" id="textfont-fontWeight" oncommand="SIR.textfont.onParamsChange()">
+												<menupopup>
+													<menuitem value="bold" label="bold"/>
+													<menuitem value="bolder" label="bolder"/>
+													<menuitem value="lighter" label="lighter"/>
+													<menuitem value="normal" label="normal"/>
+													<menuitem value="100" label="100"/>
+													<menuitem value="200" label="200"/>
+													<menuitem value="300" label="300"/>
+													<menuitem value="400" label="400" selected="true"/>
+													<menuitem value="500" label="500"/>
+													<menuitem value="600" label="600"/>
+													<menuitem value="700" label="700"/>
+													<menuitem value="800" label="800"/>
+													<menuitem value="900" label="900"/>
+												</menupopup>
+											</menulist>
+										</hbox>
+									</row>
+								</rows>
+							</column>
+							<column flex="1">
+								<rows>
+									<row>
+										<hbox class="controlHBox">
+											<label class="textfontLabels" value="text-decoration:" />
+											<menulist width="130px" id="textfont-textDecor" oncommand="SIR.textfont.onParamsChange()">
+												<menupopup>
+													<menuitem value="blink" label="blink"/>
+													<menuitem value="line-through" label="line-through"/>
+													<menuitem value="overline" label="overline"/>
+													<menuitem value="underline" label="underline"/>
+													<menuitem value="none" label="none" selected="true"/>
+												</menupopup>
+											</menulist>
+										</hbox>
+									</row>
+									<row>
+										<hbox class="controlHBox">
+											<label class="textfontLabels" value="text-transform:" />
+											<menulist width="130px" id="textfont-textTransform" oncommand="SIR.textfont.onParamsChange()">
+												<menupopup>
+													<menuitem value="capitalize" label="capitalize"/>
+													<menuitem value="lowercase" label="lowercase"/>
+													<menuitem value="uppercase" label="uppercase"/>
+													<menuitem value="none" label="none" selected="true"/>
+												</menupopup>
+											</menulist>
+										</hbox>
+									</row>
+									<row>
+										<hbox class="controlHBox">
+											<label class="textfontLabels" value="font-style:" />
+											<menulist width="130px" id="textfont-fontStyle" oncommand="SIR.textfont.onParamsChange()">
+												<menupopup>
+													<menuitem value="normal" label="normal" selected="true"/>
+													<menuitem value="italic" label="italic"/>
+													<menuitem value="oblique" label="oblique"/>
+												</menupopup>
+											</menulist>
+										</hbox>
+									</row>
+								</rows>
+							</column>
+						</columns>
+					</grid>
+					<hbox class="controlHBox">
+						<spacer flex="1"/>
+						<label value="Color:" />
+						<colorpicker id="colorButton" type="button" disabled="true" color="#000000" onclick="document.getElementById('colorText').openPopup(this, 'after_start', 0, 0, false);"/>
+						<spacer flex="1"/>
+						<label class="textfontNewLabels" value="Background:" />
+						<colorpicker id="BackColorButton" type="button" disabled="true" color="#f7f7f7" onclick="document.getElementById('colorBack').openPopup(this, 'after_start', 0, 0, false);"/>
+						<spacer flex="1"/>
+					</hbox>
+					<groupbox id="extraGroup">
+						<caption>
+							<checkbox id="extraRules" label="Extra CSS rules" oncommand="SIR.textfont.onParamsChange();" />
+						</caption>
+						<grid>
+							<columns>
+								<column flex="1">
+									<rows>
+										<row>
+											<hbox class="controlHBox">
+												<label class="textfontLabels" value="unicode-bidi:" disabled="true" />
+												<menulist width="130px" id="textfont-unicodeBidi" oncommand="SIR.textfont.onParamsChange()" disabled="true">
+													<menupopup>
+														<menuitem value="normal" label="normal" selected="true"/>
+														<menuitem value="embed" label="embed"/>
+														<menuitem value="bidi-override" label="bidi-override"/>
+													</menupopup>
+												</menulist>
+											</hbox>
+										</row>
+										<row>
+											<hbox class="controlHBox">
+												<label class="textfontLabels" value="direction:" disabled="true" />
+												<menulist width="130px" id="textfont-Direction" oncommand="SIR.textfont.onParamsChange()" disabled="true">
+													<menupopup>
+														<menuitem value="ltr" label="ltr" selected="true"/>
+														<menuitem value="rtl" label="rtl"/>
+													</menupopup>
+												</menulist>
+											</hbox>
+										</row>
+									</rows>
+								</column>
+								<column flex="1">
+									<rows>
+										<row>
+											<hbox class="controlHBox">
+												<label class="textfontLabels" value="font-variant:" disabled="true" />
+												<menulist width="130px" id="textfont-fontVariant" oncommand="SIR.textfont.onParamsChange()" disabled="true">
+													<menupopup>
+														<menuitem value="normal" label="normal" selected="true"/>
+														<menuitem value="small-caps" label="small-caps"/>
+													</menupopup>
+												</menulist>
+											</hbox>
+										</row>
+										<row>
+											<hbox class="controlHBox">
+												<label class="textfontLabels" value="font-stretch:" disabled="true"/>
+												<menulist width="130px" id="textfont-fontStretch" oncommand="SIR.textfont.onParamsChange()" disabled="true">
+													<menupopup>
+														<menuitem value="ultra-condensed" label="ultra-condensed"/>
+														<menuitem value="extra-condensed" label="extra-condensed"/>
+														<menuitem value="condensed" label="condensed"/>
+														<menuitem value="semi-condensed" label="semi-condensed"/>
+														<menuitem value="normal" label="normal" selected="true"/>
+														<menuitem value="semi-expanded" label="semi-expanded"/>
+														<menuitem value="expanded" label="expanded"/>
+														<menuitem value="extra-expanded" label="extra-expanded"/>
+														<menuitem value="ultra-expanded" label="ultra-expanded"/>
+													</menupopup>
+												</menulist>
+											</hbox>
+										</row>
+									</rows>
+								</column>
+							</columns>
+						</grid>
+					</groupbox>
+				</vbox>
+			</hbox>
+			<hbox pack="center">
+				<vbox class="textfontControlBox">
+					<hbox class="controlHBox">
+						<label class="textfontLabels" value="font-size:" />
+						<scale min="5" max="36" value="12" increment="1" id="textfont-fontSize" onchange="SIR.textfont.onParamsChange();" />
+						<label id="textfont-fontSizeVal" value="" />
+					</hbox>
+					<hbox class="controlHBox">
+						<label class="textfontLabels" value="line-height:" />
+						<scale min="0" max="40" value="10" increment="1" id="textfont-LineHeight" onchange="SIR.textfont.onParamsChange();" />
+						<label id="textfont-LineHeightVal" value="" />
+					</hbox>
+				</vbox>
+				<vbox class="textfontControlBox">
+					<hbox class="controlHBox">
+						<label class="textfontLabels" value="letter-spacing:" />
+						<scale min="-10" max="20" value="1" increment="1" id="textfont-letterSp" onchange="SIR.textfont.onParamsChange();" />
+						<label id="textfont-letterSpVal" value="" />
+					</hbox>
+					<hbox class="controlHBox">
+						<label class="textfontLabels" value="word-spacing:" />
+						<scale min="-10" max="20" value="0" increment="1" id="textfont-wordSp" onchange="SIR.textfont.onParamsChange();" />
+						<label id="textfont-wordSpVal" value="" />
+					</hbox>
+				</vbox>
+			</hbox>
+			<label value="&textfont.code;" />
+			<textbox id="textfontResult" multiline="true" readonly="true" rows="12" />
+		</dialog>

@@ -47,3 +47,7 @@
 
 <!ENTITY transition.title "Transition">
 <!ENTITY transition.code "Code:">
+
+
+<!ENTITY textfont.title "Text and Font Style">
+<!ENTITY textfont.code "Code:">
