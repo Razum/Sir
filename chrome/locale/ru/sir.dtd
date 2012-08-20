@@ -56,4 +56,5 @@
 <!ENTITY transition.code "Код:">
 
 <!ENTITY textfont.title "CSSsir Text and Font Style">
+<!ENTITY textfont.extraRules "Доп. CSS правила">
 <!ENTITY textfont.code "Код:">

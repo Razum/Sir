@@ -134,7 +134,7 @@
 					</hbox>
 					<groupbox id="extraGroup">
 						<caption>
-							<checkbox id="extraRules" label="Extra CSS rules" oncommand="SIR.textfont.onParamsChange();" />
+							<checkbox id="extraRules" label="&textfont.extraRules;" oncommand="SIR.textfont.onParamsChange();" />
 						</caption>
 						<grid>
 							<columns>

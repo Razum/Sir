@@ -46,6 +46,9 @@
 
 <!ENTITY colorpicker.title "CSSsir Colour Picker">
 
+<!ENTITY outline.title "CSSsir Outline">
+<!ENTITY outline.code "Code:">
+
 
 <!ENTITY transition.title "CSSsir Transition">
 <!ENTITY transition.label "To see the result hover over left field.">
@@ -53,4 +56,5 @@
 
 
 <!ENTITY textfont.title "CSSsir Text and Font Style">
+<!ENTITY textfont.extraRules "Extra CSS rules">
 <!ENTITY textfont.code "Code:">
