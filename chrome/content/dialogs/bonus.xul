@@ -17,7 +17,7 @@
                     />
                     <tab id="emtopx-tab" label="Pixels to Ems" image='chrome://sir/skin/images/pxem.png'
                     />
-                    <tab id="crossColor-tab" label="Cross-browser color names" image='chrome://sir/skin/images/crosbrColor.png'
+                    <tab id="crossColor-tab" label="&bonus.colors;" image='chrome://sir/skin/images/crosbrColor.png'
                     />
                     <tab id="support-tab" label="&bonus.support;" image='chrome://sir/skin/images/support.png'
                     />
@@ -551,10 +551,10 @@
              
 <listbox id="crossColorList">
   <listhead>
-    <listheader label="Color Name"/>
-    <listheader label="RGB Value"/>
-    <listheader label="Hexadecimal Value"/>
-    <listheader label="Appearance"/>
+    <listheader label="&bonus.colors.name;"/>
+    <listheader label="RGB"/>
+    <listheader label="HEX"/>
+    <listheader label="&bonus.colors.appearance;"/>
   </listhead>
 
   <listcols>

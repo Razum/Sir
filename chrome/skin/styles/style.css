@@ -784,7 +784,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 }
 
 #colorpickerDialog textbox{
-    width: 110px;
+    width: 130px;
 }
 
 #colorpickerDialog caption{
@@ -904,8 +904,8 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
 #textfontDialog{
     width:1024px;
-    height: 680px;
-    min-height: 680px;
+    height: 695px;
+    min-height: 695px;
     min-width: 1024px;
 }
 
@@ -994,8 +994,8 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 /************ selectors **************/
 #bonusDialog{
     width:850px;
-    height: 650px;
-    min-height: 630px;
+    height: 655px;
+    min-height: 655px;
     min-width: 850px;
 }
 

@@ -6,7 +6,7 @@
 			<script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js"></script>
 			<script type="application/x-javascript" src="chrome://sir/content/scripts/items.js">
 			</script>
-			<panel id="colorPicker" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" title="" label="&colorpicker.panel.title;">
+			<panel id="colorPicker" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="&colorpicker.panel.title;">
 			</panel>
             
             

@@ -4,6 +4,8 @@
 
 <!ENTITY bonus.hacks "  Hacks">
 
+<!ENTITY bonus.colors "  Cross-browser color names">
+
 <!ENTITY bonus.support "  Support">
 
 
@@ -168,6 +170,11 @@
 
 <!ENTITY bonus.emtopx.base 'Base size - 16px'>
 
+
+<!-- COLORS -->
+
+<!ENTITY bonus.colors.name 'Color Name'>
+<!ENTITY bonus.colors.appearance 'Appearance'>
 
 
 <!-- SUPPORT -->

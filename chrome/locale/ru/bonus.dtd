@@ -5,6 +5,8 @@
 
 <!ENTITY bonus.hacks "  Хаки">
 
+<!ENTITY bonus.colors "  Кроссбрауз. Цвета">
+
 <!ENTITY bonus.support "  Поддержка">
 
 <!ENTITY bonus.SelName "Селектор">
@@ -171,6 +173,11 @@
 
 <!ENTITY bonus.emtopx.base 'Базовый размер - 16px'>
 
+
+<!-- COLORS -->
+
+<!ENTITY bonus.colors.name 'Названия цветов'>
+<!ENTITY bonus.colors.appearance 'Образец'>
 
 <!-- SUPPORT -->
 

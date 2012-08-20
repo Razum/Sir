@@ -219,12 +219,12 @@
 				<vbox class="textfontControlBox">
 					<hbox class="controlHBox">
 						<label class="textfontLabels" value="letter-spacing:" />
-						<scale min="-10" max="20" value="1" increment="1" id="textfont-letterSp" onchange="SIR.textfont.onParamsChange();" />
+						<scale min="-10" max="40" value="1" increment="1" id="textfont-letterSp" onchange="SIR.textfont.onParamsChange();" />
 						<label id="textfont-letterSpVal" value="" />
 					</hbox>
 					<hbox class="controlHBox">
 						<label class="textfontLabels" value="word-spacing:" />
-						<scale min="-10" max="20" value="0" increment="1" id="textfont-wordSp" onchange="SIR.textfont.onParamsChange();" />
+						<scale min="-10" max="40" value="0" increment="1" id="textfont-wordSp" onchange="SIR.textfont.onParamsChange();" />
 						<label id="textfont-wordSpVal" value="" />
 					</hbox>
 				</vbox>

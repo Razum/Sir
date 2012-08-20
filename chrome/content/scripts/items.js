@@ -697,7 +697,7 @@ SIR.transition = {
 	showCode: function(prop, dur, timing) {
 		var str = "";
 		str += "elem {\n";
-		str += "\t/****** Use any CSS-rule ******/\n";
+		str += "\t/****** Use any CSS-rules ******/\n";
 		str += "\tborder: 1px solid #E0DEDE;\n\tbackground: #5776bd;\n\tcolor: #f3f128;\n\tpadding: 95px 0 0 75px;\n\n";
 		str += "\t-webkit-transition: " + prop + " " + dur + "s " + timing + ";/* Safari 3.2+, Chrome */\n";
 		str += "\t-moz-transition: " + prop + " " + dur + "s " + timing + ";/* Firefox 4-15 */\n";
@@ -711,7 +711,7 @@ SIR.transition = {
 	}
 };
 ///////////////////////////////
-//       Text and Font      //
+//       TEXT AND FONT      //
 /////////////////////////////
 SIR.textfont = {
 	init: function() {
