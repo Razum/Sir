@@ -41,8 +41,8 @@
                                 
                                 
 </hbox>
-
-            <label value="&txtColumn.code;" />
+            <hbox class="commandBox"><label value="&txtColumn.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
+            
             <textbox id="txtColumnResult" multiline="true" readonly="true" rows="10"
             />
         </dialog>

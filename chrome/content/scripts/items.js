@@ -1,11 +1,26 @@
 if (!SIR) {
 	var SIR = {};
 }
+
+
+SIR.Item = function(){};
+SIR.Item.prototype.init = function(){};
+SIR.Item.prototype.onParamsChange = function(){};
+SIR.Item.prototype.showCode = function(){};
+SIR.Item.prototype.CopyCode = function(){     
+    var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].
+    getService(Components.interfaces.nsIClipboardHelper);
+    gClipboardHelper.copyString(this.txtBox.value);    
+    document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copied.png";
+    
+};
+
 //////////////////
 //    RGBA     //
 /////////////////
-SIR.rgba = {
-	init: function() {
+SIR.rgba = new SIR.Item();
+	SIR.rgba.init = function() {
+	   var self = this;
 		this.R = document.getElementById("R");
 		this.G = document.getElementById("G");
 		this.B = document.getElementById("B");
@@ -27,8 +42,10 @@ SIR.rgba = {
 		this.rgbaRect.style.backgroundColor = "#" + this.R.value + this.G.value + this.B.value;
 		this.rgbaRect.style.opacity = this.opacity.value / 100;
 		this.showCode(this.R.value, this.G.value, this.B.value, this.opacity.value / 100);
-	},
-	onColorChange: function() {
+        
+        document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
+	};
+	SIR.rgba.onParamsChange = function() {
 		this.Rlbl.value = this.R.value;
 		this.Glbl.value = this.G.value;
 		this.Blbl.value = this.B.value;
@@ -36,21 +53,28 @@ SIR.rgba = {
 		this.rgbaRect.style.backgroundColor = "#" + SIR.utils.toHEX(this.R.value) + SIR.utils.toHEX(this.G.value) + SIR.utils.toHEX(this.B.value);
 		this.rgbaRect.style.opacity = this.opacity.value / 100;
 		this.showCode(this.R.value, this.G.value, this.B.value, this.opacity.value / 100);
-	},
-	showCode: function(R, G, B, opacity) {
+        
+        document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
+                
+	};
+	SIR.rgba.showCode = function(R, G, B, opacity) {
 		var forIE = Math.floor(255 * opacity).toString(16) + SIR.utils.toHEX(R) + SIR.utils.toHEX(G) + SIR.utils.toHEX(B);
 		var str = "background: rgb(" + R + ", " + G + ", " + B + ");\nbackground: transparent;\nbackground: rgba(" + R + ", " + G + ", " + B + ", " + opacity + ");/* FF3+,Saf3+,Opera 10.10+,Chrome,IE9*/\n";
 		str += "filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#" + forIE + ",endColorstr=#" + forIE + ");/*IE 5.5-7*/\n";
 		str += '-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#' + forIE + ',endColorstr=#' + forIE + ')";/*IE8*/';
 		str += "\nzoom: 1;"
 		this.txtBox.value = str;
-	}
-};
+	};
+
+
+
 /////////////////////////
 //    Text-shadow     //
 ///////////////////////
-SIR.txtShadow = {
-	init: function() {
+
+SIR.txtShadow = new SIR.Item();
+ 
+	SIR.txtShadow.init = function() {
 		var self = this;
 		this.horLen = document.getElementById("TShorLen");
 		this.verLen = document.getElementById("TSverLen");
@@ -74,16 +98,20 @@ SIR.txtShadow = {
 		this.blurRadiuslbl.value = this.blurRadius.value + "px";
 		this.inscription.style.textShadow = "3px 3px 3px #6D6B6B";
 		this.showCode(this.horLen.value, this.verLen.value, this.blurRadius.value, this.colorButton.color);
-	},
-	onParamsChange: function() {
+        
+        document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
+	};
+	SIR.txtShadow.onParamsChange = function() {
 		this.horLenlbl.value = this.horLen.value + "px";
 		this.verLenlbl.value = this.verLen.value + "px";
 		this.blurRadiuslbl.value = this.blurRadius.value + "px";
 		this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
 		this.inscription.style.textShadow = this.horLen.value + "px " + this.verLen.value + "px " + this.blurRadius.value + "px " + this.colorButton.color;
 		this.showCode(this.horLen.value, this.verLen.value, this.blurRadius.value, this.colorButton.color);
-	},
-	showCode: function(horLen, verLen, blurRadius, color) {
+        
+        document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
+	};
+	SIR.txtShadow.showCode = function(horLen, verLen, blurRadius, color) {
 		var IEdirection = Math.abs(Math.round(Math.atan2(-verLen, horLen) * 180 / Math.PI) - 90) % 360;
 		if (IEdirection < 0) {
 			IEdirection = 180 + (180 + IEdirection);
@@ -93,13 +121,15 @@ SIR.txtShadow = {
 		str += '-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n';
 		str += 'filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + '); /*IE 5.5-7*/'
 		this.txtBox.value = str;
-	}
-};
+	};
+
 /////////////////////////
 //    Text-rotation   //
 ///////////////////////
-SIR.txtRotation = {
-	init: function() {
+SIR.txtRotation = new SIR.Item();
+
+	SIR.txtRotation.init = function() {
+	   var self = this;
 		this.rotDeg = document.getElementById("TRrotDeg");
 		this.txtBox = document.getElementById("txtRotationResult");
 		this.inscription = document.getElementById("TRinscription");
@@ -108,13 +138,17 @@ SIR.txtRotation = {
 		this.rotDeglbl.value = 0 + "\u00B0";
 		this.inscription.style.MozTransform = "rotate(0deg)";
 		this.showCode(this.rotDeg.value);
-	},
-	onParamsChange: function() {
+        
+        document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
+	};
+	SIR.txtRotation.onParamsChange = function() {
 		this.rotDeglbl.value = this.rotDeg.value + "\u00B0";
 		this.inscription.style.MozTransform = "rotate(" + this.rotDeg.value + "deg)";
 		this.showCode(this.rotDeg.value);
-	},
-	showCode: function(rotDeg) {
+        
+        document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
+	};
+	SIR.txtRotation.showCode = function(rotDeg) {
 		var IEM11 = Math.cos(rotDeg / 180 * Math.PI).toFixed(6),
 			IEM12 = -Math.sin(rotDeg / 180 * Math.PI).toFixed(6),
 			IEM21 = Math.sin(rotDeg / 180 * Math.PI).toFixed(6),
@@ -125,13 +159,15 @@ SIR.txtRotation = {
 		str += "-webkit-transform: rotate(" + rotDeg + "deg); /*Saf3.1+, Chrome*/\n-ms-transform: rotate(" + rotDeg + "deg); /*IE9*/\n";
 		str += "filter: progid:DXImageTransform.Microsoft.Matrix(M11=" + IEM11 + ", M12=" + IEM12 + ",M21=" + IEM21 + ", M22=" + IEM22 + ", sizingMethod='auto expand');/*IE6-IE9*/\nzoom: 1;";
 		this.txtBox.value = str;
-	}
-};
+	};
+
 /////////////////////////
 //    Transform       //
 ///////////////////////
-SIR.transform = {
-	init: function() {
+SIR.transform = new SIR.Item(); 
+
+	SIR.transform.init = function() {
+	   var self = this;
 		this.rotDeg = document.getElementById("TrotDeg");
 		this.scaleX = document.getElementById("scaleX");
 		this.scaleY = document.getElementById("scaleY");
@@ -164,8 +200,10 @@ SIR.transform = {
 		this.TranslateYlbl.value = this.TranslateY.value + "px";
 		this.rect.style.MozTransform = 'rotate(0deg) scale(1, 1) skewX(0deg) skewY(0deg) translate(0, 0)';
 		this.showCode(0, 1, 1, 0, 0, 0, 0);
-	},
-	onParamsChange: function() {
+        
+        document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
+	};
+	SIR.transform.onParamsChange = function() {
 		this.rotDeglbl.value = this.rotDeg.value + "\u00B0";
 		this.scaleXlbl.value = "\u292b" + this.scaleX.value / 10;
 		this.scaleYlbl.value = "\u292b" + this.scaleY.value / 10;
@@ -175,21 +213,23 @@ SIR.transform = {
 		this.TranslateYlbl.value = this.TranslateY.value + "px";
 		this.rect.style.MozTransform = 'rotate(' + this.rotDeg.value + 'deg) scale(' + this.scaleX.value / 10 + ', ' + this.scaleY.value / 10 + ') skewX(' + this.skewX.value + 'deg) skewY(' + this.skewY.value + 'deg) translate(' + this.TranslateX.value + 'px, ' + this.TranslateY.value + 'px)';
 		this.showCode(this.rotDeg.value, this.scaleX.value / 10, this.scaleY.value / 10, this.skewX.value, this.skewY.value, this.TranslateX.value, this.TranslateY.value);
-	},
-	showCode: function(rot, scX, scY, skX, skY, trX, trY) {
+        
+        document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
+	};
+	SIR.transform.showCode = function(rot, scX, scY, skX, skY, trX, trY) {
 		var str = "transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);\n";
 		str += "-moz-transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skewX(" + skX + "deg) skewY(" + skY + "deg) translate(" + trX + "px, " + trY + "px);/* FF3.5+ */\n";
 		str += "-webkit-transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/*Saf3.1+, Chrome*/\n";
 		str += "-o-transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/* Opera 10.5 */\n";
 		str += "-ms-transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/* IE 9 */\n";
 		this.txtBox.value = str;
-	}
-};
+	};
+
 /////////////////////////
 //    Box-shadow      //
 ///////////////////////
-SIR.boxShadow = {
-	init: function() {
+SIR.boxShadow = new SIR.Item();
+	SIR.boxShadow.init = function() {
 		var self = this;
 		this.BoxShorLen = document.getElementById("BShorLen");
 		this.BoxSverLen = document.getElementById("BSverLen");
@@ -214,8 +254,10 @@ SIR.boxShadow = {
 		this.blurRadiuslbl.value = this.BoxSblurRadius.value + "px";
 		this.rect.style.boxShadow = "9px 6px 11px #6D6B6B";
 		this.showCode(this.BoxShorLen.value, this.BoxSverLen.value, this.BoxSblurRadius.value, this.colorButton.color, false);
+        
+        document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
 	},
-	onParamsChange: function() {
+	SIR.boxShadow.onParamsChange = function() {
 		var inset = "";
 		this.horLenlbl.value = this.BoxShorLen.value + "px";
 		this.verLenlbl.value = this.BoxSverLen.value + "px";
@@ -226,8 +268,10 @@ SIR.boxShadow = {
 		}
 		this.rect.style.boxShadow = inset + this.BoxShorLen.value + "px " + this.BoxSverLen.value + "px " + this.BoxSblurRadius.value + "px " + this.colorButton.color;
 		this.showCode(this.BoxShorLen.value, this.BoxSverLen.value, this.BoxSblurRadius.value, this.colorButton.color, this.inset.checked);
+        
+        document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
 	},
-	showCode: function(horLen, verLen, blurRadius, color, inset) {
+	SIR.boxShadow.showCode = function(horLen, verLen, blurRadius, color, inset) {
 		var IEdirection = Math.abs(Math.round(Math.atan2(-verLen, horLen) * 180 / Math.PI) - 90) % 360;
 		if (IEdirection < 0) {
 			IEdirection = 180 + (180 + IEdirection);
@@ -245,12 +289,13 @@ SIR.boxShadow = {
 		}
 		this.txtBox.value = str;
 	}
-};
+
 /////////////////////////
 //    Border-radius   //
 ///////////////////////
-SIR.borderRadius = {
-	init: function() {
+SIR.borderRadius =  new SIR.Item();
+
+	SIR.borderRadius.init = function() {
 		var self = this;
 		this.brdStl = document.getElementById("border-style-selector");
 		this.brdWidth = document.getElementById("borderRadiusWidth");
@@ -287,8 +332,10 @@ SIR.borderRadius = {
 		this.rect.style.borderBottomLeftRadius = "0px";
 		this.rect.style.borderBottomRightRadius = "0px";
 		this.showCode(this.brdWidth.value, "solid", this.colorButton.color, this.brdRadTL.value, this.brdRadTR.value, this.brdRadBL.value, this.brdRadBR.value);
-	},
-	onParamsChange: function() {
+	
+        document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
+    };
+	SIR.borderRadius.onParamsChange = function() {
 		this.brdWidthlbl.value = this.brdWidth.value + "px";
 		this.brdRadTLlbl.value = this.brdRadTL.value + "px";
 		this.brdRadTRlbl.value = this.brdRadTR.value + "px";
@@ -303,8 +350,10 @@ SIR.borderRadius = {
 		this.rect.style.borderBottomLeftRadius = this.brdRadBL.value + "px";
 		this.rect.style.borderBottomRightRadius = this.brdRadBR.value + "px";
 		this.showCode(this.brdWidth.value, this.brdStl.value, this.colorButton.color, this.brdRadTL.value, this.brdRadTR.value, this.brdRadBL.value, this.brdRadBR.value);
-	},
-	showCode: function(width, style, color, TL, TR, BL, BR) {
+	
+        document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
+    };
+	SIR.borderRadius.showCode = function(width, style, color, TL, TR, BL, BR) {
 		var str = "border: " + width + "px " + style + " " + color + ";\n";
 		if (TL == TR && TR == BL && BL == BR) {
 			str += "border-radius: " + TL + "px;\n";
@@ -330,13 +379,14 @@ SIR.borderRadius = {
 		str += "-webkit-border-bottom-left-radius: " + BL + "px;\n";
 		str += "-webkit-border-bottom-right-radius: " + BR + "px;\n";
 		this.txtBox.value = str;
-	}
-};
+	};
+
 /////////////////////////
 //    Columns         //
 ///////////////////////
-SIR.txtColumn = {
-	init: function() {
+SIR.txtColumn = new SIR.Item()
+	SIR.txtColumn.init = function() {
+	   var self = this;
 		this.colCount = document.getElementById("txtColumnCount");
 		this.colGap = document.getElementById("txtColumnGap");
 		this.colRule = document.getElementById("column-rule-selector");
@@ -353,16 +403,20 @@ SIR.txtColumn = {
 		this.desc.style.MozColumnGap = "0px";
 		this.desc.style.MozColumnRule = "none";
 		this.showCode(1, 0, "none");
-	},
-	onParamsChange: function() {
+        
+        document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
+	};
+	SIR.txtColumn.onParamsChange = function() {
 		this.colCountlbl.value = this.colCount.value;
 		this.colGaplbl.value = this.colGap.value + "px";
 		this.desc.style.MozColumnCount = this.colCount.value;
 		this.desc.style.MozColumnGap = this.colGap.value + "px";
 		this.desc.style.MozColumnRule = this.colRule.value;
 		this.showCode(this.colCount.value, this.colGap.value, this.colRule.value);
-	},
-	showCode: function(count, gap, rule) {
+        
+        document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
+	};
+	SIR.txtColumn.showCode = function(count, gap, rule) {
 		var str = "";
 		str += "/* Opera 11+*/\n";
 		str += "column-count:" + count + ";\ncolumn-gap:" + gap + "px;\ncolumn-rule:" + rule + ";\n";
@@ -371,13 +425,13 @@ SIR.txtColumn = {
 		str += "/*Saf3, Chrome*/\n";
 		str += "-webkit-column-count:" + count + ";\n-webkit-column-gap:" + gap + "px;\n-webkit-column-rule:" + rule + ";";
 		this.txtBox.value = str;
-	}
-};
+	};
+
 /////////////////////////
 //    Gradient        //
 ///////////////////////
-SIR.gradient = {
-	init: function() {
+SIR.gradient = new SIR.Item();
+	SIR.gradient.init = function() {
 		var self = this;
 		this.dir = document.getElementById("dir");
 		this.from = document.getElementById("colorButtonFrom");
@@ -396,8 +450,10 @@ SIR.gradient = {
 			SIR.gradient.onParamsChange.call(self);
 		});
 		this.showCode("ltlb", this.from.color, this.to.color);
-	},
-	onParamsChange: function() {
+        
+        document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
+	};
+	SIR.gradient.onParamsChange = function() {
 		var direction = {
 			ltrt: "left, ",
 			ltlb: "top, ",
@@ -408,8 +464,10 @@ SIR.gradient = {
 		this.to.color = this.ColorPickerTo.getColour().getCSSHexadecimalRGB();
 		this.rect.style.backgroundImage = '-moz-linear-gradient(' + direction[this.dir.value] + this.from.color + ',' + this.to.color + ')';
 		this.showCode(this.dir.value, this.from.color, this.to.color);
-	},
-	showCode: function(dir, from, to) {
+        
+        document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
+	};
+	SIR.gradient.showCode = function(dir, from, to) {
 		var moz = "",
 			ie = "",
 			web = "";
@@ -444,8 +502,8 @@ SIR.gradient = {
 		str += "background: linear-gradient(" + moz + from + "," + to + "); /* W3C */\n";
 		str += "filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='" + from + "', endColorstr='" + to + "', GradientType='" + ie + "'); /* for IE */\n";
 		this.txtBox.value = str;
-	}
-};
+	};
+
 /////////////////////////
 //    Converter       //
 ///////////////////////
@@ -613,8 +671,8 @@ SIR.Cleaner = {
 /////////////////////////
 //       Outline      //
 ///////////////////////
-SIR.outline = {
-	init: function() {
+SIR.outline = new SIR.Item();
+	SIR.outline.init = function() {
 		var self = this;
 		this.outStyle = document.getElementById("outline-style-selector");
 		this.outWidth = document.getElementById("outlineWidth");
@@ -636,24 +694,28 @@ SIR.outline = {
 		this.rect.style.outline = "6px solid #181783";
 		this.rect.style.outlineOffset = "6px";
 		this.showCode(this.outWidth.value, "solid", this.colorButton.color, this.outOffset.value);
-	},
-	onParamsChange: function() {
+        
+        document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
+	};
+	SIR.outline.onParamsChange = function() {
 		this.outWidthlbl.value = this.outWidth.value + "px";
 		this.outOffsetlbl.value = this.outOffset.value + "px";
 		this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
 		this.rect.style.outline = this.outWidth.value + "px " + this.outStyle.value + " " + this.colorButton.color;
 		this.rect.style.outlineOffset = this.outOffset.value + "px";
 		this.showCode(this.outWidth.value, this.outStyle.value, this.colorButton.color, this.outOffset.value);
-	},
-	showCode: function(width, stl, color, offs) {
+        
+        document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
+	};
+	SIR.outline.showCode = function(width, stl, color, offs) {
 		str = "";
 		str = "outline: " + width + "px " + stl + " " + color + ";\n";
 		if (offs != 0) {
 			str += "outline-offset: " + offs + "px";
 		}
 		this.txtBox.value = str;
-	}
-};
+	};
+
 ////////////////////////////////
 //       COLOR SELECTOR      //
 //////////////////////////////
@@ -674,8 +736,8 @@ SIR.colorSelector = {
 ////////////////////////////
 //       TRANSITION      //
 //////////////////////////
-SIR.transition = {
-	init: function() {
+SIR.transition = new SIR.Item();
+	SIR.transition.init = function() {
 		var self = this;
 		this.propSel = document.getElementById("transition-property-selector");
 		this.duration = document.getElementById("transitionDuration");
@@ -687,14 +749,19 @@ SIR.transition = {
 		this.durationlbl.value = this.duration.value / 10 + "s";
 		this.rect.style.MozTransition = "all 1s ease";
 		this.showCode("all", 1, "ease");
-	},
-	onParamsChange: function() {
+        
+        document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
+	};
+	SIR.transition.onParamsChange = function() {
 		var dur = this.duration.value / 10;
 		this.durationlbl.value = dur + "s";
 		this.rect.style.MozTransition = this.propSel.value + " " + dur + "s " + this.timing.value;
 		this.showCode(this.propSel.value, dur, this.timing.value);
-	},
-	showCode: function(prop, dur, timing) {
+        
+        document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
+        
+	};
+	SIR.transition.showCode = function(prop, dur, timing) {
 		var str = "";
 		str += "elem {\n";
 		str += "\t/****** Use any CSS-rules ******/\n";
@@ -708,13 +775,13 @@ SIR.transition = {
 		str += "\tborder: 40px solid #5776bd;\n\tbackground: #f3f128;\n\tcolor: #5776bd;\n\tpadding: 56px 0 0 36px;\n";
 		str += "}\n\n"
 		this.txtBox.value = str;
-	}
-};
+	};
+
 ///////////////////////////////
 //       TEXT AND FONT      //
 /////////////////////////////
-SIR.textfont = {
-	init: function() {
+SIR.textfont = new SIR.Item();
+	SIR.textfont.init = function() {
 		var self = this;
 		//MAIN SELECTORS
 		this.mainSelects = [{
@@ -832,8 +899,10 @@ SIR.textfont = {
 		}, false);
         
         this.onParamsChange();
-	},
-	onParamsChange: function() {
+        
+        document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
+	};
+	SIR.textfont.onParamsChange = function() {
 	   
        this.inscription.removeAttribute("style");
 		this.colorButton.color = this.colorPickerText.getColour().getCSSHexadecimalRGB();
@@ -847,10 +916,11 @@ SIR.textfont = {
 		}
         
         
-        this.showCode(this.mainSelects, this.scales, this.extraSelects, this.colorButton.color, this.backColorButton.color)
-	},
+        this.showCode(this.mainSelects, this.scales, this.extraSelects, this.colorButton.color, this.backColorButton.color);
+        document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
+	};
 	
-    showCode: function(mainMenu, scales, extraMenu, textColor, backColor) {
+    SIR.textfont.showCode = function(mainMenu, scales, extraMenu, textColor, backColor) {
 	   var str="";
        
        for(var i = 0; i<mainMenu.length; i++){
@@ -871,9 +941,9 @@ SIR.textfont = {
 		}
        
        this.txtBox.value = str;
-	},
+	};
 	
-    makeStyle: function(arrObj, node) {
+    SIR.textfont.makeStyle = function(arrObj, node) {
 		var len = arrObj.length;
 		for (var i = 0; i < len; i++) {
 			if (arrObj[i].lbl && arrObj[i].getVal()) {
@@ -883,6 +953,4 @@ SIR.textfont = {
 				node.style[arrObj[i].JSruleName] = arrObj[i].elem.value;
 			}
 		}
-	},
-	disableElem: function() {}
-};
+	};

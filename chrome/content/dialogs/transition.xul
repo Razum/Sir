@@ -52,7 +52,8 @@
                     <hbox class="controlHBox"><label value="&transition.label;" style="color: #424040;" /></hbox>
                 </vbox>
             </hbox>
-            <label value="&transition.code;" />
+            <hbox class="commandBox"><label value="&transition.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
+            
             <textbox id="transitionResult" multiline="true" readonly="true" rows="10"
             />
         </dialog>

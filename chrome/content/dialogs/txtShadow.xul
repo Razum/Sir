@@ -35,6 +35,7 @@
 					</hbox>
 				</vbox>
 			</hbox>
-			<label value="&txtShadow.code;" />
+            <tooltip id="sir-clipboard-tt" label="Copy to clipboard" />
+			<hbox class="commandBox"><label value="&txtShadow.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
 			<textbox id="txtShadowResult" multiline="true" readonly="true" rows="10" />
 		</dialog>
