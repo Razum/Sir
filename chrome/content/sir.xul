@@ -41,6 +41,8 @@
                     />
                     <menuitem id="sir-toolbar-button-bonus" label="Bonus  (ALT+SHIFT+B)" image="chrome://sir/skin/images/bonus.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/bonus.xul', 'bonusDialog', '')"
                     />
+                    <menuitem id="sir-toolbar-button-preferences" label="Preferences" image="chrome://sir/skin/images/preferences/settings.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/preferences/preferences.xul', 'SIRPrefs', '')"
+                    />
                     
 
                 </menupopup>

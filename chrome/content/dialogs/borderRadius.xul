@@ -46,16 +46,16 @@
 						<scale min="0" max="90" increment="1" id="borderRadiusTRight" onchange="SIR.borderRadius.onParamsChange();" />
 						<label id="borderRadiusTRightVal" value="" />
 					</hbox>
-					<hbox class="controlHBox">
-						<label class="borderRadiusLabels" value="Radius B-Left:" />
-						<scale min="0" max="90" increment="1" id="borderRadiusBLeft" onchange="SIR.borderRadius.onParamsChange();" />
-						<label id="borderRadiusBLeftVal" value="" />
-					</hbox>
-					<hbox class="controlHBox">
+                    <hbox class="controlHBox">
 						<label class="borderRadiusLabels" value="Radius B-Right:" />
 						<scale min="0" max="90" increment="1" id="borderRadiusBRight" onchange="SIR.borderRadius.onParamsChange();" />
 						<label id="borderRadiusBRightVal" value="" />
 					</hbox>
+					<hbox class="controlHBox">
+						<label class="borderRadiusLabels" value="Radius B-Left:" />
+						<scale min="0" max="90" increment="1" id="borderRadiusBLeft" onchange="SIR.borderRadius.onParamsChange();" />
+						<label id="borderRadiusBLeftVal" value="" />
+					</hbox>					
 					<hbox>
 						<label class="borderRadiusLabels" value="Color:" />
 						<colorpicker id="colorButton" type="button" disabled="true" color="#000" onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false);" />

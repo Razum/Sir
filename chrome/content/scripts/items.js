@@ -59,7 +59,8 @@ SIR.rgba = new SIR.Item();
 	};
 	SIR.rgba.showCode = function(R, G, B, opacity) {
 		var forIE = Math.floor(255 * opacity).toString(16) + SIR.utils.toHEX(R) + SIR.utils.toHEX(G) + SIR.utils.toHEX(B);
-		var str = "background: rgb(" + R + ", " + G + ", " + B + ");\nbackground: transparent;\nbackground: rgba(" + R + ", " + G + ", " + B + ", " + opacity + ");/* FF3+,Saf3+,Opera 10.10+,Chrome,IE9*/\n";
+		var str = "background: rgb(" + R + ", " + G + ", " + B + ");\nbackground: transparent;\n"; 
+        str += "background: rgba(" + R + ", " + G + ", " + B + ", " + opacity + ");/* FF3+,Saf3+,Opera 10.10+,Chrome,IE9*/\n";
 		str += "filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#" + forIE + ",endColorstr=#" + forIE + ");/*IE 5.5-7*/\n";
 		str += '-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#' + forIE + ',endColorstr=#' + forIE + ')";/*IE8*/';
 		str += "\nzoom: 1;"
@@ -155,8 +156,10 @@ SIR.txtRotation = new SIR.Item();
 			IEM22 = Math.cos(rotDeg / 180 * Math.PI).toFixed(6);
 		var str = "";
 		str += "transform: rotate(" + rotDeg + "deg);\n";
-		str += "-moz-transform: rotate(" + rotDeg + "deg); /*FF3.5+*/\n-o-transform: rotate(" + rotDeg + "deg); /*Opera 10.5*/\n";
-		str += "-webkit-transform: rotate(" + rotDeg + "deg); /*Saf3.1+, Chrome*/\n-ms-transform: rotate(" + rotDeg + "deg); /*IE9*/\n";
+		str += "-moz-transform: rotate(" + rotDeg + "deg); /*FF3.5+*/\n";        
+        str += "-o-transform: rotate(" + rotDeg + "deg); /*Opera 10.5*/\n";
+		str += "-webkit-transform: rotate(" + rotDeg + "deg); /*Saf3.1+, Chrome*/\n";
+        str += "-ms-transform: rotate(" + rotDeg + "deg); /*IE9*/\n";
 		str += "filter: progid:DXImageTransform.Microsoft.Matrix(M11=" + IEM11 + ", M12=" + IEM12 + ",M21=" + IEM21 + ", M22=" + IEM22 + ", sizingMethod='auto expand');/*IE6-IE9*/\nzoom: 1;";
 		this.txtBox.value = str;
 	};
@@ -282,7 +285,8 @@ SIR.boxShadow = new SIR.Item();
 		}
 		var str = ""
 		str += "box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";\n";
-		str += "-moz-box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*FF 3.5+*/\n-webkit-text-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/\n";
+		str += "-moz-box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*FF 3.5+*/\n";
+        str += "-webkit-text-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/\n";
 		if (!inset) {
 			str += '-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n';
 			str += 'filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ');/*IE 5.5-7*/';
@@ -364,6 +368,30 @@ SIR.borderRadius =  new SIR.Item();
 			this.txtBox.value = str;
 			return true;
 		}
+        
+        
+        if(TL == BR && TR == BL && TR != TL){
+            str += "border-radius: " + TL + "px " + TR + "px;\n";
+			str += "/*Firefox*/\n";
+			str += "-moz-border-radius: " + TL + "px " + TR + "px;\n";
+			str += "/*Safari, Chrome*/\n";
+			str += "-webkit-border-radius: " + TL + "px " + TR + "px;\n";
+			this.txtBox.value = str; 
+            return true;           
+        }
+        
+        
+        if(TR == BL && TL != BR && TR != TL){
+            str += "border-radius: " + TL + "px " + TR + "px " + BR + "px;\n";
+			str += "/*Firefox*/\n";
+			str += "-moz-border-radius: " + TL + "px " + TR + "px " + BR + "px;\n";
+			str += "/*Safari, Chrome*/\n";
+			str += "-webkit-border-radius: " + TL + "px " + TR + "px " + BR + "px;\n";
+			this.txtBox.value = str;
+            return true;            
+        }
+        
+        
 		str += "border-top-left-radius: " + TL + "px;\n";
 		str += "border-top-right-radius: " + TR + "px;\n";
 		str += "border-bottom-left-radius: " + BL + "px;\n";
