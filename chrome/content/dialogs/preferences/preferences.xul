@@ -1,24 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet href="chrome://global/skin/"?>
-<?xml-stylesheet href="chrome://sir/skin/styles/preferences.css" type="text/css"?>
-
-
-
-<prefwindow id="SIRPrefs"
-            type="prefwindow"
-            title=""
-            xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-            buttons="accept"
-            buttonlabelaccept="OK">
-
-<prefpane id="sir-generators">
-    <preferences>
-      <!-- <preference id="pref-backup" name="myapp.mybackups" type="bool"/>
-      <preference id="pref-backupduration" name="myapp.mybackups.duration" type="int"/>-->
-    </preferences>
-    <checkbox label="Automatically Save Backups" preference="pref-backup"/>
-    <textbox label="Duration:" preference="pref-backupduration"/>
-  </prefpane>
-  
-  
-</prefwindow>
+	<?xml-stylesheet href="chrome://sir/skin/styles/preferences.css" type="text/css"?>
+		<prefwindow id="SIRPrefs" type="prefwindow" title="" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" buttons="accept" buttonlabelaccept="OK" ondialogaccept="SIR.Preferences.onOK();">
+			<prefpane id="sir-generators">
+				<script type="application/x-javascript" src="chrome://sir/content/scripts/preferences.js">
+				</script>
+				<preferences>
+					<preference id="moz" name="extensions.sir.generators.moz" type="bool"/>
+					<preference id="webkit" name="extensions.sir.generators.webkit" type="bool"/>
+					<preference id="opera" name="extensions.sir.generators.opera" type="bool"/>
+					<preference id="ms" name="extensions.sir.generators.ms" type="bool"/>
+					<preference id="khtml" name="extensions.sir.generators.khtml" type="bool"/>
+					<preference id="pie" name="extensions.sir.generators.pie" type="bool"/>
+					<preference id="piePath" name="extensions.sir.generators.piePath" type="string"/>
+				</preferences>
+				<groupbox>
+					<caption label="Browsers" />
+					<grid>
+						<columns>
+							<column>
+								<rows>
+                                    <tooltip id ="sir-moz-tt" label="111"/>
+									<checkbox label="Mozilla (-moz-)" preference="moz" tooltip="sir-moz-tt"/>
+								</rows>
+								<rows>
+                                    <tooltip id ="sir-opera-tt" label="222"/>
+									<checkbox label="Opera (-o-)" preference="opera" tooltip="sir-opera-tt"/>
+								</rows>
+								<rows>
+                                    <tooltip id ="sir-khtml-tt" label="333"/>
+									<checkbox label="Konqueror (-khtml-)" preference="khtml" tooltip="sir-khtml-tt"/>
+								</rows>
+							</column>
+							<column>
+								<rows>
+                                    <tooltip id ="sir-webkit-tt" label="444"/>
+									<checkbox label="Chrome, Safari (-webkit-)" preference="webkit" tooltip="sir-webkit-tt"/>
+								</rows>
+								<rows>
+                                    <tooltip id ="sir-ms-tt" label="555"/>
+									<checkbox label="IE (-ms-)" preference="ms" tooltip="sir-ms-tt"/>
+								</rows>
+								<rows>
+								</rows>
+							</column>
+						</columns>
+					</grid>
+				</groupbox>
+				<groupbox>
+					<caption>
+                        <tooltip id ="sir-pie-tt" label="666"/>
+						<checkbox label="PIE" preference="pie" tooltip="sir-pie-tt"/>
+					</caption>
+					<label value="PIE path" />
+					<textbox id="sir-piePath" value="" />
+				</groupbox>
+			</prefpane>
+		</prefwindow>

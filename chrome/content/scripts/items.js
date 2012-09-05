@@ -2,6 +2,7 @@ if (!SIR) {
 	var SIR = {};
 }
 
+Components.utils.import("resource://sir/prefs.jsm", SIR);
 
 SIR.Item = function(){};
 SIR.Item.prototype.init = function(){};
@@ -11,9 +12,46 @@ SIR.Item.prototype.CopyCode = function(){
     var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].
     getService(Components.interfaces.nsIClipboardHelper);
     gClipboardHelper.copyString(this.txtBox.value);    
-    document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copied.png";
-    
+    document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copied.png";    
 };
+SIR.Item.prototype.MozPrefix = function(str){
+    if(SIR.sirPrefs.getBool("generators.moz")){
+        return "-moz-" + str;
+    }
+    return "";    
+};
+SIR.Item.prototype.WebkitPrefix = function(str){
+    if(SIR.sirPrefs.getBool("generators.webkit")){
+        return "-webkit-" + str;
+    }
+    return "";    
+};
+SIR.Item.prototype.OperaPrefix = function(str){
+    if(SIR.sirPrefs.getBool("generators.opera")){
+        return "-o-" + str;
+    }
+    return "";    
+};
+SIR.Item.prototype.iePrefix = function(str){
+    if(SIR.sirPrefs.getBool("generators.ms")){
+        return str;
+    }
+    return "";    
+};
+SIR.Item.prototype.khtmlPrefix = function(str){
+    if(SIR.sirPrefs.getBool("generators.khtml")){
+        return "-khtml-" + str;
+    }
+    return "";    
+};
+
+SIR.Item.prototype.PIE = function(){
+    if(SIR.sirPrefs.getBool("generators.pie")){
+        return "behavior: url(" + SIR.sirPrefs.get("generators.piePath") + ");";
+    }
+    return "";    
+};
+
 
 //////////////////
 //    RGBA     //
@@ -61,9 +99,9 @@ SIR.rgba = new SIR.Item();
 		var forIE = Math.floor(255 * opacity).toString(16) + SIR.utils.toHEX(R) + SIR.utils.toHEX(G) + SIR.utils.toHEX(B);
 		var str = "background: rgb(" + R + ", " + G + ", " + B + ");\nbackground: transparent;\n"; 
         str += "background: rgba(" + R + ", " + G + ", " + B + ", " + opacity + ");/* FF3+,Saf3+,Opera 10.10+,Chrome,IE9*/\n";
-		str += "filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#" + forIE + ",endColorstr=#" + forIE + ");/*IE 5.5-7*/\n";
-		str += '-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#' + forIE + ',endColorstr=#' + forIE + ')";/*IE8*/';
-		str += "\nzoom: 1;"
+		str += this.iePrefix("filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#" + forIE + ",endColorstr=#" + forIE + ");/*IE 5.5-7*/\n");
+		str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#' + forIE + ',endColorstr=#' + forIE + ')";/*IE8*/\n');
+		str += "zoom: 1;"
 		this.txtBox.value = str;
 	};
 
@@ -119,8 +157,8 @@ SIR.txtShadow = new SIR.Item();
 		}
 		var str = "";
 		str += "text-shadow: " + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */\n";
-		str += '-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n';
-		str += 'filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + '); /*IE 5.5-7*/'
+		str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');
+		str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + '); /*IE 5.5-7*/');
 		this.txtBox.value = str;
 	};
 
@@ -156,11 +194,12 @@ SIR.txtRotation = new SIR.Item();
 			IEM22 = Math.cos(rotDeg / 180 * Math.PI).toFixed(6);
 		var str = "";
 		str += "transform: rotate(" + rotDeg + "deg);\n";
-		str += "-moz-transform: rotate(" + rotDeg + "deg); /*FF3.5+*/\n";        
-        str += "-o-transform: rotate(" + rotDeg + "deg); /*Opera 10.5*/\n";
-		str += "-webkit-transform: rotate(" + rotDeg + "deg); /*Saf3.1+, Chrome*/\n";
-        str += "-ms-transform: rotate(" + rotDeg + "deg); /*IE9*/\n";
-		str += "filter: progid:DXImageTransform.Microsoft.Matrix(M11=" + IEM11 + ", M12=" + IEM12 + ",M21=" + IEM21 + ", M22=" + IEM22 + ", sizingMethod='auto expand');/*IE6-IE9*/\nzoom: 1;";
+		str += this.MozPrefix("transform: rotate(" + rotDeg + "deg); /*FF3.5+*/\n");        
+        str += this.OperaPrefix("transform: rotate(" + rotDeg + "deg); /*Opera 10.5*/\n");
+		str += this.WebkitPrefix("transform: rotate(" + rotDeg + "deg); /*Saf3.1+, Chrome*/\n");
+        str += this.khtmlPrefix("transform: rotate(" + rotDeg + "deg); /*Konqueror*/\n");
+        str += this.iePrefix("-ms-transform: rotate(" + rotDeg + "deg); /*IE9*/\n");
+		str += this.iePrefix("filter: progid:DXImageTransform.Microsoft.Matrix(M11=" + IEM11 + ", M12=" + IEM12 + ",M21=" + IEM21 + ", M22=" + IEM22 + ", sizingMethod='auto expand');/*IE6-IE9*/\nzoom: 1;");
 		this.txtBox.value = str;
 	};
 
@@ -221,10 +260,11 @@ SIR.transform = new SIR.Item();
 	};
 	SIR.transform.showCode = function(rot, scX, scY, skX, skY, trX, trY) {
 		var str = "transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);\n";
-		str += "-moz-transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skewX(" + skX + "deg) skewY(" + skY + "deg) translate(" + trX + "px, " + trY + "px);/* FF3.5+ */\n";
-		str += "-webkit-transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/*Saf3.1+, Chrome*/\n";
-		str += "-o-transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/* Opera 10.5 */\n";
-		str += "-ms-transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/* IE 9 */\n";
+		str += this.MozPrefix("transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skewX(" + skX + "deg) skewY(" + skY + "deg) translate(" + trX + "px, " + trY + "px);/* FF3.5+ */\n");
+		str += this.WebkitPrefix("transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/*Saf3.1+, Chrome*/\n");
+		str += this.OperaPrefix("transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/* Opera 10.5 */\n");
+		str += this.khtmlPrefix("transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/* Konqueror */\n");
+        str += this.iePrefix("-ms-transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/* IE 9 */\n");
 		this.txtBox.value = str;
 	};
 
@@ -285,12 +325,14 @@ SIR.boxShadow = new SIR.Item();
 		}
 		var str = ""
 		str += "box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";\n";
-		str += "-moz-box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*FF 3.5+*/\n";
-        str += "-webkit-text-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/\n";
+		str += this.MozPrefix("box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*FF 3.5+*/\n");
+        str += this.WebkitPrefix("text-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/\n");
+        str += this.khtmlPrefix("text-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*Konqueror*/\n");
 		if (!inset) {
-			str += '-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n';
-			str += 'filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ');/*IE 5.5-7*/';
+			str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');
+			str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ');/*IE 5.5-7*/\n');
 		}
+        str+=this.PIE();
 		this.txtBox.value = str;
 	}
 
@@ -361,10 +403,10 @@ SIR.borderRadius =  new SIR.Item();
 		var str = "border: " + width + "px " + style + " " + color + ";\n";
 		if (TL == TR && TR == BL && BL == BR) {
 			str += "border-radius: " + TL + "px;\n";
-			str += "/*Firefox*/\n";
-			str += "-moz-border-radius: " + TL + "px;\n";
-			str += "/*Safari, Chrome*/\n";
-			str += "-webkit-border-radius: " + TL + "px;\n";
+			str += this.MozPrefix("border-radius: " + TL + "px;/*Firefox*/\n");
+			str += this.WebkitPrefix("border-radius: " + TL + "px;/*Safari, Chrome*/\n");
+            str += this.khtmlPrefix("border-radius: " + TL + "px;/*Konqueror*/\n");
+            str+=this.PIE();
 			this.txtBox.value = str;
 			return true;
 		}
@@ -372,10 +414,10 @@ SIR.borderRadius =  new SIR.Item();
         
         if(TL == BR && TR == BL && TR != TL){
             str += "border-radius: " + TL + "px " + TR + "px;\n";
-			str += "/*Firefox*/\n";
-			str += "-moz-border-radius: " + TL + "px " + TR + "px;\n";
-			str += "/*Safari, Chrome*/\n";
-			str += "-webkit-border-radius: " + TL + "px " + TR + "px;\n";
+			str += this.MozPrefix("border-radius: " + TL + "px " + TR + "px;/*Firefox*/\n");
+			str += this.WebkitPrefix("border-radius: " + TL + "px " + TR + "px;/*Safari, Chrome*/\n");
+            str += this.khtmlPrefix("border-radius: " + TL + "px " + TR + "px;/*Konqueror*/\n");
+            str+=this.PIE();
 			this.txtBox.value = str; 
             return true;           
         }
@@ -383,10 +425,10 @@ SIR.borderRadius =  new SIR.Item();
         
         if(TR == BL && TL != BR && TR != TL){
             str += "border-radius: " + TL + "px " + TR + "px " + BR + "px;\n";
-			str += "/*Firefox*/\n";
-			str += "-moz-border-radius: " + TL + "px " + TR + "px " + BR + "px;\n";
-			str += "/*Safari, Chrome*/\n";
-			str += "-webkit-border-radius: " + TL + "px " + TR + "px " + BR + "px;\n";
+			str += this.MozPrefix("border-radius: " + TL + "px " + TR + "px " + BR + "px;/*Firefox*/\n");
+			str += this.WebkitPrefix("border-radius: " + TL + "px " + TR + "px " + BR + "px;/*Safari, Chrome*/\n");
+            str += this.khtmlPrefix("border-radius: " + TL + "px " + TR + "px " + BR + "px;/*Konqueror*/\n");
+            str+=this.PIE();
 			this.txtBox.value = str;
             return true;            
         }
@@ -397,15 +439,21 @@ SIR.borderRadius =  new SIR.Item();
 		str += "border-bottom-left-radius: " + BL + "px;\n";
 		str += "border-bottom-right-radius: " + BR + "px;\n";
 		str += "/*Firefox*/\n";
-		str += "-moz-border-top-left-radius: " + TL + "px;\n";
-		str += "-moz-border-top-right-radius: " + TR + "px;\n";
-		str += "-moz-border-bottom-left-radius: " + BL + "px;\n";
-		str += "-moz-border-bottom-right-radius: " + BR + "px;\n";
+		str += this.MozPrefix("border-top-left-radius: " + TL + "px;\n");
+		str += this.MozPrefix("border-top-right-radius: " + TR + "px;\n");
+		str += this.MozPrefix("border-bottom-left-radius: " + BL + "px;\n");
+		str += this.MozPrefix("border-bottom-right-radius: " + BR + "px;\n");
 		str += "/*Safari, Chrome*/\n";
-		str += "-webkit-border-top-left-radius: " + TL + "px;\n";
-		str += "-webkit-border-top-right-radius: " + TR + "px;\n";
-		str += "-webkit-border-bottom-left-radius: " + BL + "px;\n";
-		str += "-webkit-border-bottom-right-radius: " + BR + "px;\n";
+		str += this.WebkitPrefix("border-top-left-radius: " + TL + "px;\n");
+		str += this.WebkitPrefix("border-top-right-radius: " + TR + "px;\n");
+		str += this.WebkitPrefix("border-bottom-left-radius: " + BL + "px;\n");
+		str += this.WebkitPrefix("border-bottom-right-radius: " + BR + "px;\n");
+        str += "/*Konqueror*/\n";
+		str += this.khtmlPrefix("border-top-left-radius: " + TL + "px;\n");
+		str += this.khtmlPrefix("border-top-right-radius: " + TR + "px;\n");
+		str += this.khtmlPrefix("border-bottom-left-radius: " + BL + "px;\n");
+		str += this.khtmlPrefix("border-bottom-right-radius: " + BR + "px;\n");
+        str+=this.PIE();
 		this.txtBox.value = str;
 	};
 
@@ -447,11 +495,21 @@ SIR.txtColumn = new SIR.Item()
 	SIR.txtColumn.showCode = function(count, gap, rule) {
 		var str = "";
 		str += "/* Opera 11+*/\n";
-		str += "column-count:" + count + ";\ncolumn-gap:" + gap + "px;\ncolumn-rule:" + rule + ";\n";
+		str += "column-count:" + count + ";\n";
+        str += "column-gap:" + gap + "px;\n";
+       	str += "column-rule:" + rule + ";\n";
 		str += "/* FF 3.5+*/\n";
-		str += "-moz-column-count:" + count + ";\n-moz-column-gap:" + gap + "px;\n-moz-column-rule:" + rule + ";\n";
+		str += this.MozPrefix("column-count:" + count + ";\n");
+        str += this.MozPrefix("column-gap:" + gap + "px;\n");
+        str += this.MozPrefix("column-rule:" + rule + ";\n");
 		str += "/*Saf3, Chrome*/\n";
-		str += "-webkit-column-count:" + count + ";\n-webkit-column-gap:" + gap + "px;\n-webkit-column-rule:" + rule + ";";
+		str += this.WebkitPrefix("column-count:" + count + ";\n");
+        str += this.WebkitPrefix("column-gap:" + gap + "px;\n");
+        str += this.WebkitPrefix("column-rule:" + rule + ";");
+        str += "/*Konqueror*/\n";
+		str += this.khtmlPrefix("column-count:" + count + ";\n");
+        str += this.khtmlPrefix("column-gap:" + gap + "px;\n");
+        str += this.khtmlPrefix("column-rule:" + rule + ";");
 		this.txtBox.value = str;
 	};
 
@@ -793,11 +851,12 @@ SIR.transition = new SIR.Item();
 		var str = "";
 		str += "elem {\n";
 		str += "\t/****** Use any CSS-rules ******/\n";
-		str += "\tborder: 1px solid #E0DEDE;\n\tbackground: #5776bd;\n\tcolor: #f3f128;\n\tpadding: 95px 0 0 75px;\n\n";
-		str += "\t-webkit-transition: " + prop + " " + dur + "s " + timing + ";/* Safari 3.2+, Chrome */\n";
-		str += "\t-moz-transition: " + prop + " " + dur + "s " + timing + ";/* Firefox 4-15 */\n";
-		str += "\t-o-transition: " + prop + " " + dur + "s " + timing + ";/* Opera 10.5-12.00 */\n";
-		str += "\ttransition: " + prop + " " + dur + "s " + timing + ";/* Firefox 16+, Opera 12.50+ */\n";
+		str += "\tborder: 1px solid #E0DEDE;\n\tbackground: #5776bd;\n\tcolor: #f3f128;\n\tpadding: 95px 0 0 75px;\n\n\t";
+		str += this.WebkitPrefix("transition: " + prop + " " + dur + "s " + timing + ";/* Safari 3.2+, Chrome */\n\t");
+		str += this.MozPrefix("transition: " + prop + " " + dur + "s " + timing + ";/* Firefox 4-15 */\n\t");
+		str += this.OperaPrefix("transition: " + prop + " " + dur + "s " + timing + ";/* Opera 10.5-12.00 */\n\t");
+        str += this.khtmlPrefix("transition: " + prop + " " + dur + "s " + timing + ";/* Konqueror */\n\t");
+		str += "transition: " + prop + " " + dur + "s " + timing + ";/* Firefox 16+, Opera 12.50+ */\n";
 		str += "}\n\n"
 		str += "elem:hover {\n";
 		str += "\tborder: 40px solid #5776bd;\n\tbackground: #f3f128;\n\tcolor: #5776bd;\n\tpadding: 56px 0 0 36px;\n";
