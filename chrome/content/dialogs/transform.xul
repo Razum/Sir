@@ -16,19 +16,19 @@
 					<hbox>
 						<label class="transformLabels" value="Rotate:" />
 						<scale min="0" max="360" id="TrotDeg" onchange="SIR.transform.onParamsChange();" />
-						<label id="rotVal" value="" />
+						<textbox id="rotVal" value="" maxlength="3" /><label value="&#176;"/>
 					</hbox>
 					<groupbox>
 						<caption label="Scale" />
 						<hbox>
 							<label class="transformLabels" value="Scale X:" />
 							<scale min="1" max="20" value="10" id="scaleX" onchange="SIR.transform.onParamsChange();" />
-							<label id="scaleXval" value="" />
+							<label value="&#10539;" /><textbox id="scaleXval"  maxlength="3" value="" />
 						</hbox>
 						<hbox>
 							<label class="transformLabels" value="Scale Y:" />
 							<scale min="1" max="20" value="10" id="scaleY" onchange="SIR.transform.onParamsChange();" />
-							<label id="scaleYval" value="" />
+							<label value="&#10539;" /><textbox id="scaleYval"  maxlength="3" value="" />
 						</hbox>
 					</groupbox>
 					<groupbox>
@@ -36,12 +36,12 @@
 						<hbox>
 							<label class="transformLabels" value="Skew X:" />
 							<scale min="-180" max="180" id="skewX" onchange="SIR.transform.onParamsChange();" />
-							<label id="skewXval" value="" />
+							<textbox id="skewXval"  maxlength="4" value="" /><label value="&#176;" />
 						</hbox>
 						<hbox>
 							<label class="transformLabels" value="Skew Y:" />
 							<scale min="-180" max="180" id="skewY" onchange="SIR.transform.onParamsChange();" />
-							<label id="skewYval" value="" />
+							<textbox id="skewYval"  maxlength="4" value="" /><label value="&#176;" />
 						</hbox>
 					</groupbox>
 					<groupbox>
@@ -49,12 +49,12 @@
 						<hbox>
 							<label class="transformLabels" value="Translate X:" />
 							<scale min="-100" max="100" id="TranslateX" onchange="SIR.transform.onParamsChange();" />
-							<label id="TranslateXval" value="" />
+							<textbox id="TranslateXval"  maxlength="4" value="" /><label value="px" />
 						</hbox>
 						<hbox>
 							<label class="transformLabels" value="Translate Y:" />
 							<scale min="-100" max="100" id="TranslateY" onchange="SIR.transform.onParamsChange();" />
-							<label id="TranslateYval" value="" />
+							<textbox id="TranslateYval"  maxlength="4" value="" /><label value="px" />
 						</hbox>
 					</groupbox>
 				</vbox>

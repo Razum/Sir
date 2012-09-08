@@ -47,12 +47,12 @@
 						</columns>
 					</grid>
 				</groupbox>
-				<groupbox>
+				<groupbox id="pie-group">
 					<caption>
-                        <tooltip id ="sir-pie-tt" label="666"/>
-						<checkbox label="PIE" preference="pie" tooltip="sir-pie-tt"/>
+                        <tooltip id ="sir-pie-tt" label="666" />
+						<checkbox label="PIE" id="sir-pie-check" preference="pie" tooltip="sir-pie-tt"/>
 					</caption>
-					<label value="PIE path" />
+					<label value="PIE path"/>
 					<textbox id="sir-piePath" value="" />
 				</groupbox>
 			</prefpane>

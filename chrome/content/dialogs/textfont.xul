@@ -13,10 +13,7 @@
 			</panel>
 			<hbox>
 				<vbox id="textfontField">
-					<label id="TFinscription">
-						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-						scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-					</label>
+					<label id="TFinscription">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</label>
 				</vbox>
 				<vbox class="textfontControlBox">
 					<grid>
@@ -163,6 +160,30 @@
 												</menulist>
 											</hbox>
 										</row>
+                                        
+                                        
+                                        <row>
+											<hbox class="controlHBox">
+												<label class="textfontLabels" value="white-space:" disabled="true" />
+												<menulist width="130px" id="textfont-WhiteSpace" oncommand="SIR.textfont.onParamsChange()" disabled="true">
+													<menupopup>
+														<menuitem value="normal" label="normal" selected="true"/>
+														<menuitem value="nowrap" label="nowrap"/>
+                                                        <menuitem value="pre" label="pre"/>
+                                                        <menuitem value="pre-line" label="pre-line"/>
+                                                        <menuitem value="pre-wrap" label="pre-wrap"/>
+													</menupopup>
+												</menulist>
+											</hbox>
+										</row>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
 									</rows>
 								</column>
 								<column flex="1">

@@ -52,6 +52,14 @@ SIR.Item.prototype.PIE = function(){
     return "";    
 };
 
+SIR.Item.prototype.txtBxScale = function(scale, lbl){
+    var val = lbl.value;
+    
+    if(!isNaN(val)){
+    scale.value = Math.round(val);
+    }    
+};
+
 
 //////////////////
 //    RGBA     //
@@ -81,7 +89,23 @@ SIR.rgba = new SIR.Item();
 		this.rgbaRect.style.opacity = this.opacity.value / 100;
 		this.showCode(this.R.value, this.G.value, this.B.value, this.opacity.value / 100);
         
+        this.Rlbl.addEventListener("keyup", function(){ self.txtBxScale(self.R, self.Rlbl)}, false);
+        this.Glbl.addEventListener("keyup", function(){ self.txtBxScale(self.G, self.Glbl)}, false);
+        this.Blbl.addEventListener("keyup", function(){ self.txtBxScale(self.B, self.Blbl)}, false);
+
+         this.opacitylbl.addEventListener("keyup", function(){ 
+             var val = self.opacitylbl.value*100;
+     
+             if(!isNaN(val)){
+                 self.opacity.value = (val > 100)? 100 : val;
+             } 
+ 
+            
+            
+        }, false);
+        
         document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
+
 	};
 	SIR.rgba.onParamsChange = function() {
 		this.Rlbl.value = this.R.value;
@@ -132,18 +156,22 @@ SIR.txtShadow = new SIR.Item();
 		this.verLen.value = 3;
 		this.blurRadius.value = 3;
 		this.colorButton.color = "#6D6B6B";
-		this.horLenlbl.value = this.horLen.value + "px";
-		this.verLenlbl.value = this.verLen.value + "px";
-		this.blurRadiuslbl.value = this.blurRadius.value + "px";
+		this.horLenlbl.value = this.horLen.value;
+		this.verLenlbl.value = this.verLen.value;
+		this.blurRadiuslbl.value = this.blurRadius.value;
 		this.inscription.style.textShadow = "3px 3px 3px #6D6B6B";
 		this.showCode(this.horLen.value, this.verLen.value, this.blurRadius.value, this.colorButton.color);
+        
+        this.horLenlbl.addEventListener("keyup", function(){ self.txtBxScale(self.horLen, self.horLenlbl)}, false);
+        this.verLenlbl.addEventListener("keyup", function(){ self.txtBxScale(self.verLen, self.verLenlbl)}, false);
+        this.blurRadiuslbl.addEventListener("keyup", function(){ self.txtBxScale(self.blurRadius, self.blurRadiuslbl)}, false);
         
         document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
 	};
 	SIR.txtShadow.onParamsChange = function() {
-		this.horLenlbl.value = this.horLen.value + "px";
-		this.verLenlbl.value = this.verLen.value + "px";
-		this.blurRadiuslbl.value = this.blurRadius.value + "px";
+		this.horLenlbl.value = this.horLen.value;
+		this.verLenlbl.value = this.verLen.value;
+		this.blurRadiuslbl.value = this.blurRadius.value;
 		this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
 		this.inscription.style.textShadow = this.horLen.value + "px " + this.verLen.value + "px " + this.blurRadius.value + "px " + this.colorButton.color;
 		this.showCode(this.horLen.value, this.verLen.value, this.blurRadius.value, this.colorButton.color);
@@ -174,14 +202,16 @@ SIR.txtRotation = new SIR.Item();
 		this.inscription = document.getElementById("TRinscription");
 		this.rotDeglbl = document.getElementById("TRrotDegValue");
 		this.rotDeg.value = 0;
-		this.rotDeglbl.value = 0 + "\u00B0";
+		this.rotDeglbl.value = this.rotDeg.value;
 		this.inscription.style.MozTransform = "rotate(0deg)";
 		this.showCode(this.rotDeg.value);
+        
+        this.rotDeglbl.addEventListener("keyup", function(){ self.txtBxScale(self.rotDeg, self.rotDeglbl)}, false);
         
         document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
 	};
 	SIR.txtRotation.onParamsChange = function() {
-		this.rotDeglbl.value = this.rotDeg.value + "\u00B0";
+		this.rotDeglbl.value = this.rotDeg.value;
 		this.inscription.style.MozTransform = "rotate(" + this.rotDeg.value + "deg)";
 		this.showCode(this.rotDeg.value);
         
@@ -233,26 +263,46 @@ SIR.transform = new SIR.Item();
 		this.skewY.value = 0;
 		this.TranslateX.value = 0;
 		this.TranslateY.value = 0;
-		this.rotDeglbl.value = this.rotDeg.value + "\u00B0";
-		this.scaleXlbl.value = "\u292b" + this.scaleX.value / 10;
-		this.scaleYlbl.value = "\u292b" + this.scaleY.value / 10;
-		this.skewXlbl.value = this.skewX.value + "\u00B0";
-		this.skewYlbl.value = this.skewY.value + "\u00B0";
-		this.TranslateXlbl.value = this.TranslateX.value + "px";
-		this.TranslateYlbl.value = this.TranslateY.value + "px";
+		this.rotDeglbl.value = this.rotDeg.value;
+		this.scaleXlbl.value = this.scaleX.value / 10;
+		this.scaleYlbl.value = this.scaleY.value / 10;
+		this.skewXlbl.value = this.skewX.value;
+		this.skewYlbl.value = this.skewY.value;
+		this.TranslateXlbl.value = this.TranslateX.value;
+		this.TranslateYlbl.value = this.TranslateY.value;
 		this.rect.style.MozTransform = 'rotate(0deg) scale(1, 1) skewX(0deg) skewY(0deg) translate(0, 0)';
 		this.showCode(0, 1, 1, 0, 0, 0, 0);
+        
+        this.rotDeglbl.addEventListener("keyup", function(){ self.txtBxScale(self.rotDeg, self.rotDeglbl)}, false);
+        this.skewXlbl.addEventListener("keyup", function(){ self.txtBxScale(self.skewX, self.skewXlbl)}, false);
+        this.skewYlbl.addEventListener("keyup", function(){ self.txtBxScale(self.skewY, self.skewYlbl)}, false);
+        this.TranslateXlbl.addEventListener("keyup", function(){ self.txtBxScale(self.TranslateX, self.TranslateXlbl)}, false);
+        this.TranslateYlbl.addEventListener("keyup", function(){ self.txtBxScale(self.TranslateY, self.TranslateYlbl)}, false);
+        
+        this.scaleXlbl.addEventListener("keyup", function(){ 
+             var val = self.scaleXlbl.value*10;     
+             if(!isNaN(val)){
+                 self.scaleX.value = (val > 20)? 20 : val;
+             }                          
+        }, false);
+        
+        this.scaleYlbl.addEventListener("keyup", function(){ 
+             var val = self.scaleYlbl.value*10;     
+             if(!isNaN(val)){
+                 self.scaleY.value = (val > 20)? 20 : val;
+             }                          
+        }, false);
         
         document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
 	};
 	SIR.transform.onParamsChange = function() {
-		this.rotDeglbl.value = this.rotDeg.value + "\u00B0";
-		this.scaleXlbl.value = "\u292b" + this.scaleX.value / 10;
-		this.scaleYlbl.value = "\u292b" + this.scaleY.value / 10;
-		this.skewXlbl.value = this.skewX.value + "\u00B0";
-		this.skewYlbl.value = this.skewY.value + "\u00B0";
-		this.TranslateXlbl.value = this.TranslateX.value + "px";
-		this.TranslateYlbl.value = this.TranslateY.value + "px";
+		this.rotDeglbl.value = this.rotDeg.value;
+		this.scaleXlbl.value = this.scaleX.value / 10;
+		this.scaleYlbl.value = this.scaleY.value / 10;
+		this.skewXlbl.value = this.skewX.value;
+		this.skewYlbl.value = this.skewY.value;
+		this.TranslateXlbl.value = this.TranslateX.value;
+		this.TranslateYlbl.value = this.TranslateY.value;
 		this.rect.style.MozTransform = 'rotate(' + this.rotDeg.value + 'deg) scale(' + this.scaleX.value / 10 + ', ' + this.scaleY.value / 10 + ') skewX(' + this.skewX.value + 'deg) skewY(' + this.skewY.value + 'deg) translate(' + this.TranslateX.value + 'px, ' + this.TranslateY.value + 'px)';
 		this.showCode(this.rotDeg.value, this.scaleX.value / 10, this.scaleY.value / 10, this.skewX.value, this.skewY.value, this.TranslateX.value, this.TranslateY.value);
         
@@ -292,19 +342,23 @@ SIR.boxShadow = new SIR.Item();
 		this.BoxSverLen.value = 6;
 		this.BoxSblurRadius.value = 11;
 		this.colorButton.color = "#6D6B6B";
-		this.horLenlbl.value = this.BoxShorLen.value + "px";
-		this.verLenlbl.value = this.BoxSverLen.value + "px";
-		this.blurRadiuslbl.value = this.BoxSblurRadius.value + "px";
+		this.horLenlbl.value = this.BoxShorLen.value;
+		this.verLenlbl.value = this.BoxSverLen.value;
+		this.blurRadiuslbl.value = this.BoxSblurRadius.value;
 		this.rect.style.boxShadow = "9px 6px 11px #6D6B6B";
 		this.showCode(this.BoxShorLen.value, this.BoxSverLen.value, this.BoxSblurRadius.value, this.colorButton.color, false);
+        
+        this.horLenlbl.addEventListener("keyup", function(){ self.txtBxScale(self.BoxShorLen, self.horLenlbl)}, false);
+        this.verLenlbl.addEventListener("keyup", function(){ self.txtBxScale(self.BoxSverLen, self.verLenlbl)}, false);
+        this.blurRadiuslbl.addEventListener("keyup", function(){ self.txtBxScale(self.BoxSblurRadius, self.blurRadiuslbl)}, false);
         
         document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
 	},
 	SIR.boxShadow.onParamsChange = function() {
 		var inset = "";
-		this.horLenlbl.value = this.BoxShorLen.value + "px";
-		this.verLenlbl.value = this.BoxSverLen.value + "px";
-		this.blurRadiuslbl.value = this.BoxSblurRadius.value + "px";
+		this.horLenlbl.value = this.BoxShorLen.value;
+		this.verLenlbl.value = this.BoxSverLen.value;
+		this.blurRadiuslbl.value = this.BoxSblurRadius.value;
 		this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
 		if (this.inset.checked) {
 			inset = "inset ";
@@ -326,8 +380,8 @@ SIR.boxShadow = new SIR.Item();
 		var str = ""
 		str += "box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";\n";
 		str += this.MozPrefix("box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*FF 3.5+*/\n");
-        str += this.WebkitPrefix("text-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/\n");
-        str += this.khtmlPrefix("text-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*Konqueror*/\n");
+        str += this.WebkitPrefix("box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/\n");
+        str += this.khtmlPrefix("box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*Konqueror*/\n");
 		if (!inset) {
 			str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');
 			str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ');/*IE 5.5-7*/\n');
@@ -367,11 +421,11 @@ SIR.borderRadius =  new SIR.Item();
 		this.brdRadBL.value = 0;
 		this.brdRadBR.value = 0;
 		this.colorButton.color = "#000";
-		this.brdWidthlbl.value = this.brdWidth.value + "px";
-		this.brdRadTLlbl.value = this.brdRadTL.value + "px";
-		this.brdRadTRlbl.value = this.brdRadTR.value + "px";
-		this.brdRadBLlbl.value = this.brdRadBL.value + "px";
-		this.brdRadBRlbl.value = this.brdRadBR.value + "px";
+		this.brdWidthlbl.value = this.brdWidth.value;
+		this.brdRadTLlbl.value = this.brdRadTL.value;
+		this.brdRadTRlbl.value = this.brdRadTR.value;
+		this.brdRadBLlbl.value = this.brdRadBL.value;
+		this.brdRadBRlbl.value = this.brdRadBR.value;
 		this.rect.style.border = "2px solid #000"
 		this.rect.style.borderTopLeftRadius = "0px";
 		this.rect.style.borderTopRightRadius = "0px";
@@ -379,14 +433,21 @@ SIR.borderRadius =  new SIR.Item();
 		this.rect.style.borderBottomRightRadius = "0px";
 		this.showCode(this.brdWidth.value, "solid", this.colorButton.color, this.brdRadTL.value, this.brdRadTR.value, this.brdRadBL.value, this.brdRadBR.value);
 	
+        this.brdWidthlbl.addEventListener("keyup", function(){ self.txtBxScale(self.brdWidth, self.brdWidthlbl)}, false);
+        
+        this.brdRadTLlbl.addEventListener("keyup", function(){ self.txtBxScale(self.brdRadTL, self.brdRadTLlbl)}, false);
+        this.brdRadTRlbl.addEventListener("keyup", function(){ self.txtBxScale(self.brdRadTR, self.brdRadTRlbl)}, false);
+        this.brdRadBLlbl.addEventListener("keyup", function(){ self.txtBxScale(self.brdRadBL, self.brdRadBLlbl)}, false);
+        this.brdRadBRlbl.addEventListener("keyup", function(){ self.txtBxScale(self.brdRadBR, self.brdRadBRlbl)}, false);
+    
         document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
     };
 	SIR.borderRadius.onParamsChange = function() {
-		this.brdWidthlbl.value = this.brdWidth.value + "px";
-		this.brdRadTLlbl.value = this.brdRadTL.value + "px";
-		this.brdRadTRlbl.value = this.brdRadTR.value + "px";
-		this.brdRadBLlbl.value = this.brdRadBL.value + "px";
-		this.brdRadBRlbl.value = this.brdRadBR.value + "px";
+		this.brdWidthlbl.value = this.brdWidth.value;
+		this.brdRadTLlbl.value = this.brdRadTL.value;
+		this.brdRadTRlbl.value = this.brdRadTR.value;
+		this.brdRadBLlbl.value = this.brdRadBL.value;
+		this.brdRadBRlbl.value = this.brdRadBR.value;
 		this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
 		this.rect.style.borderWidth = this.brdWidth.value + "px";
 		this.rect.style.borderStyle = this.brdStl.value;
@@ -479,6 +540,9 @@ SIR.txtColumn = new SIR.Item()
 		this.desc.style.MozColumnGap = "0px";
 		this.desc.style.MozColumnRule = "none";
 		this.showCode(1, 0, "none");
+        
+        this.colCountlbl.addEventListener("keyup", function(){ self.txtBxScale(self.colCount, self.colCountlbl)}, false);
+        this.colGaplbl.addEventListener("keyup", function(){ self.txtBxScale(self.colGap, self.colGaplbl)}, false);
         
         document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
 	};
@@ -774,18 +838,21 @@ SIR.outline = new SIR.Item();
 		});
 		this.outWidth.value = 6;
 		this.outOffset.value = 6;
-		this.outWidthlbl.value = this.outWidth.value + "px";
-		this.outOffsetlbl.value = this.outOffset.value + "px";
+		this.outWidthlbl.value = this.outWidth.value;
+		this.outOffsetlbl.value = this.outOffset.value;
 		this.colorButton.color = "#181783";
 		this.rect.style.outline = "6px solid #181783";
 		this.rect.style.outlineOffset = "6px";
 		this.showCode(this.outWidth.value, "solid", this.colorButton.color, this.outOffset.value);
         
+        this.outWidthlbl.addEventListener("keyup", function(){ self.txtBxScale(self.outWidth, self.outWidthlbl)}, false);
+        this.outOffsetlbl.addEventListener("keyup", function(){ self.txtBxScale(self.outOffset, self.outOffsetlbl)}, false);
+        
         document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
 	};
 	SIR.outline.onParamsChange = function() {
-		this.outWidthlbl.value = this.outWidth.value + "px";
-		this.outOffsetlbl.value = this.outOffset.value + "px";
+		this.outWidthlbl.value = this.outWidth.value;
+		this.outOffsetlbl.value = this.outOffset.value;
 		this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
 		this.rect.style.outline = this.outWidth.value + "px " + this.outStyle.value + " " + this.colorButton.color;
 		this.rect.style.outlineOffset = this.outOffset.value + "px";
@@ -832,15 +899,22 @@ SIR.transition = new SIR.Item();
 		this.rect = document.getElementById("transitionBox");
 		this.durationlbl = document.getElementById("transitionDurationVal");
 		this.duration.value = 10;
-		this.durationlbl.value = this.duration.value / 10 + "s";
+		this.durationlbl.value = this.duration.value / 10;
 		this.rect.style.MozTransition = "all 1s ease";
 		this.showCode("all", 1, "ease");
+        
+        this.durationlbl.addEventListener("keyup", function(){ 
+             var val = self.durationlbl.value*10;     
+             if(!isNaN(val)){
+                 self.duration.value = (val > 50)? 50 : val;
+             }                          
+        }, false);
         
         document.getElementsByClassName("copyImg")[0].addEventListener("click", function(){self.CopyCode.apply(self, arguments)}, false);
 	};
 	SIR.transition.onParamsChange = function() {
 		var dur = this.duration.value / 10;
-		this.durationlbl.value = dur + "s";
+		this.durationlbl.value = dur;
 		this.rect.style.MozTransition = this.propSel.value + " " + dur + "s " + this.timing.value;
 		this.showCode(this.propSel.value, dur, this.timing.value);
         
@@ -921,6 +995,11 @@ SIR.textfont = new SIR.Item();
 			elem: document.getElementById("textfont-fontStretch"),
 			ruleName: "font-stretch",
 			JSruleName: "fontStretch"
+		},
+        {
+			elem: document.getElementById("textfont-WhiteSpace"),
+			ruleName: "white-space",
+			JSruleName: "whiteSpace"
 		}];
 		//SCALES
 		this.scales = [{

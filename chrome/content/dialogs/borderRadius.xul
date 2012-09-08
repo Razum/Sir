@@ -34,27 +34,27 @@
 					<hbox class="controlHBox">
 						<label class="borderRadiusLabels" value="Width:" />
 						<scale min="0" max="30" value="2" increment="1" id="borderRadiusWidth" onchange="SIR.borderRadius.onParamsChange();" />
-						<label id="borderRadiusWidthVal" value="" />
+						<textbox id="borderRadiusWidthVal" maxlength="2" value="" /><label value="px" />
 					</hbox>
 					<hbox class="controlHBox">
 						<label class="borderRadiusLabels" value="Radius T-Left:" />
 						<scale min="0" max="90" increment="1" id="borderRadiusTLeft" onchange="SIR.borderRadius.onParamsChange();" />
-						<label id="borderRadiusTLeftVal" value="" />
+						<textbox id="borderRadiusTLeftVal" maxlength="2" value="" /><label value="px" />
 					</hbox>
 					<hbox class="controlHBox">
 						<label class="borderRadiusLabels" value="Radius T-Right:" />
 						<scale min="0" max="90" increment="1" id="borderRadiusTRight" onchange="SIR.borderRadius.onParamsChange();" />
-						<label id="borderRadiusTRightVal" value="" />
+						<textbox id="borderRadiusTRightVal" maxlength="2" value="" /><label value="px" />
 					</hbox>
                     <hbox class="controlHBox">
 						<label class="borderRadiusLabels" value="Radius B-Right:" />
 						<scale min="0" max="90" increment="1" id="borderRadiusBRight" onchange="SIR.borderRadius.onParamsChange();" />
-						<label id="borderRadiusBRightVal" value="" />
+						<textbox id="borderRadiusBRightVal" maxlength="2" value="" /><label value="px" />
 					</hbox>
 					<hbox class="controlHBox">
 						<label class="borderRadiusLabels" value="Radius B-Left:" />
 						<scale min="0" max="90" increment="1" id="borderRadiusBLeft" onchange="SIR.borderRadius.onParamsChange();" />
-						<label id="borderRadiusBLeftVal" value="" />
+						<textbox id="borderRadiusBLeftVal" maxlength="2" value="" /><label value="px" />
 					</hbox>					
 					<hbox>
 						<label class="borderRadiusLabels" value="Color:" />

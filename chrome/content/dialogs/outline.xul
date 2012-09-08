@@ -36,13 +36,13 @@
                         <label class="outlineLabels" value="Width:" />
                         <scale min="0" max="30" value="6" increment="1" id="outlineWidth" onchange="SIR.outline.onParamsChange();"
                         />
-                        <label id="outlineWidthVal" value="" />
+                        <textbox id="outlineWidthVal" value="" maxlength="2" /><label value="px" />
                     </hbox>
                     <hbox class="controlHBox">
                         <label class="outlineLabels" value="Offset:" />
                         <scale min="0" max="30" value="6" increment="1" id="outlineOffset" onchange="SIR.outline.onParamsChange();"
                         />
-                        <label id="outlineOffsetVal" value="" />
+                        <textbox id="outlineOffsetVal" value="" maxlength="2" /><label value="px" />
                     </hbox>
                     <hbox>
                         <label class="outlineLabels" value="Color:" />

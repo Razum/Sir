@@ -19,11 +19,11 @@
                                 
                                 <hbox class="controlHBox"><label  class="txtColumnLabels" value="Column's count:" /><scale min="1" max="4" value="1" id="txtColumnCount" onchange="SIR.txtColumn.onParamsChange();"
                                             />
-                                            <label id="txtColumnCountValue" value="" /></hbox>
+                                            <textbox id="txtColumnCountValue" maxlength="2" value="" /></hbox>
                                 
                                 <hbox class="controlHBox"><label class="txtColumnLabels" value="Column Gap:" /><scale min="0" max="35" id="txtColumnGap" onchange="SIR.txtColumn.onParamsChange();"
                                             />
-                                            <label id="txtColumnGapValue" value="" /></hbox>
+                                            <textbox id="txtColumnGapValue" maxlength="2" value="" /></hbox>
                                 
                                 <hbox><label class="txtColumnLabels" value="Column rule:" /><menulist width="150px" id="column-rule-selector" oncommand="SIR.txtColumn.onParamsChange()">
                                                 <menupopup>

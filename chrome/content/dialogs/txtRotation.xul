@@ -16,7 +16,7 @@
                                 <vbox id="txtRotationControlBox">
                                     <hbox><label class="txtRotationLabels" value="Rotate:" /><scale min="0" max="360" increment="1" id="TRrotDeg" onchange="SIR.txtRotation.onParamsChange();"
                                             />
-                                            <label id="TRrotDegValue" value="" /></hbox>
+                                            <textbox id="TRrotDegValue" value="" maxlength="3" /><label value="&#176;" /></hbox>
                                             </vbox>
                                     
 

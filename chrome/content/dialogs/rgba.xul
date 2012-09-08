@@ -15,14 +15,13 @@
                     <vbox id="rgbaControlBox">
                     
                     <hbox class="controlHBox"><label class="rgbaLabels" value="R:" style="color: red;" /><scale min="0" max="255" id="R" onchange="SIR.rgba.onParamsChange();" />
-                                <label id="Rvalue" value="" /></hbox>
+                                <textbox id="Rvalue" value="" maxlength="3" /></hbox>
                     <hbox class="controlHBox"><label class="rgbaLabels" value="G:" style="color: green;" /><scale min="0" max="255" id="G" onchange="SIR.rgba.onParamsChange();" />
-                                <label id="Gvalue" value="" /></hbox>
+                                <textbox id="Gvalue" value="" maxlength="3" /></hbox>
                     <hbox class="controlHBox"><label class="rgbaLabels" value="B:" style="color: blue;" /><scale min="0" max="255" id="B" onchange="SIR.rgba.onParamsChange();" />
-                                <label id="Bvalue" value="" /></hbox>
-                    <hbox><label class="rgbaLabels" value="Opacity:" /><scale min="0" max="100" value="50" increment="10" id="opacity" onchange="SIR.rgba.onParamsChange();"
-                                />
-                                <label id="Opacityvalue" value="" /></hbox>
+                                <textbox id="Bvalue" value="" maxlength="3" /></hbox>
+                    <hbox><label class="rgbaLabels" value="Opacity:" /><scale min="0" max="100" value="50" increment="10" id="opacity" onchange="SIR.rgba.onParamsChange();"  />
+                    <textbox id="Opacityvalue" value="" maxlength="3" /></hbox>
 
                     </vbox>
 
