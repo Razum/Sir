@@ -1,0 +1,8 @@
+﻿<!-- RUSSIAN -->
+<!ENTITY settings.title "Настройки">
+<!ENTITY settings.reset "Сбросить">
+<!ENTITY settings.browsers "Браузеры">
+
+<!ENTITY settings.pie "Добавить ​​поддержку PIE(Progressive Internet Explorer)">
+
+<!ENTITY settings.piePath "Путь к файлу PIE">

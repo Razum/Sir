@@ -1,595 +1,526 @@
 ﻿<?xml version="1.0" ?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
-    <?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
-    ?>
-        <!DOCTYPE window SYSTEM "chrome://sir/locale/bonus.dtd">
-        <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        xmlns:html="http://www.w3.org/1999/xhtml" id="bonusDialog" title="&bonus.title;"
-        buttons="disabled" onload="SIR.bonus.init();">
-        
-        <script type="application/x-javascript" src="chrome://sir/content/scripts/bonus.js"></script>
-        
-            <tabbox id="bonus">
-                <tabs id="bonus-tabs" onselect="">
-                    <tab id="selector-tab" label="&bonus.selectors;" image='chrome://sir/skin/images/selector.png'
-                    />
-                    <tab id="hack-tab" label="&bonus.hacks;" image='chrome://sir/skin/images/hack.png'
-                    />
-                    <tab id="emtopx-tab" label="Pixels to Ems" image='chrome://sir/skin/images/pxem.png'
-                    />
-                    <tab id="crossColor-tab" label="&bonus.colors;" image='chrome://sir/skin/images/crosbrColor.png'
-                    />
-                    <tab id="support-tab" label="&bonus.support;" image='chrome://sir/skin/images/support.png'
-                    />
-                </tabs>
-                <tabpanels flex="1">
-                    <tabpanel id="tp_selector" orient="vertical">
-                        <tree flex="1" rows="20" disabled="true">
-                            <treecols>
-                                <treecol id="selName" label="&bonus.SelName;" />
-                                <treecol id="selDesc" label="&bonus.desc;" flex="1" />
-                            </treecols>
-                            <treechildren>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.anyEl;" style="font-weight: 600;" />
-                                        <treecell label="&bonus.sel.anyDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.elE;" />
-                                        <treecell label="&bonus.sel.elEdesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Efoo;" />
-                                        <treecell label="&bonus.sel.Efoodesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Efoobar;" />
-                                        <treecell label="&bonus.sel.Efoobardesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.EfooTilbar;" />
-                                        <treecell label="&bonus.sel.EfooTilbardesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.EfooBegbar;" />
-                                        <treecell label="&bonus.sel.EfooBegbarDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.EfooDolbar;" />
-                                        <treecell label="&bonus.sel.EfooDolbarDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.EfooStbar;" />
-                                        <treecell label="&bonus.sel.EfooStbarDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.EfooStickbar;" />
-                                        <treecell label="&bonus.sel.EfooStickbarDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Eroot;" />
-                                        <treecell label="&bonus.sel.ErootDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Enthch;" />
-                                        <treecell label="&bonus.sel.EnthchDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Enthlast;" />
-                                        <treecell label="&bonus.sel.EnthlastDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Enthtype;" />
-                                        <treecell label="&bonus.sel.EnthtypeDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Enthlasttype;" />
-                                        <treecell label="&bonus.sel.EnthlasttypeDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Efirstch;" />
-                                        <treecell label="&bonus.sel.EfirstchDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Elastch;" />
-                                        <treecell label="&bonus.sel.ElastchDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Efirsttype;" />
-                                        <treecell label="&bonus.sel.EfirsttypeDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Elasttype;" />
-                                        <treecell label="&bonus.sel.ElasttypeDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Eonlych;" />
-                                        <treecell label="&bonus.sel.EonlychDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Eonlyoftype;" />
-                                        <treecell label="&bonus.sel.EonlyoftypeDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Eempty;" />
-                                        <treecell label="&bonus.sel.EemptyDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Elink;" />
-                                        <treecell label="&bonus.sel.ElinkDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Evisit;" />
-                                        <treecell label="&bonus.sel.EvisitDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Ehover;" />
-                                        <treecell label="" />
-                                    </treerow>
-                                </treeitem>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Eactive;" />
-                                        <treecell label="&bonus.sel.EhoveractivefocusDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Efocus;" />
-                                        <treecell label="" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Etarget;" />
-                                        <treecell label="&bonus.sel.EtargetDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Elang;" />
-                                        <treecell label="&bonus.sel.ElangDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Een;" />
-                                        <treecell label="&bonus.sel.EenDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Edis;" />
-                                        <treecell label="&bonus.sel.EdisDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Echecked;" />
-                                        <treecell label="&bonus.sel.EcheckedDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Efirstline;" />
-                                        <treecell label="&bonus.sel.EfirstlineDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Efirstletter;" />
-                                        <treecell label="&bonus.sel.EfirstletterDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Ebefore;" />
-                                        <treecell label="&bonus.sel.EbeforeDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Eafter;" />
-                                        <treecell label="&bonus.sel.EafterDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Ewarn;" />
-                                        <treecell label="&bonus.sel.EwarnDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Emyid;" />
-                                        <treecell label="&bonus.sel.EmyidDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.Enot;" />
-                                        <treecell label="&bonus.sel.EnotDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.EF;" />
-                                        <treecell label="&bonus.sel.EFDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.EbolF;" />
-                                        <treecell label="&bonus.sel.EbolFDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.EplusF;" />
-                                        <treecell label="&bonus.sel.EplusFDesc;" />
-                                    </treerow>
-                                </treeitem>
-                                <treeseparator/>
-                                <treeitem>
-                                    <treerow>
-                                        <treecell label="&bonus.sel.EtilF;" />
-                                        <treecell label="&bonus.sel.EtilFDesc;" />
-                                    </treerow>
-                                </treeitem>
-                            </treechildren>
-                        </tree>
-                    </tabpanel>
-                    <tabpanel id="tp_hack" orient="vertical">
-                        <label class="hackHeader" value="&bonus.hack.conHead;" />
-                        <label class="ulLia" value="&bonus.hack.allIE;" />
-                        <label class="codeBlock" value="&lt;!--[if IE]&gt;    Some Css Code&lt;![endif]--&gt;"
-                        />
-                        <label class="ulLia" value="&bonus.hack.IE7;" />
-                        <label class="codeBlock" value="&lt;!--[if IE 7]&gt;    Some Css Code&lt;![endif]--&gt;"
-                        />
-                        <label class="ulLia" value="&bonus.hack.IE56;" />
-                        <label class="codeBlock" value="&lt;!--[if lte IE 6]&gt;    Some Css Code&lt;![endif]--&gt;"
-                        />
-                        <label class="ulLia" value="&bonus.hack.cond;" />
-                        <label class="ulLia" value="&bonus.hack.conIEall;" />
-                        <label class="ulLia" value="&bonus.hack.ltIE;" />
-                        <label class="ulLia" value="&bonus.hack.lteIE;" />
-                        <label class="ulLia" value="&bonus.hack.IEvers;" />
-                        <label class="ulLia" value="&bonus.hack.gteIE;" />
-                        <label class="ulLia" value="&bonus.hack.gtIE;" />
-                        <separator class="groove" />
-                        <label class="hackHeader" value="&bonus.hack.minmax;" />
-                        <label class="ulLia" value="&bonus.hack.minWid;" />
-                        <vbox class="codeBlock">
-                            <label value="#wrapper{" />
-                            <label value="    min-width: 750px;" />
-                            <label value='    width:expression(document.body.clientWidth &lt; 750? "750px": "auto" );'
-                            />
-                            <label value="}" />
-                        </vbox>
-                        <label class="ulLia" value="&bonus.hack.minmaxWid;" />
-                        <vbox class="codeBlock">
-                            <label value="#wrapper{" />
-                            <label value="    min-width: 750px;" />
-                            <label value="    max-width: 1220px;" />
-                            <label value='    width:expression(document.body.clientWidth &lt; 750? "750px" : document.body.clientWidth &gt; 1220? "1220px" : "auto");'
-                            />
-                            <label value="}" />
-                        </vbox>
-                        <separator class="groove" style="margin: 10px 0 10px 0;" />
-                        <label class="hackHeader" value="&bonus.hack.filtB;" />
-                        <label class="ulLia" value="&bonus.hack.IE6less;" />
-                        <label class="codeBlock" value="* html {}" />
-                        <label class="ulLia" value="&bonus.hack.IE7less;" />
-                        <label class="codeBlock" value="*:first-child+html {} * html {}" />
-                        <label class="ulLia" value="&bonus.hack.IE7only;" />
-                        <label class="codeBlock" value="*:first-child+html {}" />
-                        <label class="ulLia" value="&bonus.hack.IE7nNew;" />
-                        <label class="codeBlock" value="html>body {}" />
-                        <label class="ulLia" value="&bonus.hack.NewnotIE7;" />
-                        <label class="codeBlock" value="html>/**/body {}" />
-                        <label class="ulLia" value="&bonus.hack.Opera9;" />
-                        <label class="codeBlock" value="html:first-child {}" />
-                        <label class="ulLia" value="&bonus.hack.MacIE;" />
-                        <label class="codeBlock" value="/*\*//*/selector{property:value;}/**/"
-                        />
-                        <label class="ulLia" value="&bonus.hack.MozFF;" />
-                        <label class="codeBlock" value=".class, noindex:-moz-any-link { }" />
-                        <label class="ulLia" value="&bonus.hack.IE6winOnly;" />
-                        <label class="codeBlock" value="/*\*/ * html {} /**/" />
-                    </tabpanel>
-                    
-                    
-                    
-                    
-                    <tabpanel id="tp_emtopx" orient="vertical">
-                    
-                    <label id="emtopxLabel" value="&bonus.emtopx.base;" />
-<listbox id="pxtoemList">
-  <listhead>
-    <listheader label="Pixels"/>
-    <listheader label="EMS"/>
-    <listheader label="Percent"/>
-    <listheader label="Points"/>
-  </listhead>
-
-  <listcols>
-    <listcol flex="1"/>
-    <listcol flex="1"/>
-    <listcol flex="1"/>
-    <listcol flex="1"/>
-  </listcols>
-
-  <listitem>
-    <listcell label="6px"/>
-    <listcell label="0.375em"/>
-    <listcell label="37.5%"/>
-    <listcell label="5pt"/>
-  
-  </listitem>
-  
-  <listitem>
-    <listcell label="7px"/>
-    <listcell label="0.438em"/>
-    <listcell label="43.8%"/>
-    <listcell label="5pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="8px"/>
-    <listcell label="0.5em"/>
-    <listcell label="50%"/>
-    <listcell label="6pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="9px"/>
-    <listcell label="0.563em"/>
-    <listcell label="56.3%"/>
-    <listcell label="7pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="10px"/>
-    <listcell label="0.625em"/>
-    <listcell label="62.5%"/>
-    <listcell label="8pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="11px"/>
-    <listcell label="0.688em"/>
-    <listcell label="68.8%"/>
-    <listcell label="8pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="12x"/>
-    <listcell label="0.75em"/>
-    <listcell label="75%"/>
-    <listcell label="9pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="13px"/>
-    <listcell label="0.813em"/>
-    <listcell label="81.3%"/>
-    <listcell label="10pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="14px"/>
-    <listcell label="0.875em"/>
-    <listcell label="87.5%"/>
-    <listcell label="11pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="15px"/>
-    <listcell label="0.938em"/>
-    <listcell label="93.8%"/>
-    <listcell label="11pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="16px"/>
-    <listcell label="1em"/>
-    <listcell label="100%"/>
-    <listcell label="12pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="17px"/>
-    <listcell label="1.063em"/>
-    <listcell label="106.3%"/>
-    <listcell label="13pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="18px"/>
-    <listcell label="1.125em"/>
-    <listcell label="112.5%"/>
-    <listcell label="14pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="19px"/>
-    <listcell label="1.188em"/>
-    <listcell label="118.8%"/>
-    <listcell label="14pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="20px"/>
-    <listcell label="1.25em"/>
-    <listcell label="125%"/>
-    <listcell label="15pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="21px"/>
-    <listcell label="1.313em"/>
-    <listcell label="131.3%"/>
-    <listcell label="16pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="22px"/>
-    <listcell label="1.375em"/>
-    <listcell label="137.5%"/>
-    <listcell label="17pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="23px"/>
-    <listcell label="1.438em"/>
-    <listcell label="143.8%"/>
-    <listcell label="17pt"/>
-  </listitem>
-  
-  <listitem>
-    <listcell label="24px"/>
-    <listcell label="1.5em"/>
-    <listcell label="150%"/>
-    <listcell label="18pt"/>
-  </listitem>
-</listbox>
-</tabpanel>
-                    
-                    
-                    
-                    
-             <tabpanel id="tp_crossColor" orient="vertical">
-             
-             
-             
-             
-<listbox id="crossColorList">
-  <listhead>
-    <listheader label="&bonus.colors.name;"/>
-    <listheader label="RGB"/>
-    <listheader label="HEX"/>
-    <listheader label="&bonus.colors.appearance;"/>
-  </listhead>
-
-  <listcols>
-    <listcol flex="1"/>
-    <listcol flex="1"/>
-    <listcol flex="1"/>
-    <listcol flex="1"/>
-  </listcols>
-
-
-  
-
-  
-
-</listbox>
-             
-             
-             
-             
-             
-             
-
-                    </tabpanel>       
-                    
-                    
-                    
-                    
-                    
-                    <tabpanel id="tp_support" orient="vertical">
-                        <vbox id="supBox">
-                            <label value="&bonus.support.txt;" />
-                            <label value="&bonus.support.email;" class="text-link" href="mailto:razumyeyenko@gmail.com"
-                            />
-                        </vbox>
-                    </tabpanel>
-                </tabpanels>
-            </tabbox>
-        </dialog>
+	<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css" ?>
+		<!DOCTYPE window SYSTEM "chrome://sir/locale/bonus.dtd">
+		<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml" id="bonusDialog" title="&bonus.title;" buttons="disabled" onload="SIR.bonus.init();">
+			<script type="application/x-javascript" src="chrome://sir/content/scripts/bonus.js">
+			</script>
+			<tabbox id="bonus">
+				<tabs id="bonus-tabs" onselect="">
+					<tab id="selector-tab" label="&bonus.selectors;" image='chrome://sir/skin/images/selector.png' />
+					<tab id="hack-tab" label="&bonus.hacks;" image='chrome://sir/skin/images/hack.png' />
+					<tab id="emtopx-tab" label="Pixels to Ems" image='chrome://sir/skin/images/pxem.png' />
+					<tab id="crossColor-tab" label="&bonus.colors;" image='chrome://sir/skin/images/crosbrColor.png' />
+					<tab id="support-tab" label="&bonus.support;" image='chrome://sir/skin/images/support.png' />
+				</tabs>
+				<tabpanels flex="1">
+					<tabpanel id="tp_selector" orient="vertical">
+						<tree flex="1" rows="20" disabled="true">
+							<treecols>
+								<treecol id="selName" label="&bonus.SelName;" />
+								<treecol id="selDesc" label="&bonus.desc;" flex="1" />
+							</treecols>
+							<treechildren>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.anyEl;" style="font-weight: 600;" />
+										<treecell label="&bonus.sel.anyDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.elE;" />
+										<treecell label="&bonus.sel.elEdesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Efoo;" />
+										<treecell label="&bonus.sel.Efoodesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Efoobar;" />
+										<treecell label="&bonus.sel.Efoobardesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.EfooTilbar;" />
+										<treecell label="&bonus.sel.EfooTilbardesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.EfooBegbar;" />
+										<treecell label="&bonus.sel.EfooBegbarDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.EfooDolbar;" />
+										<treecell label="&bonus.sel.EfooDolbarDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.EfooStbar;" />
+										<treecell label="&bonus.sel.EfooStbarDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.EfooStickbar;" />
+										<treecell label="&bonus.sel.EfooStickbarDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Eroot;" />
+										<treecell label="&bonus.sel.ErootDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Enthch;" />
+										<treecell label="&bonus.sel.EnthchDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Enthlast;" />
+										<treecell label="&bonus.sel.EnthlastDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Enthtype;" />
+										<treecell label="&bonus.sel.EnthtypeDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Enthlasttype;" />
+										<treecell label="&bonus.sel.EnthlasttypeDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Efirstch;" />
+										<treecell label="&bonus.sel.EfirstchDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Elastch;" />
+										<treecell label="&bonus.sel.ElastchDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Efirsttype;" />
+										<treecell label="&bonus.sel.EfirsttypeDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Elasttype;" />
+										<treecell label="&bonus.sel.ElasttypeDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Eonlych;" />
+										<treecell label="&bonus.sel.EonlychDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Eonlyoftype;" />
+										<treecell label="&bonus.sel.EonlyoftypeDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Eempty;" />
+										<treecell label="&bonus.sel.EemptyDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Elink;" />
+										<treecell label="&bonus.sel.ElinkDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Evisit;" />
+										<treecell label="&bonus.sel.EvisitDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Ehover;" />
+										<treecell label="" />
+									</treerow>
+								</treeitem>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Eactive;" />
+										<treecell label="&bonus.sel.EhoveractivefocusDesc;" />
+									</treerow>
+								</treeitem>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Efocus;" />
+										<treecell label="" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Etarget;" />
+										<treecell label="&bonus.sel.EtargetDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Elang;" />
+										<treecell label="&bonus.sel.ElangDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Een;" />
+										<treecell label="&bonus.sel.EenDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Edis;" />
+										<treecell label="&bonus.sel.EdisDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Echecked;" />
+										<treecell label="&bonus.sel.EcheckedDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Efirstline;" />
+										<treecell label="&bonus.sel.EfirstlineDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Efirstletter;" />
+										<treecell label="&bonus.sel.EfirstletterDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Ebefore;" />
+										<treecell label="&bonus.sel.EbeforeDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Eafter;" />
+										<treecell label="&bonus.sel.EafterDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Ewarn;" />
+										<treecell label="&bonus.sel.EwarnDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Emyid;" />
+										<treecell label="&bonus.sel.EmyidDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.Enot;" />
+										<treecell label="&bonus.sel.EnotDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.EF;" />
+										<treecell label="&bonus.sel.EFDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.EbolF;" />
+										<treecell label="&bonus.sel.EbolFDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.EplusF;" />
+										<treecell label="&bonus.sel.EplusFDesc;" />
+									</treerow>
+								</treeitem>
+								<treeseparator/>
+								<treeitem>
+									<treerow>
+										<treecell label="&bonus.sel.EtilF;" />
+										<treecell label="&bonus.sel.EtilFDesc;" />
+									</treerow>
+								</treeitem>
+							</treechildren>
+						</tree>
+					</tabpanel>
+					<tabpanel id="tp_hack" orient="vertical">
+						<label class="hackHeader" value="&bonus.hack.conHead;" />
+						<label class="ulLia" value="&bonus.hack.allIE;" />
+						<label class="codeBlock" value="&lt;!--[if IE]&gt;    Some Css Code&lt;![endif]--&gt;" />
+						<label class="ulLia" value="&bonus.hack.IE7;" />
+						<label class="codeBlock" value="&lt;!--[if IE 7]&gt;    Some Css Code&lt;![endif]--&gt;" />
+						<label class="ulLia" value="&bonus.hack.IE56;" />
+						<label class="codeBlock" value="&lt;!--[if lte IE 6]&gt;    Some Css Code&lt;![endif]--&gt;" />
+						<label class="ulLia" value="&bonus.hack.cond;" />
+						<label class="ulLia" value="&bonus.hack.conIEall;" />
+						<label class="ulLia" value="&bonus.hack.ltIE;" />
+						<label class="ulLia" value="&bonus.hack.lteIE;" />
+						<label class="ulLia" value="&bonus.hack.IEvers;" />
+						<label class="ulLia" value="&bonus.hack.gteIE;" />
+						<label class="ulLia" value="&bonus.hack.gtIE;" />
+						<separator class="groove" />
+						<label class="hackHeader" value="&bonus.hack.minmax;" />
+						<label class="ulLia" value="&bonus.hack.minWid;" />
+						<vbox class="codeBlock">
+							<label value="#wrapper{" />
+							<label value="    min-width: 750px;" />
+							<label value='    width:expression(document.body.clientWidth &lt; 750? "750px": "auto" );' />
+							<label value="}" />
+						</vbox>
+						<label class="ulLia" value="&bonus.hack.minmaxWid;" />
+						<vbox class="codeBlock">
+							<label value="#wrapper{" />
+							<label value="    min-width: 750px;" />
+							<label value="    max-width: 1220px;" />
+							<label value='    width:expression(document.body.clientWidth &lt; 750? "750px" : document.body.clientWidth &gt; 1220? "1220px" : "auto");' />
+							<label value="}" />
+						</vbox>
+						<separator class="groove" style="margin: 10px 0 10px 0;" />
+						<label class="hackHeader" value="&bonus.hack.filtB;" />
+						<label class="ulLia" value="&bonus.hack.IE6less;" />
+						<label class="codeBlock" value="* html {}" />
+						<label class="ulLia" value="&bonus.hack.IE7less;" />
+						<label class="codeBlock" value="*:first-child+html {} * html {}" />
+						<label class="ulLia" value="&bonus.hack.IE7only;" />
+						<label class="codeBlock" value="*:first-child+html {}" />
+						<label class="ulLia" value="&bonus.hack.IE7nNew;" />
+						<label class="codeBlock" value="html>body {}" />
+						<label class="ulLia" value="&bonus.hack.NewnotIE7;" />
+						<label class="codeBlock" value="html>/**/body {}" />
+						<label class="ulLia" value="&bonus.hack.Opera9;" />
+						<label class="codeBlock" value="html:first-child {}" />
+						<label class="ulLia" value="&bonus.hack.MacIE;" />
+						<label class="codeBlock" value="/*\*//*/selector{property:value;}/**/" />
+						<label class="ulLia" value="&bonus.hack.MozFF;" />
+						<label class="codeBlock" value=".class, noindex:-moz-any-link { }" />
+						<label class="ulLia" value="&bonus.hack.IE6winOnly;" />
+						<label class="codeBlock" value="/*\*/ * html {} /**/" />
+					</tabpanel>
+					<tabpanel id="tp_emtopx" orient="vertical">
+						<label id="emtopxLabel" value="&bonus.emtopx.base;" />
+						<listbox id="pxtoemList">
+							<listhead>
+								<listheader label="Pixels"/>
+								<listheader label="EMS"/>
+								<listheader label="Percent"/>
+								<listheader label="Points"/>
+							</listhead>
+							<listcols>
+								<listcol flex="1"/>
+								<listcol flex="1"/>
+								<listcol flex="1"/>
+								<listcol flex="1"/>
+							</listcols>
+							<listitem>
+								<listcell label="6px"/>
+								<listcell label="0.375em"/>
+								<listcell label="37.5%"/>
+								<listcell label="5pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="7px"/>
+								<listcell label="0.438em"/>
+								<listcell label="43.8%"/>
+								<listcell label="5pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="8px"/>
+								<listcell label="0.5em"/>
+								<listcell label="50%"/>
+								<listcell label="6pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="9px"/>
+								<listcell label="0.563em"/>
+								<listcell label="56.3%"/>
+								<listcell label="7pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="10px"/>
+								<listcell label="0.625em"/>
+								<listcell label="62.5%"/>
+								<listcell label="8pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="11px"/>
+								<listcell label="0.688em"/>
+								<listcell label="68.8%"/>
+								<listcell label="8pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="12x"/>
+								<listcell label="0.75em"/>
+								<listcell label="75%"/>
+								<listcell label="9pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="13px"/>
+								<listcell label="0.813em"/>
+								<listcell label="81.3%"/>
+								<listcell label="10pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="14px"/>
+								<listcell label="0.875em"/>
+								<listcell label="87.5%"/>
+								<listcell label="11pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="15px"/>
+								<listcell label="0.938em"/>
+								<listcell label="93.8%"/>
+								<listcell label="11pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="16px"/>
+								<listcell label="1em"/>
+								<listcell label="100%"/>
+								<listcell label="12pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="17px"/>
+								<listcell label="1.063em"/>
+								<listcell label="106.3%"/>
+								<listcell label="13pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="18px"/>
+								<listcell label="1.125em"/>
+								<listcell label="112.5%"/>
+								<listcell label="14pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="19px"/>
+								<listcell label="1.188em"/>
+								<listcell label="118.8%"/>
+								<listcell label="14pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="20px"/>
+								<listcell label="1.25em"/>
+								<listcell label="125%"/>
+								<listcell label="15pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="21px"/>
+								<listcell label="1.313em"/>
+								<listcell label="131.3%"/>
+								<listcell label="16pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="22px"/>
+								<listcell label="1.375em"/>
+								<listcell label="137.5%"/>
+								<listcell label="17pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="23px"/>
+								<listcell label="1.438em"/>
+								<listcell label="143.8%"/>
+								<listcell label="17pt"/>
+							</listitem>
+							<listitem>
+								<listcell label="24px"/>
+								<listcell label="1.5em"/>
+								<listcell label="150%"/>
+								<listcell label="18pt"/>
+							</listitem>
+						</listbox>
+					</tabpanel>
+					<tabpanel id="tp_crossColor" orient="vertical">
+						<listbox id="crossColorList">
+							<listhead>
+								<listheader label="&bonus.colors.name;"/>
+								<listheader label="RGB"/>
+								<listheader label="HEX"/>
+								<listheader label="&bonus.colors.appearance;"/>
+							</listhead>
+							<listcols>
+								<listcol flex="1"/>
+								<listcol flex="1"/>
+								<listcol flex="1"/>
+								<listcol flex="1"/>
+							</listcols>
+						</listbox>
+					</tabpanel>
+					<tabpanel id="tp_support" orient="vertical">
+						<vbox id="supBox">
+							<label value="&bonus.support.txt;" />
+							<label value="&bonus.support.email;" class="text-link" href="mailto:razumyeyenko@gmail.com" />
+						</vbox>
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+		</dialog>

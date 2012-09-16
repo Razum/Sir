@@ -15,17 +15,47 @@
 				<box id="gradientField">
 				</box>
 				<vbox id="gradientControlBox">
-					<hbox class="controlGradHBox">
+                <groupbox>
+                <caption label="Type"/>
+                <radiogroup id="sir-grad"> 
+                    <hbox>
+                        <radio id="sir-grad-linear" label="Linear" value="linear" selected="true"/><spacer style="width: 40px;"/>
+                        <radio id="sir-grad-radial" label="Radial" value="radial"/>
+                    </hbox>
+                </radiogroup>
+                </groupbox>
+                
+					<hbox id="LinearHBox">
 						<label class="gradientLabels" value="Orientation:" />
-						<menulist width="150px" id="dir" oncommand="SIR.gradient.onParamsChange()">
+						<menulist width="150px" id="linearDir" oncommand="SIR.gradient.onParamsChange()">
 							<menupopup>
-								<menuitem value="ltrt" label="&#8594;"/>
-								<menuitem value="ltlb" label="&#8595;" selected="true"/>
-								<menuitem value="ltrb" label="&#8600;"/>
-								<menuitem value="lbrt" label="&#8599;"/>
+								<menuitem value="ltrt" label="left  &#8594;"/>
+								<menuitem value="ltlb" label="top  &#8595;" selected="true"/>
+								<menuitem value="ltrb" label="top left  &#8600;"/>
+								<menuitem value="lbrt" label="bottom left  &#8599;"/>
 							</menupopup>
 						</menulist>
 					</hbox>
+                    
+                    <hbox id="radialHBox" hidden="true">
+						<label class="gradientLabels" value="Orientation:" />
+						<menulist width="150px" id="radialDir" oncommand="SIR.gradient.onParamsChange()">
+							<menupopup>
+								<menuitem value="top left" label="top left"/>
+								<menuitem value="top" label="top" selected="true"/>
+								<menuitem value="right top" label="right top"/>
+								<menuitem value="left" label="left"/>
+                                <menuitem value="center" label="center"/>
+                                <menuitem value="right" label="right"/>
+                                <menuitem value="bottom left" label="bottom left"/>
+                                <menuitem value="bottom" label="bottom"/>
+                                <menuitem value="bottom right" label="bottom right"/>
+							</menupopup>
+						</menulist>
+					</hbox>
+                    
+                    
+                    
 					<spacer />
 					<hbox class="controlGradHBox">
 						<label class="gradientLabels" value="From:" />

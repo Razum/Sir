@@ -229,28 +229,36 @@
 					<hbox class="controlHBox">
 						<label class="textfontLabels" value="font-size:" />
 						<scale min="5" max="36" value="12" increment="1" id="textfont-fontSize" onchange="SIR.textfont.onParamsChange();" />
-						<label id="textfont-fontSizeVal" value="" />
+						<label id="textfont-fontSizeVal" value="" style="width: 40px;"/>
 					</hbox>
 					<hbox class="controlHBox">
 						<label class="textfontLabels" value="line-height:" />
 						<scale min="0" max="40" value="10" increment="1" id="textfont-LineHeight" onchange="SIR.textfont.onParamsChange();" />
-						<label id="textfont-LineHeightVal" value="" />
+						<label id="textfont-LineHeightVal" value="" style="width: 40px;"/>
 					</hbox>
-				</vbox>
+                    
+                    <hbox class="controlHBox">
+						<label class="textfontLabels" value="text-indent:" />
+						<scale min="0" max="100" value="10" increment="1" id="textfont-TextIndent" onchange="SIR.textfont.onParamsChange();" />
+						<label id="textfont-TextIndentVal" value="" style="width: 40px;"/>
+					</hbox>
+				
+                
+                </vbox>
 				<vbox class="textfontControlBox">
 					<hbox class="controlHBox">
 						<label class="textfontLabels" value="letter-spacing:" />
 						<scale min="-10" max="40" value="1" increment="1" id="textfont-letterSp" onchange="SIR.textfont.onParamsChange();" />
-						<label id="textfont-letterSpVal" value="" />
+						<label id="textfont-letterSpVal" value="" style="width: 40px;"/>
 					</hbox>
 					<hbox class="controlHBox">
 						<label class="textfontLabels" value="word-spacing:" />
 						<scale min="-10" max="40" value="0" increment="1" id="textfont-wordSp" onchange="SIR.textfont.onParamsChange();" />
-						<label id="textfont-wordSpVal" value="" />
+						<label id="textfont-wordSpVal" value="" style="width: 40px;" />
 					</hbox>
 				</vbox>
 			</hbox>
             <hbox class="commandBox"><label value="&textfont.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
 			
-			<textbox id="textfontResult" multiline="true" readonly="true" rows="12" />
+			<textbox id="textfontResult" multiline="true" readonly="true" rows="8" />
 		</dialog>

@@ -23,7 +23,7 @@
                                 
                                 <hbox class="controlHBox"><label class="txtColumnLabels" value="Column Gap:" /><scale min="0" max="35" id="txtColumnGap" onchange="SIR.txtColumn.onParamsChange();"
                                             />
-                                            <textbox id="txtColumnGapValue" maxlength="2" value="" /></hbox>
+                                            <textbox id="txtColumnGapValue" maxlength="2" value="" /><label value="px" /></hbox>
                                 
                                 <hbox><label class="txtColumnLabels" value="Column rule:" /><menulist width="150px" id="column-rule-selector" oncommand="SIR.txtColumn.onParamsChange()">
                                                 <menupopup>

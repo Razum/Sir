@@ -12,35 +12,30 @@ SIR.Preferences.settings = Components.classes["@mozilla.org/preferences-service;
 SIR.Preferences.onLoad = function(){
     Components.utils.import("resource://sir/prefs.jsm", SIR);
     document.getElementById("sir-piePath").value = SIR.sirPrefs.get("generators.piePath");
-    
-    
-    var pieCheck = document.getElementById("sir-pie-check");
-    var el = document.getElementById("pie-group").childNodes;
-			var len = el.length;
-            
-            for(var i =0; i<len; i++){
-                el[i].setAttribute("disabled", !pieCheck.checked);
-            }
-    
-    
-    pieCheck.addEventListener("command", function() {
-            
-            for(var i =0; i<len; i++){
-                el[i].setAttribute("disabled", !this.checked);
-            }
-            
-            
-		
-        }, false);
+ 
 };
 
 
 SIR.Preferences.onOK = function(){   
-   SIR.sirPrefs.set("generators.piePath", document.getElementById("sir-piePath").value);
-          
-    
-    
+   SIR.sirPrefs.set("generators.piePath", document.getElementById("sir-piePath").value);                  
 };
+
+
+ SIR.Preferences.onReset = function(){   
+
+      var children = SIR.Preferences.settings.getChildList("", {}), max;
+     for (var i = 0, max = children.length; i < max; i += 1) {
+              try {
+                  SIR.Preferences.settings.clearUserPref(children[i]);
+              } catch (e) {
+              }
+          }
+  
+           
+     window.location.reload();
+     
+ };
+ 
 
 
 

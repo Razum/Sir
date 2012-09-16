@@ -466,10 +466,10 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 /************************** Multiple Columns ************************/
 
 #txtColumnDialog{
-    width:925px;
+    width:945px;
     height: 600px;
     min-height: 600px;
-    min-width: 925px;
+    min-width: 945px;
 }
 
  .txtColumnLabels{
@@ -489,6 +489,12 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
  #txtColumnControlBox label{
     font-size: 14px;
     font-weight: 600;
+ }
+ 
+ #txtColumnControlBox textbox{
+    font-size:14px;
+    font-weight: 600;
+    width: 35px;
  }
  
  #txtColumnControlBox menulist{
@@ -544,7 +550,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 }
 
  .gradientLabels{
-    width: 80px;
+    width: 100px;
 
  }
  .controlGradHBox{
@@ -554,8 +560,17 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
 
  #gradientControlBox{
-     padding: 25px 15px 0 15px;
+     padding: 25px 15px 0 55px;
      
+ }
+ 
+ #LinearHBox{
+    margin: 15px 0;
+    font-size: 16px;
+ }
+ 
+ #radialHBox{
+    margin: 15px 0;
  }
  
  #gradientControlBox label{
@@ -569,7 +584,6 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
  }
  
  #gradientControlBox menulist label{
-    font-size:23px;
     font-weight: 600;
     text-align: center;
      

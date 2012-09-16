@@ -1,7 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet href="chrome://global/skin/"?>
 	<?xml-stylesheet href="chrome://sir/skin/styles/preferences.css" type="text/css"?>
-		<prefwindow id="SIRPrefs" type="prefwindow" title="" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" buttons="accept" buttonlabelaccept="OK" ondialogaccept="SIR.Preferences.onOK();">
+    <!DOCTYPE window SYSTEM "chrome://sir/locale/preference.dtd">
+		<prefwindow id="SIRPrefs" 
+                type="prefwindow" 
+                title="&settings.title;" 
+                xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+                buttons="accept,extra1" 
+                buttonlabelaccept="OK" 
+                buttonlabelextra1="&settings.reset;" 
+                ondialogextra1= "SIR.Preferences.onReset();"
+                ondialogaccept="SIR.Preferences.onOK();">
+                
+                
 			<prefpane id="sir-generators">
 				<script type="application/x-javascript" src="chrome://sir/content/scripts/preferences.js">
 				</script>
@@ -15,31 +26,26 @@
 					<preference id="piePath" name="extensions.sir.generators.piePath" type="string"/>
 				</preferences>
 				<groupbox>
-					<caption label="Browsers" />
+					<caption label="&settings.browsers;" />
 					<grid>
 						<columns>
 							<column>
 								<rows>
-                                    <tooltip id ="sir-moz-tt" label="111"/>
-									<checkbox label="Mozilla (-moz-)" preference="moz" tooltip="sir-moz-tt"/>
+									<checkbox label="Mozilla (-moz-)" preference="moz"/>
 								</rows>
 								<rows>
-                                    <tooltip id ="sir-opera-tt" label="222"/>
-									<checkbox label="Opera (-o-)" preference="opera" tooltip="sir-opera-tt"/>
+									<checkbox label="Opera (-o-)" preference="opera"/>
 								</rows>
 								<rows>
-                                    <tooltip id ="sir-khtml-tt" label="333"/>
-									<checkbox label="Konqueror (-khtml-)" preference="khtml" tooltip="sir-khtml-tt"/>
+									<checkbox label="Konqueror (-khtml-)" preference="khtml"/>
 								</rows>
 							</column>
 							<column>
 								<rows>
-                                    <tooltip id ="sir-webkit-tt" label="444"/>
-									<checkbox label="Chrome, Safari (-webkit-)" preference="webkit" tooltip="sir-webkit-tt"/>
+									<checkbox label="Chrome, Safari (-webkit-)" preference="webkit"/>
 								</rows>
 								<rows>
-                                    <tooltip id ="sir-ms-tt" label="555"/>
-									<checkbox label="IE (-ms-)" preference="ms" tooltip="sir-ms-tt"/>
+									<checkbox label="IE (-ms-)" preference="ms"/>
 								</rows>
 								<rows>
 								</rows>
@@ -49,11 +55,11 @@
 				</groupbox>
 				<groupbox id="pie-group">
 					<caption>
-                        <tooltip id ="sir-pie-tt" label="666" />
-						<checkbox label="PIE" id="sir-pie-check" preference="pie" tooltip="sir-pie-tt"/>
+                        <tooltip id ="sir-pie-tt" label="&settings.pie;" />
+						<checkbox label="PIE" id="sir-pie-check" preference="pie" tooltip="sir-pie-tt"/><spacer/><label value="?" href="http://css3pie.com/about/" oncommand="gBrowser.addTab('http://www.google.com/')" style="font-size: 14px; font-weight: 700;" class="text-link"/>
 					</caption>
-					<label value="PIE path"/>
-					<textbox id="sir-piePath" value="" />
+					<label value="&settings.piePath;"/>
+					<textbox id="sir-piePath" value="" onclick="this.focus();" />
 				</groupbox>
 			</prefpane>
 		</prefwindow>

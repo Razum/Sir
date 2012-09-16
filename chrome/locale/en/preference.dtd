@@ -1,0 +1,8 @@
+<!-- ENGLISH  -->
+<!ENTITY settings.title "Settings">
+<!ENTITY settings.reset "Reset to default">
+<!ENTITY settings.browsers "Browsers">
+
+<!ENTITY settings.pie "Add PIE (Progressive Internet Explorer) support">
+
+<!ENTITY settings.piePath "Path to PIE file">
