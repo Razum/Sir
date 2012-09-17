@@ -190,7 +190,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 #txtRotationControlBox textbox{
     font-weight: 600;
     font-size: 14px;
-    width: 35px;
+    width: 40px;
     
 }
 
@@ -833,7 +833,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 }
 
 #colorpickerDialog textbox{
-    width: 130px;
+    width: 150px;
 }
 
 #colorpickerDialog caption{
@@ -855,10 +855,10 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
 
 #transitionDialog{
-    width:820px;
+    width:830px;
     height: 545px;
     min-height: 545px;
-    min-width: 820px;
+    min-width: 830px;
 }
 
  .transitionLabels{

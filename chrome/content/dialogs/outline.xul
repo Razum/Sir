@@ -50,6 +50,7 @@
                         onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false);"/></hbox>
                 </vbox>
             </hbox>
+            <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />
             <hbox class="commandBox"><label value="&outline.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
             
             <textbox id="outlineResult" multiline="true" readonly="true" rows="7"

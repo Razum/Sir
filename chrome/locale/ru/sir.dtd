@@ -1,5 +1,8 @@
 ﻿<!ENTITY colorpicker.panel.title "CSSsir Colour Picker">
 
+
+<!ENTITY clipboard.tt "Скопировать в буфер">
+
 <!ENTITY rgba.title "CSSsir RGBA">
 <!ENTITY rgba.code "Код:">
 

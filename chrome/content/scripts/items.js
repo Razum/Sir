@@ -44,7 +44,7 @@ SIR.Item.prototype.khtmlPrefix = function(str) {
 };
 SIR.Item.prototype.PIE = function() {
 	if (SIR.sirPrefs.getBool("generators.pie")) {
-		return "behavior: url(" + SIR.sirPrefs.get("generators.piePath") + ");";
+		return "behavior: url(" + SIR.sirPrefs.get("generators.piePath") + ");/*Apply PIE*/";
 	}
 	return "";
 };
@@ -497,17 +497,17 @@ SIR.borderRadius.showCode = function(width, style, color, TL, TR, BL, BR) {
 	str += "border-top-right-radius: " + TR + "px;\n";
 	str += "border-bottom-left-radius: " + BL + "px;\n";
 	str += "border-bottom-right-radius: " + BR + "px;\n";
-	str += "/*Firefox*/\n";
+	if (SIR.sirPrefs.getBool("generators.moz")) {str += "/*Firefox*/\n";}
 	str += this.MozPrefix("border-top-left-radius: " + TL + "px;\n");
 	str += this.MozPrefix("border-top-right-radius: " + TR + "px;\n");
 	str += this.MozPrefix("border-bottom-left-radius: " + BL + "px;\n");
 	str += this.MozPrefix("border-bottom-right-radius: " + BR + "px;\n");
-	str += "/*Safari, Chrome*/\n";
+	if (SIR.sirPrefs.getBool("generators.webkit")) {str += "/*Safari, Chrome*/\n";}
 	str += this.WebkitPrefix("border-top-left-radius: " + TL + "px;\n");
 	str += this.WebkitPrefix("border-top-right-radius: " + TR + "px;\n");
 	str += this.WebkitPrefix("border-bottom-left-radius: " + BL + "px;\n");
 	str += this.WebkitPrefix("border-bottom-right-radius: " + BR + "px;\n");
-	str += "/*Konqueror*/\n";
+	if (SIR.sirPrefs.getBool("generators.khtml")) {str += "/*Konqueror*/\n";}
 	str += this.khtmlPrefix("border-top-left-radius: " + TL + "px;\n");
 	str += this.khtmlPrefix("border-top-right-radius: " + TR + "px;\n");
 	str += this.khtmlPrefix("border-bottom-left-radius: " + BL + "px;\n");
@@ -558,19 +558,18 @@ SIR.txtColumn.onParamsChange = function() {
 };
 SIR.txtColumn.showCode = function(count, gap, rule) {
 	var str = "";
-	str += "/* Opera 11+*/\n";
 	str += "column-count:" + count + ";\n";
 	str += "column-gap:" + gap + "px;\n";
 	str += "column-rule:" + rule + ";\n";
-	str += "/* FF 3.5+*/\n";
+	if (SIR.sirPrefs.getBool("generators.moz")) {str += "/* FF 3.5+*/\n";}
 	str += this.MozPrefix("column-count:" + count + ";\n");
 	str += this.MozPrefix("column-gap:" + gap + "px;\n");
 	str += this.MozPrefix("column-rule:" + rule + ";\n");
-	str += "/*Saf3, Chrome*/\n";
+	if (SIR.sirPrefs.getBool("generators.webkit")) {str += "/*Saf3, Chrome*/\n";}
 	str += this.WebkitPrefix("column-count:" + count + ";\n");
 	str += this.WebkitPrefix("column-gap:" + gap + "px;\n");
-	str += this.WebkitPrefix("column-rule:" + rule + ";");
-	str += "/*Konqueror*/\n";
+	str += this.WebkitPrefix("column-rule:" + rule + ";\n");
+	if (SIR.sirPrefs.getBool("generators.khtml")) {str += "/*Konqueror*/\n";}
 	str += this.khtmlPrefix("column-count:" + count + ";\n");
 	str += this.khtmlPrefix("column-gap:" + gap + "px;\n");
 	str += this.khtmlPrefix("column-rule:" + rule + ";");
