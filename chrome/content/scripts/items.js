@@ -466,37 +466,35 @@ SIR.borderRadius.onParamsChange = function() {
 };
 SIR.borderRadius.showCode = function(width, style, color, TL, TR, BL, BR) {
 	var str = "border: " + width + "px " + style + " " + color + ";\n";
-	if (TL == TR && TR == BL && BL == BR) {
-		str += "border-radius: " + TL + "px;\n";
+	if (TL == TR && TR == BL && BL == BR) {		
 		str += this.MozPrefix("border-radius: " + TL + "px;/*Firefox*/\n");
 		str += this.WebkitPrefix("border-radius: " + TL + "px;/*Safari, Chrome*/\n");
 		str += this.khtmlPrefix("border-radius: " + TL + "px;/*Konqueror*/\n");
+        str += "border-radius: " + TL + "px;\n";
 		str += this.PIE();
 		this.txtBox.value = str;
 		return true;
 	}
 	if (TL == BR && TR == BL && TR != TL) {
-		str += "border-radius: " + TL + "px " + TR + "px;\n";
+		
 		str += this.MozPrefix("border-radius: " + TL + "px " + TR + "px;/*Firefox*/\n");
 		str += this.WebkitPrefix("border-radius: " + TL + "px " + TR + "px;/*Safari, Chrome*/\n");
 		str += this.khtmlPrefix("border-radius: " + TL + "px " + TR + "px;/*Konqueror*/\n");
+        str += "border-radius: " + TL + "px " + TR + "px;\n";
 		str += this.PIE();
 		this.txtBox.value = str;
 		return true;
 	}
-	if (TR == BL && TL != BR && TR != TL) {
-		str += "border-radius: " + TL + "px " + TR + "px " + BR + "px;\n";
+	if (TR == BL && TL != BR && TR != TL) {		
 		str += this.MozPrefix("border-radius: " + TL + "px " + TR + "px " + BR + "px;/*Firefox*/\n");
 		str += this.WebkitPrefix("border-radius: " + TL + "px " + TR + "px " + BR + "px;/*Safari, Chrome*/\n");
 		str += this.khtmlPrefix("border-radius: " + TL + "px " + TR + "px " + BR + "px;/*Konqueror*/\n");
+        str += "border-radius: " + TL + "px " + TR + "px " + BR + "px;\n";
 		str += this.PIE();
 		this.txtBox.value = str;
 		return true;
 	}
-	str += "border-top-left-radius: " + TL + "px;\n";
-	str += "border-top-right-radius: " + TR + "px;\n";
-	str += "border-bottom-left-radius: " + BL + "px;\n";
-	str += "border-bottom-right-radius: " + BR + "px;\n";
+	
 	if (SIR.sirPrefs.getBool("generators.moz")) {str += "/*Firefox*/\n";}
 	str += this.MozPrefix("border-top-left-radius: " + TL + "px;\n");
 	str += this.MozPrefix("border-top-right-radius: " + TR + "px;\n");
@@ -512,6 +510,10 @@ SIR.borderRadius.showCode = function(width, style, color, TL, TR, BL, BR) {
 	str += this.khtmlPrefix("border-top-right-radius: " + TR + "px;\n");
 	str += this.khtmlPrefix("border-bottom-left-radius: " + BL + "px;\n");
 	str += this.khtmlPrefix("border-bottom-right-radius: " + BR + "px;\n");
+    str += "border-top-left-radius: " + TL + "px;\n";
+	str += "border-top-right-radius: " + TR + "px;\n";
+	str += "border-bottom-left-radius: " + BL + "px;\n";
+	str += "border-bottom-right-radius: " + BR + "px;\n";
 	str += this.PIE();
 	this.txtBox.value = str;
 };
@@ -646,7 +648,8 @@ SIR.gradient.showCode = function(type, grad, dir, from, to) {
 	   str += "background: -moz-" + type + "-gradient(" + grad[type][dir].moz + from + ",  " + to + "); /* for firefox 3.6+ */ \n";
     }
     if(SIR.sirPrefs.getBool("generators.webkit")){
-	   str += "background: -webkit-gradient(" + type + ", " + grad[type][dir].webkit + " from(" + from + "), to(" + to + ")); /* for webkit browsers */\n";
+	   str += "background: -webkit-gradient(" + type + ", " + grad[type][dir].webkit + " from(" + from + "), to(" + to + ")); /* Safari 4+, Chrome */\n";
+       str += "background: -webkit-"+type+"-gradient(" + grad[type][dir].webkit + " " + from + ", " + to + "); /* Chrome 10+, Safari 5.1+, iOS 5+ */\n";
     }
     if(SIR.sirPrefs.getBool("generators.opera")){
 	   str += "background: -o-" + type + "-gradient(" + grad[type][dir].moz + from + "," + to + "); /* Opera 11.10+ */\n";
