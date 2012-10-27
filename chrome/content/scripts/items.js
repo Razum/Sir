@@ -79,8 +79,9 @@ SIR.rgba.init = function() {
 	this.Glbl.value = this.G.value;
 	this.Blbl.value = this.B.value;
 	this.opacitylbl.value = this.opacity.value / 100;
-	this.rgbaRect.style.backgroundColor = "#" + this.R.value + this.G.value + this.B.value;
-	this.rgbaRect.style.opacity = this.opacity.value / 100;
+	
+    this.rgbaRect.style.cssText = "background-color: #" + this.R.value + this.G.value + this.B.value +"; opacity:" + this.opacity.value / 100;
+
 	this.showCode(this.R.value, this.G.value, this.B.value, this.opacity.value / 100);
 	this.Rlbl.addEventListener("keyup", function() {
 		self.txtBxScale(self.R, self.Rlbl)
@@ -106,9 +107,10 @@ SIR.rgba.onParamsChange = function() {
 	this.Glbl.value = this.G.value;
 	this.Blbl.value = this.B.value;
 	this.opacitylbl.value = this.opacity.value / 100;
-	this.rgbaRect.style.backgroundColor = "#" + SIR.utils.toHEX(this.R.value) + SIR.utils.toHEX(this.G.value) + SIR.utils.toHEX(this.B.value);
-	this.rgbaRect.style.opacity = this.opacity.value / 100;
-	this.showCode(this.R.value, this.G.value, this.B.value, this.opacity.value / 100);
+    
+	this.rgbaRect.style.cssText = "background-color: #" + SIR.utils.toHEX(this.R.value) + SIR.utils.toHEX(this.G.value) + SIR.utils.toHEX(this.B.value) + "; opacity: " + this.opacity.value / 100;
+        
+    this.showCode(this.R.value, this.G.value, this.B.value, this.opacity.value / 100);
 	document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
 };
 SIR.rgba.showCode = function(R, G, B, opacity) {
@@ -422,12 +424,10 @@ SIR.borderRadius.init = function() {
 	this.brdRadTRlbl.value = this.brdRadTR.value;
 	this.brdRadBLlbl.value = this.brdRadBL.value;
 	this.brdRadBRlbl.value = this.brdRadBR.value;
-	this.rect.style.border = "2px solid #000"
-	this.rect.style.borderTopLeftRadius = "0px";
-	this.rect.style.borderTopRightRadius = "0px";
-	this.rect.style.borderBottomLeftRadius = "0px";
-	this.rect.style.borderBottomRightRadius = "0px";
-	this.showCode(this.brdWidth.value, "solid", this.colorButton.color, this.brdRadTL.value, this.brdRadTR.value, this.brdRadBL.value, this.brdRadBR.value);
+	
+    this.rect.style.cssText = "border: 2px solid #000; border-radius: 0px;"	
+    
+    this.showCode(this.brdWidth.value, "solid", this.colorButton.color, this.brdRadTL.value, this.brdRadTR.value, this.brdRadBL.value, this.brdRadBR.value);
 	this.brdWidthlbl.addEventListener("keyup", function() {
 		self.txtBxScale(self.brdWidth, self.brdWidthlbl)
 	}, false);
@@ -454,14 +454,11 @@ SIR.borderRadius.onParamsChange = function() {
 	this.brdRadBLlbl.value = this.brdRadBL.value;
 	this.brdRadBRlbl.value = this.brdRadBR.value;
 	this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
-	this.rect.style.borderWidth = this.brdWidth.value + "px";
-	this.rect.style.borderStyle = this.brdStl.value;
-	this.rect.style.borderColor = this.colorButton.color;
-	this.rect.style.borderTopLeftRadius = this.brdRadTL.value + "px";
-	this.rect.style.borderTopRightRadius = this.brdRadTR.value + "px";
-	this.rect.style.borderBottomLeftRadius = this.brdRadBL.value + "px";
-	this.rect.style.borderBottomRightRadius = this.brdRadBR.value + "px";
-	this.showCode(this.brdWidth.value, this.brdStl.value, this.colorButton.color, this.brdRadTL.value, this.brdRadTR.value, this.brdRadBL.value, this.brdRadBR.value);
+	
+    this.rect.style.cssText = "border: " + this.brdWidth.value + "px " + this.brdStl.value + " " + this.colorButton.color + "; border-radius: " 
+            + this.brdRadTL.value + "px " + this.brdRadTR.value + "px " + this.brdRadBR.value + "px " + this.brdRadBL.value + "px;";    
+    
+    this.showCode(this.brdWidth.value, this.brdStl.value, this.colorButton.color, this.brdRadTL.value, this.brdRadTR.value, this.brdRadBL.value, this.brdRadBR.value);
 	document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
 };
 SIR.borderRadius.showCode = function(width, style, color, TL, TR, BL, BR) {
@@ -498,22 +495,22 @@ SIR.borderRadius.showCode = function(width, style, color, TL, TR, BL, BR) {
 	if (SIR.sirPrefs.getBool("generators.moz")) {str += "/*Firefox*/\n";}
 	str += this.MozPrefix("border-top-left-radius: " + TL + "px;\n");
 	str += this.MozPrefix("border-top-right-radius: " + TR + "px;\n");
-	str += this.MozPrefix("border-bottom-left-radius: " + BL + "px;\n");
-	str += this.MozPrefix("border-bottom-right-radius: " + BR + "px;\n");
+    str += this.MozPrefix("border-bottom-right-radius: " + BR + "px;\n");
+	str += this.MozPrefix("border-bottom-left-radius: " + BL + "px;\n");	
 	if (SIR.sirPrefs.getBool("generators.webkit")) {str += "/*Safari, Chrome*/\n";}
 	str += this.WebkitPrefix("border-top-left-radius: " + TL + "px;\n");
 	str += this.WebkitPrefix("border-top-right-radius: " + TR + "px;\n");
-	str += this.WebkitPrefix("border-bottom-left-radius: " + BL + "px;\n");
-	str += this.WebkitPrefix("border-bottom-right-radius: " + BR + "px;\n");
+    str += this.WebkitPrefix("border-bottom-right-radius: " + BR + "px;\n");
+	str += this.WebkitPrefix("border-bottom-left-radius: " + BL + "px;\n");	
 	if (SIR.sirPrefs.getBool("generators.khtml")) {str += "/*Konqueror*/\n";}
 	str += this.khtmlPrefix("border-top-left-radius: " + TL + "px;\n");
 	str += this.khtmlPrefix("border-top-right-radius: " + TR + "px;\n");
-	str += this.khtmlPrefix("border-bottom-left-radius: " + BL + "px;\n");
-	str += this.khtmlPrefix("border-bottom-right-radius: " + BR + "px;\n");
+    str += this.khtmlPrefix("border-bottom-right-radius: " + BR + "px;\n");
+	str += this.khtmlPrefix("border-bottom-left-radius: " + BL + "px;\n");	
     str += "border-top-left-radius: " + TL + "px;\n";
-	str += "border-top-right-radius: " + TR + "px;\n";
-	str += "border-bottom-left-radius: " + BL + "px;\n";
+	str += "border-top-right-radius: " + TR + "px;\n";	
 	str += "border-bottom-right-radius: " + BR + "px;\n";
+    str += "border-bottom-left-radius: " + BL + "px;\n";
 	str += this.PIE();
 	this.txtBox.value = str;
 };
@@ -535,10 +532,10 @@ SIR.txtColumn.init = function() {
 	this.colGap.value = 0;
 	this.colCountlbl.value = this.colCount.value;
 	this.colGaplbl.value = this.colGap.value;
-	this.desc.style.MozColumnCount = 1;
-	this.desc.style.MozColumnGap = "0px";
-	this.desc.style.MozColumnRule = "none";
-	this.showCode(1, 0, "none");
+	
+    this.desc.style.cssText = "-moz-column-count: 1; -moz-column-gap: 0px; -moz-column-rule: none;"
+    
+    this.showCode(1, 0, "none");
 	this.colCountlbl.addEventListener("keyup", function() {
 		self.txtBxScale(self.colCount, self.colCountlbl)
 	}, false);
@@ -552,10 +549,10 @@ SIR.txtColumn.init = function() {
 SIR.txtColumn.onParamsChange = function() {
 	this.colCountlbl.value = this.colCount.value;
 	this.colGaplbl.value = this.colGap.value;
-	this.desc.style.MozColumnCount = this.colCount.value;
-	this.desc.style.MozColumnGap = this.colGap.value + "px";
-	this.desc.style.MozColumnRule = this.colRule.value;
-	this.showCode(this.colCount.value, this.colGap.value, this.colRule.value);
+	  
+    this.desc.style.cssText = "-moz-column-count: " + this.colCount.value + "; -moz-column-gap:" + this.colGap.value + "px; -moz-column-rule:" + this.colRule.value;
+  
+    this.showCode(this.colCount.value, this.colGap.value, this.colRule.value);
 	document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
 };
 SIR.txtColumn.showCode = function(count, gap, rule) {
@@ -1124,13 +1121,13 @@ SIR.textfont.showCode = function(mainMenu, scales, extraMenu, textColor, backCol
 	this.txtBox.value = str;
 };
 SIR.textfont.makeStyle = function(arrObj, node) {
-	var len = arrObj.length;
-	for (var i = 0; i < len; i++) {
-		if (arrObj[i].lbl && arrObj[i].getVal()) {
-			arrObj[i].lbl.value = arrObj[i].getVal();
-			node.style[arrObj[i].JSruleName] = arrObj[i].getVal();
+	for (var i = arrObj.length; i--;) {
+	   var current = arrObj[i];
+		if (current.lbl && current.getVal) {
+			current.lbl.value = current.getVal();
+			node.style[current.JSruleName] = current.getVal();
 		} else {
-			node.style[arrObj[i].JSruleName] = arrObj[i].elem.value;
+			node.style[current.JSruleName] = current.elem.value;
 		}
 	}
 };

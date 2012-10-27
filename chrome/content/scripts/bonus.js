@@ -156,24 +156,22 @@ SIR.bonus = {
                         {name:"WhiteSmoke",         rgb:"rgb(245, 245, 245)",   hex:"#F5F5F5"},
                         {name:"Yellow",             rgb:"rgb(255, 255, 0)",     hex:"#FFFF00"},
                         {name:"YellowGreen",        rgb:"rgb(154, 205, 50)",    hex:"#9ACD32"}                                                                                                                        
-        ];
-              var n = colors.length;           
-        for(var i=0;  i<n; i++){
-            var row = document.createElement('listitem');
-            var cell = document.createElement('listcell');
-            cell.setAttribute('label', colors[i].name);
+        ];        
+        for(var i=0, n = colors.length;  i < n; i+=1){
+            var row = document.createElement('listitem'), cell = document.createElement('listcell'), color = colors[i];
+            cell.setAttribute('label', color.name);
             row.appendChild(cell);
             
             cell = document.createElement('listcell');
-            cell.setAttribute('label',  colors[i].rgb);
+            cell.setAttribute('label',  color.rgb);
             row.appendChild(cell);
             
             cell = document.createElement('listcell');
-            cell.setAttribute('label',  colors[i].hex);
+            cell.setAttribute('label',  color.hex);
             row.appendChild(cell);
             
             cell = document.createElement('listcell');
-            cell.style.background = colors[i].hex;
+            cell.style.background = color.hex;
             row.appendChild(cell);
             
             
