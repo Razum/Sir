@@ -6,3 +6,5 @@ pref("extensions.sir.generators.ms", true);
 pref("extensions.sir.generators.khtml", false);
 pref("extensions.sir.generators.pie", false);
 pref("extensions.sir.generators.piePath", "path/to/PIE.htc");
+
+pref("extensions.sir.comments", true);

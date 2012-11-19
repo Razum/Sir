@@ -5,6 +5,12 @@
 		<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml" id="bonusDialog" title="&bonus.title;" buttons="disabled" onload="SIR.bonus.init();">
 			<script type="application/x-javascript" src="chrome://sir/content/scripts/bonus.js">
 			</script>
+            <popupset>
+                <menupopup id="ConMenu">            
+                    <menuitem label="Copy"/>
+                </menupopup>
+            </popupset>
+            
 			<tabbox id="bonus">
 				<tabs id="bonus-tabs" onselect="">
 					<tab id="selector-tab" label="&bonus.selectors;" image='chrome://sir/skin/images/selector.png' />
@@ -15,7 +21,7 @@
 				</tabs>
 				<tabpanels flex="1">
 					<tabpanel id="tp_selector" orient="vertical">
-						<tree flex="1" rows="20" disabled="true">
+						<tree flex="1" rows="20" disabled="true" hidecolumnpicker="true">
 							<treecols>
 								<treecol id="selName" label="&bonus.SelName;" />
 								<treecol id="selDesc" label="&bonus.desc;" flex="1" />

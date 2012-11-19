@@ -24,6 +24,7 @@
 					<preference id="khtml" name="extensions.sir.generators.khtml" type="bool"/>
 					<preference id="pie" name="extensions.sir.generators.pie" type="bool"/>
 					<preference id="piePath" name="extensions.sir.generators.piePath" type="string"/>
+                    <preference id="comments" name="extensions.sir.comments" type="bool"/>
 				</preferences>
 				<groupbox>
 					<caption label="&settings.browsers;" />
@@ -53,6 +54,11 @@
 						</columns>
 					</grid>
 				</groupbox>
+                <groupbox>
+					<caption label="Settings" />
+                <checkbox label="Enable Comments" preference="comments"/>
+                </groupbox>
+                
 				<groupbox id="pie-group">
 					<caption>
                         <tooltip id ="sir-pie-tt" label="&settings.pie;" />
@@ -61,5 +67,11 @@
 					<label value="&settings.piePath;"/>
 					<textbox id="sir-piePath" value="" onclick="this.focus();" />
 				</groupbox>
+                
+                <groupbox id="pie-group">
+                <caption label="Plugin" />
+                <checkbox label="Enable Comments" preference="comments"/>
+                </groupbox>
+                
 			</prefpane>
 		</prefwindow>

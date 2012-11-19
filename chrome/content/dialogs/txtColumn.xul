@@ -21,7 +21,7 @@
                                             />
                                             <textbox id="txtColumnCountValue" maxlength="2" value="" /></hbox>
                                 
-                                <hbox class="controlHBox"><label class="txtColumnLabels" value="Column Gap:" /><scale min="0" max="35" id="txtColumnGap" onchange="SIR.txtColumn.onParamsChange();"
+                                <hbox class="controlHBox"><label class="txtColumnLabels" value="Column Gap:" /><scale min="0" max="35" value="0" id="txtColumnGap" onchange="SIR.txtColumn.onParamsChange();"
                                             />
                                             <textbox id="txtColumnGapValue" maxlength="2" value="" /><label value="px" /></hbox>
                                 

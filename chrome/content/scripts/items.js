@@ -7,9 +7,11 @@ SIR.Item.prototype.init = function() {};
 SIR.Item.prototype.onParamsChange = function() {};
 SIR.Item.prototype.showCode = function() {};
 SIR.Item.prototype.CopyCode = function() {
+    
+    var val = SIR.sirPrefs.getBool("comments") ? this.txtBox.value : this.txtBox.value.replace(/\/\*[\s\S]*?\*\//g, "");
 	var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].
 	getService(Components.interfaces.nsIClipboardHelper);
-	gClipboardHelper.copyString(this.txtBox.value);
+	gClipboardHelper.copyString(val);
 	document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copied.png";
 };
 SIR.Item.prototype.MozPrefix = function(str) {
@@ -71,10 +73,6 @@ SIR.rgba.init = function() {
 	this.Blbl = document.getElementById("Bvalue");
 	this.opacitylbl = document.getElementById("Opacityvalue");
 	this.txtBox = document.getElementById("rgbaResult");
-	this.R.value = 0;
-	this.G.value = 0;
-	this.B.value = 0;
-	this.opacity.value = 50;
 	this.Rlbl.value = this.R.value;
 	this.Glbl.value = this.G.value;
 	this.Blbl.value = this.B.value;
@@ -115,11 +113,11 @@ SIR.rgba.onParamsChange = function() {
 };
 SIR.rgba.showCode = function(R, G, B, opacity) {
 	var forIE = Math.floor(255 * opacity).toString(16) + SIR.utils.toHEX(R) + SIR.utils.toHEX(G) + SIR.utils.toHEX(B);
-	var str = "background: rgb(" + R + ", " + G + ", " + B + ");\nbackground: transparent;\n";
-	str += "background: rgba(" + R + ", " + G + ", " + B + ", " + opacity + ");/* FF3+,Saf3+,Opera 10.10+,Chrome,IE9*/\n";
+	var str = "background: rgb(" + R + ", " + G + ", " + B + ");\nbackground: transparent;\n";	
+    str += "background: rgba(" + R + ", " + G + ", " + B + ", " + opacity + ");/* FF3+,Saf3+,Opera 10.10+,Chrome,IE9*/\n";
 	str += this.iePrefix("filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#" + forIE + ",endColorstr=#" + forIE + ");/*IE 5.5-7*/\n");
-	str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#' + forIE + ',endColorstr=#' + forIE + ')";/*IE8*/\n');
-	str += "zoom: 1;"
+	str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#' + forIE + ',endColorstr=#' + forIE + ')";/*IE8*/\n');	
+    str += "zoom: 1;"
 	this.txtBox.value = str;
 };
 /////////////////////////
@@ -141,14 +139,10 @@ SIR.txtShadow.init = function() {
 	this.ColorPicker.addChangeListener(function() {
 		SIR.txtShadow.onParamsChange.call(self);
 	});
-	this.horLen.value = 3;
-	this.verLen.value = 3;
-	this.blurRadius.value = 3;
-	this.colorButton.color = "#6D6B6B";
 	this.horLenlbl.value = this.horLen.value;
 	this.verLenlbl.value = this.verLen.value;
 	this.blurRadiuslbl.value = this.blurRadius.value;
-	this.inscription.style.textShadow = "3px 3px 3px #6D6B6B";
+	this.inscription.style.textShadow = this.horLen.value + "px "+ this.verLen.value +"px "+ this.blurRadius.value +"px " + this.colorButton.color;
 	this.showCode(this.horLen.value, this.verLen.value, this.blurRadius.value, this.colorButton.color);
 	this.horLenlbl.addEventListener("keyup", function() {
 		self.txtBxScale(self.horLen, self.horLenlbl)
@@ -177,10 +171,10 @@ SIR.txtShadow.showCode = function(horLen, verLen, blurRadius, color) {
 	if (IEdirection < 0) {
 		IEdirection = 180 + (180 + IEdirection);
 	}
-	var str = "";
-	str += "text-shadow: " + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */\n";
+	var str = "";	
 	str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');
-	str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + '); /*IE 5.5-7*/');
+    str += "text-shadow: " + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */\n";
+	str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + '); /*IE 5.5-7*/\n');    
 	this.txtBox.value = str;
 };
 /////////////////////////
@@ -193,9 +187,8 @@ SIR.txtRotation.init = function() {
 	this.txtBox = document.getElementById("txtRotationResult");
 	this.inscription = document.getElementById("TRinscription");
 	this.rotDeglbl = document.getElementById("TRrotDegValue");
-	this.rotDeg.value = 0;
 	this.rotDeglbl.value = this.rotDeg.value;
-	this.inscription.style.MozTransform = "rotate(0deg)";
+	this.inscription.style.MozTransform = "rotate("+ this.rotDeg.value +"deg)";
 	this.showCode(this.rotDeg.value);
 	this.rotDeglbl.addEventListener("keyup", function() {
 		self.txtBxScale(self.rotDeg, self.rotDeglbl)
@@ -216,13 +209,14 @@ SIR.txtRotation.showCode = function(rotDeg) {
 		IEM21 = Math.sin(rotDeg / 180 * Math.PI).toFixed(6),
 		IEM22 = Math.cos(rotDeg / 180 * Math.PI).toFixed(6);
 	var str = "";
-	str += "transform: rotate(" + rotDeg + "deg);\n";
 	str += this.MozPrefix("transform: rotate(" + rotDeg + "deg); /*FF3.5+*/\n");
 	str += this.OperaPrefix("transform: rotate(" + rotDeg + "deg); /*Opera 10.5*/\n");
 	str += this.WebkitPrefix("transform: rotate(" + rotDeg + "deg); /*Saf3.1+, Chrome*/\n");
 	str += this.khtmlPrefix("transform: rotate(" + rotDeg + "deg); /*Konqueror*/\n");
 	str += this.iePrefix("-ms-transform: rotate(" + rotDeg + "deg); /*IE9*/\n");
-	str += this.iePrefix("filter: progid:DXImageTransform.Microsoft.Matrix(M11=" + IEM11 + ", M12=" + IEM12 + ",M21=" + IEM21 + ", M22=" + IEM22 + ", sizingMethod='auto expand');/*IE6-IE9*/\nzoom: 1;");
+    str += "transform: rotate(" + rotDeg + "deg);\n";
+	str += this.iePrefix("filter: progid:DXImageTransform.Microsoft.Matrix(M11=" + IEM11 + ", M12=" + IEM12 + ",M21=" + IEM21 + ", M22=" + IEM22 + ", sizingMethod='auto expand');/*IE6-IE9*/\nzoom: 1;");	
+    
 	this.txtBox.value = str;
 };
 /////////////////////////
@@ -247,22 +241,15 @@ SIR.transform.init = function() {
 	this.skewYlbl = document.getElementById("skewYval");
 	this.TranslateXlbl = document.getElementById("TranslateXval");
 	this.TranslateYlbl = document.getElementById("TranslateYval");
-	this.rotDeg.value = 0;
-	this.scaleX.value = 10;
-	this.scaleY.value = 10;
-	this.skewX.value = 0;
-	this.skewY.value = 0;
-	this.TranslateX.value = 0;
-	this.TranslateY.value = 0;
-	this.rotDeglbl.value = this.rotDeg.value;
+    this.rotDeglbl.value = this.rotDeg.value;
 	this.scaleXlbl.value = this.scaleX.value / 10;
 	this.scaleYlbl.value = this.scaleY.value / 10;
 	this.skewXlbl.value = this.skewX.value;
 	this.skewYlbl.value = this.skewY.value;
 	this.TranslateXlbl.value = this.TranslateX.value;
 	this.TranslateYlbl.value = this.TranslateY.value;
-	this.rect.style.MozTransform = 'rotate(0deg) scale(1, 1) skewX(0deg) skewY(0deg) translate(0, 0)';
-	this.showCode(0, 1, 1, 0, 0, 0, 0);
+	this.rect.style.MozTransform = 'rotate(' + this.rotDeg.value + 'deg) scale('+this.scaleX.value / 10+', '+this.scaleY.value / 10+') skewX('+this.skewX.value+'deg) skewY('+this.skewY.value+'deg) translate('+this.TranslateX.value+', '+this.TranslateY.value+')';
+	this.showCode(this.rotDeg.value, this.scaleX.value / 10, this.scaleY.value / 10, this.skewX.value, this.skewY.value, this.TranslateX.value, this.TranslateY.value);
 	this.rotDeglbl.addEventListener("keyup", function() {
 		self.txtBxScale(self.rotDeg, self.rotDeglbl)
 	}, false);
@@ -307,13 +294,14 @@ SIR.transform.onParamsChange = function() {
 	document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
 };
 SIR.transform.showCode = function(rot, scX, scY, skX, skY, trX, trY) {
-	var str = "transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);\n";
+	var str = "";  
 	str += this.MozPrefix("transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skewX(" + skX + "deg) skewY(" + skY + "deg) translate(" + trX + "px, " + trY + "px);/* FF3.5+ */\n");
 	str += this.WebkitPrefix("transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/*Saf3.1+, Chrome*/\n");
 	str += this.OperaPrefix("transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/* Opera 10.5 */\n");
 	str += this.khtmlPrefix("transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/* Konqueror */\n");
 	str += this.iePrefix("-ms-transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);/* IE 9 */\n");
-	this.txtBox.value = str;
+	str += "transform: rotate(" + rot + "deg) scale(" + scX + ", " + scY + ") skew(" + skX + "deg, " + skY + "deg) translate(" + trX + "px, " + trY + "px);\n";
+    this.txtBox.value = str;
 };
 /////////////////////////
 //    Box-shadow      //
@@ -335,14 +323,10 @@ SIR.boxShadow.init = function() {
 	this.ColorPicker.addChangeListener(function() {
 		SIR.boxShadow.onParamsChange.call(self);
 	});
-	this.BoxShorLen.value = 9;
-	this.BoxSverLen.value = 6;
-	this.BoxSblurRadius.value = 11;
-	this.colorButton.color = "#6D6B6B";
 	this.horLenlbl.value = this.BoxShorLen.value;
 	this.verLenlbl.value = this.BoxSverLen.value;
 	this.blurRadiuslbl.value = this.BoxSblurRadius.value;
-	this.rect.style.boxShadow = "9px 6px 11px #6D6B6B";
+	this.rect.style.boxShadow = this.BoxShorLen.value + "px " + this.BoxSverLen.value + "px " + this.BoxSblurRadius.value + "px " + this.colorButton.color;
 	this.showCode(this.BoxShorLen.value, this.BoxSverLen.value, this.BoxSblurRadius.value, this.colorButton.color, false);
 	this.horLenlbl.addEventListener("keyup", function() {
 		self.txtBxScale(self.BoxShorLen, self.horLenlbl)
@@ -377,16 +361,19 @@ SIR.boxShadow.init = function() {
 	if (inset) {
 		ins = "inset "
 	}
-	var str = ""
-	str += "box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";\n";
+	var str = ""	
 	str += this.MozPrefix("box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*FF 3.5+*/\n");
 	str += this.WebkitPrefix("box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/\n");
 	str += this.khtmlPrefix("box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*Konqueror*/\n");
 	if (!inset) {
-		str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');
+		str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');		
+	}
+    str += "box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";\n";
+    if (!inset) {		
 		str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ');/*IE 5.5-7*/\n');
 	}
-	str += this.PIE();
+    
+	str += this.PIE();    
 	this.txtBox.value = str;
 }
 /////////////////////////
@@ -413,19 +400,14 @@ SIR.borderRadius.init = function() {
 	this.ColorPicker.addChangeListener(function() {
 		SIR.borderRadius.onParamsChange.call(self);
 	});
-	this.brdWidth.value = 2;
-	this.brdRadTL.value = 0;
-	this.brdRadTR.value = 0;
-	this.brdRadBL.value = 0;
-	this.brdRadBR.value = 0;
-	this.colorButton.color = "#000";
 	this.brdWidthlbl.value = this.brdWidth.value;
 	this.brdRadTLlbl.value = this.brdRadTL.value;
 	this.brdRadTRlbl.value = this.brdRadTR.value;
 	this.brdRadBLlbl.value = this.brdRadBL.value;
 	this.brdRadBRlbl.value = this.brdRadBR.value;
 	
-    this.rect.style.cssText = "border: 2px solid #000; border-radius: 0px;"	
+    this.rect.style.cssText = "border: " + this.brdWidth.value + "px solid " + this.colorButton.color + "; border-radius: " 
+            + this.brdRadTL.value + "px " + this.brdRadTR.value + "px " + this.brdRadBR.value + "px " + this.brdRadBL.value + "px;"; 	
     
     this.showCode(this.brdWidth.value, "solid", this.colorButton.color, this.brdRadTL.value, this.brdRadTR.value, this.brdRadBL.value, this.brdRadBR.value);
 	this.brdWidthlbl.addEventListener("keyup", function() {
@@ -528,12 +510,10 @@ SIR.txtColumn.init = function() {
 	this.desc.textContent = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of 'de Finibus Bonorum et Malorum' (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.";
 	this.colCountlbl = document.getElementById("txtColumnCountValue");
 	this.colGaplbl = document.getElementById("txtColumnGapValue");
-	this.colCount.value = 1;
-	this.colGap.value = 0;
 	this.colCountlbl.value = this.colCount.value;
 	this.colGaplbl.value = this.colGap.value;
 	
-    this.desc.style.cssText = "-moz-column-count: 1; -moz-column-gap: 0px; -moz-column-rule: none;"
+    this.desc.style.cssText = "-moz-column-count: " + this.colCount.value + "; -moz-column-gap:" + this.colGap.value + "px; -moz-column-rule:" + this.colRule.value;
     
     this.showCode(1, 0, "none");
 	this.colCountlbl.addEventListener("keyup", function() {
@@ -556,10 +536,7 @@ SIR.txtColumn.onParamsChange = function() {
 	document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
 };
 SIR.txtColumn.showCode = function(count, gap, rule) {
-	var str = "";
-	str += "column-count:" + count + ";\n";
-	str += "column-gap:" + gap + "px;\n";
-	str += "column-rule:" + rule + ";\n";
+	var str = "";	
 	if (SIR.sirPrefs.getBool("generators.moz")) {str += "/* FF 3.5+*/\n";}
 	str += this.MozPrefix("column-count:" + count + ";\n");
 	str += this.MozPrefix("column-gap:" + gap + "px;\n");
@@ -571,7 +548,10 @@ SIR.txtColumn.showCode = function(count, gap, rule) {
 	if (SIR.sirPrefs.getBool("generators.khtml")) {str += "/*Konqueror*/\n";}
 	str += this.khtmlPrefix("column-count:" + count + ";\n");
 	str += this.khtmlPrefix("column-gap:" + gap + "px;\n");
-	str += this.khtmlPrefix("column-rule:" + rule + ";");
+	str += this.khtmlPrefix("column-rule:" + rule + ";\n");
+    str += "column-count:" + count + ";\n";
+	str += "column-gap:" + gap + "px;\n";
+	str += "column-rule:" + rule + ";\n";
 	this.txtBox.value = str;
 };
 /////////////////////////
@@ -639,8 +619,7 @@ SIR.gradient.onParamsChange = function() {
 };
 SIR.gradient.showCode = function(type, grad, dir, from, to) {
 	var str = "";
-	str += "background: " + from + "; /* for non-css3 browsers */\n";
-    str += "background: " + type + "-gradient(" + grad[type][dir].moz + from + "," + to + "); /* W3C */\n";
+	str += "background: " + from + "; /* for non-css3 browsers */\n";    
     if(SIR.sirPrefs.getBool("generators.moz")){
 	   str += "background: -moz-" + type + "-gradient(" + grad[type][dir].moz + from + ",  " + to + "); /* for firefox 3.6+ */ \n";
     }
@@ -655,9 +634,13 @@ SIR.gradient.showCode = function(type, grad, dir, from, to) {
     if(SIR.sirPrefs.getBool("generators.khtml")){
         str += "background: -khtml-" + type + "-gradient(" + grad[type][dir].moz + from + "," + to + "); /* Konqueror */\n";
 	}
+    
+    if(SIR.sirPrefs.getBool("generators.ms") && type === "linear"){
+        str += 'background: -ms-filter:"progid:DXImageTransform.Microsoft.Gradient(StartColorStr=' + from + ', EndColorStr=' + to + ', GradientType=' + grad[type][dir].ie + ')";\n';	           
+    }
+    str += "background: " + type + "-gradient(" + grad[type][dir].moz + from + "," + to + "); /* W3C */\n";
     if(type === "linear"){
-        if(SIR.sirPrefs.getBool("generators.ms")){
-            str += 'background:-ms-filter:"progid:DXImageTransform.Microsoft.Gradient(StartColorStr=' + from + ', EndColorStr=' + to + ', GradientType=' + grad[type][dir].ie + ')";\n';	   
+        if(SIR.sirPrefs.getBool("generators.ms")){            
             str += "filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='" + from + "', endColorstr='" + to + "', GradientType='" + grad[type][dir].ie + "'); /* for IE */\n";
 	       }
         if(SIR.sirPrefs.getBool("generators.pie")){
@@ -849,13 +832,10 @@ SIR.outline.init = function() {
 	this.ColorPicker.addChangeListener(function() {
 		SIR.outline.onParamsChange.call(self);
 	});
-	this.outWidth.value = 6;
-	this.outOffset.value = 6;
 	this.outWidthlbl.value = this.outWidth.value;
 	this.outOffsetlbl.value = this.outOffset.value;
-	this.colorButton.color = "#181783";
-	this.rect.style.outline = "6px solid #181783";
-	this.rect.style.outlineOffset = "6px";
+	this.rect.style.outline = this.outWidth.value + "px " + this.outStyle.value + " " + this.colorButton.color;
+	this.rect.style.outlineOffset = this.outOffset.value + "px";
 	this.showCode(this.outWidth.value, "solid", this.colorButton.color, this.outOffset.value);
 	this.outWidthlbl.addEventListener("keyup", function() {
 		self.txtBxScale(self.outWidth, self.outWidthlbl)
@@ -913,7 +893,6 @@ SIR.transition.init = function() {
 	this.txtBox = document.getElementById("transitionResult");
 	this.rect = document.getElementById("transitionBox");
 	this.durationlbl = document.getElementById("transitionDurationVal");
-	this.duration.value = 10;
 	this.durationlbl.value = this.duration.value / 10;
 	this.rect.style.MozTransition = "all 1s ease";
 	this.showCode("all", 1, "ease");
