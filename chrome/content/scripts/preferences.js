@@ -30,8 +30,7 @@ SIR.Preferences.onOK = function(){
               } catch (e) {
               }
           }
-  
-           
+
      window.location.reload();
      
  };
