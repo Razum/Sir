@@ -1110,3 +1110,62 @@ SIR.textfont.makeStyle = function(arrObj, node) {
 		}
 	}
 };
+
+/////////////////////////
+//    Background      //
+///////////////////////
+SIR.bkground = new SIR.Item();
+SIR.bkground.init = function() {
+	var self = this;
+	this.bkgrAttach = document.getElementById("bkground-attachment");
+    this.bkgrRepeat = document.getElementById("bkground-repeat");
+    this.bkgrPosX = document.getElementById("positionX");
+    this.bkgrPosY = document.getElementById("positionY");
+    this.bkgrImage = document.getElementById("bkground-useImage");            
+    this.colorButton = document.getElementById("colorButton");            
+    this.txtBox = document.getElementById("bkgroundResult");    
+    this.rect = document.getElementById("boxField");        
+	this.bkgrPosXlbl = document.getElementById("positionXval");
+	this.bkgrPosYlbl = document.getElementById("positionYval");
+    
+    this.ColorPicker = new SIR.ColourPicker(document.getElementById('colorPicker'), 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(109, 107, 107));
+    this.ColorPicker.addChangeListener(function() {
+		SIR.bkground.onParamsChange.call(self);
+	});
+    
+    this.bkgrPosXlbl.value = this.bkgrPosX.value;
+    this.bkgrPosYlbl.value = this.bkgrPosY.value;
+    
+    
+    
+    this.rect.style.background = this.colorButton.color + " url('chrome://sir/skin/images/bkexmp.png') " + this.bkgrPosX.value + " " + this.bkgrPosY.value + " " + this.bkgrRepeat.value;
+	this.bkgrPosXlbl.addEventListener("keyup", function() {
+		self.txtBxScale(self.bkgrPosX, self.bkgrPosXlbl)
+	}, false);
+    this.bkgrPosYlbl.addEventListener("keyup", function() {
+		self.txtBxScale(self.bkgrPosY, self.bkgrPosYlbl)
+	}, false);
+    
+    
+    
+
+}, 
+
+
+SIR.bkground.onParamsChange = function() {
+    
+    this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
+    this.bkgrPosXlbl.value = this.bkgrPosX.value;
+    this.bkgrPosYlbl.value = this.bkgrPosY.value;
+    var attach = this.bkgrImage.checked ? "url('path/image') " : "";
+    this.rect.style.background = attach + this.colorButton.color + " url('chrome://sir/skin/images/bkexmp.png') " + this.bkgrPosX.value + "% " + this.bkgrPosY.value + "% " + this.bkgrRepeat.value;
+    
+
+}, 
+
+SIR.bkground.showCode = function(attach, color, posX, posY, repeat) {
+    str = '';
+    
+    str += 'background: ' + attach + color + " " + posX + "% " + posY + "% " + repeat;
+	this.txtBox.value = str;
+}

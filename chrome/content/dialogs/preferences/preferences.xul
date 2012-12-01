@@ -12,10 +12,9 @@
                 ondialogextra1= "SIR.Preferences.onReset();"
                 ondialogaccept="SIR.Preferences.onOK();">
                 
-                
+              
 			<prefpane id="sir-generators">
-				<script type="application/x-javascript" src="chrome://sir/content/scripts/preferences.js">
-				</script>
+				
 				<preferences>
 					<preference id="moz" name="extensions.sir.generators.moz" type="bool"/>
 					<preference id="webkit" name="extensions.sir.generators.webkit" type="bool"/>
@@ -72,6 +71,8 @@
                 <caption label="Plugin" />
                 <checkbox label="Enable Comments" preference="comments"/>
                 </groupbox>
-                
+                <script type="application/x-javascript" src="chrome://sir/content/scripts/preferences.js">
+				</script> 
 			</prefpane>
+             
 		</prefwindow>

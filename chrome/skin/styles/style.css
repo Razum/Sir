@@ -1156,6 +1156,81 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 }
 
 
+/************************** background ************************/
+
+#backgroundDialogDialog{
+    width:870px;
+    height: 470px;
+    min-height: 470px;
+    min-width: 870px;
+}
+
+ .bkgroundLabels{
+    width: 130px;
+ }
+ 
+ 
+ #bkgroundcontrolBox{
+    padding: 30px 15px 0 15px;
+ }
+ 
+
+ 
+ #bkgroundcontrolBox scale{
+    width: 220px;
+ }
+ 
+  #bkgroundcontrolBox textbox{
+    font-weight: 600;
+    font-size: 14px;
+    width: 35px;
+ }
+ 
+
+ #bkgroundcontrolBox label{
+    font-weight: 600;
+    font-size: 14px;
+ } 
+ 
+ #BKgroundinscription {
+    font-size: 16px;
+    line-height: 2;
+    color:#a4a1a1;
+ }
+
+ 
+#boxField{
+    
+    width: 400px;
+    height: 300px;
+    text-align: center;  
+    margin-bottom: 15px;
+    border: 1px solid #dedede;
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    -moz-border-radius: 10px;
+    -moz-box-pack: center;
+    background-color: #F7F7F7;
+    overflow: hidden;
+    
+    background-image: url('chrome://sir/skin/images/bkexmp.png');
+    background-repeat: no-repeat;
+}
+
+
+#bkgroundResult{
+    
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    background-color: #F7F7F7;
+    padding-left: 12px;
+    line-height: 1.5;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 12px;
+    
+    
+}
+
+
+
 
 
 
