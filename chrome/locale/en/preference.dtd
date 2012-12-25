@@ -1,4 +1,9 @@
 <!-- ENGLISH  -->
+
+<!ENTITY settings.general "General">
+
+<!ENTITY settings.units "Units">
+
 <!ENTITY settings.title "Settings">
 <!ENTITY settings.reset "Reset to default">
 <!ENTITY settings.browsers "Browsers">
@@ -6,3 +11,11 @@
 <!ENTITY settings.pie "Add PIE (Progressive Internet Explorer) support">
 
 <!ENTITY settings.piePath "Path to PIE file">
+
+<!ENTITY settings.output "Output">
+
+<!ENTITY settings.output.enableComments "Enable Comments">
+
+<!ENTITY settings.units.baseValue "Base value: ">
+
+<!ENTITY settings.units.generators "Generators">

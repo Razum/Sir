@@ -5,15 +5,75 @@ if (!SIR) {
 SIR.bonus = {
     
     init: function(){
-        
+        this.BuildPxtoEmList();
         this.BuildCrossBrowserColorList();
+        this.BuildCrossBrowserFontList();
+        
+        var self = this;
+        document.getElementById("tp_hack").addEventListener("click", self.bonusCopyToClipboard, false);
         
         
     },
     
-    BuildCrossBrowserColorList: function(){
+    BuildPxtoEmList: function(){
+        var self = this;
+        var theList = document.getElementById('pxtoemListRows');
         
-        var theList = document.getElementById('crossColorList');
+        var units = [
+            {px: "6px",     em: "0.375em",      per: "37.5%",       pt: "5pt"},            
+            {px: "7px",     em: "0.438em",      per: "43.8%",       pt: "5pt"},
+            {px: "8px",     em: "0.5em",        per: "50%",         pt: "6pt"},
+            {px: "9px",     em: "0.563em",      per: "56.3%",       pt: "7pt"},
+            {px: "10px",    em: "0.625em",      per: "62.5%",       pt: "8pt"},
+            {px: "11px",    em: "0.688em",      per: "68.8%",       pt: "8pt"},
+            {px: "12px",    em: "0.75em",       per: "75%",         pt: "9pt"},
+            {px: "13px",    em: "0.813em",      per: "81.3%",       pt: "10pt"},
+            {px: "14px",    em: "0.875em",      per: "87.5%",       pt: "11pt"},
+            {px: "15px",    em: "0.938em",      per: "93.8%",       pt: "11pt"},
+            {px: "16px",    em: "1em",          per: "100%",        pt: "12pt"},
+            {px: "17px",    em: "1.063em",      per: "106.3%",      pt: "13pt"},
+            {px: "18px",    em: "1.125em",      per: "112.5%",      pt: "14pt"},
+            {px: "19px",    em: "1.188em",      per: "118.8%",      pt: "14pt"},
+            {px: "20px",    em: "1.25em",       per: "125%",        pt: "15pt"},            
+            {px: "21px",    em: "1.313em",      per: "131.3%",      pt: "16pt"},
+            {px: "22px",    em: "1.375em",      per: "137.5%",      pt: "17pt"},
+            {px: "23px",    em: "1.438em",      per: "143.8%",      pt: "17pt"},
+            {px: "24px",    em: "1.5em",        per: "150%",        pt: "18pt"}
+        ];
+        
+        for(var i = 0, len = units.length; i<len; i+=1){
+            var row = document.createElement('row'), cell = document.createElement('label'), unit = units[i];
+            cell.setAttribute('value', unit.px);
+            cell.setAttribute('class', "applyCopy");            
+            row.appendChild(cell);
+            
+            cell = document.createElement('label');
+            cell.setAttribute('value',  unit.em);
+            cell.setAttribute('class', "applyCopy");            
+            row.appendChild(cell);
+            
+            cell = document.createElement('label');
+            cell.setAttribute('value',  unit.per);
+            cell.setAttribute('class', "applyCopy");            
+            row.appendChild(cell);
+            
+            cell = document.createElement('label');
+            cell.setAttribute('value',  unit.pt);
+            cell.setAttribute('class', "applyCopy");            
+            row.appendChild(cell);
+            
+            
+            theList.appendChild(row); 
+        }
+        
+        theList.addEventListener("click", self.bonusCopyToClipboard, false);
+        
+    },
+    
+    
+    BuildCrossBrowserColorList: function(){
+        var self = this;
+        var theList = document.getElementById('crossColorListRows');
         
         var colors = [        
                         {name:"AliceBlue",          rgb:"rgb(240, 248, 255)",   hex:"#F0F8FF"},
@@ -158,19 +218,22 @@ SIR.bonus = {
                         {name:"YellowGreen",        rgb:"rgb(154, 205, 50)",    hex:"#9ACD32"}                                                                                                                        
         ];        
         for(var i=0, n = colors.length;  i < n; i+=1){
-            var row = document.createElement('listitem'), cell = document.createElement('listcell'), color = colors[i];
-            cell.setAttribute('label', color.name);
+            var row = document.createElement('row'), cell = document.createElement('label'), color = colors[i];
+            cell.setAttribute('value',  color.name);
+            cell.setAttribute('class', "applyCopy");  
             row.appendChild(cell);
             
-            cell = document.createElement('listcell');
-            cell.setAttribute('label',  color.rgb);
+            cell = document.createElement('label');
+            cell.setAttribute('value',  color.rgb);
+            cell.setAttribute('class', "applyCopy");  
             row.appendChild(cell);
             
-            cell = document.createElement('listcell');
-            cell.setAttribute('label',  color.hex);
+            cell = document.createElement('label');
+            cell.setAttribute('value',  color.hex);
+            cell.setAttribute('class', "applyCopy");
             row.appendChild(cell);
             
-            cell = document.createElement('listcell');
+            cell = document.createElement('label');
             cell.style.background = color.hex;
             row.appendChild(cell);
             
@@ -178,7 +241,82 @@ SIR.bonus = {
             theList.appendChild(row);                        
         }
         
+       theList.addEventListener("click", self.bonusCopyToClipboard, false); 
         
+    },
+    
+    BuildCrossBrowserFontList: function(){
+        var self = this;
+        var theList = document.getElementById("crossFontListRows");
+        
+        var fonts = [   
+                        {fontFamily: 'Arial, Helvetica, sans-serif ' },
+                        {fontFamily: '"Arial Black", Gadget, sans-serif' },
+                        {fontFamily: '"Comic Sans MS", cursive, sans-serif' },
+                        {fontFamily: '"Courier New", Courier, monospace' },
+                        {fontFamily: 'Georgia, serif' },
+                        {fontFamily: 'Impact, Charcoal, sans-serif' },
+                        {fontFamily: '"Lucida Console", Monaco, monospace ' },
+                        {fontFamily: '"Lucida Sans Unicode", "Lucida Grande", sans-serif' },
+                        {fontFamily: '"Palatino Linotype", "Book Antiqua", Palatino, serif' },
+                        {fontFamily: 'Tahoma, Geneva, sans-serif' },
+                        {fontFamily: '"Times New Roman", Times, serif' },
+                        {fontFamily: '"Trebuchet MS", Helvetica, sans-serif' },
+                        {fontFamily: 'Verdana, Geneva, sans-serif' },
+                        {fontFamily: '"MS Sans Serif", Geneva, sans-serif' },
+                        {fontFamily: '"MS Serif", "New York", serif ' }                                                
+                        ];
+                        
+                        var vbox = document.createElement('vbox'),
+                        labelNormal = document.createElement('label'),
+                        labelBold = document.createElement('label'),
+                        labelItalic = document.createElement('label');                        
+                        labelNormal.setAttribute("value", "It's just a text!");                        
+                        
+                        labelBold.setAttribute("value", "It's just a text!");
+                        labelBold.setAttribute("style", "font-weight:700;");
+                        
+                        labelItalic.setAttribute("value", "It's just a text!");
+                        labelItalic.setAttribute("style", "font-style: italic;");
+                        
+                        vbox.appendChild(labelNormal);
+                        vbox.appendChild(labelBold);
+                        vbox.appendChild(labelItalic);
+                        
+                        
+                for(var i=0, len = fonts.length; i < len; i+=1){
+                    var row = document.createElement('row'), 
+                    label = document.createElement('label'), font = fonts[i];
+                    label.setAttribute('value', font.fontFamily);
+                    label.setAttribute('class', "applyCopy");
+                    
+                    var newVbox = vbox.cloneNode(true);
+                    
+                    newVbox.setAttribute('style', "font-family: " + font.fontFamily);
+                    
+                    row.appendChild(label);
+                    row.appendChild(newVbox);
+                    
+                    theList.appendChild(row);                    
+                }   
+                theList.addEventListener("click", self.bonusCopyToClipboard, false);                                                      
+    },
+    
+    bonusCopyToClipboard: function(event){
+        
+        if(event.button !== 2){return false;}
+        
+        var trg = event.target;
+        
+        if (trg.className.indexOf("applyCopy") !== -1  && trg.getAttribute("value")){
+            
+            var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);
+            gClipboardHelper.copyString(trg.getAttribute("value"));                                          
+        } else if(trg.className === "applyCopy" && trg.textContent){
+            var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);
+            gClipboardHelper.copyString(trg.textContent); 
+        }                                
+                
         
     }
     

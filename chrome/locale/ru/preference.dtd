@@ -1,4 +1,9 @@
 ﻿<!-- RUSSIAN -->
+
+<!ENTITY settings.general "Основные">
+
+<!ENTITY settings.units "Единицы">
+
 <!ENTITY settings.title "Настройки">
 <!ENTITY settings.reset "Сбросить">
 <!ENTITY settings.browsers "Браузеры">
@@ -6,3 +11,11 @@
 <!ENTITY settings.pie "Добавить ​​поддержку PIE(Progressive Internet Explorer)">
 
 <!ENTITY settings.piePath "Путь к файлу PIE">
+
+<!ENTITY settings.output "Вывод">
+
+<!ENTITY settings.output.enableComments "Разрешить комментарии">
+
+<!ENTITY settings.units.baseValue "Базовый размер: ">
+
+<!ENTITY settings.units.generators "Генераторы">

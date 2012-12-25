@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="chrome://global/skin/"?>
+	<?xml-stylesheet href="chrome://sir/skin/styles/preferences.css" type="text/css"?>
+    <!DOCTYPE window SYSTEM "chrome://sir/locale/preference.dtd">
+		<overlay id="" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+                
+              
+			<prefpane id="sir-units">
+            
+            <preferences>
+                <preference id="textShadow-unit" name="extensions.sir.units.textShadow" type="string"/>
+                <preference id="borderRadius-unit" name="extensions.sir.units.borderRadius" type="string"/>
+                <preference id="boxShadow-unit" name="extensions.sir.units.boxShadow" type="string"/>
+                <preference id="outline-unit" name="extensions.sir.units.outline" type="string"/>
+                <preference id="textFont-unit" name="extensions.sir.units.textFont" type="string"/>
+                
+                <preference id="BaseValue-unit" name="extensions.sir.units.baseValue" type="string"/>
+            </preferences>
+            
+            
+            
+            <hbox pack="center"><label style="margin-top: 4px;" value="&settings.units.baseValue;" /> <textbox type="number" min="9" max="36" maxlength="2" size="2" preference="BaseValue-unit" /></hbox>
+				<groupbox>
+					<caption label="&settings.units.generators;" />
+                    
+                    <grid>
+                        <columns>
+                            <column flex="1"/>
+                            <column flex="2"/>
+                        </columns>
+                    <rows>
+                    <row><label value="Text-shadow"/>
+                        <radiogroup orient="horizontal" preference="textShadow-unit">
+                            <radio value="px" label="px" tooltip="" flex="1"/>
+                            <radio value="em" label="em" tooltip="" flex="1"/>                            
+                        </radiogroup>
+                    </row>
+                    
+                    <row><label value="Border-radius"/>
+                        <radiogroup orient="horizontal" preference="borderRadius-unit">
+                            <radio value="px" label="px" tooltip="" flex="1"/>
+                            <radio value="em" label="em" tooltip="" flex="1"/>                            
+                        </radiogroup>
+                    </row>
+                    
+                    <row><label value="Box-shadow"/>
+                        <radiogroup orient="horizontal" preference="boxShadow-unit">
+                            <radio value="px" label="px" tooltip="" flex="1"/>
+                            <radio value="em" label="em" tooltip="" flex="1"/>                            
+                        </radiogroup>
+                    </row>
+                    
+                    <row><label value="Outline"/>
+                        <radiogroup orient="horizontal" preference="outline-unit">
+                            <radio value="px" label="px" tooltip="" flex="1"/>
+                            <radio value="em" label="em" tooltip="" flex="1"/>                            
+                        </radiogroup>
+                    </row>
+                    
+                    <row><label value="Text and font"/>
+                        <radiogroup orient="horizontal" preference="textFont-unit">
+                            <radio value="px" label="px" tooltip="" flex="1"/>
+                            <radio value="em" label="em" tooltip="" flex="1"/>                            
+                        </radiogroup>
+                    </row>
+                    
+                    
+                    </rows>
+                    
+                    
+                   </grid>                     
+                </groupbox>
+			
+			  </prefpane>
+</overlay>

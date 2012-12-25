@@ -28,9 +28,7 @@
                     <menuitem id="sir-toolbar-button-multcolumn" label="Multiple Columns" image="chrome://sir/skin/images/columns.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/txtColumn.xul', 'txtColumnDialog', '')"
                     />
                     <menuitem id="sir-toolbar-button-gradient" label="Gradient" image="chrome://sir/skin/images/gradient.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/gradient.xul', 'gradientDialog', '')"
-                    />
-                    <menuitem id="sir-toolbar-button-background" label="Background" image="" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/background.xul', 'backgroundDialog', '')"
-                    />
+                    />                    
                     <menuitem id="sir-toolbar-button-converter" label="Converter" image="chrome://sir/skin/images/converter.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/converter.xul', 'converterDialog', '')"
                     />
                     <menuitem id="sir-toolbar-button-cleaner" label="Tag Cleaner" image="chrome://sir/skin/images/cleaner.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/tagCleaner.xul', 'CleanerDialog', '')"

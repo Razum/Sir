@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="chrome://global/skin/"?>
+	<?xml-stylesheet href="chrome://sir/skin/styles/preferences.css" type="text/css"?>
+    <!DOCTYPE window SYSTEM "chrome://sir/locale/preference.dtd">
+		<overlay id="" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+                
+              
+			<prefpane id="sir-generators">
+				
+				<preferences>
+					<preference id="moz" name="extensions.sir.generators.moz" type="bool"/>
+					<preference id="webkit" name="extensions.sir.generators.webkit" type="bool"/>
+					<preference id="opera" name="extensions.sir.generators.opera" type="bool"/>
+					<preference id="ms" name="extensions.sir.generators.ms" type="bool"/>
+					<preference id="khtml" name="extensions.sir.generators.khtml" type="bool"/>
+					<preference id="pie" name="extensions.sir.generators.pie" type="bool"/>
+					<preference id="piePath" name="extensions.sir.generators.piePath" type="string"/>
+                    <preference id="comments" name="extensions.sir.generators.comments" type="bool"/>
+				</preferences>
+				<groupbox>
+					<caption label="&settings.browsers;" />
+					<grid>
+						<columns>
+							<column>
+								<rows>
+									<checkbox label="Mozilla (-moz-)" preference="moz"/>
+								</rows>
+								<rows>
+									<checkbox label="Opera (-o-)" preference="opera"/>
+								</rows>
+								<rows>
+									<checkbox label="Konqueror (-khtml-)" preference="khtml"/>
+								</rows>
+							</column>
+							<column>
+								<rows>
+									<checkbox label="Chrome, Safari (-webkit-)" preference="webkit"/>
+								</rows>
+								<rows>
+									<checkbox label="IE (-ms-)" preference="ms"/>
+								</rows>
+								<rows>
+								</rows>
+							</column>
+						</columns>
+					</grid>
+				</groupbox>
+                
+				<groupbox id="pie-group">
+					<caption>
+                        <tooltip id ="sir-pie-tt" label="&settings.pie;" />
+						<checkbox label="PIE" id="sir-pie-check" preference="pie" tooltip="sir-pie-tt"/><spacer/><label value="?" href="http://css3pie.com/about/" oncommand="gBrowser.addTab('http://www.google.com/')" style="font-size: 14px; font-weight: 700;" class="text-link"/>
+					</caption>
+					<label value="&settings.piePath;"/>
+					<textbox id="sir-piePath" value="" onclick="this.focus();" />
+				</groupbox>
+                
+                                
+                
+                
+                <groupbox id="ebable-comments">
+                <caption label="&settings.output;" />
+                <checkbox label="&settings.output.enableComments;" preference="comments"/>
+                </groupbox> 
+			  </prefpane>
+</overlay>

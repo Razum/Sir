@@ -57,6 +57,39 @@ SIR.Item.prototype.txtBxScale = function(scale, lbl) {
 		scale.value = Math.round(val);
 	}
 };
+
+SIR.Item.prototype.interfaceOrganize = function(options) {
+    if(!options){return false;}
+    
+    
+    if(options.units === "em"){
+        //var val = SIR.sirPrefs.get("generators.units." + this.name); 
+        var baseVal = SIR.sirPrefs.get("generators.units.baseValue") || 16;      
+        var scales = document.getElementsByTagName("scale");
+        if (scales){
+            for(var i = scales.length; i--;){
+                var scale = scales[i], minpx = scale.getAttribute("min"), maxpx = scale.getAttribute("max");
+                
+                //window.opener.Firebug.Console.log(scale);
+                
+                var minem = Math.round(parseInt(minpx, 10) / baseVal)*10;
+                var maxem = Math.round(parseInt(maxpx, 10) / baseVal)*10;
+                
+                scale.setAttribute("min", minem);
+                scale.setAttribute("max", maxem);
+                this.delimeter = 10;
+                //window.opener.Firebug.Console.log(scale);
+                
+            }
+         
+        }
+    }
+    
+    
+    
+    
+    
+};
 //////////////////
 //    RGBA     //
 /////////////////
@@ -126,6 +159,12 @@ SIR.rgba.showCode = function(R, G, B, opacity) {
 SIR.txtShadow = new SIR.Item();
 SIR.txtShadow.init = function() {
 	var self = this;
+    
+    this.name = "textShadow";
+    this.unit = SIR.sirPrefs.get("generators.units." + this.name) || "px";
+    this.delimeter = 1;
+    this.interfaceOrganize({units: this.unit});
+    
 	this.horLen = document.getElementById("TShorLen");
 	this.verLen = document.getElementById("TSverLen");
 	this.blurRadius = document.getElementById("TSblurRadius");
@@ -139,11 +178,14 @@ SIR.txtShadow.init = function() {
 	this.ColorPicker.addChangeListener(function() {
 		SIR.txtShadow.onParamsChange.call(self);
 	});
-	this.horLenlbl.value = this.horLen.value;
-	this.verLenlbl.value = this.verLen.value;
-	this.blurRadiuslbl.value = this.blurRadius.value;
-	this.inscription.style.textShadow = this.horLen.value + "px "+ this.verLen.value +"px "+ this.blurRadius.value +"px " + this.colorButton.color;
-	this.showCode(this.horLen.value, this.verLen.value, this.blurRadius.value, this.colorButton.color);
+    
+    var horLen = this.horLen.value/this.delimeter, verLen = this.verLen.value/this.delimeter, blurRad = this.blurRadius.value/this.delimeter;
+    
+	this.horLenlbl.value = horLen;
+	this.verLenlbl.value = verLen;
+	this.blurRadiuslbl.value = blurRad;
+	this.inscription.style.textShadow = horLen + this.unit + " " + verLen + this.unit + " " + blurRad +this.unit + " " + this.colorButton.color;
+	this.showCode(horLen, verLen, blurRad, this.colorButton.color);
 	this.horLenlbl.addEventListener("keyup", function() {
 		self.txtBxScale(self.horLen, self.horLenlbl)
 	}, false);
@@ -158,23 +200,32 @@ SIR.txtShadow.init = function() {
 	}, false);
 };
 SIR.txtShadow.onParamsChange = function() {
-	this.horLenlbl.value = this.horLen.value;
-	this.verLenlbl.value = this.verLen.value;
-	this.blurRadiuslbl.value = this.blurRadius.value;
+    
+    var horLen = this.horLen.value/this.delimeter, verLen = this.verLen.value/this.delimeter, blurRad = this.blurRadius.value/this.delimeter;
+    
+	this.horLenlbl.value = horLen;
+	this.verLenlbl.value = verLen;
+	this.blurRadiuslbl.value = blurRad;
 	this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
-	this.inscription.style.textShadow = this.horLen.value + "px " + this.verLen.value + "px " + this.blurRadius.value + "px " + this.colorButton.color;
-	this.showCode(this.horLen.value, this.verLen.value, this.blurRadius.value, this.colorButton.color);
+	this.inscription.style.textShadow = horLen + this.unit +" " + verLen + this.unit +" " + blurRad + this.unit +" " + this.colorButton.color;
+	this.showCode(horLen, verLen, blurRad, this.colorButton.color);
 	document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
 };
 SIR.txtShadow.showCode = function(horLen, verLen, blurRadius, color) {
 	var IEdirection = Math.abs(Math.round(Math.atan2(-verLen, horLen) * 180 / Math.PI) - 90) % 360;
-	if (IEdirection < 0) {
+	
+    var baseVal = SIR.sirPrefs.get("generators.units.baseValue") || 16; 
+    
+    var IEblurRad = this.unit === "em" ? Math.round(blurRadius * baseVal) : blurRadius;
+    if (IEdirection < 0) {
 		IEdirection = 180 + (180 + IEdirection);
 	}
+    
+    
 	var str = "";	
-	str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');
-    str += "text-shadow: " + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */\n";
-	str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + '); /*IE 5.5-7*/\n');    
+	str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');
+    str += "text-shadow: " + horLen +  this.unit +" " + verLen +  this.unit +" " + blurRadius +  this.unit +" " + color + ";/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */\n";
+	str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + color + '); /*IE 5.5-7*/\n');    
 	this.txtBox.value = str;
 };
 /////////////////////////
@@ -309,6 +360,12 @@ SIR.transform.showCode = function(rot, scX, scY, skX, skY, trX, trY) {
 SIR.boxShadow = new SIR.Item();
 SIR.boxShadow.init = function() {
 	var self = this;
+    
+    this.name = "boxShadow";
+    this.unit = SIR.sirPrefs.get("generators.units." + this.name) || "px";
+    this.delimeter = 1;
+    this.interfaceOrganize({units: this.unit});
+    
 	this.BoxShorLen = document.getElementById("BShorLen");
 	this.BoxSverLen = document.getElementById("BSverLen");
 	this.BoxSblurRadius = document.getElementById("BSblurRadius");
@@ -323,11 +380,14 @@ SIR.boxShadow.init = function() {
 	this.ColorPicker.addChangeListener(function() {
 		SIR.boxShadow.onParamsChange.call(self);
 	});
-	this.horLenlbl.value = this.BoxShorLen.value;
-	this.verLenlbl.value = this.BoxSverLen.value;
-	this.blurRadiuslbl.value = this.BoxSblurRadius.value;
-	this.rect.style.boxShadow = this.BoxShorLen.value + "px " + this.BoxSverLen.value + "px " + this.BoxSblurRadius.value + "px " + this.colorButton.color;
-	this.showCode(this.BoxShorLen.value, this.BoxSverLen.value, this.BoxSblurRadius.value, this.colorButton.color, false);
+    
+    var BoxShorLen = this.BoxShorLen.value/this.delimeter, BoxSverLen = this.BoxSverLen.value/this.delimeter, BoxSblurRadius = this.BoxSblurRadius.value/this.delimeter;
+    
+	this.horLenlbl.value = BoxShorLen;
+	this.verLenlbl.value = BoxSverLen;
+	this.blurRadiuslbl.value = BoxSblurRadius;
+	this.rect.style.boxShadow = BoxShorLen + this.unit + " " + BoxSverLen + this.unit + " " + BoxSblurRadius + this.unit + " " + this.colorButton.color;
+	this.showCode(BoxShorLen, BoxSverLen, BoxSblurRadius, this.colorButton.color, false);
 	this.horLenlbl.addEventListener("keyup", function() {
 		self.txtBxScale(self.BoxShorLen, self.horLenlbl)
 	}, false);
@@ -340,37 +400,49 @@ SIR.boxShadow.init = function() {
 	document.getElementsByClassName("copyImg")[0].addEventListener("click", function() {
 		self.CopyCode.apply(self, arguments)
 	}, false);
-}, SIR.boxShadow.onParamsChange = function() {
+}, 
+
+SIR.boxShadow.onParamsChange = function() {
 	var inset = "";
-	this.horLenlbl.value = this.BoxShorLen.value;
-	this.verLenlbl.value = this.BoxSverLen.value;
-	this.blurRadiuslbl.value = this.BoxSblurRadius.value;
+    
+    var BoxShorLen = this.BoxShorLen.value/this.delimeter, BoxSverLen = this.BoxSverLen.value/this.delimeter, BoxSblurRadius = this.BoxSblurRadius.value/this.delimeter;
+    
+	this.horLenlbl.value = BoxShorLen;
+	this.verLenlbl.value = BoxSverLen;
+	this.blurRadiuslbl.value = BoxSblurRadius;
 	this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
 	if (this.inset.checked) {
 		inset = "inset ";
 	}
-	this.rect.style.boxShadow = inset + this.BoxShorLen.value + "px " + this.BoxSverLen.value + "px " + this.BoxSblurRadius.value + "px " + this.colorButton.color;
-	this.showCode(this.BoxShorLen.value, this.BoxSverLen.value, this.BoxSblurRadius.value, this.colorButton.color, this.inset.checked);
+	this.rect.style.boxShadow = inset + BoxShorLen + this.unit + " " + BoxSverLen + this.unit + " " + BoxSblurRadius + this.unit + " " + this.colorButton.color;
+	this.showCode(BoxShorLen, BoxSverLen, BoxSblurRadius, this.colorButton.color, this.inset.checked);
 	document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
-}, SIR.boxShadow.showCode = function(horLen, verLen, blurRadius, color, inset) {
+}, 
+
+SIR.boxShadow.showCode = function(horLen, verLen, blurRadius, color, inset) {
 	var IEdirection = Math.abs(Math.round(Math.atan2(-verLen, horLen) * 180 / Math.PI) - 90) % 360;
 	if (IEdirection < 0) {
 		IEdirection = 180 + (180 + IEdirection);
 	}
+    
+    var baseVal = SIR.sirPrefs.get("generators.units.baseValue") || 16; 
+    
+    var IEblurRad = this.unit === "em" ? Math.round(blurRadius * baseVal) : blurRadius;
+    
 	var ins = "";
 	if (inset) {
 		ins = "inset "
 	}
 	var str = ""	
-	str += this.MozPrefix("box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*FF 3.5+*/\n");
-	str += this.WebkitPrefix("box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/\n");
-	str += this.khtmlPrefix("box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";/*Konqueror*/\n");
+	str += this.MozPrefix("box-shadow: " + ins + horLen + this.unit + " " + verLen + this.unit + " " + blurRadius + this.unit + " " + color + ";/*FF 3.5+*/\n");
+	str += this.WebkitPrefix("box-shadow: " + ins + horLen + this.unit + " " + verLen + this.unit + " " + blurRadius + this.unit + " " + color + ";/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/\n");
+	str += this.khtmlPrefix("box-shadow: " + ins + horLen + this.unit + " " + verLen + this.unit + " " + blurRadius + this.unit + " " + color + ";/*Konqueror*/\n");
 	if (!inset) {
 		str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');		
 	}
-    str += "box-shadow: " + ins + horLen + "px " + verLen + "px " + blurRadius + "px " + color + ";\n";
+    str += "box-shadow: " + ins + horLen + this.unit + " " + verLen + this.unit + " " + blurRadius + this.unit + " " + color + ";\n";
     if (!inset) {		
-		str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ');/*IE 5.5-7*/\n');
+		str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + color + ');/*IE 5.5-7*/\n');
 	}
     
 	str += this.PIE();    
@@ -382,6 +454,12 @@ SIR.boxShadow.init = function() {
 SIR.borderRadius = new SIR.Item();
 SIR.borderRadius.init = function() {
 	var self = this;
+    
+    this.name = "borderRadius";
+    this.unit = SIR.sirPrefs.get("generators.units." + this.name) || "px";
+    this.delimeter = 1;
+    this.interfaceOrganize({units: this.unit});
+    
 	this.brdStl = document.getElementById("border-style-selector");
 	this.brdWidth = document.getElementById("borderRadiusWidth");
 	this.brdRadTL = document.getElementById("borderRadiusTLeft");
@@ -400,16 +478,20 @@ SIR.borderRadius.init = function() {
 	this.ColorPicker.addChangeListener(function() {
 		SIR.borderRadius.onParamsChange.call(self);
 	});
-	this.brdWidthlbl.value = this.brdWidth.value;
-	this.brdRadTLlbl.value = this.brdRadTL.value;
-	this.brdRadTRlbl.value = this.brdRadTR.value;
-	this.brdRadBLlbl.value = this.brdRadBL.value;
-	this.brdRadBRlbl.value = this.brdRadBR.value;
-	
-    this.rect.style.cssText = "border: " + this.brdWidth.value + "px solid " + this.colorButton.color + "; border-radius: " 
-            + this.brdRadTL.value + "px " + this.brdRadTR.value + "px " + this.brdRadBR.value + "px " + this.brdRadBL.value + "px;"; 	
+
+    var brdWidth = this.brdWidth.value / this.delimeter, brdRadTL = this.brdRadTL.value / this.delimeter, brdRadTR = this.brdRadTR.value / this.delimeter, 
+        brdRadBL = this.brdRadBL.value / this.delimeter, brdRadBR = this.brdRadBR.value / this.delimeter; 
     
-    this.showCode(this.brdWidth.value, "solid", this.colorButton.color, this.brdRadTL.value, this.brdRadTR.value, this.brdRadBL.value, this.brdRadBR.value);
+	this.brdWidthlbl.value = brdWidth;
+	this.brdRadTLlbl.value = brdRadTL;
+	this.brdRadTRlbl.value = brdRadTR;
+	this.brdRadBLlbl.value = brdRadBL;
+	this.brdRadBRlbl.value = brdRadBR;
+	
+    this.rect.style.cssText = "border: " + brdWidth + this.unit +" solid " + this.colorButton.color + "; border-radius: " 
+            + brdRadTL + this.unit +" " + brdRadTR + this.unit +" " + brdRadBR + this.unit +" " + brdRadBL + this.unit; 	
+    
+    this.showCode(brdWidth, "solid", this.colorButton.color, brdRadTL, brdRadTR, brdRadBL, brdRadBR);
 	this.brdWidthlbl.addEventListener("keyup", function() {
 		self.txtBxScale(self.brdWidth, self.brdWidthlbl)
 	}, false);
@@ -430,69 +512,76 @@ SIR.borderRadius.init = function() {
 	}, false);
 };
 SIR.borderRadius.onParamsChange = function() {
-	this.brdWidthlbl.value = this.brdWidth.value;
-	this.brdRadTLlbl.value = this.brdRadTL.value;
-	this.brdRadTRlbl.value = this.brdRadTR.value;
-	this.brdRadBLlbl.value = this.brdRadBL.value;
-	this.brdRadBRlbl.value = this.brdRadBR.value;
+    
+    var brdWidth = this.brdWidth.value / this.delimeter, brdRadTL = this.brdRadTL.value / this.delimeter, brdRadTR = this.brdRadTR.value / this.delimeter, 
+        brdRadBL = this.brdRadBL.value / this.delimeter, brdRadBR = this.brdRadBR.value / this.delimeter; 
+    
+	this.brdWidthlbl.value = brdWidth;
+	this.brdRadTLlbl.value = brdRadTL;
+	this.brdRadTRlbl.value = brdRadTR;
+	this.brdRadBLlbl.value = brdRadBL;
+	this.brdRadBRlbl.value = brdRadBR;
 	this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
 	
-    this.rect.style.cssText = "border: " + this.brdWidth.value + "px " + this.brdStl.value + " " + this.colorButton.color + "; border-radius: " 
-            + this.brdRadTL.value + "px " + this.brdRadTR.value + "px " + this.brdRadBR.value + "px " + this.brdRadBL.value + "px;";    
+    this.rect.style.cssText = "border: " + brdWidth + this.unit + " " + this.brdStl.value + " " + this.colorButton.color + "; border-radius: " 
+            + brdRadTL + this.unit +" " + brdRadTR + this.unit + " " + brdRadBR + this.unit + " " + brdRadBL + this.unit;    
     
-    this.showCode(this.brdWidth.value, this.brdStl.value, this.colorButton.color, this.brdRadTL.value, this.brdRadTR.value, this.brdRadBL.value, this.brdRadBR.value);
+    this.showCode(brdWidth, this.brdStl, this.colorButton.color, brdRadTL, brdRadTR, brdRadBL, brdRadBR);
 	document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
 };
+
+
+
 SIR.borderRadius.showCode = function(width, style, color, TL, TR, BL, BR) {
-	var str = "border: " + width + "px " + style + " " + color + ";\n";
+	var str = "border: " + width + this.unit +" " + style + " " + color + ";\n";
 	if (TL == TR && TR == BL && BL == BR) {		
-		str += this.MozPrefix("border-radius: " + TL + "px;/*Firefox*/\n");
-		str += this.WebkitPrefix("border-radius: " + TL + "px;/*Safari, Chrome*/\n");
-		str += this.khtmlPrefix("border-radius: " + TL + "px;/*Konqueror*/\n");
-        str += "border-radius: " + TL + "px;\n";
+		str += this.MozPrefix("border-radius: " + TL +this.unit + ";/*Firefox*/\n");
+		str += this.WebkitPrefix("border-radius: " + TL + this.unit + ";/*Safari, Chrome*/\n");
+		str += this.khtmlPrefix("border-radius: " + TL + this.unit + ";/*Konqueror*/\n");
+        str += "border-radius: " + TL + this.unit + ";\n";
 		str += this.PIE();
 		this.txtBox.value = str;
 		return true;
 	}
 	if (TL == BR && TR == BL && TR != TL) {
 		
-		str += this.MozPrefix("border-radius: " + TL + "px " + TR + "px;/*Firefox*/\n");
-		str += this.WebkitPrefix("border-radius: " + TL + "px " + TR + "px;/*Safari, Chrome*/\n");
-		str += this.khtmlPrefix("border-radius: " + TL + "px " + TR + "px;/*Konqueror*/\n");
-        str += "border-radius: " + TL + "px " + TR + "px;\n";
+		str += this.MozPrefix("border-radius: " + TL + this.unit + " " + TR + this.unit + ";/*Firefox*/\n");
+		str += this.WebkitPrefix("border-radius: " + TL + this.unit + " " + TR + this.unit + ";/*Safari, Chrome*/\n");
+		str += this.khtmlPrefix("border-radius: " + TL + this.unit + " " + TR + this.unit + ";/*Konqueror*/\n");
+        str += "border-radius: " + TL + this.unit + " " + TR + this.unit + ";\n";
 		str += this.PIE();
 		this.txtBox.value = str;
 		return true;
 	}
 	if (TR == BL && TL != BR && TR != TL) {		
-		str += this.MozPrefix("border-radius: " + TL + "px " + TR + "px " + BR + "px;/*Firefox*/\n");
-		str += this.WebkitPrefix("border-radius: " + TL + "px " + TR + "px " + BR + "px;/*Safari, Chrome*/\n");
-		str += this.khtmlPrefix("border-radius: " + TL + "px " + TR + "px " + BR + "px;/*Konqueror*/\n");
-        str += "border-radius: " + TL + "px " + TR + "px " + BR + "px;\n";
+		str += this.MozPrefix("border-radius: " + TL + this.unit + " " + TR + this.unit + " " + BR + this.unit + ";/*Firefox*/\n");
+		str += this.WebkitPrefix("border-radius: " + TL + this.unit + " " + TR + this.unit + " " + BR + this.unit + ";/*Safari, Chrome*/\n");
+		str += this.khtmlPrefix("border-radius: " + TL + this.unit + " " + TR + this.unit + " " + BR + this.unit + ";/*Konqueror*/\n");
+        str += "border-radius: " + TL + this.unit + " " + TR + this.unit + " " + BR + this.unit + ";\n";
 		str += this.PIE();
 		this.txtBox.value = str;
 		return true;
 	}
 	
 	if (SIR.sirPrefs.getBool("generators.moz")) {str += "/*Firefox*/\n";}
-	str += this.MozPrefix("border-top-left-radius: " + TL + "px;\n");
-	str += this.MozPrefix("border-top-right-radius: " + TR + "px;\n");
-    str += this.MozPrefix("border-bottom-right-radius: " + BR + "px;\n");
-	str += this.MozPrefix("border-bottom-left-radius: " + BL + "px;\n");	
+	str += this.MozPrefix("border-top-left-radius: " + TL + this.unit + ";\n");
+	str += this.MozPrefix("border-top-right-radius: " + TR + this.unit + ";\n");
+    str += this.MozPrefix("border-bottom-right-radius: " + BR + this.unit + ";\n");
+	str += this.MozPrefix("border-bottom-left-radius: " + BL + this.unit + ";\n");	
 	if (SIR.sirPrefs.getBool("generators.webkit")) {str += "/*Safari, Chrome*/\n";}
-	str += this.WebkitPrefix("border-top-left-radius: " + TL + "px;\n");
-	str += this.WebkitPrefix("border-top-right-radius: " + TR + "px;\n");
-    str += this.WebkitPrefix("border-bottom-right-radius: " + BR + "px;\n");
-	str += this.WebkitPrefix("border-bottom-left-radius: " + BL + "px;\n");	
+	str += this.WebkitPrefix("border-top-left-radius: " + TL + this.unit +";\n");
+	str += this.WebkitPrefix("border-top-right-radius: " + TR + this.unit +";\n");
+    str += this.WebkitPrefix("border-bottom-right-radius: " + BR + this.unit +";\n");
+	str += this.WebkitPrefix("border-bottom-left-radius: " + BL + this.unit +";\n");	
 	if (SIR.sirPrefs.getBool("generators.khtml")) {str += "/*Konqueror*/\n";}
-	str += this.khtmlPrefix("border-top-left-radius: " + TL + "px;\n");
-	str += this.khtmlPrefix("border-top-right-radius: " + TR + "px;\n");
-    str += this.khtmlPrefix("border-bottom-right-radius: " + BR + "px;\n");
-	str += this.khtmlPrefix("border-bottom-left-radius: " + BL + "px;\n");	
-    str += "border-top-left-radius: " + TL + "px;\n";
-	str += "border-top-right-radius: " + TR + "px;\n";	
-	str += "border-bottom-right-radius: " + BR + "px;\n";
-    str += "border-bottom-left-radius: " + BL + "px;\n";
+	str += this.khtmlPrefix("border-top-left-radius: " + TL + this.unit + ";\n");
+	str += this.khtmlPrefix("border-top-right-radius: " + TR + this.unit + ";\n");
+    str += this.khtmlPrefix("border-bottom-right-radius: " + BR + this.unit + ";\n");
+	str += this.khtmlPrefix("border-bottom-left-radius: " + BL + this.unit + ";\n");	
+    str += "border-top-left-radius: " + TL + this.unit + ";\n";
+	str += "border-top-right-radius: " + TR + this.unit + ";\n";	
+	str += "border-bottom-right-radius: " + BR + this.unit + ";\n";
+    str += "border-bottom-left-radius: " + BL + this.unit + ";\n";
 	str += this.PIE();
 	this.txtBox.value = str;
 };
@@ -820,6 +909,12 @@ SIR.Cleaner = {
 SIR.outline = new SIR.Item();
 SIR.outline.init = function() {
 	var self = this;
+    
+    this.name = "outline";
+    this.unit = SIR.sirPrefs.get("generators.units." + this.name) || "px";
+    this.delimeter = 1;
+    this.interfaceOrganize({units: this.unit});
+    
 	this.outStyle = document.getElementById("outline-style-selector");
 	this.outWidth = document.getElementById("outlineWidth");
 	this.outOffset = document.getElementById("outlineOffset");
@@ -832,11 +927,13 @@ SIR.outline.init = function() {
 	this.ColorPicker.addChangeListener(function() {
 		SIR.outline.onParamsChange.call(self);
 	});
-	this.outWidthlbl.value = this.outWidth.value;
-	this.outOffsetlbl.value = this.outOffset.value;
-	this.rect.style.outline = this.outWidth.value + "px " + this.outStyle.value + " " + this.colorButton.color;
-	this.rect.style.outlineOffset = this.outOffset.value + "px";
-	this.showCode(this.outWidth.value, "solid", this.colorButton.color, this.outOffset.value);
+    var outWidth = this.outWidth.value / this.delimeter, outOffset = this.outOffset.value / this.delimeter
+    
+	this.outWidthlbl.value = outWidth;
+	this.outOffsetlbl.value = outOffset;
+	this.rect.style.outline = outWidth +  this.unit + " " + this.outStyle.value + " " + this.colorButton.color;
+	this.rect.style.outlineOffset = outOffset + this.unit;
+	this.showCode(outWidth, "solid", this.colorButton.color, outOffset);
 	this.outWidthlbl.addEventListener("keyup", function() {
 		self.txtBxScale(self.outWidth, self.outWidthlbl)
 	}, false);
@@ -848,19 +945,22 @@ SIR.outline.init = function() {
 	}, false);
 };
 SIR.outline.onParamsChange = function() {
-	this.outWidthlbl.value = this.outWidth.value;
-	this.outOffsetlbl.value = this.outOffset.value;
+    
+    var outWidth = this.outWidth.value / this.delimeter, outOffset = this.outOffset.value / this.delimeter
+    
+	this.outWidthlbl.value = outWidth;
+	this.outOffsetlbl.value = outOffset;
 	this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
-	this.rect.style.outline = this.outWidth.value + "px " + this.outStyle.value + " " + this.colorButton.color;
-	this.rect.style.outlineOffset = this.outOffset.value + "px";
-	this.showCode(this.outWidth.value, this.outStyle.value, this.colorButton.color, this.outOffset.value);
+	this.rect.style.outline = outWidth + this.unit +" " + this.outStyle.value + " " + this.colorButton.color;
+	this.rect.style.outlineOffset = outOffset + this.unit;
+	this.showCode(outWidth, this.outStyle.value, this.colorButton.color, outOffset);
 	document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
 };
 SIR.outline.showCode = function(width, stl, color, offs) {
 	str = "";
-	str = "outline: " + width + "px " + stl + " " + color + ";\n";
+	str = "outline: " + width + this.unit +" " + stl + " " + color + ";\n";
 	if (offs != 0) {
-		str += "outline-offset: " + offs + "px";
+		str += "outline-offset: " + offs + this.unit;
 	}
 	this.txtBox.value = str;
 };
@@ -935,6 +1035,12 @@ SIR.transition.showCode = function(prop, dur, timing) {
 SIR.textfont = new SIR.Item();
 SIR.textfont.init = function() {
 	var self = this;
+    
+    this.name = "textFont";
+    this.unit = SIR.sirPrefs.get("generators.units." + this.name) || "px";
+    var baseVal = SIR.sirPrefs.get("generators.units.baseValue") || 16;
+    //this.interfaceOrganize({units: this.unit});
+    
 	//MAIN SELECTORS
 	this.mainSelects = [{
 		elem: document.getElementById("textfont-fontFamily"),
@@ -1038,6 +1144,25 @@ SIR.textfont.init = function() {
 			return this.elem.value + "px";
 		}
 	}];
+    
+    for (var i = self.scales.length; i--;){
+        var scale = self.scales[i];
+        if(scale.JSruleName==="lineHeight"){continue;}                
+        
+        var minpx = scale.elem.getAttribute("min"), maxpx = scale.elem.getAttribute("max");                                
+                
+        var minem = Math.round(parseInt(minpx, 10) / baseVal)*10;
+        var maxem = Math.round(parseInt(maxpx, 10) / baseVal)*10;
+                
+        scale.elem.setAttribute("min", minem);
+        scale.elem.setAttribute("max", maxem);
+                       
+        scale.getVal = function(){
+            return this.elem.value / 10 + "em";
+        }
+    }
+    
+    
 	//INSCRIPTION
 	this.inscription = document.getElementById("TFinscription");
 	//COLORS
@@ -1068,6 +1193,7 @@ SIR.textfont.init = function() {
 		self.CopyCode.apply(self, arguments)
 	}, false);
 };
+
 SIR.textfont.onParamsChange = function() {
 	this.inscription.removeAttribute("style");
 	this.colorButton.color = this.colorPickerText.getColour().getCSSHexadecimalRGB();
@@ -1082,6 +1208,7 @@ SIR.textfont.onParamsChange = function() {
 	this.showCode(this.mainSelects, this.scales, this.extraSelects, this.colorButton.color, this.backColorButton.color);
 	document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
 };
+
 SIR.textfont.showCode = function(mainMenu, scales, extraMenu, textColor, backColor) {
 	var str = "";
 	for (var i = 0; i < mainMenu.length; i++) {
@@ -1111,61 +1238,4 @@ SIR.textfont.makeStyle = function(arrObj, node) {
 	}
 };
 
-/////////////////////////
-//    Background      //
-///////////////////////
-SIR.bkground = new SIR.Item();
-SIR.bkground.init = function() {
-	var self = this;
-	this.bkgrAttach = document.getElementById("bkground-attachment");
-    this.bkgrRepeat = document.getElementById("bkground-repeat");
-    this.bkgrPosX = document.getElementById("positionX");
-    this.bkgrPosY = document.getElementById("positionY");
-    this.bkgrImage = document.getElementById("bkground-useImage");            
-    this.colorButton = document.getElementById("colorButton");            
-    this.txtBox = document.getElementById("bkgroundResult");    
-    this.rect = document.getElementById("boxField");        
-	this.bkgrPosXlbl = document.getElementById("positionXval");
-	this.bkgrPosYlbl = document.getElementById("positionYval");
-    
-    this.ColorPicker = new SIR.ColourPicker(document.getElementById('colorPicker'), 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(109, 107, 107));
-    this.ColorPicker.addChangeListener(function() {
-		SIR.bkground.onParamsChange.call(self);
-	});
-    
-    this.bkgrPosXlbl.value = this.bkgrPosX.value;
-    this.bkgrPosYlbl.value = this.bkgrPosY.value;
-    
-    
-    
-    this.rect.style.background = this.colorButton.color + " url('chrome://sir/skin/images/bkexmp.png') " + this.bkgrPosX.value + " " + this.bkgrPosY.value + " " + this.bkgrRepeat.value;
-	this.bkgrPosXlbl.addEventListener("keyup", function() {
-		self.txtBxScale(self.bkgrPosX, self.bkgrPosXlbl)
-	}, false);
-    this.bkgrPosYlbl.addEventListener("keyup", function() {
-		self.txtBxScale(self.bkgrPosY, self.bkgrPosYlbl)
-	}, false);
-    
-    
-    
 
-}, 
-
-
-SIR.bkground.onParamsChange = function() {
-    
-    this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
-    this.bkgrPosXlbl.value = this.bkgrPosX.value;
-    this.bkgrPosYlbl.value = this.bkgrPosY.value;
-    var attach = this.bkgrImage.checked ? "url('path/image') " : "";
-    this.rect.style.background = attach + this.colorButton.color + " url('chrome://sir/skin/images/bkexmp.png') " + this.bkgrPosX.value + "% " + this.bkgrPosY.value + "% " + this.bkgrRepeat.value;
-    
-
-}, 
-
-SIR.bkground.showCode = function(attach, color, posX, posY, repeat) {
-    str = '';
-    
-    str += 'background: ' + attach + color + " " + posX + "% " + posY + "% " + repeat;
-	this.txtBox.value = str;
-}

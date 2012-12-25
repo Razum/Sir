@@ -17,17 +17,17 @@
 					<hbox class="controlHBox">
 						<label class="txtShadowLabels" value="Horizontal Length:" />
 						<scale min="-75" max="75" value="3" id="TShorLen" onchange="SIR.txtShadow.onParamsChange();" />
-						<textbox id="TShorLenvalue" maxlength="3" value="" /><label value="px"/>
+						<textbox id="TShorLenvalue" maxlength="3" value="" /><label class="unitLabel" value="px"/>
 					</hbox>
 					<hbox class="controlHBox">
 						<label class="txtShadowLabels" value="Vertical Length:" />
 						<scale min="-75" max="75" value="3" id="TSverLen" onchange="SIR.txtShadow.onParamsChange();" />
-						<textbox id="TSverLenvalue" maxlength="3" value="" /><label value="px"/>
+						<textbox id="TSverLenvalue" maxlength="3" value="" /><label class="unitLabel" value="px"/>
 					</hbox>
 					<hbox class="controlHBox">
 						<label class="txtShadowLabels" value="Blur Radius:" />
 						<scale min="0" max="50" value="3" id="TSblurRadius" onchange="SIR.txtShadow.onParamsChange();" />
-						<textbox id="TSblurRadiusvalue" maxlength="3" value="" /><label value="px"/>
+						<textbox id="TSblurRadiusvalue" maxlength="3" value="" /><label class="unitLabel" value="px"/>
 					</hbox>
 					<hbox>
 						<label class="txtShadowLabels" value="Shadow Color:" />

@@ -15,8 +15,9 @@
 				<tabs id="bonus-tabs" onselect="">
 					<tab id="selector-tab" label="&bonus.selectors;" image='chrome://sir/skin/images/selector.png' />
 					<tab id="hack-tab" label="&bonus.hacks;" image='chrome://sir/skin/images/hack.png' />
-					<tab id="emtopx-tab" label="Pixels to Ems" image='chrome://sir/skin/images/pxem.png' />
+					<tab id="emtopx-tab" label=" Pixels to Ems" image='chrome://sir/skin/images/pxem.png' />
 					<tab id="crossColor-tab" label="&bonus.colors;" image='chrome://sir/skin/images/crosbrColor.png' />
+                    <tab id="crossFont-tab" label="&bonus.fonts;" image='chrome://sir/skin/images/font.png' />
 					<tab id="support-tab" label="&bonus.support;" image='chrome://sir/skin/images/support.png' />
 				</tabs>
 				<tabpanels flex="1">
@@ -324,11 +325,11 @@
 					<tabpanel id="tp_hack" orient="vertical">
 						<label class="hackHeader" value="&bonus.hack.conHead;" />
 						<label class="ulLia" value="&bonus.hack.allIE;" />
-						<label class="codeBlock" value="&lt;!--[if IE]&gt;    Some Css Code&lt;![endif]--&gt;" />
+						<label class="codeBlock applyCopy" value="&lt;!--[if IE]&gt;    Some Css Code&lt;![endif]--&gt;" />
 						<label class="ulLia" value="&bonus.hack.IE7;" />
-						<label class="codeBlock" value="&lt;!--[if IE 7]&gt;    Some Css Code&lt;![endif]--&gt;" />
+						<label class="codeBlock applyCopy" value="&lt;!--[if IE 7]&gt;    Some Css Code&lt;![endif]--&gt;" />
 						<label class="ulLia" value="&bonus.hack.IE56;" />
-						<label class="codeBlock" value="&lt;!--[if lte IE 6]&gt;    Some Css Code&lt;![endif]--&gt;" />
+						<label class="codeBlock applyCopy" value="&lt;!--[if lte IE 6]&gt;    Some Css Code&lt;![endif]--&gt;" />
 						<label class="ulLia" value="&bonus.hack.cond;" />
 						<label class="ulLia" value="&bonus.hack.conIEall;" />
 						<label class="ulLia" value="&bonus.hack.ltIE;" />
@@ -340,193 +341,122 @@
 						<label class="hackHeader" value="&bonus.hack.minmax;" />
 						<label class="ulLia" value="&bonus.hack.minWid;" />
 						<vbox class="codeBlock">
-							<label value="#wrapper{" />
-							<label value="    min-width: 750px;" />
-							<label value='    width:expression(document.body.clientWidth &lt; 750? "750px": "auto" );' />
-							<label value="}" />
+      <description class="applyCopy" style="white-space: pre;">
+      #wrapper {
+            min-width: 750px;
+            width:expression(document.body.clientWidth &lt; 750? "750px": "auto" );
+      }
+      </description>
 						</vbox>
 						<label class="ulLia" value="&bonus.hack.minmaxWid;" />
 						<vbox class="codeBlock">
-							<label value="#wrapper{" />
-							<label value="    min-width: 750px;" />
-							<label value="    max-width: 1220px;" />
-							<label value='    width:expression(document.body.clientWidth &lt; 750? "750px" : document.body.clientWidth &gt; 1220? "1220px" : "auto");' />
-							<label value="}" />
+      <description class="applyCopy" style="white-space: pre;">
+      #wrapper {
+            min-width: 750px;
+            max-width: 1220px;
+            width:expression(document.body.clientWidth &lt; 750? "750px" : document.body.clientWidth &gt; 1220? "1220px" : "auto");
+      }
+      </description>
 						</vbox>
 						<separator class="groove" style="margin: 10px 0 10px 0;" />
 						<label class="hackHeader" value="&bonus.hack.filtB;" />
 						<label class="ulLia" value="&bonus.hack.IE6less;" />
-						<label class="codeBlock" value="* html {}" />
+						<label class="codeBlock applyCopy" value="* html {}" />
 						<label class="ulLia" value="&bonus.hack.IE7less;" />
-						<label class="codeBlock" value="*:first-child+html {} * html {}" />
+						<label class="codeBlock applyCopy" value="*:first-child+html {} * html {}" />
 						<label class="ulLia" value="&bonus.hack.IE7only;" />
-						<label class="codeBlock" value="*:first-child+html {}" />
+						<label class="codeBlock applyCopy" value="*:first-child+html {}" />
 						<label class="ulLia" value="&bonus.hack.IE7nNew;" />
-						<label class="codeBlock" value="html>body {}" />
+						<label class="codeBlock applyCopy" value="html>body {}" />
 						<label class="ulLia" value="&bonus.hack.NewnotIE7;" />
-						<label class="codeBlock" value="html>/**/body {}" />
+						<label class="codeBlock applyCopy" value="html>/**/body {}" />
 						<label class="ulLia" value="&bonus.hack.Opera9;" />
-						<label class="codeBlock" value="html:first-child {}" />
+						<label class="codeBlock applyCopy" value="html:first-child {}" />
 						<label class="ulLia" value="&bonus.hack.MacIE;" />
-						<label class="codeBlock" value="/*\*//*/selector{property:value;}/**/" />
+						<label class="codeBlock applyCopy" value="/*\*//*/selector{property:value;}/**/" />
 						<label class="ulLia" value="&bonus.hack.MozFF;" />
-						<label class="codeBlock" value=".class, noindex:-moz-any-link { }" />
+						<label class="codeBlock applyCopy" value=".class, noindex:-moz-any-link { }" />
 						<label class="ulLia" value="&bonus.hack.IE6winOnly;" />
-						<label class="codeBlock" value="/*\*/ * html {} /**/" />
+						<label class="codeBlock applyCopy" value="/*\*/ * html {} /**/" />
 					</tabpanel>
 					<tabpanel id="tp_emtopx" orient="vertical">
 						<label id="emtopxLabel" value="&bonus.emtopx.base;" />
-						<listbox id="pxtoemList">
-							<listhead>
-								<listheader label="Pixels"/>
-								<listheader label="EMS"/>
-								<listheader label="Percent"/>
-								<listheader label="Points"/>
-							</listhead>
-							<listcols>
-								<listcol flex="1"/>
-								<listcol flex="1"/>
-								<listcol flex="1"/>
-								<listcol flex="1"/>
-							</listcols>
-							<listitem>
-								<listcell label="6px"/>
-								<listcell label="0.375em"/>
-								<listcell label="37.5%"/>
-								<listcell label="5pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="7px"/>
-								<listcell label="0.438em"/>
-								<listcell label="43.8%"/>
-								<listcell label="5pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="8px"/>
-								<listcell label="0.5em"/>
-								<listcell label="50%"/>
-								<listcell label="6pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="9px"/>
-								<listcell label="0.563em"/>
-								<listcell label="56.3%"/>
-								<listcell label="7pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="10px"/>
-								<listcell label="0.625em"/>
-								<listcell label="62.5%"/>
-								<listcell label="8pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="11px"/>
-								<listcell label="0.688em"/>
-								<listcell label="68.8%"/>
-								<listcell label="8pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="12x"/>
-								<listcell label="0.75em"/>
-								<listcell label="75%"/>
-								<listcell label="9pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="13px"/>
-								<listcell label="0.813em"/>
-								<listcell label="81.3%"/>
-								<listcell label="10pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="14px"/>
-								<listcell label="0.875em"/>
-								<listcell label="87.5%"/>
-								<listcell label="11pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="15px"/>
-								<listcell label="0.938em"/>
-								<listcell label="93.8%"/>
-								<listcell label="11pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="16px"/>
-								<listcell label="1em"/>
-								<listcell label="100%"/>
-								<listcell label="12pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="17px"/>
-								<listcell label="1.063em"/>
-								<listcell label="106.3%"/>
-								<listcell label="13pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="18px"/>
-								<listcell label="1.125em"/>
-								<listcell label="112.5%"/>
-								<listcell label="14pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="19px"/>
-								<listcell label="1.188em"/>
-								<listcell label="118.8%"/>
-								<listcell label="14pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="20px"/>
-								<listcell label="1.25em"/>
-								<listcell label="125%"/>
-								<listcell label="15pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="21px"/>
-								<listcell label="1.313em"/>
-								<listcell label="131.3%"/>
-								<listcell label="16pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="22px"/>
-								<listcell label="1.375em"/>
-								<listcell label="137.5%"/>
-								<listcell label="17pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="23px"/>
-								<listcell label="1.438em"/>
-								<listcell label="143.8%"/>
-								<listcell label="17pt"/>
-							</listitem>
-							<listitem>
-								<listcell label="24px"/>
-								<listcell label="1.5em"/>
-								<listcell label="150%"/>
-								<listcell label="18pt"/>
-							</listitem>
-						</listbox>
+						 
+                         
+                         <grid id="pxtoemList" flex="1">
+  
+                            <columns>
+                                <column flex="1"/>
+                                <column flex="1" />
+                                <column flex="1" />
+                                <column flex="1" />
+                            </columns>
+                            <rows id="pxtoemListRows">
+                                <row class="pxtoemHeader">
+                                  <label value="Pixels"/>
+                                  <label value="EM"/>
+                                  <label value="Percent"/>
+                                  <label value="Points"/>
+                                </row>
+                            </rows>
+                
+                        </grid>
+                         
 					</tabpanel>
 					<tabpanel id="tp_crossColor" orient="vertical">
-						<listbox id="crossColorList">
-							<listhead>
-								<listheader label="&bonus.colors.name;"/>
-								<listheader label="RGB"/>
-								<listheader label="HEX"/>
-								<listheader label="&bonus.colors.appearance;"/>
-							</listhead>
-							<listcols>
-								<listcol flex="1"/>
-								<listcol flex="1"/>
-								<listcol flex="1"/>
-								<listcol flex="1"/>
-							</listcols>
-						</listbox>
+                    
+                    
+                        <grid  id="crossColorList" flex="1">  
+                            <columns>
+                                <column flex="1"/>
+                                <column flex="1" />
+                                <column flex="1" />
+                                <column flex="1" />
+                            </columns>
+                            <rows id="crossColorListRows">
+                                <row class="crossColorHeader">
+                                  <label value="&bonus.colors.name;"/>
+                                  <label value="RGB"/>
+                                  <label value="HEX"/>
+                                  <label value="&bonus.colors.appearance;"/>
+                                </row>
+                            </rows>                
+                        </grid>
+                    
 					</tabpanel>
-					<tabpanel id="tp_support" orient="vertical">
+                    
+                  
+					<tabpanel id="tp_crossFont" orient="vertical">
+                        
+                        <grid  id="crossFontList" flex="1">  
+                            <columns>
+                                <column flex="1"/>
+                                <column flex="1" />
+                            </columns>
+                            <rows id="crossFontListRows">
+                                <row class="crossFontHeader">
+                                  <label value="Font-family"/>
+                                  <label value="Example"/>
+                                </row>
+                            </rows>                
+                        </grid>
+                        
+                        
+
+
+					</tabpanel>
+                    
+                    
+                    
+                    <tabpanel id="tp_support" orient="vertical">
 						<vbox id="supBox">
 							<label value="&bonus.support.txt;" />
 							<label value="&bonus.support.email;" class="text-link" href="mailto:razumyeyenko@gmail.com" />
 						</vbox>
 					</tabpanel>
+                    
+                    
+                    
 				</tabpanels>
 			</tabbox>
 		</dialog>
