@@ -8,7 +8,7 @@ SIR.Item.prototype.onParamsChange = function() {};
 SIR.Item.prototype.showCode = function() {};
 SIR.Item.prototype.CopyCode = function() {
     
-    var val = SIR.sirPrefs.getBool("comments") ? this.txtBox.value : this.txtBox.value.replace(/\/\*[\s\S]*?\*\//g, "");
+    var val = SIR.sirPrefs.getBool("generators.comments") ? this.txtBox.value : this.txtBox.value.replace(/\/\*[\s\S]*?\*\//g, "");
 	var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].
 	getService(Components.interfaces.nsIClipboardHelper);
 	gClipboardHelper.copyString(val);
@@ -64,24 +64,26 @@ SIR.Item.prototype.interfaceOrganize = function(options) {
     
     if(options.units === "em"){
         //var val = SIR.sirPrefs.get("generators.units." + this.name); 
-        var baseVal = SIR.sirPrefs.get("generators.units.baseValue") || 16;      
+        var baseVal = SIR.sirPrefs.get("units.baseValue") || 16;      
         var scales = document.getElementsByTagName("scale");
         if (scales){
             for(var i = scales.length; i--;){
                 var scale = scales[i], minpx = scale.getAttribute("min"), maxpx = scale.getAttribute("max");
-                
-                //window.opener.Firebug.Console.log(scale);
+
                 
                 var minem = Math.round(parseInt(minpx, 10) / baseVal)*10;
                 var maxem = Math.round(parseInt(maxpx, 10) / baseVal)*10;
                 
                 scale.setAttribute("min", minem);
                 scale.setAttribute("max", maxem);
-                this.delimeter = 10;
-                //window.opener.Firebug.Console.log(scale);
-                
+                this.delimeter = 10; 
             }
-         
+            
+            var unitLabels = document.querySelectorAll("label.unitLabel");
+            
+            for(var i = unitLabels.length; i--;){
+                unitLabels[i].value = "em";
+            }
         }
     }
     
@@ -161,7 +163,7 @@ SIR.txtShadow.init = function() {
 	var self = this;
     
     this.name = "textShadow";
-    this.unit = SIR.sirPrefs.get("generators.units." + this.name) || "px";
+    this.unit = SIR.sirPrefs.get("units." + this.name) || "px";
     this.delimeter = 1;
     this.interfaceOrganize({units: this.unit});
     
@@ -212,16 +214,14 @@ SIR.txtShadow.onParamsChange = function() {
 	document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
 };
 SIR.txtShadow.showCode = function(horLen, verLen, blurRadius, color) {
-	var IEdirection = Math.abs(Math.round(Math.atan2(-verLen, horLen) * 180 / Math.PI) - 90) % 360;
+	var IEdirection = (Math.round(Math.atan2(verLen, horLen) * 180 / Math.PI) + 90) % 360;
 	
-    var baseVal = SIR.sirPrefs.get("generators.units.baseValue") || 16; 
+    var baseVal = SIR.sirPrefs.get("units.baseValue") || 16; 
     
     var IEblurRad = this.unit === "em" ? Math.round(blurRadius * baseVal) : blurRadius;
-    if (IEdirection < 0) {
-		IEdirection = 180 + (180 + IEdirection);
-	}
     
-    
+    IEdirection < 0 && (IEdirection += 360);
+	        
 	var str = "";	
 	str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');
     str += "text-shadow: " + horLen +  this.unit +" " + verLen +  this.unit +" " + blurRadius +  this.unit +" " + color + ";/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */\n";
@@ -362,7 +362,7 @@ SIR.boxShadow.init = function() {
 	var self = this;
     
     this.name = "boxShadow";
-    this.unit = SIR.sirPrefs.get("generators.units." + this.name) || "px";
+    this.unit = SIR.sirPrefs.get("units." + this.name) || "px";
     this.delimeter = 1;
     this.interfaceOrganize({units: this.unit});
     
@@ -411,28 +411,24 @@ SIR.boxShadow.onParamsChange = function() {
 	this.verLenlbl.value = BoxSverLen;
 	this.blurRadiuslbl.value = BoxSblurRadius;
 	this.colorButton.color = this.ColorPicker.getColour().getCSSHexadecimalRGB();
-	if (this.inset.checked) {
-		inset = "inset ";
-	}
+	this.inset.checked && (inset = "inset ");
 	this.rect.style.boxShadow = inset + BoxShorLen + this.unit + " " + BoxSverLen + this.unit + " " + BoxSblurRadius + this.unit + " " + this.colorButton.color;
 	this.showCode(BoxShorLen, BoxSverLen, BoxSblurRadius, this.colorButton.color, this.inset.checked);
 	document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
 }, 
 
-SIR.boxShadow.showCode = function(horLen, verLen, blurRadius, color, inset) {
-	var IEdirection = Math.abs(Math.round(Math.atan2(-verLen, horLen) * 180 / Math.PI) - 90) % 360;
-	if (IEdirection < 0) {
-		IEdirection = 180 + (180 + IEdirection);
-	}
+SIR.boxShadow.showCode = function(horLen, verLen, blurRadius, color, inset) {    
     
-    var baseVal = SIR.sirPrefs.get("generators.units.baseValue") || 16; 
+	var IEdirection = (Math.round(Math.atan2(verLen, horLen) * 180 / Math.PI) + 90) % 360;
+	IEdirection < 0 && (IEdirection += 360);
+
+    var baseVal = SIR.sirPrefs.get("units.baseValue") || 16; 
     
     var IEblurRad = this.unit === "em" ? Math.round(blurRadius * baseVal) : blurRadius;
     
 	var ins = "";
-	if (inset) {
-		ins = "inset "
-	}
+	inset && (ins = "inset ");
+    
 	var str = ""	
 	str += this.MozPrefix("box-shadow: " + ins + horLen + this.unit + " " + verLen + this.unit + " " + blurRadius + this.unit + " " + color + ";/*FF 3.5+*/\n");
 	str += this.WebkitPrefix("box-shadow: " + ins + horLen + this.unit + " " + verLen + this.unit + " " + blurRadius + this.unit + " " + color + ";/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/\n");
@@ -456,7 +452,7 @@ SIR.borderRadius.init = function() {
 	var self = this;
     
     this.name = "borderRadius";
-    this.unit = SIR.sirPrefs.get("generators.units." + this.name) || "px";
+    this.unit = SIR.sirPrefs.get("units." + this.name) || "px";
     this.delimeter = 1;
     this.interfaceOrganize({units: this.unit});
     
@@ -526,7 +522,7 @@ SIR.borderRadius.onParamsChange = function() {
     this.rect.style.cssText = "border: " + brdWidth + this.unit + " " + this.brdStl.value + " " + this.colorButton.color + "; border-radius: " 
             + brdRadTL + this.unit +" " + brdRadTR + this.unit + " " + brdRadBR + this.unit + " " + brdRadBL + this.unit;    
     
-    this.showCode(brdWidth, this.brdStl, this.colorButton.color, brdRadTL, brdRadTR, brdRadBL, brdRadBR);
+    this.showCode(brdWidth, this.brdStl.value, this.colorButton.color, brdRadTL, brdRadTR, brdRadBL, brdRadBR);
 	document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
 };
 
@@ -655,21 +651,21 @@ SIR.gradient.init = function() {
 	this.gradSelect = document.getElementById("sir-grad");
 	this.gradient = {};
 	this.gradient["linear"] = {
-		"ltrt": {moz: "left, ",       webkit: "left top, right top,",     ie: "1"},
-		"ltlb": {moz: "top, ", 	      webkit: "left top, left bottom,",   ie: "0"},
-		"ltrb": {moz: "-45deg, ",     webkit: "left top, right bottom,",  ie: "1"},
-		"lbrt": {moz: "45deg, ",      webkit: "left bottom, right top,",  ie: "1"}
+		"ltrt": {moz: "left, ",       webkit: "left top, right top,",     ie: "1",    w3c: "to right, "},
+		"ltlb": {moz: "top, ", 	      webkit: "left top, left bottom,",   ie: "0",    w3c: "to bottom, "},
+		"ltrb": {moz: "-45deg, ",     webkit: "left top, right bottom,",  ie: "1",    w3c: "135deg, "},
+		"lbrt": {moz: "45deg, ",      webkit: "left bottom, right top,",  ie: "1",    w3c: "45deg, "}
 	};
 	this.gradient["radial"] = {
-        "top left":     {moz: "top left, ",     webkit: "top left,",        ie: "1"},
-		"top":          {moz: "top, ",          webkit: "top center,",      ie: "1" },
-		"right top":    {moz: "right top, ",    webkit: "right top,",       ie: "1"},
-		"left":         {moz: "left, ",	        webkit: "left center,",     ie: "1"},
-		"center":       {moz: "center, ",       webkit: "center center,",   ie: "1"},
-		"right":        {moz: "right, ",        webkit: " right center,",   ie: "1"},
-		"bottom left":  {moz: "bottom left, ",  webkit: "bottom left,",     ie: "1"},
-		"bottom":       {moz: "bottom, ",       webkit: "bottom center,",   ie: "1"},
-		"bottom right": {moz: "bottom right, ", webkit: "bottom right,",    ie: "1" }
+        "top left":     {moz: "top left, ",     webkit: "top left,",        ie: "1",    w3c: "top left, "},
+		"top":          {moz: "top, ",          webkit: "top center,",      ie: "1",    w3c: "top, "},
+		"right top":    {moz: "right top, ",    webkit: "right top,",       ie: "1",    w3c: "right top, "},
+		"left":         {moz: "left, ",	        webkit: "left center,",     ie: "1",    w3c: "left, "},
+		"center":       {moz: "center, ",       webkit: "center center,",   ie: "1",    w3c: "center, "},
+		"right":        {moz: "right, ",        webkit: " right center,",   ie: "1",    w3c: "right, "},
+		"bottom left":  {moz: "bottom left, ",  webkit: "bottom left,",     ie: "1",    w3c: "bottom left, "},
+		"bottom":       {moz: "bottom, ",       webkit: "bottom center,",   ie: "1",    w3c: "bottom, "},
+		"bottom right": {moz: "bottom right, ", webkit: "bottom right,",    ie: "1",    w3c: "bottom right, "}
 	};
 	this.from = document.getElementById("colorButtonFrom");
 	this.to = document.getElementById("colorButtonTo");
@@ -695,7 +691,7 @@ SIR.gradient.init = function() {
 		document.getElementById("radialHBox").setAttribute("hidden", !isRadial);
 		self.onParamsChange();
 	}, false);
-	this.showCode("linear", this.gradient, "ltrt", this.from.color, this.to.color);
+	this.showCode("linear", this.gradient, "ltlb", this.from.color, this.to.color);
 };
 SIR.gradient.onParamsChange = function() {
 	var type = this.gradSelect.value;
@@ -727,7 +723,7 @@ SIR.gradient.showCode = function(type, grad, dir, from, to) {
     if(SIR.sirPrefs.getBool("generators.ms") && type === "linear"){
         str += 'background: -ms-filter:"progid:DXImageTransform.Microsoft.Gradient(StartColorStr=' + from + ', EndColorStr=' + to + ', GradientType=' + grad[type][dir].ie + ')";\n';	           
     }
-    str += "background: " + type + "-gradient(" + grad[type][dir].moz + from + "," + to + "); /* W3C */\n";
+    str += "background: " + type + "-gradient(" + grad[type][dir].w3c + from + "," + to + "); /* W3C */\n";
     if(type === "linear"){
         if(SIR.sirPrefs.getBool("generators.ms")){            
             str += "filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='" + from + "', endColorstr='" + to + "', GradientType='" + grad[type][dir].ie + "'); /* for IE */\n";
@@ -911,7 +907,7 @@ SIR.outline.init = function() {
 	var self = this;
     
     this.name = "outline";
-    this.unit = SIR.sirPrefs.get("generators.units." + this.name) || "px";
+    this.unit = SIR.sirPrefs.get("units." + this.name) || "px";
     this.delimeter = 1;
     this.interfaceOrganize({units: this.unit});
     
@@ -1037,8 +1033,7 @@ SIR.textfont.init = function() {
 	var self = this;
     
     this.name = "textFont";
-    this.unit = SIR.sirPrefs.get("generators.units." + this.name) || "px";
-    var baseVal = SIR.sirPrefs.get("generators.units.baseValue") || 16;
+   
     //this.interfaceOrganize({units: this.unit});
     
 	//MAIN SELECTORS
@@ -1145,23 +1140,27 @@ SIR.textfont.init = function() {
 		}
 	}];
     
-    for (var i = self.scales.length; i--;){
-        var scale = self.scales[i];
-        if(scale.JSruleName==="lineHeight"){continue;}                
+    this.unit = SIR.sirPrefs.get("units." + this.name) || "px";
+    if(this.unit==="em"){
         
-        var minpx = scale.elem.getAttribute("min"), maxpx = scale.elem.getAttribute("max");                                
-                
-        var minem = Math.round(parseInt(minpx, 10) / baseVal)*10;
-        var maxem = Math.round(parseInt(maxpx, 10) / baseVal)*10;
-                
-        scale.elem.setAttribute("min", minem);
-        scale.elem.setAttribute("max", maxem);
-                       
-        scale.getVal = function(){
-            return this.elem.value / 10 + "em";
+        var baseVal = SIR.sirPrefs.get("units.baseValue") || 16;
+        for (var i = self.scales.length; i--;){
+            var scale = self.scales[i];
+            if(scale.JSruleName==="lineHeight"){continue;}                
+            
+            var minpx = scale.elem.getAttribute("min"), maxpx = scale.elem.getAttribute("max");                                
+                    
+            var minem = Math.round(parseInt(minpx, 10) / baseVal)*10;
+            var maxem = Math.round(parseInt(maxpx, 10) / baseVal)*10;
+                    
+            scale.elem.setAttribute("min", minem);
+            scale.elem.setAttribute("max", maxem);
+                           
+            scale.getVal = function(){
+                return this.elem.value / 10 + "em";
+            }
         }
-    }
-    
+ }
     
 	//INSCRIPTION
 	this.inscription = document.getElementById("TFinscription");

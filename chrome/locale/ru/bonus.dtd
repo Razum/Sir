@@ -11,6 +11,11 @@
 
 <!ENTITY bonus.support "  Поддержка">
 
+<!-- Right click = copy -->
+<!ENTITY bonus.rightClickToCopy "* Правый клик = Cкопировать">
+
+
+<!-- Selectors -->
 <!ENTITY bonus.SelName "Селектор">
 <!ENTITY bonus.desc "Описание">
 
@@ -180,6 +185,10 @@
 
 <!ENTITY bonus.colors.name 'Названия цветов'>
 <!ENTITY bonus.colors.appearance 'Образец'>
+
+<!-- FONTS -->
+
+<!ENTITY bonus.fonts.exmp 'Образец'>
 
 <!-- SUPPORT -->
 

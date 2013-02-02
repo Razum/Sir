@@ -50,7 +50,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 #rgbaControlBox textbox{
     font-weight: 600;
     font-size: 14px;
-    width: 35px;
+    width: 40px;
     
 }
 
@@ -262,7 +262,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 #transformControlBox textbox{
     font-weight: 600;
     font-size: 14px;
-    width:40px;    
+    width:45px;    
 }
  
 
@@ -738,7 +738,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 }
 
  #outlineControlBox textbox{
-    width:30px;
+    width:35px;
     font-size: 14px;
     font-weight: 600; 
 }
@@ -1056,6 +1056,13 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 #bonus{
     height: 600px;
 }
+
+.bonus-rightClickToCopy{
+    color: #e83c3c;
+    font-size: 11px;
+    font-family: "Courier New", Courier, monospace;
+}
+
 /************ selectors **************/
 #tp_selector{
     height: 500px;

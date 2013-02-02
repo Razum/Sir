@@ -323,6 +323,9 @@
 						</tree>
 					</tabpanel>
 					<tabpanel id="tp_hack" orient="vertical">
+                    
+                        <label class="bonus-rightClickToCopy" value="&bonus.rightClickToCopy;" />
+                    
 						<label class="hackHeader" value="&bonus.hack.conHead;" />
 						<label class="ulLia" value="&bonus.hack.allIE;" />
 						<label class="codeBlock applyCopy" value="&lt;!--[if IE]&gt;    Some Css Code&lt;![endif]--&gt;" />
@@ -380,6 +383,9 @@
 						<label class="codeBlock applyCopy" value="/*\*/ * html {} /**/" />
 					</tabpanel>
 					<tabpanel id="tp_emtopx" orient="vertical">
+                    
+                        <label class="bonus-rightClickToCopy" value="&bonus.rightClickToCopy;" />
+                    
 						<label id="emtopxLabel" value="&bonus.emtopx.base;" />
 						 
                          
@@ -405,6 +411,7 @@
 					</tabpanel>
 					<tabpanel id="tp_crossColor" orient="vertical">
                     
+                    <label class="bonus-rightClickToCopy" value="&bonus.rightClickToCopy;" />
                     
                         <grid  id="crossColorList" flex="1">  
                             <columns>
@@ -427,6 +434,8 @@
                     
                   
 					<tabpanel id="tp_crossFont" orient="vertical">
+                    
+                    <label class="bonus-rightClickToCopy" value="&bonus.rightClickToCopy;" />
                         
                         <grid  id="crossFontList" flex="1">  
                             <columns>
@@ -436,7 +445,7 @@
                             <rows id="crossFontListRows">
                                 <row class="crossFontHeader">
                                   <label value="Font-family"/>
-                                  <label value="Example"/>
+                                  <label value="&bonus.fonts.exmp;"/>
                                 </row>
                             </rows>                
                         </grid>

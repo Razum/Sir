@@ -11,6 +11,11 @@
 <!ENTITY bonus.support "  Support">
 
 
+<!-- Right click = copy -->
+<!ENTITY bonus.rightClickToCopy "* Right Click to Copy">
+
+
+<!-- Selectors -->
 
 <!ENTITY bonus.SelName "Selector">
 <!ENTITY bonus.desc "Description">
@@ -177,6 +182,11 @@
 
 <!ENTITY bonus.colors.name 'Color Name'>
 <!ENTITY bonus.colors.appearance 'Appearance'>
+
+<!-- FONTS -->
+
+<!ENTITY bonus.fonts.exmp 'Example'>
+
 
 
 <!-- SUPPORT -->

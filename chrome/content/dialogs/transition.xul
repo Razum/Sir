@@ -33,7 +33,7 @@
                         <label class="transitionLabels" value="Duration:" />
                         <scale min="1" max="50" value="10" increment="1" id="transitionDuration" onchange="SIR.transition.onParamsChange();"
                         />
-                        <textbox id="transitionDurationVal" maxlength="3" value="" /><label value="s" />
+                        <textbox id="transitionDurationVal" maxlength="3" value="" /><label style="margin: 5px 0 0 -2px;" value="s" />
                     </hbox>
                     <hbox class="controlHBox">
                     

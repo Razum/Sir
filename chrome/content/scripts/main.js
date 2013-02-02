@@ -46,7 +46,7 @@ SIR.load = function() {
 };
 SIR.getLibs = function() {
 	var jsLoader = Components.classes["@mozilla.org/moz/jssubscript-loader;1"].getService(Components.interfaces.mozIJSSubScriptLoader);
-	jsLoader.loadSubScript("chrome://sir/content/libs/jquery.min.js", SIR);
+	jsLoader.loadSubScript("chrome://sir/content/libs/jquery-1.8.3.min.js", SIR);
     SIR.$ = jQuery.noConflict(true);
 };
 SIR.installButton = function(toolbarId, id, afterId) {
