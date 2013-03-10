@@ -5,6 +5,8 @@
 		<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml" id="colorpickerDialog" title="&colorpicker.title;" buttons="disabled" onload="SIR.colorSelector.init();">
 			<script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js">
 			</script>
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js">
+			</script>
 			<script type="application/x-javascript" src="chrome://sir/content/scripts/items.js">
 			</script>
 			<hbox>
@@ -15,8 +17,9 @@
             <caption label="CSS" />
             
             <hbox>
-            <label value="RGB:" /><textbox id="cpTxtRGB" size="25" readonly="true"></textbox><spacer/><label value="HSL:" /><textbox id="cpTxtHSL"  size="25" readonly="true"></textbox>
+            <label value="RGB:" /><textbox id="cpTxtRGB" size="25" readonly="true"></textbox><spacer/><label value="HSL:" /><textbox id="cpTxtHSL"  size="25" readonly="true"> </textbox><spacer flex="1"/><toolbarbutton id="sir-button-colorpicker" type="checkbox" pack="end" image="chrome://sir/skin/images/color_picker.png"/>
             </hbox>
             
             </groupbox>
+            <html:canvas id="sir-canvas" width="1" height="1"/>
 		</dialog>
