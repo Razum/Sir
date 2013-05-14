@@ -1,6 +1,14 @@
 if (!SIR) {
 	var SIR = {};
 }
+(function(){
+    
+    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+                   .getService(Components.interfaces.nsIWindowMediator);
+    var mainWindow = wm.getMostRecentWindow("navigator:browser"); 
+
+
+    
 Components.utils.import("resource://sir/prefs.jsm", SIR);
 SIR.Item = function() {};
 SIR.Item.prototype.init = function() {};
@@ -1279,4 +1287,4 @@ SIR.textfont.makeStyle = function(arrObj, node) {
 	}
 };
 
-
+})();
