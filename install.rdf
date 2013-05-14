@@ -4,7 +4,7 @@
 		<em:id>{0103572f-d20f-4039-9eaa-ded7c4a97124}</em:id>
         <em:type>2</em:type> 
 		<em:name>CSSsir</em:name>
-		<em:version>0.6.20130303</em:version>		
+		<em:version>0.6.20130514</em:version>		
 		<em:description>CSS3-rules generator.</em:description>
 		<em:creator>Roman Razumyeyenko</em:creator>		
 	    <em:iconURL>chrome://sir/skin/images/CSSsir.png</em:iconURL>		
@@ -12,7 +12,7 @@
 			<Description>
 				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
 				<em:minVersion>5.0</em:minVersion>
-				<em:maxVersion>20.*</em:maxVersion>
+				<em:maxVersion>23.*</em:maxVersion>
 			</Description>
 		</em:targetApplication>
 	</Description>

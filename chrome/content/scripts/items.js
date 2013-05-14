@@ -968,7 +968,7 @@ SIR.colorSelector = {
 	   
         var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                    .getService(Components.interfaces.nsIWindowMediator);
-        var mainWindow = wm.getMostRecentWindow("navigator:browser");
+        var mainWindow = wm.getMostRecentWindow("navigator:browser").getBrowser().selectedBrowser.contentWindow;
        
 		var self = this;
         this.colorButton = document.getElementById("sir-button-colorpicker");
@@ -981,42 +981,43 @@ SIR.colorSelector = {
 			self.cpTxtRGB.value = self.ColorPicker.getColour().getCSSIntegerRGB();
 			self.cpTxtHSL.value = self.ColorPicker.getColour().getCSSHSL();
 		});
-        
-        
-        
-        this.colorButton.addEventListener("click", function(){
-            if(this.checked){
-                mainWindow.gBrowser.addEventListener("mousemove", moveListener, false);
                 
-                mainWindow.gBrowser.addEventListener("click", function(event){
-                    self.colorButton.checked = false;
-                    this.removeEventListener('mousemove', moveListener, false);
-                    event.target.style.cursor = "default";
-                    
-                    
-                }, false)
+        this.colorButton.addEventListener("click", function(){
+            
+            if(this.checked){
+                mainWindow.addEventListener("mousemove", moveListener, false);                
+                mainWindow.addEventListener("click", takeColour, false);                                                
             }
 
         }, false);
         
         
         function moveListener(event){
-                    event.target.style.cursor = "crosshair";
+                    event.target.style.cursor = "crosshair";                    
                     var ctx = document.getElementById("sir-canvas").getContext("2d");
                     ctx.drawWindow(event.target.ownerDocument.defaultView, event.pageX, event.pageY, 1, 1, "rgb(255,255,255)");
                     var pixels = ctx.getImageData(0, 0, 1, 1).data;
                     var RGB = [pixels[0],pixels[1],pixels[2]];
-                    self.ColorPicker.setColour(new SIR.RGBColour(RGB[0], RGB[1], RGB[2]));
+                    self.ColorPicker.setColour(new SIR.RGBColour(RGB[0], RGB[1], RGB[2]));                    
+                    event.target.addEventListener("mouseleave", makeDefault, false);
 
-                }
-            
-            
-            
-            
-            
-            
-        }
-	
+            }
+                
+        function makeDefault(event){
+            event.target.style.cursor = "default";
+            event.target.removeEventListener('mouseleave', makeDefault, false);
+            }
+        
+        function takeColour(evt){
+            evt.preventDefault();
+            evt.target.style.cursor = "default";                    
+            self.colorButton.checked = false;
+            evt.target.removeEventListener('mouseleave', makeDefault, false);
+            this.removeEventListener('mousemove', moveListener, false);     
+            this.removeEventListener('click', takeColour, false);        
+            }
+    
+        }	
 };
 ////////////////////////////
 //       TRANSITION      //
