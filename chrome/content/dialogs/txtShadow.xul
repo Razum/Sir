@@ -3,7 +3,7 @@
 	<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css" ?>
 		<!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
 		<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml" id="txtShadowDialog" title="&txtShadow.title;" buttons="disabled" onload="SIR.txtShadow.init()">
-			<script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js"></script>
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js"></script>
 			<script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
 			
             <panel id="colorPicker" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="&colorpicker.panel.title;">
@@ -13,8 +13,26 @@
 				<vbox id="txtShadowField">
 					<label id="TSinscription" value="Text-shadow" />
 				</vbox>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
 				<vbox id="txtShadowControlBox">
-					<hbox class="controlHBox">
+                <hbox class="controlLabels">
+                <label id="addShadow" class="AddRemoveLabel text-link" value='Add Shadow' /><separator class="groove-thin" orient='vertical' />
+                <label id="removeShadow" class="AddRemoveLabel text-link" value='Remove Shadow'/>
+                </hbox>
+					<!--hbox class="controlHBox">
 						<label class="txtShadowLabels" value="Horizontal Length:" />
 						<scale min="-75" max="75" value="3" id="TShorLen" onchange="SIR.txtShadow.onParamsChange();" />
 						<textbox id="TShorLenvalue" maxlength="3" value="" /><label class="unitLabel" value="px"/>
@@ -32,10 +50,68 @@
 					<hbox>
 						<label class="txtShadowLabels" value="Shadow Color:" />
 						<colorpicker id="colorButton" type="button" disabled="true" color="#6D6B6B" onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false);" />
-					</hbox>
+					</hbox-->
 				</vbox>
 			</hbox>
             <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />
 			<hbox class="commandBox"><label value="&txtShadow.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
 			<textbox id="txtShadowResult" multiline="true" readonly="true" rows="10" />
-		</dialog>
+		
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <script type="text/html" id="txtShadowTmpl">
+            <label class="txtShadowLabels" value="Shadow #{{ number }}:" /><toolbarbutton image="chrome://sir/skin/images/adjustment.png" role="button" popup="thepanel{{ number }}" />
+            
+            <colorpicker class="colorButton" type="button" disabled="true" color="#6D6B6B" onclick="document.getElementById('colorPicker{{ number }}').openPopup(this, 'after_start', 0, 0, false);" />
+            <panel id="colorPicker{{ number }}" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="&colorpicker.panel.title;">
+			</panel>
+            
+            
+            <panel id="thepanel{{ number }}">
+              <vbox align="start">
+                    <hbox class="controlHBox">
+						<label class="txtShadowLabels" value="Horizontal Length:" />
+						<scale min="-75" max="75" value="3" class="TShorLen"  />
+						<textbox class="TShorLenvalue" maxlength="3" value="" /><label class="unitLabel" value="px"/>
+					</hbox>
+					<hbox class="controlHBox">
+						<label class="txtShadowLabels" value="Vertical Length:" />
+						<scale min="-75" max="75" value="3" class="TSverLen"  />
+						<textbox class="TSverLenvalue" maxlength="3" value="" /><label class="unitLabel" value="px"/>
+					</hbox>
+					<hbox class="controlHBox">
+						<label class="txtShadowLabels" value="Blur Radius:" />
+						<scale min="0" max="50" value="3" class="TSblurRadius" />
+						<textbox class="TSblurRadiusvalue" maxlength="3" value="" /><label class="unitLabel" value="px"/>
+					</hbox>
+              </vbox>
+            </panel>
+        </script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </dialog>
+        

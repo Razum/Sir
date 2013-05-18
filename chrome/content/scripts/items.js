@@ -5,17 +5,30 @@ if (!SIR) {
     
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                    .getService(Components.interfaces.nsIWindowMediator);
-    var mainWindow = wm.getMostRecentWindow("navigator:browser"); 
-
-
+    var mw = wm.getMostRecentWindow("navigator:browser");
+    Components.utils.import("resource://sir/prefs.jsm", SIR);
     
-Components.utils.import("resource://sir/prefs.jsm", SIR);
+    mw.SIR._.templateSettings = {
+        interpolate : /\{\{(.+?)\}\}/g
+    };
+    
+
+
+mw.SIR.BaseView = mw.SIR.Backbone.View.extend({
+    CopyCode: function(){
+       var val = SIR.sirPrefs.getBool("generators.comments") ? this.txtBox.value : this.txtBox.value.replace(/\/\*[\s\S]*?\*\//g, "");
+	   var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].
+	   getService(Components.interfaces.nsIClipboardHelper);
+	   gClipboardHelper.copyString(val);
+	   document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copied.png";
+    }
+});
+
 SIR.Item = function() {};
 SIR.Item.prototype.init = function() {};
 SIR.Item.prototype.onParamsChange = function() {};
 SIR.Item.prototype.showCode = function() {};
-SIR.Item.prototype.CopyCode = function() {
-    
+SIR.Item.prototype.CopyCode = function() {    
     var val = SIR.sirPrefs.getBool("generators.comments") ? this.txtBox.value : this.txtBox.value.replace(/\/\*[\s\S]*?\*\//g, "");
 	var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].
 	getService(Components.interfaces.nsIClipboardHelper);
@@ -166,6 +179,137 @@ SIR.rgba.showCode = function(R, G, B, opacity) {
 /////////////////////////
 //    Text-shadow     //
 ///////////////////////
+
+SIR.txtShadow = {};
+SIR.txtShadow.init = function() {
+    
+    var ControlModel = mw.SIR.Backbone.Model.extend({defaults: { horLen: 0, verLen: 0, blur: 0, color: "#333", units: "px" }});
+    var controlsCollection = new mw.SIR.Backbone.Collection();
+    
+    
+    
+    
+    var SingleShadowView = mw.SIR.Backbone.View.extend({
+        initialize: function(){},
+        tagName: 'hbox',
+        template: mw.SIR._.template(mw.SIR.$("#txtShadowTmpl", document).html()),
+        render: function(){   
+            var self = this;
+            mw.SIR.$(this.el).html(this.template({number: this.options.index}));
+            
+            mw.SIR.$(".TShorLen", self.el).on("change", function(){
+                var val = mw.SIR.$(this).val();                
+                self.model.set('horLen', val);
+                mw.SIR.$(".TShorLenvalue", self.el).val(val);
+            })
+            mw.SIR.$(".TSverLen", self.el).on("change", function(){
+                var val = mw.SIR.$(this).val();
+                self.model.set('verLen', val);
+                mw.SIR.$(".TSverLenvalue", self.el).val(val);
+            })
+            mw.SIR.$(".TSblurRadius", self.el).on("change", function(){
+                var val = mw.SIR.$(this).val();
+                self.model.set('blur', val);
+                mw.SIR.$(".TSblurRadiusvalue", self.el).val(val);
+            })
+            
+            this.colorpicker = new SIR.ColourPicker(mw.SIR.$("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(109, 107, 107));
+            
+            
+            this.colorpicker.addChangeListener(function() {
+                var color = self.colorpicker.getColour().getCSSHexadecimalRGB();
+                mw.SIR.$(".colorButton", self.el)[0].color = color;		        
+                self.model.set('color', color);
+	           });
+            
+            
+            return this;
+        }
+        
+    });
+    
+  
+    
+    var txtShadowControlsView = mw.SIR.BaseView.extend({
+        initialize: function(){
+            var self = this;
+            mw.SIR.$("#addShadow", this.el).on('click', mw.SIR.$.proxy( self.addShadow, self));
+            mw.SIR.$("#removeShadow", this.el).on('click', mw.SIR.$.proxy( self.removeShadow, self));
+            
+            
+            mw.SIR.$(".copyImg", document).on('click', mw.SIR.$.proxy( self.CopyCode, self));
+            
+            
+            
+            this.addShadow();            
+            this.collection.on("change", this.showCode, this);
+            this.showCode();
+        },
+        txtBox: document.getElementById("txtShadowResult"), 
+        el: document.getElementById("txtShadowControlBox"),
+        addShadow: function(){
+            if(this.collection.length < 5){
+                var mdl = new ControlModel;
+                this.collection.add(mdl);
+                var index = this.collection.length;
+                this.$el.append(new SingleShadowView({model: mdl, index: index}).render().el);
+                this.showCode();
+            }
+            
+        },
+        removeShadow: function(){
+            var self = this;
+            if(this.collection.length > 1){
+                this.collection.remove(this.collection.last());                
+                mw.SIR.$(">hbox:last-child", self.$el).last().remove();
+                this.showCode();
+            }
+            
+        },
+        showCode: function(){
+            document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
+            var IEdirection = (Math.round(Math.atan2(this.collection.at(0).get('verLen'), this.collection.at(0).get('horLen')) * 180 / Math.PI) + 90) % 360;
+            var IEblurRad = this.collection.at(0).get('blur');                            
+            IEdirection < 0 && (IEdirection += 360);
+            var str = "", shadow_arr = [];
+            this.collection.each(function(model, index){
+                shadow_arr.push( model.get('horLen') + "px " + model.get('verLen') + "px " + model.get('blur') + "px " + model.get('color') );
+            });
+            
+            str+= "text-shadow:" + shadow_arr.join(", ") + ";";
+            
+            this.txtBox.value ="text-shadow:" + shadow_arr.join(", ") + ";";
+            document.getElementById("TSinscription").style.cssText = "text-shadow:" + shadow_arr.join(", ") + ";";
+            
+            
+            
+            
+            
+    //str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');
+    //str += "text-shadow: " + horLen +  this.unit +" " + verLen +  this.unit +" " + blurRadius +  this.unit +" " + color + ";/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */\n";
+	//str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + color + '); /*IE 5.5-7*/\n');    
+	//this.txtBox.value = str;
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+    });
+    
+    var tsc = new txtShadowControlsView({collection: controlsCollection});
+}
+
+
+
+
+/*
 SIR.txtShadow = new SIR.Item();
 SIR.txtShadow.init = function() {
 	var self = this;
@@ -230,12 +374,12 @@ SIR.txtShadow.showCode = function(horLen, verLen, blurRadius, color) {
     
     IEdirection < 0 && (IEdirection += 360);
 	        
-	var str = "";	
-	str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');
-    str += "text-shadow: " + horLen +  this.unit +" " + verLen +  this.unit +" " + blurRadius +  this.unit +" " + color + ";/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */\n";
-	str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + color + '); /*IE 5.5-7*/\n');    
-	this.txtBox.value = str;
-};
+	var str = "";*/	
+	//str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');
+    //str += "text-shadow: " + horLen +  this.unit +" " + verLen +  this.unit +" " + blurRadius +  this.unit +" " + color + ";/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */\n";
+	//str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + color + '); /*IE 5.5-7*/\n');    
+	//this.txtBox.value = str;
+//};
 /////////////////////////
 //    Text-rotation   //
 ///////////////////////
