@@ -21,7 +21,31 @@ mw.SIR.BaseView = mw.SIR.Backbone.View.extend({
 	   getService(Components.interfaces.nsIClipboardHelper);
 	   gClipboardHelper.copyString(val);
 	   document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copied.png";
-    }
+    },
+    MozPrefix: function(str){
+        if(SIR.sirPrefs.getBool("generators.moz")){return "-moz-" + str;}
+        return ""
+    },
+    WebkitPrefix: function(str) {
+	   if (SIR.sirPrefs.getBool("generators.webkit")) {return "-webkit-" + str;}
+	   return "";
+    },
+    OperaPrefix: function(str) {
+	   if (SIR.sirPrefs.getBool("generators.opera")) { return "-o-" + str; }
+	   return "";
+    },
+    iePrefix: function(str) {
+	   if (SIR.sirPrefs.getBool("generators.ms")) { return str; }
+	   return "";
+    },
+    khtmlPrefix: function(str) {
+	   if (SIR.sirPrefs.getBool("generators.khtml")) { return "-khtml-" + str; }
+	   return "";
+    },
+    PIE: function() {
+	if (SIR.sirPrefs.getBool("generators.pie")) { return "behavior: url(" + SIR.sirPrefs.get("generators.piePath") + ");/*Apply PIE*/"; }
+	return "";
+    }    
 });
 
 SIR.Item = function() {};
@@ -186,11 +210,8 @@ SIR.txtShadow.init = function() {
     var ControlModel = mw.SIR.Backbone.Model.extend({defaults: { horLen: 0, verLen: 0, blur: 0, color: "#333", units: "px" }});
     var controlsCollection = new mw.SIR.Backbone.Collection();
     
-    
-    
-    
+            
     var SingleShadowView = mw.SIR.Backbone.View.extend({
-        initialize: function(){},
         tagName: 'hbox',
         template: mw.SIR._.template(mw.SIR.$("#txtShadowTmpl", document).html()),
         render: function(){   
@@ -214,15 +235,12 @@ SIR.txtShadow.init = function() {
             })
             
             this.colorpicker = new SIR.ColourPicker(mw.SIR.$("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(109, 107, 107));
-            
-            
+                        
             this.colorpicker.addChangeListener(function() {
                 var color = self.colorpicker.getColour().getCSSHexadecimalRGB();
                 mw.SIR.$(".colorButton", self.el)[0].color = color;		        
                 self.model.set('color', color);
-	           });
-            
-            
+	           });                        
             return this;
         }
         
@@ -234,13 +252,9 @@ SIR.txtShadow.init = function() {
         initialize: function(){
             var self = this;
             mw.SIR.$("#addShadow", this.el).on('click', mw.SIR.$.proxy( self.addShadow, self));
-            mw.SIR.$("#removeShadow", this.el).on('click', mw.SIR.$.proxy( self.removeShadow, self));
-            
-            
+            mw.SIR.$("#removeShadow", this.el).on('click', mw.SIR.$.proxy( self.removeShadow, self));                        
             mw.SIR.$(".copyImg", document).on('click', mw.SIR.$.proxy( self.CopyCode, self));
-            
-            
-            
+                                    
             this.addShadow();            
             this.collection.on("change", this.showCode, this);
             this.showCode();
@@ -269,36 +283,21 @@ SIR.txtShadow.init = function() {
         showCode: function(){
             document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
             var IEdirection = (Math.round(Math.atan2(this.collection.at(0).get('verLen'), this.collection.at(0).get('horLen')) * 180 / Math.PI) + 90) % 360;
-            var IEblurRad = this.collection.at(0).get('blur');                            
+            var IEblurRad = this.collection.at(0).get('blur'), IEcolor = this.collection.at(0).get('color');                          
             IEdirection < 0 && (IEdirection += 360);
             var str = "", shadow_arr = [];
             this.collection.each(function(model, index){
                 shadow_arr.push( model.get('horLen') + "px " + model.get('verLen') + "px " + model.get('blur') + "px " + model.get('color') );
             });
             
-            str+= "text-shadow:" + shadow_arr.join(", ") + ";";
+            str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + IEcolor + ')";/*IE 8*/\n');
+            str+= "text-shadow:" + shadow_arr.join(", ") + ";/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */\n";
+            str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + IEcolor + '); /*IE 5.5-7*/\n');
             
-            this.txtBox.value ="text-shadow:" + shadow_arr.join(", ") + ";";
+            this.txtBox.value = str;
             document.getElementById("TSinscription").style.cssText = "text-shadow:" + shadow_arr.join(", ") + ";";
             
-            
-            
-            
-            
-    //str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');
-    //str += "text-shadow: " + horLen +  this.unit +" " + verLen +  this.unit +" " + blurRadius +  this.unit +" " + color + ";/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */\n";
-	//str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + color + '); /*IE 5.5-7*/\n');    
-	//this.txtBox.value = str;
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+      
             
         }
     });
