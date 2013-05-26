@@ -1,6 +1,7 @@
 if (!SIR) {
 	var SIR = {};
 }
+
 (function(){
     
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
@@ -45,7 +46,7 @@ mw.SIR.BaseView = mw.SIR.Backbone.View.extend({
     PIE: function() {
 	if (SIR.sirPrefs.getBool("generators.pie")) { return "behavior: url(" + SIR.sirPrefs.get("generators.piePath") + ");/*Apply PIE*/"; }
 	return "";
-    }    
+    }
 });
 
 SIR.Item = function() {};
@@ -130,13 +131,22 @@ SIR.Item.prototype.interfaceOrganize = function(options) {
                 unitLabels[i].value = "em";
             }
         }
-    }
-    
-    
-    
-    
-    
+    }      
 };
+
+
+function checkUnits(name, val){    
+    var baseVal = SIR.sirPrefs.get("units.baseValue") || 16,
+    unit = SIR.sirPrefs.get("units." + name),
+    oldVal = val;
+    if(unit === "px") {return val;}
+    return Math.round(parseInt(oldVal, 10) / baseVal)*10;
+    
+    
+}
+
+
+
 //////////////////
 //    RGBA     //
 /////////////////
@@ -206,34 +216,56 @@ SIR.rgba.showCode = function(R, G, B, opacity) {
 
 SIR.txtShadow = {};
 SIR.txtShadow.init = function() {
-    
-    var ControlModel = mw.SIR.Backbone.Model.extend({defaults: { horLen: 0, verLen: 0, blur: 0, color: "#333", units: "px" }});
+    var ControlModel = mw.SIR.Backbone.Model.extend({
+        initialize: function(){
+           var delim = this.defaults.units === "em" ? 10 : 1;           
+           this.defaults.horLen /= delim ; 
+           this.defaults.verLen /= delim ; 
+           this.defaults.blur /= delim ;            
+        },
+        defaults: {
+            horLen:  checkUnits("textShadow", 3), 
+            verLen: checkUnits("textShadow", 3), 
+            blur: checkUnits("textShadow", 3), 
+            color: "#333333", 
+            units: SIR.sirPrefs.get("units.textShadow") || "px"      
+            }});
     var controlsCollection = new mw.SIR.Backbone.Collection();
     
             
     var SingleShadowView = mw.SIR.Backbone.View.extend({
+        initialize: function(){
+            this.delimeter = this.model.get("units") === "em" ? 10 : 1;
+        },
         tagName: 'hbox',
         template: mw.SIR._.template(mw.SIR.$("#txtShadowTmpl", document).html()),
-        render: function(){   
-            var self = this;
-            mw.SIR.$(this.el).html(this.template({number: this.options.index}));
+        render: function(){    
+            var self = this, data = mw.SIR._.extend({number: this.options.index}, self.model.toJSON());
+            mw.SIR.$(this.el).html(this.template(data));                        
             
-            mw.SIR.$(".TShorLen", self.el).on("change", function(){
-                var val = mw.SIR.$(this).val();                
+            this.horLen = mw.SIR.$(".TShorLen", self.el);   this.verLen = mw.SIR.$(".TSverLen", self.el);
+	        this.blurRadius = mw.SIR.$(".TSblurRadius", self.el);  this.horLenTxt = mw.SIR.$(".TShorLenvalue", self.el);   
+            this.verLenTxt = mw.SIR.$(".TSverLenvalue", self.el);  this.blurRadiusTxt = mw.SIR.$(".TSblurRadiusvalue", self.el); 
+                                    
+            this.horLen.on("change", function(){
+                var val = mw.SIR.$(this).val() / self.delimeter;             
                 self.model.set('horLen', val);
                 mw.SIR.$(".TShorLenvalue", self.el).val(val);
-            })
-            mw.SIR.$(".TSverLen", self.el).on("change", function(){
-                var val = mw.SIR.$(this).val();
+            });
+            this.verLen.on("change", function(){
+                var val = mw.SIR.$(this).val() / self.delimeter;
                 self.model.set('verLen', val);
                 mw.SIR.$(".TSverLenvalue", self.el).val(val);
-            })
-            mw.SIR.$(".TSblurRadius", self.el).on("change", function(){
-                var val = mw.SIR.$(this).val();
+            });
+            this.blurRadius.on("change", function(){
+                var val = mw.SIR.$(this).val() / self.delimeter;
                 self.model.set('blur', val);
                 mw.SIR.$(".TSblurRadiusvalue", self.el).val(val);
-            })
-            
+            });
+            this.horLenTxt.on("keyup", function(){self.txtBoxScale(self.horLen[0], self.horLenTxt[0])});
+            this.verLenTxt.on("keyup", function(){self.txtBoxScale(self.verLen[0], self.verLenTxt[0])})
+            this.blurRadiusTxt.on("keyup", function(){self.txtBoxScale(self.blurRadius[0], self.blurRadiusTxt[0])})
+                        
             this.colorpicker = new SIR.ColourPicker(mw.SIR.$("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(109, 107, 107));
                         
             this.colorpicker.addChangeListener(function() {
@@ -242,7 +274,11 @@ SIR.txtShadow.init = function() {
                 self.model.set('color', color);
 	           });                        
             return this;
-        }
+        },
+        txtBoxScale: function(scale, lbl) {
+	       var val = lbl.value;
+	       if (!isNaN(val)) { scale.value = Math.round(val); }
+            }  
         
     });
     
@@ -277,8 +313,7 @@ SIR.txtShadow.init = function() {
                 this.collection.remove(this.collection.last());                
                 mw.SIR.$(">hbox:last-child", self.$el).last().remove();
                 this.showCode();
-            }
-            
+            }            
         },
         showCode: function(){
             document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
@@ -287,18 +322,14 @@ SIR.txtShadow.init = function() {
             IEdirection < 0 && (IEdirection += 360);
             var str = "", shadow_arr = [];
             this.collection.each(function(model, index){
-                shadow_arr.push( model.get('horLen') + "px " + model.get('verLen') + "px " + model.get('blur') + "px " + model.get('color') );
+                shadow_arr.push( model.get('horLen') + model.get('units') +" " + model.get('verLen') + model.get('units') + " " + model.get('blur') + model.get('units') + " " + model.get('color') );
             });
             
             str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + IEcolor + ')";/*IE 8*/\n');
-            str+= "text-shadow:" + shadow_arr.join(", ") + ";/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */\n";
-            str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + IEcolor + '); /*IE 5.5-7*/\n');
-            
+            str += "text-shadow:" + shadow_arr.join(", ") + ";/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */\n";
+            str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + IEcolor + '); /*IE 5.5-7*/\n');            
             this.txtBox.value = str;
-            document.getElementById("TSinscription").style.cssText = "text-shadow:" + shadow_arr.join(", ") + ";";
-            
-      
-            
+            document.getElementById("TSinscription").style.cssText = "text-shadow:" + shadow_arr.join(", ") + ";";            
         }
     });
     
