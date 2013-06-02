@@ -3,29 +3,33 @@
 	<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css" ?>
 		<!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
 		<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml" id="gradientDialog" title="&gradient.title;" buttons="disabled" onload="SIR.gradient.init();">
-			<script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js"></script>
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
+            <script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js"></script>
 			<script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
 			
-            <panel id="colorPickerFrom" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="&colorpicker.panel.title;">
-			</panel>
-			<panel id="colorPickerTo" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="&colorpicker.panel.title;">
-			</panel>
-			
+
             <hbox>
 				<box id="gradientField">
 				</box>
 				<vbox id="gradientControlBox">
-                <groupbox>
-                <caption label="Type"/>
-                <radiogroup id="sir-grad"> 
-                    <hbox>
-                        <radio id="sir-grad-linear" label="Linear" value="linear" selected="true"/><spacer style="width: 40px;"/>
-                        <radio id="sir-grad-radial" label="Radial" value="radial"/>
-                    </hbox>
-                </radiogroup>
-                </groupbox>
                 
-					<hbox id="LinearHBox">
+                
+                
+                                
+                <hbox class="controlLabels">
+                    <label id="addColor" class="AddRemoveLabel text-link" value='Add Color' /><separator class="groove-thin" orient='vertical' />
+                    <label id="removeColor" class="AddRemoveLabel text-link" value='Remove Color'/>
+                </hbox>
+                <hbox class="controlHBox">
+			        <label class="gradientLabels" value="Angle:" />
+				    <scale min="0" max="360" value="90" class="LGangle"  />
+				    <textbox class="LGanglevalue" maxlength="3" value="90" /><label class="unitLabel" value="&#176;"/>
+                </hbox>
+                
+                
+                
+                
+					<!--hbox id="LinearHBox">
 						<label class="gradientLabels" value="Orientation:" />
 						<menulist width="150px" id="linearDir" oncommand="SIR.gradient.onParamsChange()">
 							<menupopup>
@@ -65,11 +69,52 @@
 					<hbox class="controlGradHBox">
 						<label class="gradientLabels" value="To:" />
 						<colorpicker id="colorButtonTo" type="button" disabled="true" color="#F4F60C" onclick="document.getElementById('colorPickerTo').openPopup(this, 'after_start', 0, 0, false);" />
-					</hbox>
+					</hbox-->
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                       
+                        
 				</vbox>
 			</hbox>
             <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />
             <hbox class="commandBox"><label value="&gradient.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
 			
 			<textbox id="gradientResult" multiline="true" readonly="true" rows="10" />
-		</dialog>
+		
+        
+        
+        
+        <script type="text/html" id="linearGradientTmpl">
+
+			     <label class="gradientLabels" value="Color Stop {{ number }}:" />
+				 <colorpicker class="colorButton" type="button" disabled="true" color="{{ color }}" onclick="document.getElementById('colorPicker{{ number }}').openPopup(this, 'after_start', 0, 0, false);" />
+                 <panel id="colorPicker{{ number }}" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="&colorpicker.panel.title;">
+			     </panel>
+                 
+                 
+                 <scale min="0" max="100" value="{{ stopColorPos }}" class="LGstopColorPos"  />
+				 <textbox class="LGstopColorPosVal" maxlength="3" value="{{ stopColorPos }}" /><label class="unitLabel" value="&#176;"/>
+        
+        
+        </script>
+        
+        
+        
+        
+        
+        
+        
+        
+        </dialog>
+        
+        
+        
+        
+        
+        

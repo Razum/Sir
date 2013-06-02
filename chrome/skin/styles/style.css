@@ -583,6 +583,18 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
      
  }
  
+ #gradientControlBox textbox{
+    font-size:14px;
+    font-weight: 600;
+    width: 35px;
+     
+ }
+ 
+ #gradientControlBox scale{
+    width: 230px;
+     
+ }
+ 
  #gradientControlBox menulist{
     margin-top: -3px;
  }
@@ -593,10 +605,6 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
      
  }
  
- #gradientControlBox textbox{
-    width:100px;
-     
- }
 
  
 #gradientField{

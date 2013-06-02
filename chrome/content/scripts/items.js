@@ -46,7 +46,11 @@ mw.SIR.BaseView = mw.SIR.Backbone.View.extend({
     PIE: function() {
 	if (SIR.sirPrefs.getBool("generators.pie")) { return "behavior: url(" + SIR.sirPrefs.get("generators.piePath") + ");/*Apply PIE*/"; }
 	return "";
-    }
+    },
+    txtBoxScale: function(scale, lbl) {
+	    var val = lbl.value;
+	    if (!isNaN(val)) {scale.value = Math.round(val); }
+    } 
 });
 
 SIR.Item = function() {};
@@ -539,6 +543,147 @@ SIR.transform.showCode = function(rot, scX, scY, skX, skY, trX, trY) {
 /////////////////////////
 //    Box-shadow      //
 ///////////////////////
+
+
+
+SIR.boxShadow = {};
+SIR.boxShadow.init = function() {
+    var ControlModel = mw.SIR.Backbone.Model.extend({
+        initialize: function(){
+           var delim = this.defaults.units === "em" ? 10 : 1;           
+           this.defaults.horLen /= delim ; 
+           this.defaults.verLen /= delim ; 
+           this.defaults.blur /= delim ;            
+        },
+        defaults: {
+            horLen:  checkUnits("boxShadow", 3), 
+            verLen: checkUnits("boxShadow", 3), 
+            blur: checkUnits("boxShadow", 3), 
+            color: "#333333", 
+            inset: "",
+            units: SIR.sirPrefs.get("units.boxShadow") || "px"      
+            }});
+    var controlsCollection = new mw.SIR.Backbone.Collection();
+    
+            
+    var SingleShadowView = mw.SIR.Backbone.View.extend({
+        initialize: function(){
+            this.delimeter = this.model.get("units") === "em" ? 10 : 1;
+        },
+        tagName: 'hbox',
+        template: mw.SIR._.template(mw.SIR.$("#boxShadowTmpl", document).html()),
+        render: function(){    
+            var self = this, data = mw.SIR._.extend({number: this.options.index}, self.model.toJSON());
+            mw.SIR.$(this.el).html(this.template(data));                        
+            
+            this.horLen = mw.SIR.$(".BShorLen", self.el);   this.verLen = mw.SIR.$(".BSverLen", self.el);
+	        this.blurRadius = mw.SIR.$(".BSblurRadius", self.el);  this.horLenTxt = mw.SIR.$(".BShorLenvalue", self.el);   
+            this.verLenTxt = mw.SIR.$(".BSverLenvalue", self.el);  this.blurRadiusTxt = mw.SIR.$(".BSblurRadiusvalue", self.el); 
+            this.inset = mw.SIR.$(".insetCheck", self.el);
+                                    
+            this.horLen.on("change", function(){
+                var val = mw.SIR.$(this).val() / self.delimeter;             
+                self.model.set('horLen', val);
+                mw.SIR.$(".BShorLenvalue", self.el).val(val);
+            });
+            this.verLen.on("change", function(){
+                var val = mw.SIR.$(this).val() / self.delimeter;
+                self.model.set('verLen', val);
+                mw.SIR.$(".BSverLenvalue", self.el).val(val);
+            });
+            this.blurRadius.on("change", function(){
+                var val = mw.SIR.$(this).val() / self.delimeter;
+                self.model.set('blur', val);
+                mw.SIR.$(".BSblurRadiusvalue", self.el).val(val);
+            });
+            
+            this.inset.on("command", function(){                
+                self.model.set('inset', self.inset.attr("checked") ? "inset " : "");
+            });
+            
+            
+            this.horLenTxt.on("keyup", function(){self.txtBoxScale(self.horLen[0], self.horLenTxt[0])});
+            this.verLenTxt.on("keyup", function(){self.txtBoxScale(self.verLen[0], self.verLenTxt[0])})
+            this.blurRadiusTxt.on("keyup", function(){self.txtBoxScale(self.blurRadius[0], self.blurRadiusTxt[0])})
+                        
+            this.colorpicker = new SIR.ColourPicker(mw.SIR.$("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(109, 107, 107));
+                        
+            this.colorpicker.addChangeListener(function() {
+                var color = self.colorpicker.getColour().getCSSHexadecimalRGB();
+                mw.SIR.$(".colorButton", self.el)[0].color = color;		        
+                self.model.set('color', color);
+	           });                        
+            return this;
+        },
+        txtBoxScale: function(scale, lbl) {
+	       var val = lbl.value;
+	       if (!isNaN(val)) { scale.value = Math.round(val); }
+            }  
+        
+    });
+    
+  
+    
+    var boxShadowControlsView = mw.SIR.BaseView.extend({
+        initialize: function(){
+            var self = this;
+            mw.SIR.$("#addShadow", this.el).on('click', mw.SIR.$.proxy( self.addShadow, self));
+            mw.SIR.$("#removeShadow", this.el).on('click', mw.SIR.$.proxy( self.removeShadow, self));                        
+            mw.SIR.$(".copyImg", document).on('click', mw.SIR.$.proxy( self.CopyCode, self));
+                                    
+            this.addShadow();            
+            this.collection.on("change", this.showCode, this);
+            this.showCode();
+        },
+        txtBox: document.getElementById("boxShadowResult"), 
+        el: document.getElementById("boxShcontrolBox"),
+        addShadow: function(){
+            if(this.collection.length < 5){
+                var mdl = new ControlModel;
+                this.collection.add(mdl);
+                var index = this.collection.length;
+                this.$el.append(new SingleShadowView({model: mdl, index: index}).render().el);
+                this.showCode();
+            }
+            
+        },
+        removeShadow: function(){
+            var self = this;
+            if(this.collection.length > 1){
+                this.collection.remove(this.collection.last());                
+                mw.SIR.$(">hbox:last-child", self.$el).last().remove();
+                this.showCode();
+            }            
+        },
+        showCode: function(){
+            document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
+            var IEdirection = (Math.round(Math.atan2(this.collection.at(0).get('verLen'), this.collection.at(0).get('horLen')) * 180 / Math.PI) + 90) % 360;
+            var IEblurRad = this.collection.at(0).get('blur'), IEcolor = this.collection.at(0).get('color');                          
+            IEdirection < 0 && (IEdirection += 360);
+            var str = "", shadow_arr = [];
+            this.collection.each(function(model, index){
+                shadow_arr.push( model.get('inset') + " " + model.get('horLen') + model.get('units') + " " + model.get('verLen') + model.get('units') + " " + model.get('blur') + model.get('units') + " " + model.get('color') );
+            });
+            
+            str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + IEcolor + ')";/*IE 8*/\n');
+            
+            str += this.MozPrefix("box-shadow: " + shadow_arr.join(", ") + ";/*FF 3.5+*/\n");
+	        str += this.WebkitPrefix("box-shadow: " + shadow_arr.join(", ") + ";/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/\n");
+	        str += this.khtmlPrefix("box-shadow: " + shadow_arr.join(", ") + ";/*Konqueror*/\n");
+            
+            
+            str += "box-shadow:" + shadow_arr.join(", ") + ";/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */\n";            
+            str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + IEcolor + '); /*IE 5.5-7*/\n');            
+            this.txtBox.value = str;
+            document.getElementById("boxShBox").style.cssText = "box-shadow:" + shadow_arr.join(", ") + ";";            
+        }
+    });
+    
+    var bsc = new boxShadowControlsView({collection: controlsCollection});
+}
+
+
+/*
 SIR.boxShadow = new SIR.Item();
 SIR.boxShadow.init = function() {
 	var self = this;
@@ -611,21 +756,22 @@ SIR.boxShadow.showCode = function(horLen, verLen, blurRadius, color, inset) {
 	var ins = "";
 	inset && (ins = "inset ");
     
-	var str = ""	
-	str += this.MozPrefix("box-shadow: " + ins + horLen + this.unit + " " + verLen + this.unit + " " + blurRadius + this.unit + " " + color + ";/*FF 3.5+*/\n");
-	str += this.WebkitPrefix("box-shadow: " + ins + horLen + this.unit + " " + verLen + this.unit + " " + blurRadius + this.unit + " " + color + ";/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/\n");
-	str += this.khtmlPrefix("box-shadow: " + ins + horLen + this.unit + " " + verLen + this.unit + " " + blurRadius + this.unit + " " + color + ";/*Konqueror*/\n");
-	if (!inset) {
-		str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');		
-	}
-    str += "box-shadow: " + ins + horLen + this.unit + " " + verLen + this.unit + " " + blurRadius + this.unit + " " + color + ";\n";
-    if (!inset) {		
-		str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + color + ');/*IE 5.5-7*/\n');
-	}
+	var str = ""*/	
+	//str += this.MozPrefix("box-shadow: " + ins + horLen + this.unit + " " + verLen + this.unit + " " + blurRadius + this.unit + " " + color + ";/*FF 3.5+*/\n");
+	//str += this.WebkitPrefix("box-shadow: " + ins + horLen + this.unit + " " + verLen + this.unit + " " + blurRadius + this.unit + " " + color + ";/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/\n");
+	//str += this.khtmlPrefix("box-shadow: " + ins + horLen + this.unit + " " + verLen + this.unit + " " + blurRadius + this.unit + " " + color + ";/*Konqueror*/\n");
+	//if (!inset) {
+	//	str += this.iePrefix('-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=' + blurRadius + ', Direction=' + IEdirection + ', Color=' + color + ')";/*IE 8*/\n');		
+	//}
+    //str += "box-shadow: " + ins + horLen + this.unit + " " + verLen + this.unit + " " + blurRadius + this.unit + " " + color + ";\n";
+   // if (!inset) {		
+//		str += this.iePrefix('filter: progid:DXImageTransform.Microsoft.Shadow(Strength=' + IEblurRad + ', Direction=' + IEdirection + ', Color=' + color + ');/*IE 5.5-7*/\n');
+//	}
     
-	str += this.PIE();    
-	this.txtBox.value = str;
-}
+//	str += this.PIE();    
+//	this.txtBox.value = str;
+//}
+
 /////////////////////////
 //    Border-radius   //
 ///////////////////////
@@ -824,8 +970,182 @@ SIR.txtColumn.showCode = function(count, gap, rule) {
 /////////////////////////
 //    Gradient        //
 ///////////////////////
+
+SIR.gradient = {};
+SIR.gradient.init = function(){
+    
+
+var GradientModel = mw.SIR.Backbone.Model.extend({
+    defaults: {
+        color: "#1301FE",
+        stopColorPos: 100
+    }
+    });
+
+var GradientCollection = mw.SIR.Backbone.Collection.extend({
+    model: GradientModel,
+    comparator: function(model){ return model.get("stopColorPos"); }
+    });
+
+var gradCol = new GradientCollection([
+    new GradientModel({color: "#1301FE", stopColorPos: 0}),
+    new GradientModel({color: "#F4F60C", stopColorPos: 100})
+]);
+    
+    
+var SingleColorView = mw.SIR.Backbone.View.extend({
+    tagName: "hbox",
+    template: mw.SIR._.template(mw.SIR.$("#linearGradientTmpl", document).html()),
+    render: function(){
+        var self = this;
+        var data = mw.SIR._.extend(this.model.toJSON(), {number: this.options.index});
+        this.$el.append(this.template(data));
+        
+        
+        this.colorStopPos = mw.SIR.$(".LGstopColorPos", this.el), this.colorStopVal = mw.SIR.$(".LGstopColorPosVal", this.el);
+        
+
+        
+        this.colorStopPos.on("change", function(){
+            var val = mw.SIR.$(this).val();
+            self.model.set('stopColorPos', val);
+            self.colorStopVal.val(val);
+        });
+        this.colorStopVal.on("keyup", function(){self.txtBoxScale(self.colorStopPos[0], self.colorStopVal[0])});
+        
+        
+        
+        var rgbHash = SIR.utils.toRGB(this.model.get("color"));        
+        this.colorpicker = new SIR.ColourPicker(mw.SIR.$("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(rgbHash.red, rgbHash.green, rgbHash.blue));                      
+        this.colorpicker.addChangeListener(function() {
+             var color = self.colorpicker.getColour().getCSSHexadecimalRGB();
+             mw.SIR.$(".colorButton", self.el)[0].color = color;		        
+             self.model.set('color', color);
+	       }); 
+        
+        
+        return this;
+    },
+    txtBoxScale: function(scale, lbl) {
+	    var val = lbl.value;
+	    if (!isNaN(val)) {scale.value = Math.round(val); }
+    }  
+});    
+
+
+var gradientControlsView = mw.SIR.BaseView.extend({
+    el: document.getElementById("gradientControlBox"),
+    txtBox: document.getElementById("gradientResult"),
+    angleScale: document.getElementById("LGangle"),
+    
+    gradientField: document.getElementById("gradientField"),
+    
+    initialize: function(){
+        var self = this;
+        mw.SIR.$("#addColor", this.el).on('click', mw.SIR.$.proxy( self.addColor, self));
+        mw.SIR.$("#removeColor", this.el).on('click', mw.SIR.$.proxy( self.removeColor, self));                        
+        mw.SIR.$(".copyImg", document).on('click', mw.SIR.$.proxy( self.CopyCode, self));   
+        
+        this.angle = mw.SIR.$(".LGangle", document), this.angleVal = mw.SIR.$(".LGanglevalue", document);
+        this.angle.on("change", function(){
+            var val = mw.SIR.$(this).val();
+            self.angleVal.val(val);
+            self.showCode();
+        });
+        this.angleVal.on("keyup", function(){
+            mw.Firebug.Console.log(self.angleVal);
+            self.txtBoxScale(self.angle[0], self.angleVal[0]);  });
+
+        
+        this.$el.append(new SingleColorView({model: gradCol.at(0), index: 0}).render().el);
+        this.$el.append(new SingleColorView({model: gradCol.at(1), index: 1}).render().el);
+        
+        this.collection.on("change", this.showCode, this);
+        
+        
+        this.showCode();
+             
+    },
+
+    addColor: function(){
+        if(this.collection.length < 5){
+                var mdl = new GradientModel;
+                this.collection.add(mdl);
+                var index = this.collection.length;
+                this.$el.append(new SingleColorView({model: mdl, index: index}).render().el);
+                this.showCode();
+            }
+    },
+    removeColor: function(){
+        var self = this;
+        if(this.collection.length > 2){
+                this.collection.remove(this.collection.last());                
+                mw.SIR.$(">hbox:last-child", self.$el).last().remove();
+                this.showCode();
+            }
+    },
+    showCode: function(){
+        var self = this;
+        
+
+        this.collection.sort();
+
+        
+        var angle = mw.SIR.$(self.angle).attr("value");
+        document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
+        var str = "", stop_arr = [],
+        webkit_stop_arr = [];
+        this.collection.each(function(model, index){
+             stop_arr.push( model.get('color') + " " + model.get('stopColorPos') + "%" );
+             webkit_stop_arr.push("color-stop(" + model.get('stopColorPos') + "%, " + model.get('color') + ")");
+        });
+        
+        if (SIR.sirPrefs.getBool("generators.moz")) {
+            str += "background: -moz-linear-gradient(" + angle + "deg," + stop_arr.join(", ") + ");/* FF3.6+ */\n";
+        }
+            
+        if (SIR.sirPrefs.getBool("generators.webkit")) {
+            str += "background: -webkit-gradient(linear, " + angle + "deg," + webkit_stop_arr.join(", ") + ");/* Chrome,Safari4+ */\n";
+            str += "background: -webkit-linear-gradient(" + angle + "deg," + stop_arr.join(", ") + ");/* Chrome10+,Safari5.1+ */\n";
+        }
+        
+        if (SIR.sirPrefs.getBool("generators.opera")) {
+            str += "background: -o-linear-gradient(" + angle + "deg," + stop_arr.join(", ") + ");/* Opera 11.10+ */\n";
+        }
+        
+        if (SIR.sirPrefs.getBool("generators.ms")) {
+            str += "background: -ms-linear-gradient(" + angle + "deg," + stop_arr.join(", ") + ");/* IE10+ */\n";
+        }
+        str += "background: linear-gradient(" + angle +"deg, " + stop_arr.join(", ") + ");/* W3C */"
+        this.txtBox.value = str;
+        this.gradientField.style.cssText =   "background: -moz-linear-gradient(" + angle + "deg," + stop_arr.join(", ") + ");";                      
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+new gradientControlsView({collection: gradCol});
+
+
+
+
+};
+
+
+/*
 SIR.gradient = new SIR.Item();
 SIR.gradient.init = function() {
+    
+
+    
 	var self = this,
 		gradient;
 	this.linearDir = document.getElementById("linearDir");
@@ -885,31 +1205,31 @@ SIR.gradient.onParamsChange = function() {
 	document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
 };
 SIR.gradient.showCode = function(type, grad, dir, from, to) {
-	var str = "";
-	str += "background: " + from + "; /* for non-css3 browsers */\n";    
-    if(SIR.sirPrefs.getBool("generators.moz")){
-	   str += "background: -moz-" + type + "-gradient(" + grad[type][dir].moz + from + ",  " + to + "); /* for firefox 3.6+ */ \n";
-    }
-    if(SIR.sirPrefs.getBool("generators.webkit")){
-	   str += "background: -webkit-gradient(" + type + ", " + grad[type][dir].webkit + " from(" + from + "), to(" + to + ")); /* Safari 4+, Chrome */\n";
-       str += "background: -webkit-"+type+"-gradient(" + grad[type][dir].webkit + " " + from + ", " + to + "); /* Chrome 10+, Safari 5.1+, iOS 5+ */\n";
-    }
-    if(SIR.sirPrefs.getBool("generators.opera")){
-	   str += "background: -o-" + type + "-gradient(" + grad[type][dir].moz + from + "," + to + "); /* Opera 11.10+ */\n";
-	}
+	var str = "";*/
+	//str += "background: " + from + "; /* for non-css3 browsers */\n";    
+   // if(SIR.sirPrefs.getBool("generators.moz")){
+	 //  str += "background: -moz-" + type + "-gradient(" + grad[type][dir].moz + from + ",  " + to + "); /* for firefox 3.6+ */ \n";
+    //}
+    //if(SIR.sirPrefs.getBool("generators.webkit")){
+	  // str += "background: -webkit-gradient(" + type + ", " + grad[type][dir].webkit + " from(" + from + "), to(" + to + ")); /* Safari 4+, Chrome */\n";
+       //str += "background: -webkit-"+type+"-gradient(" + grad[type][dir].webkit + " " + from + ", " + to + "); /* Chrome 10+, Safari 5.1+, iOS 5+ */\n";
+    //}
+    //if(SIR.sirPrefs.getBool("generators.opera")){
+	  // str += "background: -o-" + type + "-gradient(" + grad[type][dir].moz + from + "," + to + "); /* Opera 11.10+ */\n";
+	//}
     
-    if(SIR.sirPrefs.getBool("generators.khtml")){
-        str += "background: -khtml-" + type + "-gradient(" + grad[type][dir].moz + from + "," + to + "); /* Konqueror */\n";
-	}
+   // if(SIR.sirPrefs.getBool("generators.khtml")){
+     //   str += "background: -khtml-" + type + "-gradient(" + grad[type][dir].moz + from + "," + to + "); /* Konqueror */\n";
+	//}
     
-    if(SIR.sirPrefs.getBool("generators.ms") && type === "linear"){
-        str += 'background: -ms-filter:"progid:DXImageTransform.Microsoft.Gradient(StartColorStr=' + from + ', EndColorStr=' + to + ', GradientType=' + grad[type][dir].ie + ')";\n';	           
-    }
-    str += "background: " + type + "-gradient(" + grad[type][dir].w3c + from + "," + to + "); /* W3C */\n";
-    if(type === "linear"){
-        if(SIR.sirPrefs.getBool("generators.ms")){            
-            str += "filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='" + from + "', endColorstr='" + to + "', GradientType='" + grad[type][dir].ie + "'); /* for IE */\n";
-	       }
+  //  if(SIR.sirPrefs.getBool("generators.ms") && type === "linear"){
+    //    str += 'background: -ms-filter:"progid:DXImageTransform.Microsoft.Gradient(StartColorStr=' + from + ', EndColorStr=' + to + ', GradientType=' + grad[type][dir].ie + ')";\n';	           
+    //}
+    //str += "background: " + type + "-gradient(" + grad[type][dir].w3c + from + "," + to + "); /* W3C */\n";
+    //if(type === "linear"){
+     //   if(SIR.sirPrefs.getBool("generators.ms")){            
+      //      str += "filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='" + from + "', endColorstr='" + to + "', GradientType='" + grad[type][dir].ie + "'); /* for IE */\n";
+/*	       }
         if(SIR.sirPrefs.getBool("generators.pie")){
             str += "-pie-background: " + type + "-gradient(" + grad[type][dir].moz + from + "," + to + ");\n";
         }   
@@ -917,6 +1237,7 @@ SIR.gradient.showCode = function(type, grad, dir, from, to) {
     }
     this.txtBox.value = str;
 };
+*/
 /////////////////////////
 //    Converter       //
 ///////////////////////
