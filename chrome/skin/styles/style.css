@@ -543,10 +543,10 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
 
 
-/****************** Gradient ********************/
+/****************** Linear Gradient ********************/
 
 
-#gradientDialog{
+#lineargradientDialog{
     width:900px;
     height: 550px;
     min-height: 550px;
@@ -631,6 +631,117 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     
     
 }
+
+
+
+/****************** Radial Gradient ********************/
+
+
+#radialgradientDialog{
+    width:900px;
+    height: 550px;
+    min-height: 550px;
+    min-width: 900px;
+}
+
+#positionField{
+    width:  100px;
+    height: 100px;
+    position: relative;
+    background: #fff;
+    cursor: crosshair;
+    overflow:  hidden;
+}
+
+#positionField #circle{
+    width: 11px;
+    height: 11px;
+    position: absolute;
+    top:  45px;
+    left:  45px;
+    background: url('chrome://sir/skin/images/circle.gif');
+}
+
+ .gradientLabels{
+    width: 100px;
+
+ }
+ .controlGradHBox{
+    margin-bottom: 25px;
+ }
+ 
+
+
+ #radialgradientControlBox{
+     padding: 0 15px 0 30px;
+     
+ }
+ 
+ #LinearHBox{
+    margin: 15px 0;
+    font-size: 16px;
+ }
+ 
+ #radialHBox{
+    margin: 15px 0;
+ }
+ 
+ #radialgradientControlBox label{
+    font-size:12px;
+    font-weight: 500;
+     
+ }
+ 
+ #radialgradientControlBox textbox{
+    font-size:14px;
+    font-weight: 600;
+    width: 35px;
+     
+ }
+ 
+ #radialgradientControlBox scale{
+    width: 230px;
+     
+ }
+ 
+ #gradientControlBox menulist{
+    margin-top: -3px;
+ }
+ 
+ #gradientControlBox menulist label{
+    font-weight: 600;
+    text-align: center;
+     
+ }
+ 
+
+ 
+#gradientField{
+    
+    width: 400px;
+    height: 300px;
+    margin-bottom: 15px;
+    border: 1px solid #dedede;
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    -moz-border-radius: 10px;
+    background-color: #F7F7F7;
+    overflow: hidden;
+}
+
+
+#gradientResult{
+    
+    -moz-box-shadow: 2px 1px 5px #E2E2E2;
+    background-color: #F7F7F7;
+    padding-left: 12px;
+    line-height: 1.5;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 12px;
+    
+    
+}
+
+
 
 
 /************************ Converter *************************/

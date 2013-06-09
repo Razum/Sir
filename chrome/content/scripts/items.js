@@ -967,12 +967,12 @@ SIR.txtColumn.showCode = function(count, gap, rule) {
 	str += "column-rule:" + rule + ";\n";
 	this.txtBox.value = str;
 };
-/////////////////////////
-//    Gradient        //
-///////////////////////
+////////////////////////////////
+//    Linear Gradient        //
+//////////////////////////////
 
-SIR.gradient = {};
-SIR.gradient.init = function(){
+SIR.lineargradient = {};
+SIR.lineargradient.init = function(){
     
 
 var GradientModel = mw.SIR.Backbone.Model.extend({
@@ -1053,7 +1053,6 @@ var gradientControlsView = mw.SIR.BaseView.extend({
             self.showCode();
         });
         this.angleVal.on("keyup", function(){
-            mw.Firebug.Console.log(self.angleVal);
             self.txtBoxScale(self.angle[0], self.angleVal[0]);  });
 
         
@@ -1238,6 +1237,292 @@ SIR.gradient.showCode = function(type, grad, dir, from, to) {
     this.txtBox.value = str;
 };
 */
+
+
+////////////////////////////////
+//    Radial Gradient        //
+//////////////////////////////
+
+SIR.radialgradient = {};
+SIR.radialgradient.init = function(){
+var GradientModel = mw.SIR.Backbone.Model.extend({
+    defaults: {
+        color: "#1301FE",
+        stopColorPos: 100
+    }
+    });
+
+var GradientCollection = mw.SIR.Backbone.Collection.extend({
+    model: GradientModel,
+    comparator: function(model){ return model.get("stopColorPos"); }
+    });
+
+var gradCol = new GradientCollection([
+    new GradientModel({color: "#1301FE", stopColorPos: 0}),
+    new GradientModel({color: "#F4F60C", stopColorPos: 100})
+]);
+    
+    
+  
+var SingleColorView = mw.SIR.Backbone.View.extend({
+    tagName: "hbox",
+    template: mw.SIR._.template(mw.SIR.$("#radialGradientTmpl", document).html()),
+    render: function(){
+        var self = this;
+        var data = mw.SIR._.extend(this.model.toJSON(), {number: this.options.index});
+        this.$el.append(this.template(data));
+        
+        
+        this.colorStopPos = mw.SIR.$(".RGstopColorPos", this.el), this.colorStopVal = mw.SIR.$(".RGstopColorPosVal", this.el);
+        
+
+        
+        this.colorStopPos.on("change", function(){
+            var val = mw.SIR.$(this).val();
+            self.model.set('stopColorPos', val);
+            self.colorStopVal.val(val);
+        });
+        this.colorStopVal.on("keyup", function(){self.txtBoxScale(self.colorStopPos[0], self.colorStopVal[0])});
+        
+        
+        var rgbHash = SIR.utils.toRGB(this.model.get("color"));        
+        this.colorpicker = new SIR.ColourPicker(mw.SIR.$("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(rgbHash.red, rgbHash.green, rgbHash.blue));                      
+        this.colorpicker.addChangeListener(function() {
+             var color = self.colorpicker.getColour().getCSSHexadecimalRGB();
+             mw.SIR.$(".colorButton", self.el)[0].color = color;		        
+             self.model.set('color', color);
+	       }); 
+        return this;
+        },
+    txtBoxScale: function(scale, lbl) {
+	    var val = lbl.value;
+	    if (!isNaN(val)) {scale.value = Math.round(val); }
+    } 
+});  
+  
+  
+  
+  
+  var gradientControlsView = mw.SIR.BaseView.extend({
+    el: document.getElementById("radialgradientControlBox"),
+    txtBox: document.getElementById("gradientResult"),
+    gradType: document.getElementById("sir-grad"),
+    radialSize: document.getElementById("radialSize"),
+    gradposX: 50,
+    gradposY: 50,
+
+    
+    gradientField: document.getElementById("gradientField"),
+    
+    initialize: function(){
+        var self = this;
+        mw.SIR.$("#addColor", this.el).on('click', mw.SIR.$.proxy( self.addColor, self));
+        mw.SIR.$("#removeColor", this.el).on('click', mw.SIR.$.proxy( self.removeColor, self));                        
+        mw.SIR.$(".copyImg", document).on('click', mw.SIR.$.proxy( self.CopyCode, self));   
+        
+        mw.SIR.$(this.gradType).on("command", mw.SIR.$.proxy( self.showCode, self));
+        mw.SIR.$(this.radialSize).on("command", mw.SIR.$.proxy( self.showCode, self));
+        
+        this.minifield = mw.SIR.$("#positionField", this.el);
+        this.circle = mw.SIR.$("#circle", this.el);
+        
+        this.minifield.on("mousedown", mw.SIR.$.proxy( self.drag, self));
+        
+        
+        
+        
+        
+        
+        
+        
+        this.$el.append(new SingleColorView({model: gradCol.at(0), index: 0}).render().el);
+        this.$el.append(new SingleColorView({model: gradCol.at(1), index: 1}).render().el);
+        
+        this.collection.on("change", this.showCode, this);
+        
+        
+        this.showCode();
+             
+    },
+
+    addColor: function(){
+        if(this.collection.length < 5){
+                var mdl = new GradientModel;
+                this.collection.add(mdl);
+                var index = this.collection.length;
+                this.$el.append(new SingleColorView({model: mdl, index: index}).render().el);
+                this.showCode();
+            }
+    },
+    removeColor: function(){
+        var self = this;
+        if(this.collection.length > 2){
+                this.collection.remove(this.collection.last());                
+                mw.SIR.$(">hbox:last-child", self.$el).last().remove();
+                this.showCode();
+            }
+    },
+    drag: function(evt){
+        
+        
+        
+        var self = this;
+        
+        var dragblock = getCoords(document.getElementById("positionField"));
+
+
+        var dragobj = mw.SIR.$("#circle", self.minifield);
+        var down = true;
+        moveTo(evt);
+
+        self.minifield.on("mousemove", moveListener);
+
+
+        self.minifield.on("mouseup", function(evt){
+            down = false;
+            return false;
+        });
+
+
+
+
+
+
+
+        function moveListener(evt){
+            if(!down) {return false; }
+            moveTo(evt);
+            return false;
+        }
+
+
+
+
+
+
+
+
+
+        function moveTo(evt){
+
+            
+            var w = dragobj.width(), h = dragobj.height();
+            var x = evt.pageX - dragblock.left,
+            y = evt.pageY - dragblock.top;
+
+            if(x<0 || x>100 || y<0 || y>100){down = false;}
+
+
+            
+            dragobj.css({'top': y - h/2 + "px", 'left': x - w/2 + "px"});
+            
+            self.gradposX = x;
+            self.gradposY = y;
+            
+            mw.SIR.$("#txtX", document).val(x);
+            mw.SIR.$("#txtY", document).val(y);
+            
+            self.showCode();
+        }
+
+
+        return false;
+
+        function getCoords(elem) {
+            var box = elem.getBoundingClientRect();
+
+            var body = document.body;
+            var docElem = document.documentElement;
+
+
+
+
+            var scrollTop = window.pageYOffset || docElem.scrollTop;
+            var scrollLeft = window.pageXOffset || docElem.scrollLeft;
+
+            var clientTop = docElem.clientTop || 0;
+            var clientLeft = docElem.clientLeft || 0;
+
+
+            var top  = box.top +  scrollTop - clientTop;
+            var left = box.left + scrollLeft - clientLeft;
+
+            return { top: Math.round(top), left: Math.round(left) };
+        }
+
+
+    },
+    showCode: function(){
+        
+        var self = this;
+        
+
+        this.collection.sort();
+
+        document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
+        
+        var str = "", stop_arr = [];
+        this.collection.each(function(model, index){
+             stop_arr.push( model.get('color') + " " + model.get('stopColorPos') + "%" );
+        });
+        
+
+        
+        str = ""
+        if (SIR.sirPrefs.getBool("generators.moz")) {
+            str += "background: -moz-radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", "  + stop_arr.join(", ") + ");/* FF3.6+ */\n";
+        }
+            
+        if (SIR.sirPrefs.getBool("generators.webkit")) {
+            str += "background: -webkit-radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", "  + stop_arr.join(", ") + ");/* Chrome10+,Safari5.1+ */\n";
+        }
+        
+        if (SIR.sirPrefs.getBool("generators.opera")) {
+            str += "background: -o-radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", "  + stop_arr.join(", ") + ");/* Opera 11.10+ */\n";
+        }
+        
+        if (SIR.sirPrefs.getBool("generators.ms")) {
+            str += "background: -ms-radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", "  + stop_arr.join(", ") + ");/* IE10+ */\n";
+        }
+        str += "background: radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", "  + stop_arr.join(", ") + ");/* W3C */"
+        this.txtBox.value = str;
+        this.gradientField.style.cssText = "background: -moz-radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", "  + stop_arr.join(", ") + ");";
+        
+        
+        self.txtBox.value = str;
+        
+        
+    }
+  
+  
+  
+  });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  new gradientControlsView({collection: gradCol});
+  
+  
+  
+  
+    
+}
+
+
+
+
 /////////////////////////
 //    Converter       //
 ///////////////////////
