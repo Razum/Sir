@@ -9,24 +9,24 @@
             <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
             <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
             <hbox>
-                <vbox id="rgbaField">
+                <vbox class="field">
                     <box id="rgbaBox"></box>
                 </vbox>
                     <vbox id="rgbaControlBox">
                     
-                    <hbox class="controlHBox"><label class="rgbaLabels" value="R:" style="color: red;" /><scale min="0" max="255" value="0" id="R" onchange="SIR.rgba.onParamsChange();" />
-                                <textbox id="Rvalue" value="" maxlength="3" /></hbox>
-                    <hbox class="controlHBox"><label class="rgbaLabels" value="G:" style="color: green;" /><scale min="0" max="255"  value="0" id="G" onchange="SIR.rgba.onParamsChange();" />
-                                <textbox id="Gvalue" value="" maxlength="3" /></hbox>
-                    <hbox class="controlHBox"><label class="rgbaLabels" value="B:" style="color: blue;" /><scale min="0" max="255"  value="0" id="B" onchange="SIR.rgba.onParamsChange();" />
-                                <textbox id="Bvalue" value="" maxlength="3" /></hbox>
-                    <hbox><label class="rgbaLabels" value="Opacity:" /><scale min="0" max="100" value="50" increment="10" id="opacity" onchange="SIR.rgba.onParamsChange();"  />
-                    <textbox id="Opacityvalue" value="" maxlength="3" /></hbox>
+                    <hbox class="controlHBox"><label class="propLabels" value="R:" style="color: red;" /><scale min="0" max="255" value="0" id="R" onchange="SIR.rgba.onParamsChange();" />
+                                <textbox id="Rvalue" class="txtBox" value="" maxlength="3" /></hbox>
+                    <hbox class="controlHBox"><label class="propLabels" value="G:" style="color: green;" /><scale min="0" max="255"  value="0" id="G" onchange="SIR.rgba.onParamsChange();" />
+                                <textbox id="Gvalue" class="txtBox" value="" maxlength="3" /></hbox>
+                    <hbox class="controlHBox"><label class="propLabels" value="B:" style="color: blue;" /><scale min="0" max="255"  value="0" id="B" onchange="SIR.rgba.onParamsChange();" />
+                                <textbox id="Bvalue" class="txtBox" value="" maxlength="3" /></hbox>
+                    <hbox><label class="propLabels" value="Opacity:" /><scale min="0" max="100" value="50" increment="10" id="opacity" onchange="SIR.rgba.onParamsChange();"  />
+                    <textbox id="Opacityvalue" class="txtBox" value="" maxlength="3" /></hbox>
 
                     </vbox>
 
             </hbox>
             <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />
             <hbox class="commandBox"><label value="&rgba.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
-            <textbox id="rgbaResult" multiline="true" readonly="true" rows="10" />
+            <textbox id="rgbaResult" class="multiTxtBox" multiline="true" readonly="true" rows="10" />
         </dialog>

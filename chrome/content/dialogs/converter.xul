@@ -10,10 +10,8 @@
             <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
             <tabbox id="converter">
                 <tabs id="converter-tabs" onselect="">
-                    <tab id="rgbHex-tab" label=" RGB &#8596; HEX" image='chrome://sir/skin/images/rgb.png'
-                    />
-                    <tab id="" label=" em &#8596; px" image='chrome://sir/skin/images/pxem.png'
-                    />
+                    <tab id="rgbHex-tab" label=" RGB &#8596; HEX" image='chrome://sir/skin/images/rgb.png' />
+                    <tab id="" label=" em &#8596; px" image='chrome://sir/skin/images/pxem.png' />
                 </tabs>
                 <tabpanels flex="1">
                     <tabpanel id="tp_rgbhex" orient="vertical">
@@ -22,28 +20,28 @@
                             <hbox class="convertRGBhbox" pack="center">
                                 <vbox>
                                     <hbox class="rgbhexLabels">
-                                        <label value="R:" style="color: red;" />
+                                        <label value="R:" class="propLabels" style="color: red;" />
                                     </hbox>
                                     <hbox class="rgbhexLabels">
-                                        <label value="G:" style="color: green;" />
+                                        <label value="G:" class="propLabels" style="color: green;" />
                                     </hbox>
                                     <hbox class="rgbhexLabels">
-                                        <label value="B:" style="color: blue;" />
+                                        <label value="B:" class="propLabels" style="color: blue;" />
                                     </hbox>
                                 </vbox>
                                 <vbox class="rgbhexVbox">
-                                    <textbox id="convertRin" value="" maxlength="3" />
-                                    <textbox id="convertGin" value="" maxlength="3" />
-                                    <textbox id="convertBin" value="" maxlength="3" />
+                                    <textbox id="convertRin" class="txtBox" value="" maxlength="3" />
+                                    <textbox id="convertGin" class="txtBox" value="" maxlength="3" />
+                                    <textbox id="convertBin" class="txtBox" value="" maxlength="3" />
                                 </vbox>
                                 <vbox class="rgbtohexButtonVbox">
-                                    <button id="rgbtohexButton" label="Convert &#8658;" onclick="SIR.converter.rgbhex.rgbConvert();"
+                                    <button id="rgbtohexButton" class="btn" label="Convert &#8658;" onclick="SIR.converter.rgbhex.rgbConvert();"
                                     />
                                 </vbox>
                                 <vbox>
                                     <hbox class="HEXbox">
                                         <label value="HEX:" />
-                                        <textbox id="convertHEXout" class="HEXtxt" value="" maxlength="7" readonly="true"
+                                        <textbox id="convertHEXout" class="txtBox HEXtxt" value="" maxlength="7" readonly="true"
                                         />
                                     </hbox>
                                 </vbox>
@@ -67,27 +65,27 @@
                                     <hbox class="HEXbox">
                                         <label value="HEX:" />
                                         <label value="#" style="font-size: 18px; margin-right: -1px;" />
-                                        <textbox id="convertHEXin" class="HEXtxt" value="" maxlength="6"/>
+                                        <textbox id="convertHEXin" class="txtBox HEXtxt" value="" maxlength="6"/>
                                     </hbox>
                                 </vbox>
                                 <vbox class="rgbtohexButtonVbox">
-                                    <button id="hextorgbButton" label="Convert &#8658;"  onclick="SIR.converter.rgbhex.hexConvert();" />
+                                    <button id="hextorgbButton" class="btn" label="Convert &#8658;"  onclick="SIR.converter.rgbhex.hexConvert();" />
                                 </vbox>
                                 <vbox>
                                     <hbox class="rgbhexLabels">
-                                        <label value="R:" style="color: red;" />
+                                        <label value="R:" class="propLabels" style="color: red;" />
                                     </hbox>
                                     <hbox class="rgbhexLabels">
-                                        <label value="G:" style="color: green;" />
+                                        <label value="G:" class="propLabels" style="color: green;" />
                                     </hbox>
                                     <hbox class="rgbhexLabels">
-                                        <label value="B:" style="color: blue;" />
+                                        <label value="B:" class="propLabels" style="color: blue;" />
                                     </hbox>
                                 </vbox>
                                 <vbox class="rgbhexVbox">
-                                    <textbox id="convertRout" value="" maxlength="3" readonly="true" />
-                                    <textbox id="convertGout" value="" maxlength="3" readonly="true" />
-                                    <textbox id="convertBout" value="" maxlength="3" readonly="true" />
+                                    <textbox id="convertRout"  class="txtBox" value="" maxlength="3" readonly="true" />
+                                    <textbox id="convertGout"  class="txtBox" value="" maxlength="3" readonly="true" />
+                                    <textbox id="convertBout"  class="txtBox" value="" maxlength="3" readonly="true" />
                                 </vbox>
                                 <vbox>
                                     <box id="hexExmpBox" class="ConverterExmpBox"></box>
@@ -112,22 +110,22 @@
                     <tabpanel id="tp_pxem" orient="vertical">
                         <hbox id="converterExmpBox" pack="center">
                             <label value="&converter.basePXsize;" />
-                            <textbox id="basePX" class="converterTxtbox" maxlength="2" value="16" />
-                            <label value="px = " />
+                            <textbox id="basePX" class="txtBox" maxlength="2" value="16" />
+                            <label value=" px = " />
                             <label value="1em = " />
                             <label value="100%" />
                         </hbox>
                         <groupbox>
                             <hbox id="userPXEMBox" pack="center">
-                                <textbox id="emtopxVal" class="converterTxtbox" maxlength="4" value="" />
+                                <textbox id="emtopxVal" class="txtBox" maxlength="4" value="" />
                                 <menulist id="measure">
                                     <menupopup>
                                         <menuitem value="px" label="px" selected="true" />
                                         <menuitem value="em" label="em" />
                                     </menupopup>
                                 </menulist>
-                                <button id="emtopxButton" label="Convert &#8658;" onclick="SIR.converter.emtopx.emtopxConvert();"  />
-                                <textbox id="emtopxResult" width="80px" style="margin-left: 3px;" maxlength="6" value=""
+                                <button id="emtopxButton" class="btn" label="Convert &#8658;" onclick="SIR.converter.emtopx.emtopxConvert();"  />
+                                <textbox id="emtopxResult" class="txtBox EMPXtxt" style="margin-left: 3px;" maxlength="6" value=""
                                 readonly="true" />
                             </hbox>
                             <vbox id="emtopxError" hidden="true" pack="center" height="50px" style='border: 1px groove red; background: #FCF4F4;'>

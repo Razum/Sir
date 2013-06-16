@@ -13,12 +13,12 @@
 			</panel>
             
             <hbox>
-                <vbox id="outlineField">
+                <vbox class="field">
                     <box id="outlineBox"></box>
                 </vbox>
                 <vbox id="outlineControlBox">
                     <hbox class="controlHBox">
-                        <label class="outlineLabels" value="Style:" />
+                        <label class="propLabels" value="Style:" />
                         <menulist width="150px" id="outline-style-selector" oncommand="SIR.outline.onParamsChange()">
                             <menupopup>
                                 <menuitem value="none" label="none" />
@@ -33,19 +33,19 @@
                         </menulist>
                     </hbox>
                     <hbox class="controlHBox">
-                        <label class="outlineLabels" value="Width:" />
+                        <label class="propLabels" value="Width:" />
                         <scale min="0" max="30" value="6" increment="1" id="outlineWidth" onchange="SIR.outline.onParamsChange();"
                         />
-                        <textbox id="outlineWidthVal" value="" maxlength="2" /><label  class="unitLabel" value="px" />
+                        <textbox id="outlineWidthVal" class="txtBox" value="" maxlength="2" /><label  class="unitLabel" value="px" />
                     </hbox>
                     <hbox class="controlHBox">
-                        <label class="outlineLabels" value="Offset:" />
+                        <label class="propLabels" value="Offset:" />
                         <scale min="0" max="30" value="6" increment="1" id="outlineOffset" onchange="SIR.outline.onParamsChange();"
                         />
-                        <textbox id="outlineOffsetVal" value="" maxlength="2" /><label  class="unitLabel" value="px" />
+                        <textbox id="outlineOffsetVal" class="txtBox" value="" maxlength="2" /><label  class="unitLabel" value="px" />
                     </hbox>
                     <hbox>
-                        <label class="outlineLabels" value="Color:" />
+                        <label class="propLabels" value="Color:" />
                         <colorpicker id="colorButton" type="button" disabled="true" color="#181783"
                         onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false);"/></hbox>
                 </vbox>
@@ -53,6 +53,6 @@
             <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />
             <hbox class="commandBox"><label value="&outline.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
             
-            <textbox id="outlineResult" multiline="true" readonly="true" rows="7"
+            <textbox id="outlineResult" class="multiTxtBox" multiline="true" readonly="true" rows="7"
             />
         </dialog>

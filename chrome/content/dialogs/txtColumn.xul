@@ -8,7 +8,7 @@
         buttons="disabled" onload="SIR.txtColumn.init();">
             <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
             <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
-<hbox>
+            <hbox>
                         <box id="txtColumnField">
                             <html:div id="txtColDesc" />
                         </box>
@@ -17,15 +17,15 @@
                                 
                                 <vbox id="txtColumnControlBox">
                                 
-                                <hbox class="controlHBox"><label  class="txtColumnLabels" value="Column's count:" /><scale min="1" max="4" value="1" id="txtColumnCount" onchange="SIR.txtColumn.onParamsChange();"
+                                <hbox class="controlHBox"><label class="propLabels" value="Column's count:" /><scale min="1" max="4" value="1" id="txtColumnCount" onchange="SIR.txtColumn.onParamsChange();"
                                             />
-                                            <textbox id="txtColumnCountValue" maxlength="2" value="" /></hbox>
+                                            <textbox id="txtColumnCountValue" class="txtBox" maxlength="2" value="" /></hbox>
                                 
-                                <hbox class="controlHBox"><label class="txtColumnLabels" value="Column Gap:" /><scale min="0" max="35" value="0" id="txtColumnGap" onchange="SIR.txtColumn.onParamsChange();"
+                                <hbox class="controlHBox"><label class="propLabels" value="Column Gap:" /><scale min="0" max="35" value="0" id="txtColumnGap" onchange="SIR.txtColumn.onParamsChange();"
                                             />
-                                            <textbox id="txtColumnGapValue" maxlength="2" value="" /><label value="px" /></hbox>
+                                            <textbox id="txtColumnGapValue" class="txtBox" maxlength="2" value="" /><label class="unitLabel" value="px" /></hbox>
                                 
-                                <hbox><label class="txtColumnLabels" value="Column rule:" /><menulist width="150px" id="column-rule-selector" oncommand="SIR.txtColumn.onParamsChange()">
+                                <hbox><label class="propLabels" value="Column rule:" /><menulist width="150px" id="column-rule-selector" oncommand="SIR.txtColumn.onParamsChange()">
                                                 <menupopup>
                                                     <menuitem value="none" label="none" selected="true" />
                                                     <menuitem value="dotted" label="dotted" />
@@ -40,10 +40,10 @@
                                 </vbox>
                                 
                                 
-</hbox>
+            </hbox>
             <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />
             <hbox class="commandBox"><label value="&txtColumn.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
             
-            <textbox id="txtColumnResult" multiline="true" readonly="true" rows="10"
+            <textbox id="txtColumnResult" class="multiTxtBox" multiline="true" readonly="true" rows="10"
             />
         </dialog>

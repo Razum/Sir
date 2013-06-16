@@ -9,20 +9,20 @@
             <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
             <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
 <hbox>
-                        <vbox id="txtRotationField">
+                        <vbox class="field">
                             <label id="TRinscription" value="Text-Rotation" />
                         </vbox>
 
                                 <vbox id="txtRotationControlBox">
-                                    <hbox><label class="txtRotationLabels" value="Rotate:" /><scale min="0" max="360" value="0" increment="1" id="TRrotDeg" onchange="SIR.txtRotation.onParamsChange();"
+                                    <hbox><label class="propLabels" value="Rotate:" /><scale min="0" max="360" value="0" increment="1" id="TRrotDeg" onchange="SIR.txtRotation.onParamsChange();"
                                             />
-                                            <textbox id="TRrotDegValue" value="" maxlength="3" /><label value="&#176;" /></hbox>
+                                            <textbox id="TRrotDegValue" class="txtBox" value="" maxlength="3" /><label value="&#176;" /></hbox>
                                             </vbox>
                                     
 
 </hbox>  
 <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />                              
 <hbox class="commandBox"><label value="&txtRotation.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>            
-            <textbox id="txtRotationResult" multiline="true" readonly="true" rows="10"
+            <textbox id="txtRotationResult" class="multiTxtBox" multiline="true" readonly="true" rows="10"
             />
         </dialog>

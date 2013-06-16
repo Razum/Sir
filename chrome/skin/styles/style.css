@@ -5,20 +5,170 @@
 toolbar[iconsize="small"] #sir-toolbarbutton {
   list-style-image: url("chrome://sir/skin/images/small_sir.png");
 }
+.unitLabel{
+    margin-top: 5px;
+}
 
+/****** BASIC STYLES ******/
 
 .controlHBox{
-    margin-bottom: 15px;
+    margin-bottom: 13px;
 }
 
 .commandBox {
-    padding-right: 20px;
+    padding: 4px 20px 0 20px;
 }
 
 .copyImg{
     cursor: pointer;
 }
 
+.txtBox {
+    -moz-appearance: none;
+    appearance: none;
+    font-weight: 500;
+    font-size: 14px;
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #cfcdcd;
+    box-shadow: inset 0px 3px 3px #ebe7e7;    
+    border-radius: 50px;
+    font-family: Georgia, serif;     
+}
+
+.txtBox[focused=true] {
+    -moz-appearance: none;
+    -moz-box-shadow: 0 0 3px #84cefc;
+    box-shadow: 0 0 3px #84cefc;
+    border: none;
+}
+
+.multiTxtBox {
+    -moz-appearance: none;
+    appearance: none;
+    width:  75%;
+    margin: 0;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid #cfcdcd;
+    -moz-box-shadow: inset 0px 3px 3px #ebe7e7;
+    box-shadow: inset 0px 3px 3px #ebe7e7;    
+    border-radius: 5px;     
+    line-height: 1.5;
+    padding: 3px 0 0 12px;
+    background-color: #F7F7F7;    
+}
+
+.multiTxtBox[focused=true] {
+    -moz-appearance: none;
+    appearance: none;
+    -moz-box-shadow: 0 0 3px #84cefc;
+    box-shadow: 0 0 3px #84cefc;
+    border: none;
+    padding: 4px 0 0 13px;
+}
+
+.propLabels{
+    width: 50px;
+    margin-top: 8px;
+    font-family: Georgia, serif;
+    text-align: left;
+    text-shadow: 0 0 2px #d7d6d6;
+    color: #414040;
+}
+
+ menulist{    
+    border: 1px solid #c1bfbf;  
+    font-family: Georgia, "sans serif"; 
+    font-weight: 400;  
+ }
+ 
+ menulist menupopup{ 
+    border: 1px solid #c1bfbf;
+    border-radius: 0 0 5px 5px;  
+ }
+ 
+ menulist menuitem{
+    border-bottom: 1px dotted #c1bfbf;
+ }
+ 
+ menulist menuitem[selected=true],
+ menulist menuitem:hover{    
+    background: #c8def8;  
+ }
+ 
+ .field {
+    -moz-appearance: none;
+    appearance: none;
+    text-align: center;
+    -moz-box-pack: center;  
+    border: 1px solid #dedede;
+    -moz-box-shadow: 0 0 3px #c5c1c1;
+    box-shadow: 0 0 3px #c5c1c1;
+    border-radius: 5px;
+    background-color: #F7F7F7;
+    overflow: hidden;    
+ }
+ 
+ .btn {
+   -moz-appearance: none;
+   -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F5F5F5;
+    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+    background-repeat: repeat-x;
+    border-image: none;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #B3B3B3;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding: 3px 10px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+   }
+   
+   .btn:hover, .btn:focus, .btn:active, .btn.active, .btn.disabled, .btn[disabled] {
+    background-color: #E6E6E6;
+    color: #333333;
+}
+.btn:active, .btn.active {
+}
+.btn:first-child {
+}
+.btn:hover, .btn:focus {
+    background-position: 0 -15px;
+    color: #333333;
+    text-decoration: none;
+    transition: background-position 0.1s linear 0s;
+}
+.btn:focus {
+    outline: none;
+}
+.btn.active, .btn:active {
+    background-image: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    outline: 0 none;
+}
+.btn.disabled, .btn[disabled] {
+    background-image: none;
+    box-shadow: none;
+    cursor: default;
+    opacity: 0.65;
+}
+
+ 
+ /********************************************/
 
 /****************** RGBA ********************/
 #rgbaDialog{
@@ -28,10 +178,10 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     min-width: 770px;
 }
 
- .rgbaLabels{
-    width: 60px;
-    margin-top: 2px;
- }
+#rgbaDialog .propLabels {
+    width:  60px;
+    text-align: center;
+}
 
  
 #rgbaControlBox{
@@ -46,48 +196,23 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     
 }
 
-#rgbaControlBox textbox{
-    font-weight: 600;
-    font-size: 14px;
-    width: 40px;
-    
-}
-
 #rgbaControlBox scale{
-    width: 260px;
-    
+    width: 260px;    
 }
  
-#rgbaField{
-    
+#rgbaDialog .field{
     width: 350px;
     height: 200px;
-    text-align: center;
-    -moz-box-pack: center;  
-    border: 1px solid #dedede;
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    -moz-border-radius: 15px;
-    background-color: #F7F7F7;
-    overflow: hidden;
 }
 
-#rgbaBox{
+#rgbaDialog #rgbaBox{
+    -moz-appearance: none;
     width: 150px;
     height: 150px;
     margin: 25px 100px 25px 100px;
     border: 1px solid #E0DEDE;
-    
-}
-
-#rgbaResult{
-    
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    background-color: #F7F7F7;
-    padding-left: 12px;
-    line-height: 1.5;
-    font-family:"Courier New", Courier, monospace;
-    font-size: 12px;
-    
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     
 }
 
@@ -175,10 +300,6 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     min-height: 455px;
     min-width: 850px;
 }
-
- .txtRotationLabels{
-    width: 50px;
- }
  
 #txtRotationControlBox{
     padding: 40px 15px 0 5px;
@@ -191,13 +312,6 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     
 }
 
-#txtRotationControlBox textbox{
-    font-weight: 600;
-    font-size: 14px;
-    width: 40px;
-    
-}
-
 #txtRotationControlBox scale{
     width: 290px;
     
@@ -206,36 +320,13 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 #TRinscription{
     font-size: 25px;
     font-weight: 700;
-    margin: 75px 120px;
+    margin: 75px 110px;
     
 }
  
-#txtRotationField{
-    
-    width: 350px;
-    height: 200px;
-    text-align: center;  
-    margin-bottom: 15px;
-    border: 1px solid #dedede;
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    -moz-border-radius: 10px;
-    -moz-box-pack: center;
-    background-color: #F7F7F7;
+#txtRotationDialog .field{
+    height: 200px;  
 }
-
-
-#txtRotationResult{
-    
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    background-color: #F7F7F7;
-    padding-left: 12px;
-    line-height: 1.5;
-    font-family:"Courier New", Courier, monospace;
-    font-size: 12px;
-    
-    
-}
-
 
 
 
@@ -249,68 +340,58 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     min-width: 920px;
 }
 
- .transformLabels{
+#transformDialog .propLabels{
     width: 80px;
+    font-weight: 500;
  }
+ 
+ #transformDialog groupbox{
+    padding: 0;
+    margin: 0 0 6px;
+ }
+ 
  
  #transformControlBox scale{
     width: 300px;
  }
  
- #transformControlBox label{
-    font-weight: 600;
+ #transformControlBox .scale scale{
+    width: 279px;
+ }
+ 
+ 
+  #transformControlBox label{
+    font-weight: 500;
     font-size: 14px;
-    
-}
-
-#transformControlBox textbox{
-    font-weight: 600;
-    font-size: 14px;
-    width:45px;    
+    margin-top: 5px;
+    font-family: Georgia, serif;    
 }
  
+ #transformControlBox caption label{
+    font-weight: 700;    
+}
 
  #transformControlBox{
-     padding: 5px 15px 0 15px;
-     
+     padding: 1px 15px 0 15px;     
  }
 
  
-#transformField{
-    
+#transformDialog .field{    
     width: 400px;
     height: 300px;
-    background-color: #fff; 
-    text-align: center;  
-    margin-bottom: 15px;
-    border: 1px solid #dedede;
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    -moz-border-radius: 10px;
-    background-color: #F7F7F7;
-    overflow: hidden;
 }
 
 #transformDiv{
     width: 150px;
     height: 100px;
     margin: 100px 120px;
-    border: 1px solid #E0DEDE;
-    background-color: #80A1C9;
-    
+    border: 2px solid #c55027;
+    background-color: #fbeded;
+    -moz-border-radius: 5px;
+    -moz-box-shadow: 0 0 5px #f8a98e;
+    box-shadow: 0 0 5px #f8a98e;    
+    border-radius: 5px;  
 }
-
-#transformResult{
-    
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    background-color: #F7F7F7;
-    padding-left: 12px;
-    line-height: 1.5;
-    font-family:"Courier New", Courier, monospace;
-    font-size: 12px;
-    
-    
-}
-
 
 
 /************************** box-shadow ************************/
@@ -400,13 +481,13 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     min-width: 900px;
 }
 
- .borderRadiusLabels{
+#borderRadiusDialog .propLabels {
     width: 100px;
-    
- }
+    font-size: 12px;
+}
  
  #borderRadiusControlBox{
-    padding: 20px 15px 0 15px;
+    padding: 0 15px 0 15px;
  }
  
 #borderRadiusControlBox label{
@@ -417,32 +498,12 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 #borderRadiusControlBox scale{
      width: 280px;
      
- }
-
- #borderRadiusControlBox menulist{
-    margin-top: -2px;
-     
- }
- 
- #borderRadiusControlBox textbox{
-    font-size:14px;
-    font-weight: 600;
-    width: 35px;
- }
+ } 
 
  
-#borderRadiusField{
-    
+#borderRadiusDialog .field{    
     width: 400px;
     height: 300px;
-    background-color: #fff; 
-    text-align: center;  
-    margin-bottom: 15px;
-    border: 1px solid #dedede;
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    -moz-border-radius: 10px;
-    background-color: #F7F7F7;
-    overflow: hidden;
 }
 
 #borderRadiusBox{
@@ -450,19 +511,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     height: 150px;
     margin: 75px 50px;
     border: 1px solid #E0DEDE;
-    background-color: #80A1C9;
-    
-}
-
-#borderRadiusResult{
-    
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    background-color: #F7F7F7;
-    padding-left: 12px;
-    line-height: 1.5;
-    font-family:"Courier New", Courier, monospace;
-    font-size: 12px;
-    
+    background-color: #a1bbdb;
     
 }
 
@@ -470,20 +519,19 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 /************************** Multiple Columns ************************/
 
 #txtColumnDialog{
-    width:945px;
+    width:955px;
     height: 600px;
     min-height: 600px;
-    min-width: 945px;
+    min-width: 955px;
 }
-
- .txtColumnLabels{
-    width: 100px;
- }
  
+ #txtColumnDialog .propLabels{
+    width: 110px;
+    font-size: 12px;
+ }
 
  #txtColumnControlBox{
-     padding: 40px 15px 0 15px;
-     
+     padding: 40px 15px 0 10px;     
  }
  
  #txtColumnControlBox scale{
@@ -494,29 +542,16 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     font-size: 14px;
     font-weight: 600;
  }
- 
- #txtColumnControlBox textbox{
-    font-size:14px;
-    font-weight: 600;
-    width: 35px;
- }
- 
- #txtColumnControlBox menulist{
-    margin-top: -1px;
- }
- 
 
 #txtColDesc{
     font-size: 12px;
     font-weight: 200;
     color:#000;
     width: 570px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    
+    font-family: Georgia, 'Times New Roman', Times, serif;    
 }
  
 #txtColumnField{
-    
     width: 500px;
     height: 350px;
     padding: 5px 5px;
@@ -524,21 +559,11 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     text-align: center;  
     margin-bottom: 15px;
     border: 1px solid #dedede;
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    -moz-border-radius: 10px;
-    background-color: #F7F7F7;
-}
-
-
-#txtColumnResult{
-    
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    background-color: #F7F7F7;
-    padding-left: 12px;
-    line-height: 1.5;
-    font-family:"Courier New", Courier, monospace;
-    font-size: 12px;
-   
+    -moz-box-shadow: 0 0 3px #c5c1c1;
+    box-shadow: 0 0 3px #c5c1c1;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #F7F7F7;            
 }
 
 
@@ -748,15 +773,62 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
 #converterDialog{
     width:700px;
-    height: 600px;
-    min-height: 600px;
+    height: 500px;
+    min-height: 500px;
     min-width: 700px;
 }
 
+
+
+/***** RGB <-> HEX *******/
+#tp_rgbhex groupbox{
+    min-height: 200px;
+    
+}
+
+#converterDialog .propLabels{
+    width: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    
+}
+
+#converterDialog .rgbhexLabels{
+    margin: -1px 0 15px;    
+}
+
+.rgbhexVbox .txtBox{
+    margin-bottom: 11px;
+    font-size: 16px;
+    width: 40px;
+    background: #fff;
+    
+}
+
+#converterDialog .HEXtxt{
+    width:  80px;
+    background: #fff;
+}
+
+.rgbtohexButtonVbox{
+    padding-top: 43px;    
+}
+
+.HEXbox{
+    margin-top: 44px;
+    font-size: 16px;    
+}
+
+
+
+
 /***** EM <-> PX *******/
-.converterTxtbox{
-    width: 42px;
-    height: 22px;
+
+.ConverterExmpBox{ 
+    margin: 22px 0 0 15px; 
+    width: 70px; 
+    height: 70px;
+    border: 1px solid #000;
     
 }
 
@@ -767,9 +839,14 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 }
 
 #converterExmpBox label{
-    margin-left: -3px;
+    margin: 5px 0 0 -3px;
+    font-family: Georgia, 'sans serif';
 }
 
+#converterDialog .EMPXtxt{
+    width:  80px;
+    background: #fff;
+}
 
 #userPXEMBox{
     font-size: 16px;
@@ -781,137 +858,45 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     width: 55px;
 }
 
-/***** RGB <-> HEX *******/
-#tp_rgbhex groupbox{
-    min-height: 200px;
-    
-}
-
-
-.rgbhexLabels{
-    font-size: 16px;
-    margin-bottom: 15px;
-    margin-top: 1px;
-    font-weight: 600;
-}
-
-.rgbhexVbox textbox{
-    margin-bottom: 11px;
-    font-size: 16px;
-    width: 40px;
-    
-}
-
-.rgbtohexButtonVbox{
-    margin-top: 42px;
-    
-    
-}
-
-.HEXbox{
-    margin-top: 44px;
-    font-size: 16px;
-    
-}
-
-.HEXbox textbox{
-    width:80px;
-    margin-top: -1px;
-}
-
-
-.ConverterExmpBox{ 
-    margin: 22px 0 0 15px; 
-    width: 70px; 
-    height: 70px;
-    border: 1px solid #000;
-    
-}
-
-
 
 /****************** Outline ********************/
 
 
 #outlineDialog{
-    width:760px;
+    width:765px;
     height: 500px;
     min-height: 500px;
-    min-width: 760px;
+    min-width: 765px;
 }
 
- .outlineLabels{
-    width: 70px;
-
- }
  
  #outlineControlBox scale{
     width: 200px;
-
  }
  
  #outlineControlBox label{
     font-size: 14px;
     font-weight: 600;
-
  }
  
- #outlineControlBox menulist{
-    margin-top: -2px; 
-}
-
- #outlineControlBox textbox{
-    width:35px;
-    font-size: 14px;
-    font-weight: 600; 
-}
 
  #outlineControlBox{
-     padding: 20px 15px 0 15px;
-     
+     padding: 20px 15px 0 15px;     
  }
 
  
-#outlineField{
-    
+#outlineDialog .field{
     width: 380px;
-    height: 300px;
-    background-color: #fff; 
-    text-align: center;  
-    margin-bottom: 15px;
-    border: 1px solid #dedede;
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    -moz-border-radius: 10px;
-    background-color: #F7F7F7;
-    overflow: hidden;
+    height: 300px; 
 }
 
 #outlineBox{
     width: 200px;
     height: 150px;
     margin: 75px 100px;
-    border: 1px solid #E0DEDE;
-    background-color: #80A1C9;
-    
+    border: none;
+    background-color: #a1bbdb;    
 }
-
-#outlineResult{
-    
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    background-color: #F7F7F7;
-    padding-left: 12px;
-    line-height: 1.5;
-    font-family:"Courier New", Courier, monospace;
-    font-size: 12px;
-    
-    
-}
-
-
-
-
-
-
 
 
 
@@ -919,15 +904,19 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
 /************** CLEANER ****************/
 #CleanerDialog{
-    width: 800px;
-    height: 650px;
-    min-height: 650px;
+    width: 750px;
+    height: 600px;
+    min-height: 600px;
     min-width: 750px;
 }
 
 /********* Tag Cleaber ************/
 #tagCleanerTxtBox{
     width: 500px;
+}
+
+#CleanerDialog .txtBox{
+    text-align: left;
 }
 
 #cleanVboxChk{
@@ -978,20 +967,19 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
 
 #transitionDialog{
-    width:830px;
+    width:800px;
     height: 545px;
     min-height: 545px;
-    min-width: 830px;
+    min-width: 800px;
 }
 
- .transitionLabels{
-    width: 70px;
-
- }
  
  #transitionControlBox scale{
-    width: 300px;
-
+    width: 250px;
+ }
+ 
+ #transitionDialog .propLabels{
+    width: 80px;
  }
  
  #transitionControlBox label{
@@ -999,16 +987,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     font-weight: 600;
 
  }
- 
- #transitionControlBox menulist{
-    margin-top: -2px; 
-}
 
- #transitionControlBox textbox{
-    width:35px;
-    font-size: 14px;
-    font-weight: 600; 
-}
 
  #transitionControlBox{
      padding: 20px 15px 0 15px;
@@ -1016,18 +995,9 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
  }
 
  
-#transitionField{
-    
+#transitionDialog .field{    
     width: 350px;
     height: 280px;
-    background-color: #fff; 
-    text-align: center;  
-    margin-bottom: 15px;
-    border: 1px solid #dedede;
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    -moz-border-radius: 10px;
-    background-color: #F7F7F7;
-    overflow: hidden;
 }
 
 #transitionBox{
@@ -1037,9 +1007,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     font-size: 26px;
     font-weight: 700;    
     -moz-border-radius: 12px;
-    border-radius: 12px;
-    
-    
+    border-radius: 12px;        
     border: 1px solid #E0DEDE;
     background: #5776bd;
     color: #f3f128;
@@ -1054,18 +1022,6 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     background: #f3f128;
     color: #5776bd;
     padding: 56px 0 0 36px; 
-    
-}
-
-#transitionResult{
-    
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    background-color: #F7F7F7;
-    padding-left: 12px;
-    line-height: 1.5;
-    font-family:"Courier New", Courier, monospace;
-    font-size: 12px;
-    
     
 }
 
@@ -1090,7 +1046,6 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
  
  .textfontNewLabels{
     width: 70px;
-
  }
  
  .textfontControlBox scale{
@@ -1104,20 +1059,10 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 
  }
  
-  .textfontControlBox menulist label{
-    font-size: 12px;
-    font-weight: 500;
-
- }
- 
  .textfontControlBox menulist{
-    margin-top: -2px; 
-}
-
- .textfontControlBox textbox{
-    width:35px;
-    font-size: 13px;
-    font-weight: 600; 
+    margin-top: -2px;
+    font-size: 12px;
+    font-weight: 500; 
 }
 
  .textfontControlBox column{
@@ -1131,15 +1076,9 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
  }
 
  
-#textfontField{
-    
+#textfontDialog .field{
     width: 450px;
     height: 300px;
-    margin-bottom: 15px;
-    border: 1px solid #dedede;
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    -moz-border-radius: 10px;
-    background-color: #F7F7F7;
     overflow-y: auto;
 }
 
@@ -1147,22 +1086,6 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     margin: 2px 2px;
     
 }
-
-
-#textfontResult{
-    
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    background-color: #F7F7F7;
-    padding-left: 12px;
-    line-height: 1.5;
-    font-family:"Courier New", Courier, monospace;
-    font-size: 12px;
-    
-    
-}
-
-
-
 
 
 

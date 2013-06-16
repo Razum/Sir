@@ -12,7 +12,7 @@
 			<panel id="colorBack" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="&colorpicker.panel.title;">
 			</panel>
 			<hbox>
-				<vbox id="textfontField">
+				<vbox id="textfontField" class="field">
 					<label id="TFinscription">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</label>
 				</vbox>
 				<vbox class="textfontControlBox">
@@ -261,5 +261,5 @@
             <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />
             <hbox class="commandBox"><label value="&textfont.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
 			
-			<textbox id="textfontResult" multiline="true" readonly="true" rows="8" />
+			<textbox id="textfontResult" class="multiTxtBox" multiline="true" readonly="true" rows="8" />
 		</dialog>

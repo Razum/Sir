@@ -11,14 +11,14 @@
 
             
             <hbox>
-                <vbox id="transitionField">
+                <vbox class="field">
                     <box id="transitionBox">
                     HOVER HERE
                     </box>
                 </vbox>
                 <vbox id="transitionControlBox">
                     <hbox class="controlHBox">
-                        <label class="transitionLabels" value="Style:" />
+                        <label class="propLabels" value="Style:" />
                         <menulist width="150px" id="transition-property-selector" oncommand="SIR.transition.onParamsChange()">
                             <menupopup>
                                 <menuitem value="all" label="all" selected="true"/>
@@ -30,14 +30,14 @@
                         </menulist>
                     </hbox>
                     <hbox class="controlHBox">
-                        <label class="transitionLabels" value="Duration:" />
+                        <label class="propLabels" value="Duration:" />
                         <scale min="1" max="50" value="10" increment="1" id="transitionDuration" onchange="SIR.transition.onParamsChange();"
                         />
-                        <textbox id="transitionDurationVal" maxlength="3" value="" /><label style="margin: 5px 0 0 -2px;" value="s" />
+                        <textbox id="transitionDurationVal" class="txtBox" maxlength="3" value="" /><label class="unitLabel" value="s" />
                     </hbox>
                     <hbox class="controlHBox">
                     
-                    <label class="transitionLabels" value="Timing:" />
+                    <label class="propLabels" value="Timing:" />
                         <menulist width="150px" id="transition-timing-selector" oncommand="SIR.transition.onParamsChange()">
                             <menupopup>
                                 <menuitem value="ease" label="ease" selected="true"/>
@@ -55,6 +55,6 @@
             <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />
             <hbox class="commandBox"><label value="&transition.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
             
-            <textbox id="transitionResult" multiline="true" readonly="true" rows="10"
+            <textbox id="transitionResult" class="multiTxtBox" multiline="true" readonly="true" rows="10"
             />
         </dialog>

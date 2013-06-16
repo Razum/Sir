@@ -11,7 +11,7 @@
             <hbox>
                 <vbox>
                     <label value="&tagcleaner.pasteCode;" />
-                    <textbox multiline="true" rows="35" id="tagCleanerTxtBox" />
+                    <textbox multiline="true"  class="multiTxtBox" rows="30" id="tagCleanerTxtBox" />
                 </vbox>
                 <vbox id="cleanVboxChk">
                     <tooltip id="delTagsTip" label="&tagcleaner.delTagsTip;"></tooltip>
@@ -20,7 +20,7 @@
                             <checkbox id="delTags" tooltip="delTagsTip" label="&tagcleaner.delTagsLbl;" oncommand="SIR.Cleaner.onParamsChange();" />
                         </caption>
                         <label id="exTagLbl" value="&tagcleaner.exTags;" />
-                        <textbox class="cleanerTxt" id="tagEx" value="img,p,a" />
+                        <textbox class="txtBox cleanerTxt" id="tagEx" value="img,p,a" />
                     </groupbox>
                     <tooltip id="delAttrTip" label="&tagcleaner.delAttrTip;" />
                     <hbox>
@@ -39,7 +39,7 @@
                         <checkbox id="delExtrSpace" tooltip="delExtrSpaceTip" label="&tagcleaner.delExtrSpaceLbl;" />
                     </hbox>
                     <hbox pack="center">
-                        <button id="cleanButton" label="&tagcleaner.CleanButton;" onclick="SIR.Cleaner.txtClean();" />
+                        <button id="cleanButton" class="btn" label="&tagcleaner.CleanButton;" onclick="SIR.Cleaner.txtClean();" />
                     </hbox>
                 </vbox>
             </hbox>
