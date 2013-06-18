@@ -9,21 +9,16 @@
 			
 
             <hbox>
-				<box id="gradientField">
+				<box id="gradientField" class="field">
 				</box>
 				<vbox id="radialgradientControlBox">
-                
-                
-                
-                                
-                
                 <hbox class="controlHBox">
 			        <vbox id="positionField">
                         <box id="circle"></box>
                     </vbox>
                     <vbox>
                         <hbox>
-                        <label class="gradientLabels" value="Type:" />
+                        <label class="propLabels" value="Type:" />
 						<radiogroup id="sir-grad"> 
                             <hbox>
                                <radio label="circle" value="circle" selected="true"/><spacer style="width: 40px;"/>
@@ -32,7 +27,7 @@
                        </radiogroup> 
                         </hbox>
                         <hbox>
-                            <label class="gradientLabels" value="Size:" />
+                            <label class="propLabels" value="Size:" />
                             <menulist width="150px" id="radialSize">
 							<menupopup>
 								<menuitem value="contain" label="contain"/>
@@ -43,89 +38,34 @@
 						</menulist>
                         </hbox>
                         <hbox>
-                            <label class="gradientLabels" value="Position X:" /><textbox id="txtX" maxlength="3"/><label class="unitLabel" value="%"/>
-                            <label class="gradientLabels" value="Position Y:" /><textbox id="txtY" maxlength="3"/><label class="unitLabel" value="%"/>
+                            <label class="propLabels" value="Position X:" /><textbox id="txtX" class="txtBox" maxlength="3"/><label class="unitLabel" value="%"/>
+                            <label class="propLabels" value="Position Y:" /><textbox id="txtY" class="txtBox" maxlength="3"/><label class="unitLabel" value="%"/>
                         </hbox>
                     </vbox>
                 </hbox>
                 <hbox class="controlLabels">
-                    <label id="addColor" class="AddRemoveLabel text-link" value='Add Color' /><separator class="groove-thin" orient='vertical' />
-                    <label id="removeColor" class="AddRemoveLabel text-link" value='Remove Color'/>
-                </hbox>
-                
-                
-                
-					<!--hbox id="LinearHBox">
-						<label class="gradientLabels" value="Orientation:" />
-						<menulist width="150px" id="linearDir" oncommand="SIR.gradient.onParamsChange()">
-							<menupopup>
-								<menuitem value="ltrt" label="left  &#8594;"/>
-								<menuitem value="ltlb" label="top  &#8595;" selected="true"/>
-								<menuitem value="ltrb" label="top left  &#8600;"/>
-								<menuitem value="lbrt" label="bottom left  &#8599;"/>
-							</menupopup>
-						</menulist>
-					</hbox>
-                    
-                    <hbox id="radialHBox" hidden="true">
-						<label class="gradientLabels" value="Orientation:" />
-						<menulist width="150px" id="radialDir" oncommand="SIR.gradient.onParamsChange()">
-							<menupopup>
-								<menuitem value="top left" label="top left"/>
-								<menuitem value="top" label="top" selected="true"/>
-								<menuitem value="right top" label="right top"/>
-								<menuitem value="left" label="left"/>
-                                <menuitem value="center" label="center"/>
-                                <menuitem value="right" label="right"/>
-                                <menuitem value="bottom left" label="bottom left"/>
-                                <menuitem value="bottom" label="bottom"/>
-                                <menuitem value="bottom right" label="bottom right"/>
-							</menupopup>
-						</menulist>
-					</hbox>
-                    
-                    
-                    
-					<spacer />
-					<hbox class="controlGradHBox">
-						<label class="gradientLabels" value="From:" />
-						<colorpicker id="colorButtonFrom" type="button" disabled="true" color="#1301FE" onclick="document.getElementById('colorPickerFrom').openPopup(this, 'after_start', 0, 0, false);" />
-					</hbox>
-					<spacer />
-					<hbox class="controlGradHBox">
-						<label class="gradientLabels" value="To:" />
-						<colorpicker id="colorButtonTo" type="button" disabled="true" color="#F4F60C" onclick="document.getElementById('colorPickerTo').openPopup(this, 'after_start', 0, 0, false);" />
-					</hbox-->
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                       
-                        
+                    <label class="" value='Shadow: ' />
+                    <label id="addColor" class="AddLabel btn btn-success" value='+' /> <label class="" value=' / ' />
+                    <label id="removeColor" class="RemoveLabel btn btn-danger" value='&#8211;'/>
+                </hbox>     
 				</vbox>
 			</hbox>
             <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />
             <hbox class="commandBox"><label value="&gradient.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
 			
-			<textbox id="gradientResult" multiline="true" readonly="true" rows="10" />
+			<textbox id="gradientResult" class="multiTxtBox" multiline="true" readonly="true" rows="10" />
 		
         
         
         
         <script type="text/html" id="radialGradientTmpl">
 
-			     <label class="gradientLabels" value="Color Stop {{ number }}:" />
-				 <colorpicker class="colorButton" type="button" disabled="true" color="{{ color }}" onclick="document.getElementById('colorPicker{{ number }}').openPopup(this, 'after_start', 0, 0, false);" />
+			     <label class="propLabels" value="Color Stop {{ number }}:" />				                  
+                 <scale min="0" max="100" value="{{ stopColorPos }}" class="RGstopColorPos"  />
+				 <textbox class="RGstopColorPosVal txtBox" maxlength="3" value="{{ stopColorPos }}" /><label class="unitLabel" value="&#176;"/>
+                 <colorpicker class="colorButton" type="button" disabled="true" color="{{ color }}" onclick="document.getElementById('colorPicker{{ number }}').openPopup(this, 'after_start', 0, 0, false);" />
                  <panel id="colorPicker{{ number }}" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="&colorpicker.panel.title;">
 			     </panel>
-                 
-                 
-                 <scale min="0" max="100" value="{{ stopColorPos }}" class="RGstopColorPos"  />
-				 <textbox class="RGstopColorPosVal" maxlength="3" value="{{ stopColorPos }}" /><label class="unitLabel" value="&#176;"/>
         
         
         </script>

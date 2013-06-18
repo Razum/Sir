@@ -11,44 +11,23 @@
             
   
             <hbox>
-                <vbox id="boxField">
+                <vbox class="field">
                     <box id="boxShBox"></box>
                 </vbox>
                 
                 
                 
                 <vbox id="boxShcontrolBox">
-                <hbox class="controlLabels">
-                <label id="addShadow" class="AddRemoveLabel text-link" value='Add Shadow' /><separator class="groove-thin" orient='vertical' />
-                <label id="removeShadow" class="AddRemoveLabel text-link" value='Remove Shadow'/>
-                </hbox>
-                    <!--hbox class="controlHBox">
-                        <label class="boxShadowLabels" value="Horizontal Length:" />
-                        <scale min="-75" max="75" value="9" id="BShorLen" onchange="SIR.boxShadow.onParamsChange();" />
-                        <textbox id="BShorLenvalue" value="" maxlength="3" /><label class="unitLabel" value="px"/>
+                    <hbox class="controlLabels">
+                        <label class="" value='Shadow: ' />
+                        <label id="addShadow" class="AddLabel btn btn-success" value='+' /> <label class="" value=' / ' />
+                        <label id="removeShadow" class="RemoveLabel btn btn-danger" value='&#8211;'/>
                     </hbox>
-                    <hbox class="controlHBox">
-                        <label class="boxShadowLabels" value="Vertical Length:" />
-                        <scale min="-75" max="75" value="6" id="BSverLen" onchange="SIR.boxShadow.onParamsChange();" />
-                        <textbox id="BSverLenvalue" value="" maxlength="3" /><label class="unitLabel" value="px"/>
-                    </hbox>
-                    <hbox class="controlHBox">
-                        <label class="boxShadowLabels" value="Blur Radius:" />
-                        <scale min="0" max="50" value="11" id="BSblurRadius" onchange="SIR.boxShadow.onParamsChange();" />
-                        <textbox id="BSblurRadiusvalue" value="" maxlength="2" /><label class="unitLabel" value="px"/>
-                    </hbox>
-                    <hbox>
-                        <label class="boxShadowLabels" value="Shadow Color:" />
-                        <colorpicker id="colorButton" type="button" disabled="true" color="#6D6B6B"
-                        onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false);" /></hbox>
-                    <hbox style="margin-top:20px;">
-                        <checkbox id="insetCheck" label="Inset" oncommand="SIR.boxShadow.onParamsChange();" />
-                    </hbox-->
                 </vbox>
             </hbox>
             <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />
             <hbox class="commandBox"><label value="&boxShadow.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
-            <textbox id="boxShadowResult" multiline="true" readonly="true" rows="7"
+            <textbox id="boxShadowResult" class="multiTxtBox" multiline="true" readonly="true" rows="7"
             />
             
             
@@ -56,7 +35,7 @@
             
             
             <script type="text/html" id="boxShadowTmpl">
-            <label class="boxShadowLabels" value="Shadow #{{ number }}:" /><toolbarbutton image="chrome://sir/skin/images/adjustment.png" role="button" popup="thepanel{{ number }}" />
+            <label class="propLabels" value="Shadow #{{ number }}:" /><toolbarbutton image="chrome://sir/skin/images/adjustment.png" role="button" popup="thepanel{{ number }}" />
             
             <colorpicker class="colorButton" type="button" disabled="true" color="{{ color }}" onclick="document.getElementById('colorPicker{{ number }}').openPopup(this, 'after_start', 0, 0, false);" />
             
@@ -65,22 +44,22 @@
             <panel id="colorPicker{{ number }}" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="&colorpicker.panel.title;">
 			</panel>
             
-            <panel id="thepanel{{ number }}">
+            <panel id="thepanel{{ number }}" class="controlPanel">
               <vbox align="start">
                     <hbox class="controlHBox">
-						<label class="boxShadowLabels" value="Horizontal Length:" />
+						<label class="panelLabels" value="Horizontal Length:" />
 						<scale min="-75" max="75" value="{{ horLen }}" class="BShorLen"  />
-						<textbox class="BShorLenvalue" maxlength="3" value="{{ horLen }}" /><label class="unitLabel" value="{{ units }}"/>
+						<textbox class="BShorLenvalue txtBox" maxlength="3" value="{{ horLen }}" /><label class="unitLabel" value="{{ units }}"/>
 					</hbox>
 					<hbox class="controlHBox">
-						<label class="boxShadowLabels" value="Vertical Length:" />
+						<label class="panelLabels" value="Vertical Length:" />
 						<scale min="-75" max="75" value="{{ verLen }}" class="BSverLen"  />
-						<textbox class="BSverLenvalue" maxlength="3" value="{{ verLen }}" /><label class="unitLabel" value="{{ units }}"/>
+						<textbox class="BSverLenvalue txtBox" maxlength="3" value="{{ verLen }}" /><label class="unitLabel" value="{{ units }}"/>
 					</hbox>
 					<hbox class="controlHBox">
-						<label class="boxShadowLabels" value="Blur Radius:" />
+						<label class="panelLabels" value="Blur Radius:" />
 						<scale min="0" max="50" value="{{ blur }}" class="BSblurRadius" />
-						<textbox class="BSblurRadiusvalue" maxlength="3" value="{{ blur }}" /><label class="unitLabel" value="{{ units }}"/>
+						<textbox class="BSblurRadiusvalue txtBox" maxlength="3" value="{{ blur }}" /><label class="unitLabel" value="{{ units }}"/>
 					</hbox>
               </vbox>
             </panel>

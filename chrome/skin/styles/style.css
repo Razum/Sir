@@ -1,17 +1,16 @@
-#sir-toolbarbutton{
-    list-style-image: url("chrome://sir/skin/images/small_sir.png");
+#sir-toolbarbutton {
+    list-style-image: url( "chrome://sir/skin/images/small_sir.png ");
 }
 
-toolbar[iconsize="small"] #sir-toolbarbutton {
-  list-style-image: url("chrome://sir/skin/images/small_sir.png");
+toolbar [iconsize= "small " ]#sir-toolbarbutton {
+    list-style-image: url( "chrome://sir/skin/images/small_sir.png ");
 }
-.unitLabel{
+
+.unitLabel {
     margin-top: 5px;
 }
-
 /****** BASIC STYLES ******/
-
-.controlHBox{
+.controlHBox {
     margin-bottom: 13px;
 }
 
@@ -19,7 +18,7 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     padding: 4px 20px 0 20px;
 }
 
-.copyImg{
+.copyImg {
     cursor: pointer;
 }
 
@@ -32,12 +31,12 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     height: 30px;
     text-align: center;
     border: 1px solid #cfcdcd;
-    box-shadow: inset 0px 3px 3px #ebe7e7;    
+    box-shadow: inset 0px 3px 3px #ebe7e7;
     border-radius: 50px;
-    font-family: Georgia, serif;     
+    font-family: Georgia,serif;
 }
 
-.txtBox[focused=true] {
+.txtBox[focused=true ] {
     -moz-appearance: none;
     -moz-box-shadow: 0 0 3px #84cefc;
     box-shadow: 0 0 3px #84cefc;
@@ -47,21 +46,21 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
 .multiTxtBox {
     -moz-appearance: none;
     appearance: none;
-    width:  75%;
+    width: 75%;
     margin: 0;
-    font-family:"Courier New", Courier, monospace;
+    font-family: "Courier New ",Courier,monospace;
     font-size: 12px;
     font-weight: 500;
     border: 1px solid #cfcdcd;
     -moz-box-shadow: inset 0px 3px 3px #ebe7e7;
-    box-shadow: inset 0px 3px 3px #ebe7e7;    
-    border-radius: 5px;     
+    box-shadow: inset 0px 3px 3px #ebe7e7;
+    border-radius: 5px;
     line-height: 1.5;
     padding: 3px 0 0 12px;
-    background-color: #F7F7F7;    
+    background-color: #F7F7F7;
 }
 
-.multiTxtBox[focused=true] {
+.multiTxtBox[focused=true ] {
     -moz-appearance: none;
     appearance: none;
     -moz-box-shadow: 0 0 3px #84cefc;
@@ -70,62 +69,61 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     padding: 4px 0 0 13px;
 }
 
-.propLabels{
+.propLabels {
     width: 50px;
     margin-top: 8px;
-    font-family: Georgia, serif;
+    font-family: Georgia,serif;
     text-align: left;
     text-shadow: 0 0 2px #d7d6d6;
     color: #414040;
 }
 
- menulist{    
-    border: 1px solid #c1bfbf;  
-    font-family: Georgia, "sans serif"; 
-    font-weight: 400;  
- }
- 
- menulist menupopup{ 
+menulist {
     border: 1px solid #c1bfbf;
-    border-radius: 0 0 5px 5px;  
- }
- 
- menulist menuitem{
+    font-family: Georgia, "sans serif ";
+    font-weight: 400;
+}
+
+menulist menupopup {
+    border: 1px solid #c1bfbf;
+    border-radius: 0 0 5px 5px;
+}
+
+menulist menuitem {
     border-bottom: 1px dotted #c1bfbf;
- }
- 
- menulist menuitem[selected=true],
- menulist menuitem:hover{    
-    background: #c8def8;  
- }
- 
- .field {
+}
+
+menulist menuitem[selected=true ], menulist menuitem:hover {
+    background: #c8def8;
+}
+
+.field {
     -moz-appearance: none;
     appearance: none;
     text-align: center;
-    -moz-box-pack: center;  
+    -moz-box-pack: center;
     border: 1px solid #dedede;
     -moz-box-shadow: 0 0 3px #c5c1c1;
     box-shadow: 0 0 3px #c5c1c1;
     border-radius: 5px;
     background-color: #F7F7F7;
-    overflow: hidden;    
- }
- 
- .btn {
-   -moz-appearance: none;
-   -moz-border-bottom-colors: none;
+    overflow: hidden;
+}
+/********** BUTTON ************/
+.btn {
+    -moz-appearance: none;
+    -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
     background-color: #F5F5F5;
-    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+    background-image: linear-gradient(to bottom,#FFFFFF,#E6E6E6);
     background-repeat: repeat-x;
     border-image: none;
     -moz-border-radius: 4px;
     border-radius: 4px;
     border: 1px solid #B3B3B3;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset,0 1px 2px rgba(0,0,0,0.05);
     color: #333333;
     cursor: pointer;
     display: inline-block;
@@ -134,78 +132,111 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     margin-bottom: 0;
     padding: 3px 10px;
     text-align: center;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    text-shadow: 0 1px 1px rgba(255,255,255,0.75);
     vertical-align: middle;
-   }
-   
-   .btn:hover, .btn:focus, .btn:active, .btn.active, .btn.disabled, .btn[disabled] {
+}
+
+.btn:hover,.btn:focus,.btn:active,.btn.active,.btn.disabled,.btn[disabled ] {
     background-color: #E6E6E6;
     color: #333333;
 }
-.btn:active, .btn.active {
+
+.btn:active,.btn.active {
 }
+
 .btn:first-child {
 }
-.btn:hover, .btn:focus {
+
+.btn:hover,.btn:focus {
     background-position: 0 -15px;
     color: #333333;
     text-decoration: none;
     transition: background-position 0.1s linear 0s;
 }
+
 .btn:focus {
     outline: none;
 }
-.btn.active, .btn:active {
+
+.btn.active,.btn:active {
     background-image: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15) inset,0 1px 2px rgba(0,0,0,0.05);
     outline: 0 none;
 }
-.btn.disabled, .btn[disabled] {
-    background-image: none;
-    box-shadow: none;
-    cursor: default;
-    opacity: 0.65;
+/******** SUCCESS BUTTON ***********/
+.btn-success {
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-color: #5bb75b;
+    background-image: -moz-linear-gradient(top,#62c462,#51a351);
+    background-image: linear-gradient(to bottom,#62c462,#51a351);
+    background-repeat: repeat-x;
+    border-color: #51a351 #51a351 #387038;
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
 }
 
- 
- /********************************************/
+.btn-success:hover,.btn-success:focus,.btn-success:active,.btn-success.active,.btn-success.disabled,.btn-success[disabled ] {
+    color: #ffffff;
+    background-color: #51a351;
+}
 
+.btn-success:active,.btn-success.active {
+    background-color: #408140 \9;
+}
+/******** DANGER BUTTON ***********/
+.btn-danger {
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-color: #da4f49;
+    background-image: -moz-linear-gradient(top,#ee5f5b,#bd362f);
+    background-image: linear-gradient(to bottom,#ee5f5b,#bd362f);
+    background-repeat: repeat-x;
+    border-color: #bd362f #bd362f #802420;
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+}
+
+.btn-danger:hover,.btn-danger:focus,.btn-danger:active,.btn-danger.active,.btn-danger.disabled,.btn-danger[disabled ] {
+    color: #ffffff;
+    background-color: #bd362f;
+}
+
+.btn-danger:active,.btn-danger.active {
+    background-color: #942a25 \9;
+}
+/********************************************/
 /****************** RGBA ********************/
-#rgbaDialog{
-    width:770px;
+#rgbaDialog {
+    width: 770px;
     height: 450px;
     min-height: 450px;
     min-width: 770px;
 }
 
 #rgbaDialog .propLabels {
-    width:  60px;
+    width: 60px;
     text-align: center;
 }
 
- 
-#rgbaControlBox{
+#rgbaControlBox {
     margin-top: -15px;
     padding: 25px 15px 0 15px;
-    
 }
 
-#rgbaControlBox label{
+#rgbaControlBox label {
     font-weight: 600;
     font-size: 14px;
-    
 }
 
-#rgbaControlBox scale{
-    width: 260px;    
+#rgbaControlBox scale {
+    width: 260px;
 }
- 
-#rgbaDialog .field{
+
+#rgbaDialog .field {
     width: 350px;
     height: 200px;
 }
 
-#rgbaDialog #rgbaBox{
+#rgbaDialog #rgbaBox {
     -moz-appearance: none;
     width: 150px;
     height: 150px;
@@ -213,175 +244,161 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     border: 1px solid #E0DEDE;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    
 }
-
 /************************** text-shadow ************************/
-
-#txtShadowDialog{
-    width:870px;
-    height: 460px;
-    min-height: 460px;
-    min-width: 870px;
+#txtShadowDialog {
+    width: 800px;
+    height: 450px;
+    min-height: 450px;
+    min-width: 800px;
 }
 
- .txtShadowLabels{    
-    width: 135px;
- }
- 
-
- 
-#txtShadowControlBox{
-    padding: 0 15px;
-    
+#txtShadowDialog .panelLabels {
+    width: 115px;
+    font-size: 13px;
+    border-radius: 0;
 }
 
-#txtShadowControlBox label{
-    font-weight: 600;
-    font-size: 14px;
+#txtShadowDialog .propLabels {
+    width: 100px;
 }
 
-#txtShadowControlBox textbox{
-    font-weight: 600;
-    font-size: 14px;
-    width:  35px;
-}
-
-#txtShadowControlBox scale{
-    width: 230px;    
-}
-
-.controlLabels label{
-    font-size: 11px;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: "Courier New", Courier, monospace;
-}
-
-#txtShadowField{
-    
+#txtShadowDialog .controlLabels {
+    -moz-appearance: none;
     width: 350px;
-    height: 200px;
-    text-align: center;  
-    margin-bottom: 15px;
-    border: 1px solid #dedede;
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    -moz-border-radius: 10px;
-    -moz-box-pack: center;
-    background-color: #F7F7F7;
+    margin: 0;
+    -moz-box-pack: end;
+    box-pack: end;
 }
 
-#TSinscription{
+#txtShadowDialog .hboxRow {
+    margin: 2px 0;
+}
+
+#txtShadowDialog .controlPanel {
+    padding: 5px 3px 0 0;
+    border: 1px solid #817e7e;
+}
+
+#txtShadowDialog .AddLabel {
+    font-size: 17px;
+    font-weight: 600;
+    padding: 0 8px 2px;
+    margin: -1px 0 0;
+}
+
+#txtShadowDialog .RemoveLabel {
+    font-size: 17px;
+    font-weight: 700;
+    padding: 0 10px 4px;
+    margin: -1px 0 0;
+}
+
+#txtShadowDialog .colorButton {
+    margin: 2px 25px;
+}
+
+#txtShadowControlBox {
+    padding: 0 15px;
+}
+
+#txtShadowControlBox label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+#txtShadowControlBox scale {
+    width: 230px;
+}
+
+#txtShadowDialog .field {
+    width: 400px;
+    height: 200px;
+    overflow: visible;
+}
+
+#TSinscription {
     font-size: 23px;
     font-weight: 700;
     margin: 75px 120px;
-    
 }
-
-#txtShadowResult{
-    
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    background-color: #F7F7F7;
-    padding-left: 12px;
-    line-height: 1.5;
-    font-family:"Courier New", Courier, monospace;
-    font-size: 12px;
-    
-    
-}
-
-
-
 /************************** text-rotation ************************/
-
-#txtRotationDialog{
-    width:850px;
+#txtRotationDialog {
+    width: 850px;
     height: 455px;
     min-height: 455px;
     min-width: 850px;
 }
- 
-#txtRotationControlBox{
+
+#txtRotationControlBox {
     padding: 40px 15px 0 5px;
-    
 }
 
-#txtRotationControlBox label{
+#txtRotationControlBox label {
     font-weight: 600;
     font-size: 14px;
-    
 }
 
-#txtRotationControlBox scale{
+#txtRotationControlBox scale {
     width: 290px;
-    
 }
 
-#TRinscription{
+#TRinscription {
     font-size: 25px;
     font-weight: 700;
     margin: 75px 110px;
-    
-}
- 
-#txtRotationDialog .field{
-    height: 200px;  
 }
 
-
-
+#txtRotationDialog .field {
+    height: 200px;
+}
 /****************** Transform ********************/
-
-
-#transformDialog{
-    width:920px;
+#transformDialog {
+    width: 920px;
     height: 550px;
     min-height: 550px;
     min-width: 920px;
 }
 
-#transformDialog .propLabels{
+#transformDialog .propLabels {
     width: 80px;
     font-weight: 500;
- }
- 
- #transformDialog groupbox{
+}
+
+#transformDialog groupbox {
     padding: 0;
     margin: 0 0 6px;
- }
- 
- 
- #transformControlBox scale{
+}
+
+#transformControlBox scale {
     width: 300px;
- }
- 
- #transformControlBox .scale scale{
+}
+
+#transformControlBox .scale scale {
     width: 279px;
- }
- 
- 
-  #transformControlBox label{
+}
+
+#transformControlBox label {
     font-weight: 500;
     font-size: 14px;
     margin-top: 5px;
-    font-family: Georgia, serif;    
-}
- 
- #transformControlBox caption label{
-    font-weight: 700;    
+    font-family: Georgia,serif;
 }
 
- #transformControlBox{
-     padding: 1px 15px 0 15px;     
- }
+#transformControlBox caption label {
+    font-weight: 700;
+}
 
- 
-#transformDialog .field{    
+#transformControlBox {
+    padding: 1px 15px 0 15px;
+}
+
+#transformDialog .field {
     width: 400px;
     height: 300px;
 }
 
-#transformDiv{
+#transformDiv {
     width: 150px;
     height: 100px;
     margin: 100px 120px;
@@ -389,93 +406,89 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     background-color: #fbeded;
     -moz-border-radius: 5px;
     -moz-box-shadow: 0 0 5px #f8a98e;
-    box-shadow: 0 0 5px #f8a98e;    
-    border-radius: 5px;  
+    box-shadow: 0 0 5px #f8a98e;
+    border-radius: 5px;
 }
-
-
 /************************** box-shadow ************************/
-
-#boxShadowDialog{
-    width:870px;
+#boxShadowDialog {
+    width: 870px;
     height: 470px;
     min-height: 470px;
     min-width: 870px;
 }
 
- .boxShadowLabels{
+#boxShadowDialog .panelLabels {
     width: 130px;
- }
- 
- 
- #boxShcontrolBox{
-    padding: 30px 15px 0 15px;
- }
- 
- #boxShcontrolBox label{
-    font-weight: 600;
-    font-size: 14px;
- }
- 
- #boxShcontrolBox scale{
-    width: 220px;
- }
- 
-  #boxShcontrolBox textbox{
-    font-weight: 600;
-    font-size: 14px;
-    width: 35px;
- }
- 
- 
-
- 
-#boxField{
-    
-    width: 400px;
-    height: 270px;
-    text-align: center;  
-    margin-bottom: 15px;
-    border: 1px solid #dedede;
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    -moz-border-radius: 10px;
-    -moz-box-pack: center;
-    background-color: #F7F7F7;
-    overflow: hidden;
 }
 
-#boxShBox{
+#boxShadowDialog .propLabels {
+    width: 100px;
+}
+
+#boxShadowDialog .controlLabels {
+    -moz-appearance: none;
+    width: 350px;
+    margin: 0;
+    -moz-box-pack: end;
+    box-pack: end;
+}
+
+#boxShadowDialog .hboxRow {
+    margin: 5px 0 0;
+}
+
+#boxShadowDialog .controlPanel {
+    padding: 5px 3px 0 0;
+    border: 1px solid #817e7e;
+}
+
+#boxShadowDialog .AddLabel {
+    font-size: 17px;
+    font-weight: 600;
+    padding: 0 8px 2px;
+    margin: -1px 0 0;
+}
+
+#boxShadowDialog .RemoveLabel {
+    font-size: 17px;
+    font-weight: 700;
+    padding: 0 10px 4px;
+    margin: -1px 0 0;
+}
+
+#boxShadowDialog .colorButton {
+    margin: 2px 25px;
+}
+
+#boxShcontrolBox {
+    padding: 0 15px;
+}
+
+#boxShcontrolBox label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+#boxShcontrolBox scale {
+    width: 220px;
+}
+
+#boxShadowDialog .field {
+    width: 400px;
+    height: 270px;
+}
+
+#boxShBox {
     width: 200px;
     height: 110px;
     margin: 80px 100px;
-    border: 1px solid #E0DEDE;
-    background-color: #80A1C9;
+    background-color: #a1bbdb;
     -moz-border-radius: 15px;
-    
+    border-radius: 15px;
 }
-
-
-#boxShadowResult{
-    
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    background-color: #F7F7F7;
-    padding-left: 12px;
-    line-height: 1.5;
-    font-family:"Courier New", Courier, monospace;
-    font-size: 12px;
-    
-    
-}
-
-
-
-
-
 /****************** border-Radius ********************/
-
-
-#borderRadiusDialog{
-    width:900px;
+#borderRadiusDialog {
+    width: 900px;
     height: 575px;
     min-height: 575px;
     min-width: 900px;
@@ -485,704 +498,555 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     width: 100px;
     font-size: 12px;
 }
- 
- #borderRadiusControlBox{
+
+#borderRadiusControlBox {
     padding: 0 15px 0 15px;
- }
- 
-#borderRadiusControlBox label{
-    font-size:14px;
+}
+
+#borderRadiusControlBox label {
+    font-size: 14px;
     font-weight: 600;
+}
 
- }
-#borderRadiusControlBox scale{
-     width: 280px;
-     
- } 
+#borderRadiusControlBox scale {
+    width: 280px;
+}
 
- 
-#borderRadiusDialog .field{    
+#borderRadiusDialog .field {
     width: 400px;
     height: 300px;
 }
 
-#borderRadiusBox{
+#borderRadiusBox {
     width: 300px;
     height: 150px;
     margin: 75px 50px;
     border: 1px solid #E0DEDE;
     background-color: #a1bbdb;
-    
 }
-
-
 /************************** Multiple Columns ************************/
-
-#txtColumnDialog{
-    width:955px;
+#txtColumnDialog {
+    width: 955px;
     height: 600px;
     min-height: 600px;
     min-width: 955px;
 }
- 
- #txtColumnDialog .propLabels{
+
+#txtColumnDialog .propLabels {
     width: 110px;
     font-size: 12px;
- }
+}
 
- #txtColumnControlBox{
-     padding: 40px 15px 0 10px;     
- }
- 
- #txtColumnControlBox scale{
+#txtColumnControlBox {
+    padding: 40px 15px 0 10px;
+}
+
+#txtColumnControlBox scale {
     width: 150px;
- }
- 
- #txtColumnControlBox label{
+}
+
+#txtColumnControlBox label {
     font-size: 14px;
     font-weight: 600;
- }
+}
 
-#txtColDesc{
+#txtColDesc {
     font-size: 12px;
     font-weight: 200;
-    color:#000;
+    color: #000;
     width: 570px;
-    font-family: Georgia, 'Times New Roman', Times, serif;    
+    font-family: Georgia, 'Times New Roman ',Times,serif;
 }
- 
-#txtColumnField{
+
+#txtColumnField {
     width: 500px;
     height: 350px;
     padding: 5px 5px;
-    background-color: #fff; 
-    text-align: center;  
+    background-color: #fff;
+    text-align: center;
     margin-bottom: 15px;
     border: 1px solid #dedede;
     -moz-box-shadow: 0 0 3px #c5c1c1;
     box-shadow: 0 0 3px #c5c1c1;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    background-color: #F7F7F7;            
+    background-color: #F7F7F7;
 }
-
-
-
 /****************** Linear Gradient ********************/
-
-
-#lineargradientDialog{
-    width:900px;
+#lineargradientDialog {
+    width: 900px;
     height: 550px;
     min-height: 550px;
     min-width: 900px;
 }
 
- .gradientLabels{
-    width: 100px;
+#lineargradientDialog .propLabels {
+    width: 90px;
+}
 
- }
- .controlGradHBox{
-    margin-bottom: 25px;
- }
- 
+#lineargradientDialog .controlLabels {
+    -moz-appearance: none;
+    width: 250px;
+    margin: 0;
+    -moz-box-pack: end;
+    box-pack: end;
+}
 
-
- #gradientControlBox{
-     padding: 25px 15px 0 55px;
-     
- }
- 
- #LinearHBox{
-    margin: 15px 0;
-    font-size: 16px;
- }
- 
- #radialHBox{
-    margin: 15px 0;
- }
- 
- #gradientControlBox label{
-    font-size:14px;
+#lineargradientDialog .AddLabel {
+    font-size: 17px;
     font-weight: 600;
-     
- }
- 
- #gradientControlBox textbox{
-    font-size:14px;
+    padding: 0 8px 2px;
+    margin: -1px 0 0;
+}
+
+#lineargradientDialog .RemoveLabel{
+    font-size: 17px;
+    font-weight: 700;
+    padding: 0 10px 4px;
+    margin: -1px 0 0;
+}
+
+#lineargradientDialog .colorButton {
+    margin: 2px 25px;
+}
+
+#gradientControlBox {
+    padding: 0 15px;
+}
+
+#lineargradientDialog .hboxRow {
+    margin: 10px 0 0;
+}
+
+
+#gradientControlBox label {
+    font-size: 14px;
     font-weight: 600;
-    width: 35px;
-     
- }
- 
- #gradientControlBox scale{
+}
+
+#gradientControlBox scale {
     width: 230px;
-     
- }
- 
- #gradientControlBox menulist{
-    margin-top: -3px;
- }
- 
- #gradientControlBox menulist label{
-    font-weight: 600;
-    text-align: center;
-     
- }
- 
+}
 
- 
-#gradientField{
-    
-    width: 400px;
+#lineargradientDialog .field {
+    width: 350px;
     height: 300px;
-    margin-bottom: 15px;
-    border: 1px solid #dedede;
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    -moz-border-radius: 10px;
-    background-color: #F7F7F7;
-    overflow: hidden;
 }
-
-
-#gradientResult{
-    
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    background-color: #F7F7F7;
-    padding-left: 12px;
-    line-height: 1.5;
-    font-family:"Courier New", Courier, monospace;
-    font-size: 12px;
-    
-    
-}
-
-
 
 /****************** Radial Gradient ********************/
-
-
-#radialgradientDialog{
-    width:900px;
+#radialgradientDialog {
+    width: 900px;
     height: 550px;
     min-height: 550px;
     min-width: 900px;
 }
 
-#positionField{
-    width:  100px;
+#positionField {
+    width: 100px;
     height: 100px;
     position: relative;
     background: #fff;
     cursor: crosshair;
-    overflow:  hidden;
-}
-
-#positionField #circle{
-    width: 11px;
-    height: 11px;
-    position: absolute;
-    top:  45px;
-    left:  45px;
-    background: url('chrome://sir/skin/images/circle.gif');
-}
-
- .gradientLabels{
-    width: 100px;
-
- }
- .controlGradHBox{
-    margin-bottom: 25px;
- }
- 
-
-
- #radialgradientControlBox{
-     padding: 0 15px 0 30px;
-     
- }
- 
- #LinearHBox{
-    margin: 15px 0;
-    font-size: 16px;
- }
- 
- #radialHBox{
-    margin: 15px 0;
- }
- 
- #radialgradientControlBox label{
-    font-size:12px;
-    font-weight: 500;
-     
- }
- 
- #radialgradientControlBox textbox{
-    font-size:14px;
-    font-weight: 600;
-    width: 35px;
-     
- }
- 
- #radialgradientControlBox scale{
-    width: 230px;
-     
- }
- 
- #gradientControlBox menulist{
-    margin-top: -3px;
- }
- 
- #gradientControlBox menulist label{
-    font-weight: 600;
-    text-align: center;
-     
- }
- 
-
- 
-#gradientField{
-    
-    width: 400px;
-    height: 300px;
-    margin-bottom: 15px;
-    border: 1px solid #dedede;
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    -moz-border-radius: 10px;
-    background-color: #F7F7F7;
     overflow: hidden;
 }
 
+#positionField #circle {
+    width: 11px;
+    height: 11px;
+    position: absolute;
+    top: 45px;
+    left: 45px;
+    background: url( 'chrome://sir/skin/images/circle.gif ');
+}
 
-#gradientResult{
-    
-    -moz-box-shadow: 2px 1px 5px #E2E2E2;
-    background-color: #F7F7F7;
-    padding-left: 12px;
-    line-height: 1.5;
-    font-family:"Courier New", Courier, monospace;
-    font-size: 12px;
-    
-    
+#radialgradientDialog .controlLabels{
+    -moz-appearance: none;
+    width: 350px;
+    margin: 0;
+    -moz-box-pack: end;
+    box-pack: end;
+}
+
+#radialgradientDialog .AddLabel {
+    font-size: 17px;
+    font-weight: 600;
+    padding: 0 8px 2px;
+    margin: -1px 0 0;
+}
+
+#radialgradientDialog .RemoveLabel{
+    font-size: 17px;
+    font-weight: 700;
+    padding: 0 10px 4px;
+    margin: -1px 0 0;
+}
+
+#radialgradientDialog .colorButton {
+    margin: 2px 25px;
+}
+
+#radialgradientDialog .hboxRow {
+    margin: 3px 0 0;
+}
+
+#radialgradientControlBox {
+    padding: 0 15px;
 }
 
 
 
+#radialgradientControlBox label {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+
+#radialgradientControlBox scale {
+    width: 230px;
+}
+
+
+#radialgradientDialog .field {
+    width: 400px;
+    height: 350px;
+}
 
 /************************ Converter *************************/
-
-#converterDialog{
-    width:700px;
+#converterDialog {
+    width: 700px;
     height: 500px;
     min-height: 500px;
     min-width: 700px;
 }
-
-
-
 /***** RGB <-> HEX *******/
-#tp_rgbhex groupbox{
+#tp_rgbhex groupbox {
     min-height: 200px;
-    
 }
 
-#converterDialog .propLabels{
+#converterDialog .propLabels {
     width: 30px;
     font-size: 16px;
     font-weight: 600;
-    
 }
 
-#converterDialog .rgbhexLabels{
-    margin: -1px 0 15px;    
+#converterDialog .rgbhexLabels {
+    margin: -1px 0 15px;
 }
 
-.rgbhexVbox .txtBox{
+.rgbhexVbox .txtBox {
     margin-bottom: 11px;
     font-size: 16px;
     width: 40px;
     background: #fff;
-    
 }
 
-#converterDialog .HEXtxt{
-    width:  80px;
+#converterDialog .HEXtxt {
+    width: 80px;
     background: #fff;
 }
 
-.rgbtohexButtonVbox{
-    padding-top: 43px;    
+.rgbtohexButtonVbox {
+    padding-top: 43px;
 }
 
-.HEXbox{
+.HEXbox {
     margin-top: 44px;
-    font-size: 16px;    
+    font-size: 16px;
 }
-
-
-
-
 /***** EM <-> PX *******/
-
-.ConverterExmpBox{ 
-    margin: 22px 0 0 15px; 
-    width: 70px; 
+.ConverterExmpBox {
+    margin: 22px 0 0 15px;
+    width: 70px;
     height: 70px;
     border: 1px solid #000;
-    
 }
 
-#converterExmpBox{
+#converterExmpBox {
     font-size: 16px;
     background-color: #F7F4F7;
     margin-bottom: 10px;
 }
 
-#converterExmpBox label{
+#converterExmpBox label {
     margin: 5px 0 0 -3px;
-    font-family: Georgia, 'sans serif';
+    font-family: Georgia, 'sans serif ';
 }
 
-#converterDialog .EMPXtxt{
-    width:  80px;
+#converterDialog .EMPXtxt {
+    width: 80px;
     background: #fff;
 }
 
-#userPXEMBox{
+#userPXEMBox {
     font-size: 16px;
     margin: 40px 0 40px 0;
-    
 }
 
-#measure{
+#measure {
     width: 55px;
 }
-
-
 /****************** Outline ********************/
-
-
-#outlineDialog{
-    width:765px;
+#outlineDialog {
+    width: 765px;
     height: 500px;
     min-height: 500px;
     min-width: 765px;
 }
 
- 
- #outlineControlBox scale{
+#outlineControlBox scale {
     width: 200px;
- }
- 
- #outlineControlBox label{
-    font-size: 14px;
-    font-weight: 600;
- }
- 
-
- #outlineControlBox{
-     padding: 20px 15px 0 15px;     
- }
-
- 
-#outlineDialog .field{
-    width: 380px;
-    height: 300px; 
 }
 
-#outlineBox{
+#outlineControlBox label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#outlineControlBox {
+    padding: 20px 15px 0 15px;
+}
+
+#outlineDialog .field {
+    width: 380px;
+    height: 300px;
+}
+
+#outlineBox {
     width: 200px;
     height: 150px;
     margin: 75px 100px;
     border: none;
-    background-color: #a1bbdb;    
+    background-color: #a1bbdb;
 }
-
-
-
-
-
 /************** CLEANER ****************/
-#CleanerDialog{
+#CleanerDialog {
     width: 750px;
     height: 600px;
     min-height: 600px;
     min-width: 750px;
 }
-
 /********* Tag Cleaber ************/
-#tagCleanerTxtBox{
+#tagCleanerTxtBox {
     width: 500px;
 }
 
-#CleanerDialog .txtBox{
+#CleanerDialog .txtBox {
     text-align: left;
 }
 
-#cleanVboxChk{
+#cleanVboxChk {
     padding-top: 15px;
 }
 
-.cleanerTxt{
+.cleanerTxt {
     width: 200px;
     border-radius: 10px;
 }
-
-
-
 /************* Colorpicker ***************/
-#colorpickerDialog{
-    width:550px;
+#colorpickerDialog {
+    width: 550px;
     height: 360px;
     min-width: 550px;
     min-height: 360px;
-    
-    
 }
 
-#colorpickerDialog groupbox{
+#colorpickerDialog groupbox {
     margin-top: 10px;
 }
 
-#colorpickerDialog textbox{
+#colorpickerDialog textbox {
     width: 150px;
 }
 
-#colorpickerDialog caption{
+#colorpickerDialog caption {
     font-size: 14px;
     font-weight: 600;
-    
 }
 
-#colorpickerDialog label{
+#colorpickerDialog label {
     font-size: 14px;
     font-weight: 600;
-    
 }
-
-
-
-
 /****************** Transition ********************/
-
-
-#transitionDialog{
-    width:800px;
+#transitionDialog {
+    width: 800px;
     height: 545px;
     min-height: 545px;
     min-width: 800px;
 }
 
- 
- #transitionControlBox scale{
+#transitionControlBox scale {
     width: 250px;
- }
- 
- #transitionDialog .propLabels{
+}
+
+#transitionDialog .propLabels {
     width: 80px;
- }
- 
- #transitionControlBox label{
+}
+
+#transitionControlBox label {
     font-size: 14px;
     font-weight: 600;
+}
 
- }
+#transitionControlBox {
+    padding: 20px 15px 0 15px;
+}
 
-
- #transitionControlBox{
-     padding: 20px 15px 0 15px;
-     
- }
-
- 
-#transitionDialog .field{    
+#transitionDialog .field {
     width: 350px;
     height: 280px;
 }
 
-#transitionBox{
+#transitionBox {
     width: 280px;
     height: 230px;
     margin: 25px 25px;
     font-size: 26px;
-    font-weight: 700;    
+    font-weight: 700;
     -moz-border-radius: 12px;
-    border-radius: 12px;        
+    border-radius: 12px;
     border: 1px solid #E0DEDE;
     background: #5776bd;
     color: #f3f128;
     padding: 95px 0 0 75px;
-    
 }
 
-
-
-#transitionBox:hover{       
+#transitionBox:hover {
     border: 40px solid #5776bd;
     background: #f3f128;
     color: #5776bd;
-    padding: 56px 0 0 36px; 
-    
+    padding: 56px 0 0 36px;
 }
-
-
-
-
-
 /****************** Text and Font ********************/
-
-
-#textfontDialog{
-    width:1024px;
+#textfontDialog {
+    width: 1024px;
     height: 695px;
     min-height: 695px;
     min-width: 1024px;
 }
 
- .textfontLabels{
+.textfontLabels {
     width: 95px;
+}
 
- }
- 
- .textfontNewLabels{
+.textfontNewLabels {
     width: 70px;
- }
- 
- .textfontControlBox scale{
-    width: 250px;
+}
 
- }
- 
- .textfontControlBox label{
+.textfontControlBox scale {
+    width: 250px;
+}
+
+.textfontControlBox label {
     font-size: 13px;
     font-weight: 600;
+}
 
- }
- 
- .textfontControlBox menulist{
+.textfontControlBox menulist {
     margin-top: -2px;
     font-size: 12px;
-    font-weight: 500; 
+    font-weight: 500;
 }
 
- .textfontControlBox column{
-    width: 250px; 
+.textfontControlBox column {
+    width: 250px;
 }
 
- .textfontControlBox{
-     padding: 20px 15px 0 15px;
-     margin-right: 10px;
-     
- }
+.textfontControlBox {
+    padding: 20px 15px 0 15px;
+    margin-right: 10px;
+}
 
- 
-#textfontDialog .field{
+#textfontDialog .field {
     width: 450px;
     height: 300px;
     overflow-y: auto;
 }
 
-#TFinscription{
+#TFinscription {
     margin: 2px 2px;
-    
 }
-
-
-
 /************************ BONUS *************************/
-
-#bonusDialog{
-    width:850px;
+#bonusDialog {
+    width: 850px;
     height: 655px;
     min-height: 655px;
     min-width: 850px;
     padding-bottom: 100px;
 }
 
-#bonus{
+#bonus {
     height: 600px;
 }
 
-.bonus-rightClickToCopy{
+.bonus-rightClickToCopy {
     color: #e83c3c;
     font-size: 11px;
-    font-family: "Courier New", Courier, monospace;
+    font-family: "Courier New ",Courier,monospace;
 }
-
 /************ selectors **************/
-#tp_selector{
+#tp_selector {
     height: 500px;
 }
 
-#selName{
+#selName {
     width: 150px;
     text-align: center;
     font-weight: 700;
 }
 
-#selDesc{
+#selDesc {
     font-weight: 700;
 }
-
-
-
-
 /************ hacks **************/
-
-#tp_hack{
+#tp_hack {
     height: 550px;
     overflow-y: scroll;
 }
 
-.hackHeader{
+.hackHeader {
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 15px;
 }
 
-.ulLia{
+.ulLia {
     font-size: 14px;
     font-weight: 600;
 }
 
-.codeBlock{
+.codeBlock {
     border: 1px solid #E5E5E5;
     color: #2F913E;
     margin-left: 50px;
     padding: 2px 5px 1px 5px;
     font-size: 12px;
 }
-
-
-
 /************** px to em ****************/
-
-#pxtoemList{
+#pxtoemList {
     height: 500px;
-    
 }
 
 #pxtoemList row:nth-child(2n) {
-    background: #f3f3f7; 
+    background: #f3f3f7;
 }
 
-
-#pxtoemList label.applyCopy{
-    display:block;
+#pxtoemList label.applyCopy {
+    display: block;
     text-align: center;
     font-size: 14px;
     padding: 3px 0;
-    margin:0;   
+    margin: 0;
     border-bottom: 1px solid #eae8e8;
-    border-right: 1px solid #eae8e8; 
+    border-right: 1px solid #eae8e8;
     text-shadow: 1px 1px 1px #6D6B6B;
 }
 
-#pxtoemList label.applyCopy:hover{
-    background: #d1cfcf;    
+#pxtoemList label.applyCopy:hover {
+    background: #d1cfcf;
 }
 
-.pxtoemHeader{
+.pxtoemHeader {
     text-align: center;
     font-weight: 700;
     font-size: 16px;
@@ -1192,27 +1056,22 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     background: #e4e4e4;
 }
 
-#emtopxLabel{
+#emtopxLabel {
     text-align: center;
     font-size: 16px;
     background-color: #FCF4FA;
 }
-
-
-
 /************* Crossbrowser color names ***************/
-
-#tp_crossColor{
+#tp_crossColor {
     height: 500px;
     overflow-y: scroll;
 }
 
-#crossColorList{
-    height: 550px; 
-    
+#crossColorList {
+    height: 550px;
 }
 
-#crossColorList .crossColorHeader{
+#crossColorList .crossColorHeader {
     text-align: center;
     font-weight: 700;
     font-size: 16px;
@@ -1221,29 +1080,25 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     border-radius: 5px 5px 0 0;
 }
 
-#crossColorList label.applyCopy{
+#crossColorList label.applyCopy {
     display: block;
     text-align: center;
     font-size: 14px;
     padding: 2px 0;
-    margin:0;
+    margin: 0;
     border-bottom: 1px solid #eae8e8;
 }
 
-#crossColorList label.applyCopy:hover{
+#crossColorList label.applyCopy:hover {
     background: #d1cfcf;
 }
-
-
-
 /******************** Crossbrowser Fonts *******************/
-
-#tp_crossFont{
+#tp_crossFont {
     height: 500px;
-    overflow-y: scroll;    
+    overflow-y: scroll;
 }
 
-#crossFontList .crossFontHeader{
+#crossFontList .crossFontHeader {
     text-align: center;
     font-weight: 700;
     font-size: 16px;
@@ -1252,52 +1107,34 @@ toolbar[iconsize="small"] #sir-toolbarbutton {
     border-radius: 5px 5px 0 0;
 }
 
-#crossFontList row{
+#crossFontList row {
     font-size: 14px;
     padding: 0;
-    margin:0;
+    margin: 0;
     border-bottom: 3px double #eae8e8;
 }
 
-#crossFontList row vbox{
+#crossFontList row vbox {
     font-size: 14px;
     padding-left: 50px;
-    margin:0;
+    margin: 0;
 }
 
-#crossFontList label.applyCopy:hover{
+#crossFontList label.applyCopy:hover {
     background: #d1cfcf;
 }
 
-#crossFontList label.applyCopy{
+#crossFontList label.applyCopy {
     display: block;
     text-align: left;
     font-size: 14px;
     padding-left: 30px;
-    margin:0;
+    margin: 0;
     padding-top: 20px;
-    
 }
-
-
 /*************** support ****************/
-#supBox{
+#supBox {
     font-size: 20px;
     text-align: center;
     margin-top: 200px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

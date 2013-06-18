@@ -242,6 +242,7 @@ SIR.txtShadow.init = function() {
             this.delimeter = this.model.get("units") === "em" ? 10 : 1;
         },
         tagName: 'hbox',
+        className: 'hboxRow',
         template: mw.SIR._.template(mw.SIR.$("#txtShadowTmpl", document).html()),
         render: function(){    
             var self = this, data = mw.SIR._.extend({number: this.options.index}, self.model.toJSON());
@@ -571,6 +572,7 @@ SIR.boxShadow.init = function() {
             this.delimeter = this.model.get("units") === "em" ? 10 : 1;
         },
         tagName: 'hbox',
+        className: 'hboxRow',
         template: mw.SIR._.template(mw.SIR.$("#boxShadowTmpl", document).html()),
         render: function(){    
             var self = this, data = mw.SIR._.extend({number: this.options.index}, self.model.toJSON());
@@ -995,6 +997,7 @@ var gradCol = new GradientCollection([
     
 var SingleColorView = mw.SIR.Backbone.View.extend({
     tagName: "hbox",
+    className: "hboxRow",
     template: mw.SIR._.template(mw.SIR.$("#linearGradientTmpl", document).html()),
     render: function(){
         var self = this;
@@ -1056,8 +1059,8 @@ var gradientControlsView = mw.SIR.BaseView.extend({
             self.txtBoxScale(self.angle[0], self.angleVal[0]);  });
 
         
-        this.$el.append(new SingleColorView({model: gradCol.at(0), index: 0}).render().el);
-        this.$el.append(new SingleColorView({model: gradCol.at(1), index: 1}).render().el);
+        this.$el.append(new SingleColorView({model: gradCol.at(0), index: 1}).render().el);
+        this.$el.append(new SingleColorView({model: gradCol.at(1), index: 2}).render().el);
         
         this.collection.on("change", this.showCode, this);
         
@@ -1266,6 +1269,7 @@ var gradCol = new GradientCollection([
   
 var SingleColorView = mw.SIR.Backbone.View.extend({
     tagName: "hbox",
+    className: "hboxRow",
     template: mw.SIR._.template(mw.SIR.$("#radialGradientTmpl", document).html()),
     render: function(){
         var self = this;
@@ -1335,8 +1339,8 @@ var SingleColorView = mw.SIR.Backbone.View.extend({
         
         
         
-        this.$el.append(new SingleColorView({model: gradCol.at(0), index: 0}).render().el);
-        this.$el.append(new SingleColorView({model: gradCol.at(1), index: 1}).render().el);
+        this.$el.append(new SingleColorView({model: gradCol.at(0), index: 1}).render().el);
+        this.$el.append(new SingleColorView({model: gradCol.at(1), index: 2}).render().el);
         
         this.collection.on("change", this.showCode, this);
         
