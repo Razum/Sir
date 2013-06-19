@@ -2,3 +2,37 @@
     width: 400px;
     height: 450px;
 }
+
+.txtBox {
+    -moz-appearance: none;
+    appearance: none;
+    font-weight: 500;
+    font-size: 14px;
+    width: 40px;
+    height: 28px;
+    text-align: left;
+    border: 1px solid #cfcdcd;
+    box-shadow: inset 0px 3px 3px #ebe7e7;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: Georgia,serif;
+}
+
+.txtBox[focused=true ] {
+    -moz-appearance: none;
+    -moz-box-shadow: 0 0 3px #84cefc;
+    box-shadow: 0 0 3px #84cefc;
+    border: none;
+}
+
+
+#SIRPrefs label {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#SIRPrefs .baseVal {
+    text-align: left;
+    padding: 40px;
+    font-size: 16px;
+}

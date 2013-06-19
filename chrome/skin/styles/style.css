@@ -31,7 +31,9 @@ toolbar [iconsize= "small " ]#sir-toolbarbutton {
     height: 30px;
     text-align: center;
     border: 1px solid #cfcdcd;
+    -moz-box-shadow: inset 0px 3px 3px #ebe7e7;
     box-shadow: inset 0px 3px 3px #ebe7e7;
+    -moz-border-radius: 50px;
     border-radius: 50px;
     font-family: Georgia,serif;
 }

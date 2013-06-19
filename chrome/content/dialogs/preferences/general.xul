@@ -52,7 +52,7 @@
 						<checkbox label="PIE" id="sir-pie-check" preference="pie" tooltip="sir-pie-tt"/><spacer/><label value="?" href="http://css3pie.com/about/" oncommand="gBrowser.addTab('http://www.google.com/')" style="font-size: 14px; font-weight: 700;" class="text-link"/>
 					</caption>
 					<label value="&settings.piePath;"/>
-					<textbox id="sir-piePath" value="" onclick="this.focus();" />
+					<textbox id="sir-piePath" class="txtBox" value="" onclick="this.focus();" />
 				</groupbox>
                 
                                 

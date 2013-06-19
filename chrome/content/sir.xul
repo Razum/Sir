@@ -27,9 +27,9 @@
                     />
                     <menuitem id="sir-toolbar-button-multcolumn" label="Multiple Columns" image="chrome://sir/skin/images/columns.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/txtColumn.xul', 'txtColumnDialog', '')"
                     />
-                    <menuitem id="sir-toolbar-button-gradient" label="Linear Gradient" image="chrome://sir/skin/images/gradient.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/lineargradient.xul', 'lineargradientDialog', '')"
+                    <menuitem id="sir-toolbar-button-gradientLinear" label="Linear Gradient" image="chrome://sir/skin/images/gradient.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/lineargradient.xul', 'lineargradientDialog', '')"
                     />
-                    <menuitem id="sir-toolbar-button-gradient" label="Radial Gradient" image="chrome://sir/skin/images/gradient.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/radialgradient.xul', 'radialgradientDialog', '')"
+                    <menuitem id="sir-toolbar-button-gradientRadial" label="Radial Gradient" image="chrome://sir/skin/images/radial.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/radialgradient.xul', 'radialgradientDialog', '')"
                     />                    
                     <menuitem id="sir-toolbar-button-converter" label="Converter" image="chrome://sir/skin/images/converter.png" class="menuitem-iconic" onclick="window.openDialog('chrome://sir/content/dialogs/converter.xul', 'converterDialog', '')"
                     />
