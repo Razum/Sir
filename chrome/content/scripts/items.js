@@ -865,11 +865,10 @@ if (!SIR) {
     SIR.lineargradient = {};
     SIR.lineargradient.init = function () {
 
-
         var GradientModel = Backbone.Model.extend({
             defaults:{
-                color:"#1301FE",
-                stopColorPos:100
+                color: "#1301FE",
+                stopColorPos: 100
             }
         });
 
@@ -890,24 +889,21 @@ if (!SIR) {
             tagName:"hbox",
             className:"hboxRow",
             template: _.template($("#linearGradientTmpl", document).html()),
+            events:{
+                'change .LGstopColorPos': function (evt) {
+                    var val = $('.LGstopColorPos', this.el).val();
+                    this.model.set('stopColorPos', val);
+                    $(".LGstopColorPosVal", this.el).val(val);
+                },
+                'keyup .LGstopColorPosVal': function (evt) {
+                    var val = $(".LGstopColorPosVal", this.el).val();
+                    $(".LGstopColorPos", this.el).val(val);
+                }
+            },
             render:function () {
-                var self = this;
-                var data = _.extend(this.model.toJSON(), {number:this.options.index});
+                var self = this,
+                    data = _.extend(this.model.toJSON(), {number: this.options.index});
                 this.$el.append(this.template(data));
-
-
-                this.colorStopPos = $(".LGstopColorPos", this.el), this.colorStopVal = $(".LGstopColorPosVal", this.el);
-
-
-                this.colorStopPos.on("change", function () {
-                    var val = $(this).val();
-                    self.model.set('stopColorPos', val);
-                    self.colorStopVal.val(val);
-                });
-                this.colorStopVal.on("keyup", function () {
-                    self.txtBoxScale(self.colorStopPos[0], self.colorStopVal[0])
-                });
-
 
                 var rgbHash = SIR.utils.toRGB(this.model.get("color"));
                 this.colorpicker = new SIR.ColourPicker($("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(rgbHash.red, rgbHash.green, rgbHash.blue));
@@ -916,51 +912,35 @@ if (!SIR) {
                     $(".colorButton", self.el)[0].color = color;
                     self.model.set('color', color);
                 });
-
-
                 return this;
-            },
-            txtBoxScale:function (scale, lbl) {
-                var val = lbl.value;
-                if (!isNaN(val)) {
-                    scale.value = Math.round(val);
-                }
             }
         });
 
 
         var gradientControlsView = BaseView.extend({
-            el:document.getElementById("gradientControlBox"),
-            txtBox:document.getElementById("gradientResult"),
-            angleScale:document.getElementById("LGangle"),
-
-            gradientField:document.getElementById("gradientField"),
-
+            el: document.getElementById("gradientControlBox"),
+            txtBox: document.getElementById("gradientResult"),
+            gradientField: document.getElementById("gradientField"),
+            events: {
+                'click #addColor': 'addColor',
+                'click #removeColor': 'removeColor',
+                'change .LGangle': function (evt) {
+                    var val = $('.LGangle', this.el).val();
+                    $(".LGanglevalue", this.el).val(val);
+                    this.showCode();
+                },
+                'keyup .LGanglevalue': function (evt) {
+                    var val = $(".LGanglevalue", this.el).val();
+                    $(".LGangle", this.el).val(val);
+                }
+            },
             initialize:function () {
                 var self = this;
-                $("#addColor", this.el).on('click', $.proxy(self.addColor, self));
-                $("#removeColor", this.el).on('click', $.proxy(self.removeColor, self));
                 $(".copyImg", document).on('click', $.proxy(self.CopyCode, self));
-
-                this.angle = $(".LGangle", document), this.angleVal = $(".LGanglevalue", document);
-                this.angle.on("change", function () {
-                    var val = $(this).val();
-                    self.angleVal.val(val);
-                    self.showCode();
-                });
-                this.angleVal.on("keyup", function () {
-                    self.txtBoxScale(self.angle[0], self.angleVal[0]);
-                });
-
-
-                this.$el.append(new SingleColorView({model:gradCol.at(0), index:1}).render().el);
-                this.$el.append(new SingleColorView({model:gradCol.at(1), index:2}).render().el);
-
-                this.collection.on("change", this.showCode, this);
-
-
+                this.$el.append(new SingleColorView({model:gradCol.at(0), index:1}).render().el,
+                    new SingleColorView({model:gradCol.at(1), index:2}).render().el);
+                this.listenTo(this.collection, "change", this.showCode);
                 this.showCode();
-
             },
 
             addColor:function () {
@@ -973,27 +953,20 @@ if (!SIR) {
                 }
             },
             removeColor:function () {
-                var self = this;
                 if (this.collection.length > 2) {
                     this.collection.remove(this.collection.last());
-                    $(">hbox:last-child", self.$el).last().remove();
+                    $(".hboxRow:last", this.$el).remove();
                     this.showCode();
                 }
             },
             showCode:function () {
-                var self = this;
-
-
+                document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
                 this.collection.sort();
 
-
-                var angle = $(self.angle).attr("value");
-                document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
-
-
-                var ieFrom = this.collection.at(0).get("color");
-                var ieTo = this.collection.at(this.collection.length - 1).get("color");
-                var ieType = Math.abs(angle) === 90 ? 0 : 1;
+                var angle = $('.LGangle').val(),
+                    ieFrom = this.collection.at(0).get("color"),
+                    ieTo = this.collection.last().get("color"),
+                    ieType = Math.abs(angle) === 90 ? 0 : 1;
 
                 var str = "", stop_arr = [],
                     webkit_stop_arr = [];
@@ -1023,12 +996,13 @@ if (!SIR) {
                 }
                 str += "background: linear-gradient(" + angle + "deg, " + stop_arr.join(", ") + ");/* W3C */"
                 this.txtBox.value = str;
-                this.gradientField.style.cssText = "background: -moz-linear-gradient(" + angle + "deg," + stop_arr.join(", ") + ");";
+
+                this.gradientField.style.cssText = "background: linear-gradient(" + angle + "deg," + stop_arr.join(", ") + ");";
             }
         });
 
 
-        new gradientControlsView({collection:gradCol});
+        new gradientControlsView({collection: gradCol});
 
 
     };
