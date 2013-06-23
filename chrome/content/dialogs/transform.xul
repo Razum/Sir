@@ -1,65 +1,81 @@
 <?xml version="1.0" ?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
-	<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css" ?>
-		<!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
-		<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml" id="transformDialog" title="&transform.title;" buttons="disabled" onload="SIR.transform.init();">
-			<script type="application/x-javascript" src="chrome://sir/content/scripts/items.js">
-			</script>
-			<script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js">
-			</script>
-			<hbox>
-				<vbox class="field">
-					<html:div id="transformDiv">
-					</html:div>
-				</vbox>
-				<vbox id="transformControlBox">
-					<hbox>
-						<label class="propLabels" value="Rotate:" />
-						<scale min="0" max="360" class="rotate" value="0" id="TrotDeg" onchange="SIR.transform.onParamsChange();" />
-						<textbox id="rotVal" class="txtBox" value="" maxlength="3" /><label value="&#176;"/>
-					</hbox>
-					<groupbox class="scale">
-						<caption label="Scale" />
-						<hbox>
-							<label class="propLabels" value="Scale X:" />
-							<scale min="1" max="20" value="10" id="scaleX" onchange="SIR.transform.onParamsChange();" />
-							<label value="&#10539;" /><textbox id="scaleXval" class="txtBox"  maxlength="3" value="" />
-						</hbox>
-						<hbox>
-							<label class="propLabels" value="Scale Y:" />
-							<scale min="1" max="20" value="10" id="scaleY" onchange="SIR.transform.onParamsChange();" />
-							<label value="&#10539;" /><textbox id="scaleYval" class="txtBox"  maxlength="3" value="" />
-						</hbox>
-					</groupbox>
-					<groupbox>
-						<caption label="Skew" />
-						<hbox>
-							<label class="propLabels" value="Skew X:" />
-							<scale min="-180" max="180" value="0" id="skewX" onchange="SIR.transform.onParamsChange();" />
-							<textbox id="skewXval" class="txtBox" maxlength="4" value="" /><label class="unitLabel" value="&#176;" />
-						</hbox>
-						<hbox>
-							<label class="propLabels" value="Skew Y:" />
-							<scale min="-180" max="180" value="0" id="skewY" onchange="SIR.transform.onParamsChange();" />
-							<textbox id="skewYval" class="txtBox" maxlength="4" value="" /><label class="unitLabel" value="&#176;" />
-						</hbox>
-					</groupbox>
-					<groupbox>
-						<caption label="Translate" />
-						<hbox>
-							<label class="propLabels" value="Translate X:" />
-							<scale min="-100" max="100" value="0" id="TranslateX" onchange="SIR.transform.onParamsChange();" />
-							<textbox id="TranslateXval" class="txtBox" maxlength="4" value="" /><label class="unitLabel" value="px" />
-						</hbox>
-						<hbox>
-							<label class="propLabels" value="Translate Y:" />
-							<scale min="-100" max="100" value="0" id="TranslateY" onchange="SIR.transform.onParamsChange();" />
-							<textbox id="TranslateYval" class="txtBox" maxlength="4" value="" /><label class="unitLabel" value="px" />
-						</hbox>
-					</groupbox>
-				</vbox>
-			</hbox>
-            <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />
-            <hbox class="commandBox"><label value="&transform.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>			
-			<textbox id="transformResult" class="multiTxtBox" multiline="true" readonly="true" rows="10" />
-		</dialog>
+<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css" ?>
+<!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml"
+        id="transformDialog" title="&transform.title;" buttons="disabled" onload="SIR.transform.init();">
+    <hbox>
+        <vbox class="field">
+            <html:div id="transformDiv">
+            </html:div>
+        </vbox>
+        <vbox id="transformControlBox">
+            <hbox>
+                <label class="propLabels" value="Rotate:"/>
+                <scale min="0" max="360" class="rotate" value="0" id="TrotDeg"
+                       onchange="SIR.transform.onParamsChange();"/>
+                <textbox id="rotVal" class="txtBox" value="" maxlength="3"/>
+                <label value="&#176;"/>
+            </hbox>
+            <groupbox class="scale">
+                <caption label="Scale"/>
+                <hbox>
+                    <label class="propLabels" value="Scale X:"/>
+                    <scale min="1" max="20" value="10" id="scaleX" onchange="SIR.transform.onParamsChange();"/>
+                    <label value="&#10539;"/>
+                    <textbox id="scaleXval" class="txtBox" maxlength="3" value=""/>
+                </hbox>
+                <hbox>
+                    <label class="propLabels" value="Scale Y:"/>
+                    <scale min="1" max="20" value="10" id="scaleY" onchange="SIR.transform.onParamsChange();"/>
+                    <label value="&#10539;"/>
+                    <textbox id="scaleYval" class="txtBox" maxlength="3" value=""/>
+                </hbox>
+            </groupbox>
+            <groupbox>
+                <caption label="Skew"/>
+                <hbox>
+                    <label class="propLabels" value="Skew X:"/>
+                    <scale min="-180" max="180" value="0" id="skewX" onchange="SIR.transform.onParamsChange();"/>
+                    <textbox id="skewXval" class="txtBox" maxlength="4" value=""/>
+                    <label class="unitLabel" value="&#176;"/>
+                </hbox>
+                <hbox>
+                    <label class="propLabels" value="Skew Y:"/>
+                    <scale min="-180" max="180" value="0" id="skewY" onchange="SIR.transform.onParamsChange();"/>
+                    <textbox id="skewYval" class="txtBox" maxlength="4" value=""/>
+                    <label class="unitLabel" value="&#176;"/>
+                </hbox>
+            </groupbox>
+            <groupbox>
+                <caption label="Translate"/>
+                <hbox>
+                    <label class="propLabels" value="Translate X:"/>
+                    <scale min="-100" max="100" value="0" id="TranslateX" onchange="SIR.transform.onParamsChange();"/>
+                    <textbox id="TranslateXval" class="txtBox" maxlength="4" value=""/>
+                    <label class="unitLabel" value="px"/>
+                </hbox>
+                <hbox>
+                    <label class="propLabels" value="Translate Y:"/>
+                    <scale min="-100" max="100" value="0" id="TranslateY" onchange="SIR.transform.onParamsChange();"/>
+                    <textbox id="TranslateYval" class="txtBox" maxlength="4" value=""/>
+                    <label class="unitLabel" value="px"/>
+                </hbox>
+            </groupbox>
+        </vbox>
+    </hbox>
+    <tooltip id="sir-clipboard-tt" label="&clipboard.tt;"/>
+    <hbox class="commandBox">
+        <label value="&transform.code;"/>
+        <spacer flex="1"/>
+        <vbox>
+            <image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg"
+                   width="16px" height="16px"/>
+        </vbox>
+    </hbox>
+    <textbox id="transformResult" class="multiTxtBox" multiline="true" readonly="true" rows="10"/>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/jquery-1.8.3.min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/underscore-min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/backbone-min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
+</dialog>

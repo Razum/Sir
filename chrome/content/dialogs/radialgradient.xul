@@ -1,83 +1,93 @@
 <?xml version="1.0" ?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
-	<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css" ?>
-		<!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
-		<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml" id="radialgradientDialog" title="&gradient.title;" buttons="disabled" onload="SIR.radialgradient.init();">
-            <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
-            <script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js"></script>
-			<script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
-			
-
-            <hbox>
-				<box id="gradientField" class="field">
-				</box>
-				<vbox id="radialgradientControlBox">
-                <hbox class="controlHBox">
-			        <vbox id="positionField">
-                        <box id="circle"></box>
-                    </vbox>
-                    <vbox>
-                        <hbox>
-                        <label class="propLabels" value="Type:" />
-						<radiogroup id="sir-grad"> 
+<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css" ?>
+<!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml"
+        id="radialgradientDialog" title="&gradient.title;" buttons="disabled" onload="SIR.radialgradient.init();">
+    <hbox>
+        <box id="gradientField" class="field">
+        </box>
+        <vbox id="radialgradientControlBox">
+            <hbox class="controlHBox">
+                <vbox id="positionField">
+                    <box id="circle"></box>
+                </vbox>
+                <vbox>
+                    <hbox>
+                        <label class="propLabels" value="Type:"/>
+                        <radiogroup id="sir-grad">
                             <hbox>
-                               <radio label="circle" value="circle" selected="true"/><spacer style="width: 40px;"/>
-                               <radio label="ellipse" value="ellipse"/>
+                                <radio label="circle" value="circle" selected="true"/>
+                                <spacer style="width: 40px;"/>
+                                <radio label="ellipse" value="ellipse"/>
                             </hbox>
-                       </radiogroup> 
-                        </hbox>
-                        <hbox>
-                            <label class="propLabels" value="Size:" />
-                            <menulist width="150px" id="radialSize">
-							<menupopup>
-								<menuitem value="contain" label="contain"/>
-								<menuitem value="closest-corner" label="closest-corner"/>
-								<menuitem value="farthest-side" label="farthest-side"/>
-								<menuitem value="cover" label="cover" selected="true"/>
-							</menupopup>
-						</menulist>
-                        </hbox>
-                        <hbox>
-                            <label class="propLabels" value="Position X:" /><textbox id="txtX" class="txtBox" maxlength="3"/><label class="unitLabel" value="%"/>
-                            <label class="propLabels" value="Position Y:" /><textbox id="txtY" class="txtBox" maxlength="3"/><label class="unitLabel" value="%"/>
-                        </hbox>
-                    </vbox>
-                </hbox>
-                <hbox class="controlLabels">
-                    <label class="" value='Shadow: ' />
-                    <label id="addColor" class="AddLabel btn btn-success" value='+' /> <label class="" value=' / ' />
-                    <label id="removeColor" class="RemoveLabel btn btn-danger" value='&#8211;'/>
-                </hbox>     
-				</vbox>
-			</hbox>
-            <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />
-            <hbox class="commandBox"><label value="&gradient.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
-			
-			<textbox id="gradientResult" class="multiTxtBox" multiline="true" readonly="true" rows="10" />
-		
-        
-        
-        
-        <script type="text/html" id="radialGradientTmpl">
+                        </radiogroup>
+                    </hbox>
+                    <hbox>
+                        <label class="propLabels" value="Size:"/>
+                        <menulist width="150px" id="radialSize">
+                            <menupopup>
+                                <menuitem value="contain" label="contain"/>
+                                <menuitem value="closest-corner" label="closest-corner"/>
+                                <menuitem value="farthest-side" label="farthest-side"/>
+                                <menuitem value="cover" label="cover" selected="true"/>
+                            </menupopup>
+                        </menulist>
+                    </hbox>
+                    <hbox>
+                        <label class="propLabels" value="Position X:"/>
+                        <textbox id="txtX" class="txtBox" maxlength="3"/>
+                        <label class="unitLabel" value="%"/>
+                        <label class="propLabels" value="Position Y:"/>
+                        <textbox id="txtY" class="txtBox" maxlength="3"/>
+                        <label class="unitLabel" value="%"/>
+                    </hbox>
+                </vbox>
+            </hbox>
+            <hbox class="controlLabels">
+                <label class="" value='Shadow: '/>
+                <label id="addColor" class="AddLabel btn btn-success" value='+'/>
+                <label class="" value=' / '/>
+                <label id="removeColor" class="RemoveLabel btn btn-danger" value='&#8211;'/>
+            </hbox>
+        </vbox>
+    </hbox>
+    <tooltip id="sir-clipboard-tt" label="&clipboard.tt;"/>
+    <hbox class="commandBox">
+        <label value="&gradient.code;"/>
+        <spacer flex="1"/>
+        <vbox>
+            <image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg"
+                   width="16px" height="16px"/>
+        </vbox>
+    </hbox>
 
-			     <label class="propLabels" value="Color Stop {{ number }}:" />				                  
-                 <scale min="0" max="100" value="{{ stopColorPos }}" class="RGstopColorPos"  />
-				 <textbox class="RGstopColorPosVal txtBox" maxlength="3" value="{{ stopColorPos }}" /><label class="unitLabel" value="&#176;"/>
-                 <colorpicker class="colorButton" type="button" disabled="true" color="{{ color }}" onclick="document.getElementById('colorPicker{{ number }}').openPopup(this, 'after_start', 0, 0, false);" />
-                 <panel id="colorPicker{{ number }}" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="&colorpicker.panel.title;">
-			     </panel>
-        
-        
-        </script>
-        
-        
-        
-        
-        
-        
-        
-        
-        </dialog>
+    <textbox id="gradientResult" class="multiTxtBox" multiline="true" readonly="true" rows="10"/>
+
+
+    <script type="text/html" id="radialGradientTmpl">
+
+        <label class="propLabels" value="Color Stop {{ number }}:"/>
+        <scale min="0" max="100" value="{{ stopColorPos }}" class="RGstopColorPos"/>
+        <textbox class="RGstopColorPosVal txtBox" maxlength="3" value="{{ stopColorPos }}"/>
+        <label class="unitLabel" value="&#176;"/>
+        <colorpicker class="colorButton" type="button" disabled="true" color="{{ color }}"
+                     onclick="document.getElementById('colorPicker{{ number }}').openPopup(this, 'after_start', 0, 0, false);"/>
+        <panel id="colorPicker{{ number }}" style="width:520; height: 276; padding: 10px; 10px" noautohide="true"
+               close="true" titlebar="normal" label="&colorpicker.panel.title;">
+        </panel>
+
+
+    </script>
+    <script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/jquery-1.8.3.min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/underscore-min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/backbone-min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
+
+
+</dialog>
         
         
         

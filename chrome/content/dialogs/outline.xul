@@ -1,58 +1,73 @@
 <?xml version="1.0" ?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
-    <?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
-    ?>
-        <!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
-        <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
+        ?>
+<!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
         xmlns:html="http://www.w3.org/1999/xhtml" id="outlineDialog" title="&outline.title;"
         buttons="disabled" onload="SIR.outline.init();">
-            <script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js"></script>
-            <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
-            
-            <panel id="colorPicker" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="&colorpicker.panel.title;">
-			</panel>
-            
-            <hbox>
-                <vbox class="field">
-                    <box id="outlineBox"></box>
-                </vbox>
-                <vbox id="outlineControlBox">
-                    <hbox class="controlHBox">
-                        <label class="propLabels" value="Style:" />
-                        <menulist width="150px" id="outline-style-selector" oncommand="SIR.outline.onParamsChange()">
-                            <menupopup>
-                                <menuitem value="none" label="none" />
-                                <menuitem value="dotted" label="dotted" />
-                                <menuitem value="dashed" label="dashed" />
-                                <menuitem value="solid" label="solid" selected="true" />
-                                <menuitem value="double" label="double" />
-                                <menuitem value="groove" label="groove" />
-                                <menuitem value="ridge" label="ridge" />
-                                <menuitem value="outset" label="outset" />
-                            </menupopup>
-                        </menulist>
-                    </hbox>
-                    <hbox class="controlHBox">
-                        <label class="propLabels" value="Width:" />
-                        <scale min="0" max="30" value="6" increment="1" id="outlineWidth" onchange="SIR.outline.onParamsChange();"
-                        />
-                        <textbox id="outlineWidthVal" class="txtBox" value="" maxlength="2" /><label  class="unitLabel" value="px" />
-                    </hbox>
-                    <hbox class="controlHBox">
-                        <label class="propLabels" value="Offset:" />
-                        <scale min="0" max="30" value="6" increment="1" id="outlineOffset" onchange="SIR.outline.onParamsChange();"
-                        />
-                        <textbox id="outlineOffsetVal" class="txtBox" value="" maxlength="2" /><label  class="unitLabel" value="px" />
-                    </hbox>
-                    <hbox>
-                        <label class="propLabels" value="Color:" />
-                        <colorpicker id="colorButton" type="button" disabled="true" color="#181783"
-                        onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false);"/></hbox>
-                </vbox>
+    <panel id="colorPicker" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true"
+           titlebar="normal" label="&colorpicker.panel.title;">
+    </panel>
+
+    <hbox>
+        <vbox class="field">
+            <box id="outlineBox"></box>
+        </vbox>
+        <vbox id="outlineControlBox">
+            <hbox class="controlHBox">
+                <label class="propLabels" value="Style:"/>
+                <menulist width="150px" id="outline-style-selector" oncommand="SIR.outline.onParamsChange()">
+                    <menupopup>
+                        <menuitem value="none" label="none"/>
+                        <menuitem value="dotted" label="dotted"/>
+                        <menuitem value="dashed" label="dashed"/>
+                        <menuitem value="solid" label="solid" selected="true"/>
+                        <menuitem value="double" label="double"/>
+                        <menuitem value="groove" label="groove"/>
+                        <menuitem value="ridge" label="ridge"/>
+                        <menuitem value="outset" label="outset"/>
+                    </menupopup>
+                </menulist>
             </hbox>
-            <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />
-            <hbox class="commandBox"><label value="&outline.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
-            
-            <textbox id="outlineResult" class="multiTxtBox" multiline="true" readonly="true" rows="7"
+            <hbox class="controlHBox">
+                <label class="propLabels" value="Width:"/>
+                <scale min="0" max="30" value="6" increment="1" id="outlineWidth"
+                       onchange="SIR.outline.onParamsChange();"
+                        />
+                <textbox id="outlineWidthVal" class="txtBox" value="" maxlength="2"/>
+                <label class="unitLabel" value="px"/>
+            </hbox>
+            <hbox class="controlHBox">
+                <label class="propLabels" value="Offset:"/>
+                <scale min="0" max="30" value="6" increment="1" id="outlineOffset"
+                       onchange="SIR.outline.onParamsChange();"
+                        />
+                <textbox id="outlineOffsetVal" class="txtBox" value="" maxlength="2"/>
+                <label class="unitLabel" value="px"/>
+            </hbox>
+            <hbox>
+                <label class="propLabels" value="Color:"/>
+                <colorpicker id="colorButton" type="button" disabled="true" color="#181783"
+                             onclick="document.getElementById('colorPicker').openPopup(this, 'after_start', 0, 0, false);"/>
+            </hbox>
+        </vbox>
+    </hbox>
+    <tooltip id="sir-clipboard-tt" label="&clipboard.tt;"/>
+    <hbox class="commandBox">
+        <label value="&outline.code;"/>
+        <spacer flex="1"/>
+        <vbox>
+            <image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg"
+                   width="16px" height="16px"/>
+        </vbox>
+    </hbox>
+
+    <textbox id="outlineResult" class="multiTxtBox" multiline="true" readonly="true" rows="7"
             />
-        </dialog>
+    <script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/jquery-1.8.3.min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/underscore-min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/backbone-min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
+</dialog>

@@ -1,55 +1,76 @@
 ﻿<?xml version="1.0" ?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
-	<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css" ?>
-		<!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
-		<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml" id="txtShadowDialog" title="&txtShadow.title;" buttons="disabled" onload="SIR.txtShadow.init()">
-            <script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js"></script>
-			<script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
-			
-            <hbox>
-				<vbox class="field">
-					<label id="TSinscription" value="Text-shadow" />
-				</vbox>
+<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css" ?>
+<!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml"
+        id="txtShadowDialog" title="&txtShadow.title;" buttons="disabled" onload="SIR.txtShadow.init()">
 
-				<vbox id="txtShadowControlBox">
-                    <hbox class="controlLabels">
-                        <label class="" value='Shadow: ' />
-                        <label id="addShadow" class="AddLabel btn btn-success" value='+' /> <label class="" value=' / ' />
-                        <label id="removeShadow" class="RemoveLabel btn btn-danger" value='&#8211;'/>
-                    </hbox>
-				</vbox>
-			</hbox>
-            <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />
-			<hbox class="commandBox"><label value="&txtShadow.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
-			<textbox id="txtShadowResult" class="multiTxtBox" multiline="true" readonly="true" rows="10" />
 
-        <script type="text/html" id="txtShadowTmpl">
-            <label class="propLabels" value="Shadow #{{ number }}:" /><toolbarbutton image="chrome://sir/skin/images/adjustment.png" role="button" popup="thepanel{{ number }}" />
-            
-            <colorpicker class="colorButton" type="button" disabled="true" color="{{ color }}" onclick="document.getElementById('colorPicker{{ number }}').openPopup(this, 'after_start', 0, 0, false);" />
-            <panel id="colorPicker{{ number }}" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true" titlebar="normal" label="&colorpicker.panel.title;">
-			</panel>
-            
-            <panel id="thepanel{{ number }}" class="controlPanel">
-              <vbox align="start">
-                    <hbox class="controlHBox">
-						<label class="panelLabels" value="Horizontal Length:" />
-						<scale min="-75" max="75" value="{{ horLen }}" class="TShorLen"  />
-						<textbox class="TShorLenvalue txtBox" maxlength="3" value="{{ horLen }}" /><label class="unitLabel" value="{{ units }}"/>
-					</hbox>
-					<hbox class="controlHBox">
-						<label class="panelLabels" value="Vertical Length:" />
-						<scale min="-75" max="75" value="{{ verLen }}" class="TSverLen"  />
-						<textbox class="TSverLenvalue txtBox" maxlength="3" value="{{ verLen }}" /><label class="unitLabel" value="{{ units }}"/>
-					</hbox>
-					<hbox class="controlHBox">
-						<label class="panelLabels" value="Blur Radius:" />
-						<scale min="0" max="50" value="{{ blur }}" class="TSblurRadius" />
-						<textbox class="TSblurRadiusvalue txtBox" maxlength="3" value="{{ blur }}" /><label class="unitLabel" value="{{ units }}"/>
-					</hbox>
-              </vbox>
-            </panel>
-        </script>
+    <hbox>
+        <vbox class="field">
+            <label id="TSinscription" value="Text-shadow"/>
+        </vbox>
 
-        </dialog>
+        <vbox id="txtShadowControlBox">
+            <hbox class="controlLabels">
+                <label class="" value='Shadow: '/>
+                <label id="addShadow" class="AddLabel btn btn-success" value='+'/>
+                <label class="" value=' / '/>
+                <label id="removeShadow" class="RemoveLabel btn btn-danger" value='&#8211;'/>
+            </hbox>
+        </vbox>
+    </hbox>
+    <tooltip id="sir-clipboard-tt" label="&clipboard.tt;"/>
+    <hbox class="commandBox">
+        <label value="&txtShadow.code;"/>
+        <spacer flex="1"/>
+        <vbox>
+            <image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg"
+                   width="16px" height="16px"/>
+        </vbox>
+    </hbox>
+    <textbox id="txtShadowResult" class="multiTxtBox" multiline="true" readonly="true" rows="10"/>
+
+    <script type="text/html" id="txtShadowTmpl">
+        <label class="propLabels" value="Shadow #{{ number }}:"/>
+        <toolbarbutton image="chrome://sir/skin/images/adjustment.png" role="button" popup="thepanel{{ number }}"/>
+
+        <colorpicker class="colorButton" type="button" disabled="true" color="{{ color }}"
+                     onclick="document.getElementById('colorPicker{{ number }}').openPopup(this, 'after_start', 0, 0, false);"/>
+        <panel id="colorPicker{{ number }}" style="width:520; height: 276; padding: 10px; 10px" noautohide="true"
+               close="true" titlebar="normal" label="&colorpicker.panel.title;">
+        </panel>
+
+        <panel id="thepanel{{ number }}" class="controlPanel">
+            <vbox align="start">
+                <hbox class="controlHBox">
+                    <label class="panelLabels" value="Horizontal Length:"/>
+                    <scale min="{{  horLenLimits.minval }}" max="{{  horLenLimits.maxval }}" value="{{  horLen }}"
+                           class="TShorLen"/>
+                    <textbox class="TShorLenvalue txtBox" maxlength="3" value="{{  horLen }}"/>
+                    <label class="unitLabel" value="{{ units }}"/>
+                </hbox>
+                <hbox class="controlHBox">
+                    <label class="panelLabels" value="Vertical Length:"/>
+                    <scale min="{{ verLenLimits.minval }}" max="{{ verLenLimits.maxval }}" value="{{ verLen }}"
+                           class="TSverLen"/>
+                    <textbox class="TSverLenvalue txtBox" maxlength="3" value="{{ verLen }}"/>
+                    <label class="unitLabel" value="{{ units }}"/>
+                </hbox>
+                <hbox class="controlHBox">
+                    <label class="panelLabels" value="Blur Radius:"/>
+                    <scale min="{{ blurLimits.minval }}" max="{{ blurLimits.maxval }}" value="{{ blur }}"
+                           class="TSblurRadius"/>
+                    <textbox class="TSblurRadiusvalue txtBox" maxlength="3" value="{{ blur }}"/>
+                    <label class="unitLabel" value="{{ units }}"/>
+                </hbox>
+            </vbox>
+        </panel>
+    </script>
+    <script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/jquery-1.8.3.min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/underscore-min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/backbone-min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
+</dialog>
         

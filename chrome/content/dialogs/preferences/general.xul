@@ -12,6 +12,7 @@
 					<preference id="webkit" name="extensions.sir.generators.webkit" type="bool"/>
 					<preference id="opera" name="extensions.sir.generators.opera" type="bool"/>
 					<preference id="ms" name="extensions.sir.generators.ms" type="bool"/>
+                    <preference id="oldIE" name="extensions.sir.generators.oldIE" type="bool"/>
 					<preference id="khtml" name="extensions.sir.generators.khtml" type="bool"/>
 					<preference id="pie" name="extensions.sir.generators.pie" type="bool"/>
 					<preference id="piePath" name="extensions.sir.generators.piePath" type="string"/>
@@ -40,6 +41,7 @@
 									<checkbox label="IE (-ms-)" preference="ms"/>
 								</rows>
 								<rows>
+                                    <checkbox label="Old IE (IE 6,7)" preference="oldIE"/>
 								</rows>
 							</column>
 						</columns>

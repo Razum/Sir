@@ -1,60 +1,72 @@
 <?xml version="1.0" ?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
-    <?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
-    ?>
-        <!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
-        <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
+        ?>
+<!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
         xmlns:html="http://www.w3.org/1999/xhtml" id="transitionDialog" title="&transition.title;"
         buttons="disabled" onload="SIR.transition.init();">
-        
-            <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
 
-            
-            <hbox>
-                <vbox class="field">
-                    <box id="transitionBox">
-                    HOVER HERE
-                    </box>
-                </vbox>
-                <vbox id="transitionControlBox">
-                    <hbox class="controlHBox">
-                        <label class="propLabels" value="Style:" />
-                        <menulist width="150px" id="transition-property-selector" oncommand="SIR.transition.onParamsChange()">
-                            <menupopup>
-                                <menuitem value="all" label="all" selected="true"/>
-                                <menuitem value="background" label="background" />
-                                <menuitem value="color" label="color" />
-                                <menuitem value="border" label="border" />
-                                <menuitem value="padding" label="padding" />
-                            </menupopup>
-                        </menulist>
-                    </hbox>
-                    <hbox class="controlHBox">
-                        <label class="propLabels" value="Duration:" />
-                        <scale min="1" max="50" value="10" increment="1" id="transitionDuration" onchange="SIR.transition.onParamsChange();"
-                        />
-                        <textbox id="transitionDurationVal" class="txtBox" maxlength="3" value="" /><label class="unitLabel" value="s" />
-                    </hbox>
-                    <hbox class="controlHBox">
-                    
-                    <label class="propLabels" value="Timing:" />
-                        <menulist width="150px" id="transition-timing-selector" oncommand="SIR.transition.onParamsChange()">
-                            <menupopup>
-                                <menuitem value="ease" label="ease" selected="true"/>
-                                <menuitem value="linear" label="linear" />
-                                <menuitem value="ease-in" label="ease-in" />
-                                <menuitem value="ease-out" label="ease-out" />
-                                <menuitem value="ease-in-out" label="ease-in-out" />
-                            </menupopup>
-                        </menulist>
-
-                    </hbox>
-                    <hbox class="controlHBox"><label value="&transition.label;" style="color: #424040;" /></hbox>
-                </vbox>
+    <hbox>
+        <vbox class="field">
+            <box id="transitionBox">
+                HOVER HERE
+            </box>
+        </vbox>
+        <vbox id="transitionControlBox">
+            <hbox class="controlHBox">
+                <label class="propLabels" value="Style:"/>
+                <menulist width="150px" id="transition-property-selector" oncommand="SIR.transition.onParamsChange()">
+                    <menupopup>
+                        <menuitem value="all" label="all" selected="true"/>
+                        <menuitem value="background" label="background"/>
+                        <menuitem value="color" label="color"/>
+                        <menuitem value="border" label="border"/>
+                        <menuitem value="padding" label="padding"/>
+                    </menupopup>
+                </menulist>
             </hbox>
-            <tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />
-            <hbox class="commandBox"><label value="&transition.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>
-            
-            <textbox id="transitionResult" class="multiTxtBox" multiline="true" readonly="true" rows="10"
+            <hbox class="controlHBox">
+                <label class="propLabels" value="Duration:"/>
+                <scale min="1" max="50" value="10" increment="1" id="transitionDuration"
+                       onchange="SIR.transition.onParamsChange();"
+                        />
+                <textbox id="transitionDurationVal" class="txtBox" maxlength="3" value=""/>
+                <label class="unitLabel" value="s"/>
+            </hbox>
+            <hbox class="controlHBox">
+
+                <label class="propLabels" value="Timing:"/>
+                <menulist width="150px" id="transition-timing-selector" oncommand="SIR.transition.onParamsChange()">
+                    <menupopup>
+                        <menuitem value="ease" label="ease" selected="true"/>
+                        <menuitem value="linear" label="linear"/>
+                        <menuitem value="ease-in" label="ease-in"/>
+                        <menuitem value="ease-out" label="ease-out"/>
+                        <menuitem value="ease-in-out" label="ease-in-out"/>
+                    </menupopup>
+                </menulist>
+
+            </hbox>
+            <hbox class="controlHBox">
+                <label value="&transition.label;" style="color: #424040;"/>
+            </hbox>
+        </vbox>
+    </hbox>
+    <tooltip id="sir-clipboard-tt" label="&clipboard.tt;"/>
+    <hbox class="commandBox">
+        <label value="&transition.code;"/>
+        <spacer flex="1"/>
+        <vbox>
+            <image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg"
+                   width="16px" height="16px"/>
+        </vbox>
+    </hbox>
+
+    <textbox id="transitionResult" class="multiTxtBox" multiline="true" readonly="true" rows="10"
             />
-        </dialog>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/jquery-1.8.3.min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/underscore-min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/backbone-min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
+</dialog>

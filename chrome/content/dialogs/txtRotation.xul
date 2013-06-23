@@ -1,28 +1,41 @@
 ﻿<?xml version="1.0" ?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
-    <?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
-    ?>
-        <!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
-        <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+<?xml-stylesheet href="chrome://sir/skin/styles/style.css" type="text/css"
+        ?>
+<!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
         xmlns:html="http://www.w3.org/1999/xhtml" id="txtRotationDialog" title="&txtRotation.title;"
         buttons="disabled" onload="SIR.txtRotation.init();">
-            <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
-            <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
-<hbox>
-                        <vbox class="field">
-                            <label id="TRinscription" value="Text-Rotation" />
-                        </vbox>
+    <hbox>
+        <vbox class="field">
+            <label id="TRinscription" value="Text-Rotation"/>
+        </vbox>
 
-                                <vbox id="txtRotationControlBox">
-                                    <hbox><label class="propLabels" value="Rotate:" /><scale min="0" max="360" value="0" increment="1" id="TRrotDeg" onchange="SIR.txtRotation.onParamsChange();"
-                                            />
-                                            <textbox id="TRrotDegValue" class="txtBox" value="" maxlength="3" /><label value="&#176;" /></hbox>
-                                            </vbox>
-                                    
+        <vbox id="txtRotationControlBox">
+            <hbox>
+                <label class="propLabels" value="Rotate:"/>
+                <scale min="0" max="360" value="0" increment="1" id="TRrotDeg"
+                       onchange="SIR.txtRotation.onParamsChange();"
+                        />
+                <textbox id="TRrotDegValue" class="txtBox" value="" maxlength="3"/>
+                <label value="&#176;"/>
+            </hbox>
+        </vbox>
 
-</hbox>  
-<tooltip id="sir-clipboard-tt" label="&clipboard.tt;" />                              
-<hbox class="commandBox"><label value="&txtRotation.code;" /><spacer flex="1" /><vbox><image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg" width="16px" height="16px" /></vbox></hbox>            
-            <textbox id="txtRotationResult" class="multiTxtBox" multiline="true" readonly="true" rows="10"
-            />
-        </dialog>
+
+    </hbox>
+    <tooltip id="sir-clipboard-tt" label="&clipboard.tt;"/>
+    <hbox class="commandBox">
+        <label value="&txtRotation.code;"/>
+        <spacer flex="1"/>
+        <vbox>
+            <image src="chrome://sir/skin/images/copyToClipboard.png" tooltip="sir-clipboard-tt" class="copyImg"
+                   width="16px" height="16px"/>
+        </vbox>
+    </hbox>
+    <textbox id="txtRotationResult" class="multiTxtBox" multiline="true" readonly="true" rows="10"/>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/jquery-1.8.3.min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/underscore-min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/libs/backbone-min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
+</dialog>
