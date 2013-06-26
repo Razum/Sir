@@ -13,7 +13,7 @@
                     <box id="circle"></box>
                 </vbox>
                 <vbox>
-                    <hbox>
+                    <hbox class="hboxRow">
                         <label class="propLabels" value="Type:"/>
                         <radiogroup id="sir-grad">
                             <hbox>
@@ -23,7 +23,7 @@
                             </hbox>
                         </radiogroup>
                     </hbox>
-                    <hbox>
+                    <hbox class="hboxRow">
                         <label class="propLabels" value="Size:"/>
                         <menulist width="150px" id="radialSize">
                             <menupopup>
@@ -34,12 +34,12 @@
                             </menupopup>
                         </menulist>
                     </hbox>
-                    <hbox>
+                    <hbox class="hboxRow">
                         <label class="propLabels" value="Position X:"/>
-                        <textbox id="txtX" class="txtBox" maxlength="3"/>
+                        <textbox id="txtX" class="txtBox" value="50" maxlength="3"/>
                         <label class="unitLabel" value="%"/>
                         <label class="propLabels" value="Position Y:"/>
-                        <textbox id="txtY" class="txtBox" maxlength="3"/>
+                        <textbox id="txtY" class="txtBox" value="50" maxlength="3"/>
                         <label class="unitLabel" value="%"/>
                     </hbox>
                 </vbox>

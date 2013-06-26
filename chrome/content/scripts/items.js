@@ -533,12 +533,11 @@ if (!SIR) {
                 blur:BLURDEF,
                 blurLimits:{minval:BLURMIN, maxval:BLURMAX},
                 color:"#333333",
-                inset: "",
+                inset:"",
                 units:UNITS,
                 delimeter:DELIMETER
             }
         });
-
 
 
         var controlsCollection = new Backbone.Collection();
@@ -548,42 +547,42 @@ if (!SIR) {
             initialize:function () {
                 this.delimeter = this.model.get("delimeter");
             },
-            tagName: 'hbox',
-            className: 'hboxRow',
-            template: _.template($("#boxShadowTmpl", document).html()),
+            tagName:'hbox',
+            className:'hboxRow',
+            template:_.template($("#boxShadowTmpl", document).html()),
             events:{
-                'change .BShorLen': function (evt) {
+                'change .BShorLen':function (evt) {
                     var val = $('.BShorLen', this.el).val() / this.delimeter;
                     this.model.set('horLen', val);
                     $(".BShorLenvalue", this.el).val(val);
                 },
-                'change .BSverLen': function (evt) {
+                'change .BSverLen':function (evt) {
                     var val = $('.BSverLen', this.el).val() / this.delimeter;
                     this.model.set('verLen', val);
                     $(".BSverLenvalue", this.el).val(val);
                 },
-                'change .BSblurRadius': function (evt) {
+                'change .BSblurRadius':function (evt) {
                     var val = $('.BSblurRadius', this.el).val() / this.delimeter;
                     this.model.set('blur', val);
                     $(".BSblurRadiusvalue", this.el).val(val);
                 },
-                'keyup .BShorLenvalue': function (evt) {
+                'keyup .BShorLenvalue':function (evt) {
                     var val = $(".BShorLenvalue", this.el).val();
                     $(".BShorLen", this.el).val(val * this.delimeter);
                 },
-                'keyup .BSverLenvalue': function (evt) {
+                'keyup .BSverLenvalue':function (evt) {
                     var val = $(".BSverLenvalue", this.el).val();
                     $(".BSverLen", this.el).val(val * this.delimeter);
                 },
-                'keyup .BSblurRadiusvalue': function (evt) {
+                'keyup .BSblurRadiusvalue':function (evt) {
                     var val = $(".BSblurRadiusvalue", this.el).val();
                     $(".BSblurRadius", this.el).val(val * this.delimeter);
                 },
-                'command .insetCheck': function () {
+                'command .insetCheck':function () {
                     this.model.set('inset', $('.insetCheck', this.el).attr("checked") ? " inset" : "");
                 }
             },
-            render: function () {
+            render:function () {
                 var self = this, data = _.extend({number:this.options.index}, this.model.toJSON());
                 $(this.el).html(this.template(data));
                 this.colorpicker = new SIR.ColourPicker($("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(109, 107, 107));
@@ -649,7 +648,7 @@ if (!SIR) {
             }
         });
 
-        var bsc = new boxShadowControlsView({collection: controlsCollection});
+        var bsc = new boxShadowControlsView({collection:controlsCollection});
     }
 
 /////////////////////////
@@ -867,8 +866,8 @@ if (!SIR) {
 
         var GradientModel = Backbone.Model.extend({
             defaults:{
-                color: "#1301FE",
-                stopColorPos: 100
+                color:"#1301FE",
+                stopColorPos:100
             }
         });
 
@@ -888,21 +887,21 @@ if (!SIR) {
         var SingleColorView = Backbone.View.extend({
             tagName:"hbox",
             className:"hboxRow",
-            template: _.template($("#linearGradientTmpl", document).html()),
+            template:_.template($("#linearGradientTmpl", document).html()),
             events:{
-                'change .LGstopColorPos': function (evt) {
+                'change .LGstopColorPos':function (evt) {
                     var val = $('.LGstopColorPos', this.el).val();
                     this.model.set('stopColorPos', val);
                     $(".LGstopColorPosVal", this.el).val(val);
                 },
-                'keyup .LGstopColorPosVal': function (evt) {
+                'keyup .LGstopColorPosVal':function (evt) {
                     var val = $(".LGstopColorPosVal", this.el).val();
                     $(".LGstopColorPos", this.el).val(val);
                 }
             },
             render:function () {
                 var self = this,
-                    data = _.extend(this.model.toJSON(), {number: this.options.index});
+                    data = _.extend(this.model.toJSON(), {number:this.options.index});
                 this.$el.append(this.template(data));
 
                 var rgbHash = SIR.utils.toRGB(this.model.get("color"));
@@ -918,18 +917,18 @@ if (!SIR) {
 
 
         var gradientControlsView = BaseView.extend({
-            el: document.getElementById("gradientControlBox"),
-            txtBox: document.getElementById("gradientResult"),
-            gradientField: document.getElementById("gradientField"),
-            events: {
-                'click #addColor': 'addColor',
-                'click #removeColor': 'removeColor',
-                'change .LGangle': function (evt) {
+            el:document.getElementById("gradientControlBox"),
+            txtBox:document.getElementById("gradientResult"),
+            gradientField:document.getElementById("gradientField"),
+            events:{
+                'click #addColor':'addColor',
+                'click #removeColor':'removeColor',
+                'change .LGangle':function (evt) {
                     var val = $('.LGangle', this.el).val();
                     $(".LGanglevalue", this.el).val(val);
                     this.showCode();
                 },
-                'keyup .LGanglevalue': function (evt) {
+                'keyup .LGanglevalue':function (evt) {
                     var val = $(".LGanglevalue", this.el).val();
                     $(".LGangle", this.el).val(val);
                 }
@@ -1002,7 +1001,7 @@ if (!SIR) {
         });
 
 
-        new gradientControlsView({collection: gradCol});
+        new gradientControlsView({collection:gradCol});
 
 
     };
@@ -1114,48 +1113,44 @@ if (!SIR) {
 
     SIR.radialgradient = {};
     SIR.radialgradient.init = function () {
+
         var GradientModel = Backbone.Model.extend({
-            defaults:{
-                color:"#1301FE",
-                stopColorPos:100
-            }
-        });
-
-        var GradientCollection = Backbone.Collection.extend({
-            model:GradientModel,
-            comparator:function (model) {
-                return model.get("stopColorPos");
-            }
-        });
-
-        var gradCol = new GradientCollection([
-            new GradientModel({color:"#1301FE", stopColorPos:0}),
-            new GradientModel({color:"#F4F60C", stopColorPos:100})
-        ]);
+                defaults:{
+                    color:"#1301FE",
+                    stopColorPos:100
+                }
+            }),
+            GradientCollection = Backbone.Collection.extend({
+                model:GradientModel,
+                comparator:function (model) {
+                    return model.get("stopColorPos");
+                }
+            }),
+            gradCol = new GradientCollection([
+                new GradientModel({color:"#1301FE", stopColorPos:0}),
+                new GradientModel({color:"#F4F60C", stopColorPos:100})
+            ]);
 
 
         var SingleColorView = Backbone.View.extend({
-            tagName: "hbox",
-            className: "hboxRow",
-            template: _.template($("#radialGradientTmpl", document).html()),
+            tagName:"hbox",
+            className:"hboxRow",
+            template:_.template($("#radialGradientTmpl", document).html()),
+            events:{
+                'change .RGstopColorPos':function (evt) {
+                    var val = $('.RGstopColorPos', this.el).val();
+                    this.model.set('stopColorPos', val);
+                    $(".RGstopColorPosVal", this.el).val(val);
+                },
+                'keyup .RGstopColorPosVal':function (evt) {
+                    var val = $(".RGstopColorPosVal", this.el).val();
+                    $('.RGstopColorPos', this.el).val(val);
+                }
+            },
             render:function () {
-                var self = this;
-                var data = _.extend(this.model.toJSON(), {number:this.options.index});
+                var self = this,
+                    data = _.extend(this.model.toJSON(), {number:this.options.index});
                 this.$el.append(this.template(data));
-
-
-                this.colorStopPos = $(".RGstopColorPos", this.el), this.colorStopVal = $(".RGstopColorPosVal", this.el);
-
-
-                this.colorStopPos.on("change", function () {
-                    var val = $(this).val();
-                    self.model.set('stopColorPos', val);
-                    self.colorStopVal.val(val);
-                });
-                this.colorStopVal.on("keyup", function () {
-                    self.txtBoxScale(self.colorStopPos[0], self.colorStopVal[0])
-                });
-
 
                 var rgbHash = SIR.utils.toRGB(this.model.get("color"));
                 this.colorpicker = new SIR.ColourPicker($("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(rgbHash.red, rgbHash.green, rgbHash.blue));
@@ -1165,12 +1160,6 @@ if (!SIR) {
                     self.model.set('color', color);
                 });
                 return this;
-            },
-            txtBoxScale:function (scale, lbl) {
-                var val = lbl.value;
-                if (!isNaN(val)) {
-                    scale.value = Math.round(val);
-                }
             }
         });
 
@@ -1180,36 +1169,59 @@ if (!SIR) {
             txtBox:document.getElementById("gradientResult"),
             gradType:document.getElementById("sir-grad"),
             radialSize:document.getElementById("radialSize"),
-            gradposX:50,
-            gradposY:50,
+            gradposX: 50,
+            gradposY: 50,
 
 
             gradientField:document.getElementById("gradientField"),
+            events:{
+                'click #addColor':'addColor',
+                'click #removeColor':'removeColor',
+                'command #sir-grad':'showCode',
+                'command #radialSize':'showCode',
+                'mousedown #positionField':'drag',
+                'keyup #txtX': function (evt) {
+
+                    var val = $('#txtX', this.el).val();
+
+
+                    if(!isNaN(val) && Math.abs(val)<=100){
+                        val = Math.abs(val);
+                        this.gradposX = val;
+                        $("#circle", this.el).css({'left': val - $("#circle", this.el).width() / 2 + "px"});
+                        this.showCode();
+                    }
+                },
+                'keyup #txtY':function (evt) {
+                    var val = $('#txtY', this.el).val();
+                    if(!isNaN(val) && Math.abs(val) <= 100){
+                        val = Math.abs(val);
+                        this.gradposY = val;
+                        $("#circle", this.el).css({'top': val - $("#circle", this.el).height() / 2 + "px"});
+                        this.showCode();
+                    }
+                }
+
+            },
+
 
             initialize:function () {
                 var self = this;
-                $("#addColor", this.el).on('click', $.proxy(self.addColor, self));
-                $("#removeColor", this.el).on('click', $.proxy(self.removeColor, self));
+
                 $(".copyImg", document).on('click', $.proxy(self.CopyCode, self));
-
-                $(this.gradType).on("command", $.proxy(self.showCode, self));
-                $(this.radialSize).on("command", $.proxy(self.showCode, self));
-
-                this.minifield = $("#positionField", this.el);
                 this.circle = $("#circle", this.el);
 
-                this.minifield.on("mousedown", $.proxy(self.drag, self));
 
+                this.$el.append(new SingleColorView({model:gradCol.at(0), index:1}).render().el,
+                    new SingleColorView({model:gradCol.at(1), index:2}).render().el);
 
-                this.$el.append(new SingleColorView({model:gradCol.at(0), index:1}).render().el);
-                this.$el.append(new SingleColorView({model:gradCol.at(1), index:2}).render().el);
-
-                this.collection.on("change", this.showCode, this);
+                this.listenTo(this.collection, "change", this.showCode);
 
 
                 this.showCode();
 
             },
+
 
             addColor:function () {
                 if (this.collection.length < 5) {
@@ -1221,31 +1233,72 @@ if (!SIR) {
                 }
             },
             removeColor:function () {
-                var self = this;
                 if (this.collection.length > 2) {
                     this.collection.remove(this.collection.last());
-                    $(">hbox:last-child", self.$el).last().remove();
+                    $(".hboxRow:last", this.$el).remove();
                     this.showCode();
                 }
             },
+            moveTo: function (evt) {
+                var dragobj = $("#circle", this.el),
+                    dragblock = this.getCoords(document.getElementById("positionField")),
+                    w = dragobj.width(), h = dragobj.height(),
+                    x = evt.pageX - dragblock.left,
+                    y = evt.pageY - dragblock.top,
+                    width = $("#positionField", this.el).width(),
+                    height = $("#positionField", this.el).height();
+
+
+                if (x > width) {
+                    x = width;
+                }
+                if (x < 0) {
+                    x = 0;
+                }
+
+                if (y > height) {
+                    y = height;
+                }
+                if (y < 0) {
+                    y = 0;
+                }
+
+
+                dragobj.css({'top':y - h / 2 + "px", 'left':x - w / 2 + "px"});
+
+                this.gradposX = x;
+                this.gradposY = y;
+
+                $("#txtX", this.el).val(Math.ceil(x / width * 100));
+                $("#txtY", this.el).val(Math.ceil(y / height * 100));
+
+                this.showCode();
+
+            },
+            getCoords: function (elem) {
+                var box = elem.getBoundingClientRect(),
+                    body = document.body,
+                    docElem = document.documentElement,
+                    scrollTop = window.pageYOffset || docElem.scrollTop,
+                    scrollLeft = window.pageXOffset || docElem.scrollLeft,
+                    clientTop = docElem.clientTop || 0,
+                    clientLeft = docElem.clientLeft || 0,
+                    top = box.top + scrollTop - clientTop,
+                    left = box.left + scrollLeft - clientLeft;
+                return { top:Math.round(top), left:Math.round(left) };
+            },
+
+
             drag:function (evt) {
+                var self = this,
+                    down = true;
+                this.moveTo(evt);
 
+                var throttled = _.throttle(moveListener, 80);
+                $(document).on("mousemove", throttled);
 
-                var self = this;
-
-                var dragblock = getCoords(document.getElementById("positionField"));
-
-
-                var dragobj = $("#circle", self.minifield);
-                var down = true;
-                moveTo(evt);
-
-                self.minifield.on("mousemove", moveListener);
-
-
-                self.minifield.on("mouseup", function (evt) {
+                $(document).on("mouseup", function (evt) {
                     down = false;
-                    return false;
                 });
 
 
@@ -1253,63 +1306,18 @@ if (!SIR) {
                     if (!down) {
                         return false;
                     }
-                    moveTo(evt);
+                    self.moveTo(evt);
                     return false;
                 }
 
 
-                function moveTo(evt) {
-
-
-                    var w = dragobj.width(), h = dragobj.height();
-                    var x = evt.pageX - dragblock.left,
-                        y = evt.pageY - dragblock.top;
-
-                    if (x < 0 || x > 100 || y < 0 || y > 100) {
-                        down = false;
-                    }
-
-
-                    dragobj.css({'top':y - h / 2 + "px", 'left':x - w / 2 + "px"});
-
-                    self.gradposX = x;
-                    self.gradposY = y;
-
-                    $("#txtX", document).val(x);
-                    $("#txtY", document).val(y);
-
-                    self.showCode();
-                }
-
-
                 return false;
-
-                function getCoords(elem) {
-                    var box = elem.getBoundingClientRect();
-
-                    var body = document.body;
-                    var docElem = document.documentElement;
-
-
-                    var scrollTop = window.pageYOffset || docElem.scrollTop;
-                    var scrollLeft = window.pageXOffset || docElem.scrollLeft;
-
-                    var clientTop = docElem.clientTop || 0;
-                    var clientLeft = docElem.clientLeft || 0;
-
-
-                    var top = box.top + scrollTop - clientTop;
-                    var left = box.left + scrollLeft - clientLeft;
-
-                    return { top:Math.round(top), left:Math.round(left) };
-                }
 
 
             },
             showCode:function () {
 
                 var self = this;
-
 
                 this.collection.sort();
 
@@ -1319,21 +1327,15 @@ if (!SIR) {
                 this.collection.each(function (model, index) {
                     stop_arr.push(model.get('color') + " " + model.get('stopColorPos') + "%");
                 });
-
-
-                str = ""
                 if (SIR.sirPrefs.getBool("generators.moz")) {
                     str += "background: -moz-radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", " + stop_arr.join(", ") + ");/* FF3.6+ */\n";
                 }
-
                 if (SIR.sirPrefs.getBool("generators.webkit")) {
                     str += "background: -webkit-radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", " + stop_arr.join(", ") + ");/* Chrome10+,Safari5.1+ */\n";
                 }
-
                 if (SIR.sirPrefs.getBool("generators.opera")) {
                     str += "background: -o-radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", " + stop_arr.join(", ") + ");/* Opera 11.10+ */\n";
                 }
-
                 if (SIR.sirPrefs.getBool("generators.ms")) {
                     str += "background: -ms-radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", " + stop_arr.join(", ") + ");/* IE10+ */\n";
                 }
@@ -1341,6 +1343,7 @@ if (!SIR) {
                 this.txtBox.value = str;
                 this.gradientField.style.cssText = "background: -moz-radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", " + stop_arr.join(", ") + ");";
 
+                document.getElementById('positionField').style.cssText = "background: -moz-radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", " + stop_arr.join(", ") + ");";
 
                 self.txtBox.value = str;
 
