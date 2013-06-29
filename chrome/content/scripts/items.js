@@ -245,12 +245,6 @@ if (!SIR) {
     SIR.txtShadow = {};
     SIR.txtShadow.init = function () {
 
-
-
-
-
-
-
         var HORLENMIN = PredefineScaleParams('textShadow', -75),
             HORLENDEF = PredefineScaleParams('textShadow', 3),
             HORLENMAX = PredefineScaleParams('textShadow', 75),
@@ -289,12 +283,9 @@ if (!SIR) {
 
                 SIR.templates.txtShadow(this.$el, data, this);
 
-
-
             },
             tagName:'hbox',
             className:'hboxRow',
-            //template:_.template($("#txtShadowTmpl", document).html()),
             events:{
                 'change .TShorLen': function (evt) {
                     var val = $('.TShorLen', this.el).val() / this.delimeter;
@@ -326,7 +317,6 @@ if (!SIR) {
             },
             render:function () {
                 var self = this;
-
                 this.colorpicker = new SIR.ColourPicker($("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(109, 107, 107));
                 this.colorpicker.addChangeListener(function () {
                     var color = self.colorpicker.getColour().getCSSHexadecimalRGB();

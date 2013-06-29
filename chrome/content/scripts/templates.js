@@ -9,9 +9,6 @@ var mw = wm.getMostRecentWindow("navigator:browser");
 SIR.templates = {
     txtShadow: function (elm, data, self) {
 
-
-        self
-
         var data = data;
 
         var hor_scale = document.createElement("scale");
@@ -88,7 +85,6 @@ SIR.templates = {
             )
         );
 
-        //return $(doc);
 
     }
 }
