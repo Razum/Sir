@@ -1,3 +1,4 @@
+
 if (!SIR) {
     var SIR = {};
 }
@@ -244,6 +245,12 @@ if (!SIR) {
     SIR.txtShadow = {};
     SIR.txtShadow.init = function () {
 
+
+
+
+
+
+
         var HORLENMIN = PredefineScaleParams('textShadow', -75),
             HORLENDEF = PredefineScaleParams('textShadow', 3),
             HORLENMAX = PredefineScaleParams('textShadow', 75),
@@ -255,6 +262,7 @@ if (!SIR) {
             BLURMAX = PredefineScaleParams('textShadow', 50),
             UNITS = SIR.sirPrefs.get("units.textShadow") || "px",
             DELIMETER = UNITS === "em" ? 10 : 1;
+
 
 
         var ControlModel = Backbone.Model.extend({
@@ -276,12 +284,19 @@ if (!SIR) {
         var SingleShadowView = Backbone.View.extend({
             initialize:function () {
                 this.delimeter = this.model.get("delimeter");
+
+                var self = this, data = _.extend({number:this.options.index}, this.model.toJSON());
+
+                SIR.templates.txtShadow(this.$el, data, this);
+
+
+
             },
             tagName:'hbox',
             className:'hboxRow',
-            template:_.template($("#txtShadowTmpl", document).html()),
+            //template:_.template($("#txtShadowTmpl", document).html()),
             events:{
-                'change .TShorLen':function (evt) {
+                'change .TShorLen': function (evt) {
                     var val = $('.TShorLen', this.el).val() / this.delimeter;
                     this.model.set('horLen', val);
                     $(".TShorLenvalue", this.el).val(val);
@@ -310,8 +325,8 @@ if (!SIR) {
                 }
             },
             render:function () {
-                var self = this, data = _.extend({number:this.options.index}, this.model.toJSON());
-                $(this.el).html(this.template(data));
+                var self = this;
+
                 this.colorpicker = new SIR.ColourPicker($("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(109, 107, 107));
                 this.colorpicker.addChangeListener(function () {
                     var color = self.colorpicker.getColour().getCSSHexadecimalRGB();

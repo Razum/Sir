@@ -31,46 +31,11 @@
     </hbox>
     <textbox id="txtShadowResult" class="multiTxtBox" multiline="true" readonly="true" rows="10"/>
 
-    <script type="text/html" id="txtShadowTmpl">
-        <label class="propLabels" value="Shadow #{{ number }}:"/>
-        <toolbarbutton image="chrome://sir/skin/images/adjustment.png" role="button" popup="thepanel{{ number }}"/>
-
-        <colorpicker class="colorButton" type="button" disabled="true" color="{{ color }}"
-                     onclick="document.getElementById('colorPicker{{ number }}').openPopup(this, 'after_start', 0, 0, false);"/>
-        <panel id="colorPicker{{ number }}" style="width:520; height: 276; padding: 10px; 10px" noautohide="true"
-               close="true" titlebar="normal" label="&colorpicker.panel.title;">
-        </panel>
-
-        <panel id="thepanel{{ number }}" class="controlPanel">
-            <vbox align="start">
-                <hbox class="controlHBox">
-                    <label class="panelLabels" value="Horizontal Length:"/>
-                    <scale min="{{  horLenLimits.minval }}" max="{{  horLenLimits.maxval }}" value="{{  horLen }}"
-                           class="TShorLen"/>
-                    <textbox class="TShorLenvalue txtBox" maxlength="3" value="{{  horLen }}"/>
-                    <label class="unitLabel" value="{{ units }}"/>
-                </hbox>
-                <hbox class="controlHBox">
-                    <label class="panelLabels" value="Vertical Length:"/>
-                    <scale min="{{ verLenLimits.minval }}" max="{{ verLenLimits.maxval }}" value="{{ verLen }}"
-                           class="TSverLen"/>
-                    <textbox class="TSverLenvalue txtBox" maxlength="3" value="{{ verLen }}"/>
-                    <label class="unitLabel" value="{{ units }}"/>
-                </hbox>
-                <hbox class="controlHBox">
-                    <label class="panelLabels" value="Blur Radius:"/>
-                    <scale min="{{ blurLimits.minval }}" max="{{ blurLimits.maxval }}" value="{{ blur }}"
-                           class="TSblurRadius"/>
-                    <textbox class="TSblurRadiusvalue txtBox" maxlength="3" value="{{ blur }}"/>
-                    <label class="unitLabel" value="{{ units }}"/>
-                </hbox>
-            </vbox>
-        </panel>
-    </script>
     <script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js"></script>
     <script type="application/x-javascript" src="chrome://sir/content/libs/jquery-1.8.3.min.js"></script>
     <script type="application/x-javascript" src="chrome://sir/content/libs/underscore-min.js"></script>
     <script type="application/x-javascript" src="chrome://sir/content/libs/backbone-min.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/scripts/templates.js"></script>
     <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
 </dialog>
         
