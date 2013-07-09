@@ -551,10 +551,12 @@ if (!SIR) {
         var SingleShadowView = Backbone.View.extend({
             initialize:function () {
                 this.delimeter = this.model.get("delimeter");
+
+                var self = this, data = _.extend({number:this.options.index}, this.model.toJSON());
+                SIR.templates.boxShadow(this.$el, data, this);
             },
             tagName:'hbox',
             className:'hboxRow',
-            template:_.template($("#boxShadowTmpl", document).html()),
             events:{
                 'change .BShorLen':function (evt) {
                     var val = $('.BShorLen', this.el).val() / this.delimeter;
@@ -588,8 +590,7 @@ if (!SIR) {
                 }
             },
             render:function () {
-                var self = this, data = _.extend({number:this.options.index}, this.model.toJSON());
-                $(this.el).html(this.template(data));
+                var self = this;
                 this.colorpicker = new SIR.ColourPicker($("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(109, 107, 107));
                 this.colorpicker.addChangeListener(function () {
                     var color = self.colorpicker.getColour().getCSSHexadecimalRGB();
