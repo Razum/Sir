@@ -197,5 +197,34 @@ SIR.templates = {
             $("<panel>", {id: "colorPicker" + data.number, style: "width:520; height: 276; padding: 10px; 10px;",
                 noautohide: "true", close: "true", titlebar: "normal", label: "&colorpicker.panel.title;"})
         );
+    },
+    radialGradient: function (elm, data, self) {
+        var data = data;
+
+        var stopColor_scale = document.createElement("scale");
+        stopColor_scale.setAttribute("min", 0);
+        stopColor_scale.setAttribute("max", 100);
+        stopColor_scale.setAttribute("value", data.stopColorPos);
+        stopColor_scale.setAttribute("class", "RGstopColorPos");
+        stopColor_scale.onchange = function(){
+            var val = this.value;
+            self.model.set("stopColorPos", val);
+            this.nextSibling.value = val;
+        }
+
+
+
+        elm.append(
+            $("<label/>", {'class': "propLabels",  value: "Color Stop #" + data.number + ":" }),
+            stopColor_scale,
+            $("<textbox />", {'class': "RGstopColorPosVal txtBox", maxlength: "3", value: data.stopColorPos}),
+            $("<label />", {'class': "unitLabel", value: "%"}),
+            $("<colorpicker/>", {"class": "colorButton", type: "button", disabled: "true", color: data.color,
+                click: function () {
+                    document.getElementById('colorPicker' + data.number).openPopup(this, 'after_start', 0, 0, false);
+                }}),
+            $("<panel>", {id: "colorPicker" + data.number, style: "width:520; height: 276; padding: 10px; 10px;",
+                noautohide: "true", close: "true", titlebar: "normal", label: "&colorpicker.panel.title;"})
+        );
     }
 }

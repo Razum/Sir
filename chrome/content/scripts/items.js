@@ -1148,9 +1148,12 @@ if (!SIR) {
 
 
         var SingleColorView = Backbone.View.extend({
+            initialize: function () {
+                var self = this, data = _.extend({number:this.options.index}, this.model.toJSON());
+                SIR.templates.radialGradient(this.$el, data, this);
+            },
             tagName:"hbox",
             className:"hboxRow",
-            template:_.template($("#radialGradientTmpl", document).html()),
             events:{
                 'change .RGstopColorPos':function (evt) {
                     var val = $('.RGstopColorPos', this.el).val();
@@ -1164,10 +1167,7 @@ if (!SIR) {
             },
             render:function () {
                 var self = this,
-                    data = _.extend(this.model.toJSON(), {number:this.options.index});
-                this.$el.append(this.template(data));
-
-                var rgbHash = SIR.utils.toRGB(this.model.get("color"));
+                    rgbHash = SIR.utils.toRGB(this.model.get("color"));
                 this.colorpicker = new SIR.ColourPicker($("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(rgbHash.red, rgbHash.green, rgbHash.blue));
                 this.colorpicker.addChangeListener(function () {
                     var color = self.colorpicker.getColour().getCSSHexadecimalRGB();

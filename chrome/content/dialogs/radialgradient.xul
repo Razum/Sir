@@ -84,6 +84,7 @@
     <script type="application/x-javascript" src="chrome://sir/content/libs/underscore-min.js"></script>
     <script type="application/x-javascript" src="chrome://sir/content/libs/backbone-min.js"></script>
     <script type="application/x-javascript" src="chrome://sir/content/scripts/utils.js"></script>
+    <script type="application/x-javascript" src="chrome://sir/content/scripts/templates.js"></script>
     <script type="application/x-javascript" src="chrome://sir/content/scripts/items.js"></script>
 
 

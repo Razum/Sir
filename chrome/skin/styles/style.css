@@ -649,7 +649,7 @@ menulist menuitem[selected=true ], menulist menuitem:hover {
 /****************** Radial Gradient ********************/
 #radialgradientDialog {
     width: 900px;
-    height: 550px;
+    height: 600px;
     min-height: 550px;
     min-width: 900px;
 }
