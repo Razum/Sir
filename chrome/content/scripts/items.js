@@ -872,8 +872,8 @@ if (!SIR) {
 
         var GradientModel = Backbone.Model.extend({
             defaults:{
-                color:"#1301FE",
-                stopColorPos:100
+                color: "#1301FE",
+                stopColorPos: 100
             }
         });
 
@@ -893,8 +893,11 @@ if (!SIR) {
         var SingleColorView = Backbone.View.extend({
             tagName:"hbox",
             className:"hboxRow",
-            template:_.template($("#linearGradientTmpl", document).html()),
-            events:{
+            initialize: function(){
+                var self = this, data = _.extend({number:this.options.index}, this.model.toJSON());
+                SIR.templates.linearGradient(this.$el, data, this);
+            },
+            events: {
                 'change .LGstopColorPos':function (evt) {
                     var val = $('.LGstopColorPos', this.el).val();
                     this.model.set('stopColorPos', val);
@@ -906,9 +909,7 @@ if (!SIR) {
                 }
             },
             render:function () {
-                var self = this,
-                    data = _.extend(this.model.toJSON(), {number:this.options.index});
-                this.$el.append(this.template(data));
+                var self = this;
 
                 var rgbHash = SIR.utils.toRGB(this.model.get("color"));
                 this.colorpicker = new SIR.ColourPicker($("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(rgbHash.red, rgbHash.green, rgbHash.blue));
@@ -941,6 +942,14 @@ if (!SIR) {
             },
             initialize:function () {
                 var self = this;
+                document.getElementById("LGangle").onchange = function() {
+                    var val = this.value;
+                    $(".LGanglevalue", this.el).val(val);
+                    self.showCode();
+                }
+
+
+
                 $(".copyImg", document).on('click', $.proxy(self.CopyCode, self));
                 this.$el.append(new SingleColorView({model:gradCol.at(0), index:1}).render().el,
                     new SingleColorView({model:gradCol.at(1), index:2}).render().el);
@@ -968,7 +977,7 @@ if (!SIR) {
                 document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
                 this.collection.sort();
 
-                var angle = $('.LGangle').val(),
+                var angle = $('.LGangle', this.$el).val(),
                     ieFrom = this.collection.at(0).get("color"),
                     ieTo = this.collection.last().get("color"),
                     ieType = Math.abs(angle) === 90 ? 0 : 1;
@@ -981,20 +990,20 @@ if (!SIR) {
                 });
 
                 if (SIR.sirPrefs.getBool("generators.moz")) {
-                    str += "background: -moz-linear-gradient(" + angle + "deg," + stop_arr.join(", ") + ");/* FF3.6+ */\n";
+                    str += "background: -moz-linear-gradient(" + angle + "deg, " + stop_arr.join(", ") + ");/* FF3.6+ */\n";
                 }
 
                 if (SIR.sirPrefs.getBool("generators.webkit")) {
-                    str += "background: -webkit-gradient(linear, " + angle + "deg," + webkit_stop_arr.join(", ") + ");/* Chrome,Safari4+ */\n";
-                    str += "background: -webkit-linear-gradient(" + angle + "deg," + stop_arr.join(", ") + ");/* Chrome10+,Safari5.1+ */\n";
+                    str += "background: -webkit-gradient(linear, " + angle + "deg, " + webkit_stop_arr.join(", ") + ");/* Chrome,Safari4+ */\n";
+                    str += "background: -webkit-linear-gradient(" + angle + "deg, " + stop_arr.join(", ") + ");/* Chrome10+,Safari5.1+ */\n";
                 }
 
                 if (SIR.sirPrefs.getBool("generators.opera")) {
-                    str += "background: -o-linear-gradient(" + angle + "deg," + stop_arr.join(", ") + ");/* Opera 11.10+ */\n";
+                    str += "background: -o-linear-gradient(" + angle + "deg, " + stop_arr.join(", ") + ");/* Opera 11.10+ */\n";
                 }
 
                 if (SIR.sirPrefs.getBool("generators.ms")) {
-                    str += "background: -ms-linear-gradient(" + angle + "deg," + stop_arr.join(", ") + ");/* IE10+ */\n";
+                    str += "background: -ms-linear-gradient(" + angle + "deg, " + stop_arr.join(", ") + ");/* IE10+ */\n";
                 }
                 if (SIR.sirPrefs.getBool("generators.oldIE")) {
                     str += "filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='" + ieFrom + "', endColorstr='" + ieTo + "', GradientType='" + ieType + "'); /* for IE */\n";
