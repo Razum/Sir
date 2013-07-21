@@ -18,6 +18,7 @@
 					<tab id="emtopx-tab" label=" Pixels to Ems" image='chrome://sir/skin/images/pxem.png' />
 					<tab id="crossColor-tab" label="&bonus.colors;" image='chrome://sir/skin/images/crosbrColor.png' />
                     <tab id="crossFont-tab" label="&bonus.fonts;" image='chrome://sir/skin/images/font.png' />
+                    <tab id="keyCodes-tab" label=" KeyCodes" image='chrome://sir/skin/images/keyboard.png' />
 					<tab id="support-tab" label="&bonus.support;" image='chrome://sir/skin/images/support.png' />
 				</tabs>
 				<tabpanels flex="1">
@@ -454,8 +455,35 @@
 
 
 					</tabpanel>
+
+
+
+
+
+
+                    <tabpanel id="tp_keyCodes" orient="vertical">
+
+
+                        <grid  id="keyCodesList" flex="1">
+                            <columns>
+                                <column flex="1"/>
+                                <column flex="1" />
+                            </columns>
+                            <rows id="keyCodesListRows">
+                                <row class="keyCodesHeader">
+                                    <label value="Key"/>
+                                    <label value="Code"/>
+                                </row>
+                            </rows>
+                        </grid>
+
+                    </tabpanel>
                     
-                    
+
+
+
+
+
                     
                     <tabpanel id="tp_support" orient="vertical">
 						<vbox id="supBox">
