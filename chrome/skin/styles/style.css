@@ -508,8 +508,8 @@ menulist menuitem[selected=true ], menulist menuitem:hover {
 /****************** border-Radius ********************/
 #borderRadiusDialog {
     width: 900px;
-    height: 575px;
-    min-height: 575px;
+    height: 550px;
+    min-height: 550px;
     min-width: 900px;
 }
 
@@ -528,7 +528,7 @@ menulist menuitem[selected=true ], menulist menuitem:hover {
 }
 
 #borderRadiusControlBox scale {
-    width: 280px;
+    width: 270px;
 }
 
 #borderRadiusDialog .field {
