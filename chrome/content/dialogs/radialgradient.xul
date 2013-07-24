@@ -12,7 +12,7 @@
                 <vbox id="positionField">
                     <box id="circle"></box>
                 </vbox>
-                <vbox>
+                <vbox class="typeSizePos">
                     <hbox class="hboxRow">
                         <label class="propLabels" value="Type:"/>
                         <radiogroup id="sir-grad">
@@ -45,7 +45,7 @@
                 </vbox>
             </hbox>
             <hbox class="controlLabels">
-                <label class="" value='Shadow: '/>
+                <label class="" value='Color Stop: '/>
                 <label id="addColor" class="AddLabel btn btn-success" value='+'/>
                 <label class="" value=' / '/>
                 <label id="removeColor" class="RemoveLabel btn btn-danger" value='&#8211;'/>

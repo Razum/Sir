@@ -23,6 +23,13 @@ toolbar [iconsize= "small " ]#sir-toolbarbutton {
     cursor: pointer;
 }
 
+.colorPanel {
+    width:520;
+    height: 276;
+    padding: 15px;
+    border: 3px ridge #515151;
+}
+
 .txtBox {
     -moz-appearance: none;
     appearance: none;
@@ -595,7 +602,7 @@ menulist menuitem[selected=true ], menulist menuitem:hover {
 }
 
 #lineargradientDialog .propLabels {
-    width: 90px;
+    width: 100px;
 }
 
 #lineargradientDialog .controlLabels {
@@ -693,6 +700,10 @@ menulist menuitem[selected=true ], menulist menuitem:hover {
     margin: -1px 0 0;
 }
 
+#radialgradientDialog .typeSizePos {
+    padding-left: 15px;
+}
+
 #radialgradientDialog .colorButton {
     margin: 2px 25px;
 }
@@ -715,7 +726,7 @@ menulist menuitem[selected=true ], menulist menuitem:hover {
 }
 
 #radialgradientDialog .field {
-    width: 400px;
+    width: 350px;
     height: 350px;
 }
 

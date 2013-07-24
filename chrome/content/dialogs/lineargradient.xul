@@ -8,7 +8,7 @@
         <box id="gradientField" class="field"></box>
         <vbox id="gradientControlBox">
             <hbox class="controlLabels">
-                <label class="" value='Shadow: '/>
+                <label class="" value='Color Stop: '/>
                 <label id="addColor" class="AddLabel btn btn-success" value='+'/>
                 <label class="" value=' / '/>
                 <label id="removeColor" class="RemoveLabel btn btn-danger" value='&#8211;'/>

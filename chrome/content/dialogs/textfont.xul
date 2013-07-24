@@ -5,8 +5,8 @@
 <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml"
         id="textfontDialog" title="&textfont.title;" buttons="disabled" onload="SIR.textfont.init();">
 
-    <panel id="colorText" style="width:520; height: 276; padding: 10px;" ></panel>
-    <panel id="colorBack" style="width:520; height: 276; padding: 10px;"></panel>
+    <panel id="colorText" class='colorPanel'></panel>
+    <panel id="colorBack" class='colorPanel'></panel>
     <hbox>
         <vbox id="textfontField" class="field">
             <label id="TFinscription">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem

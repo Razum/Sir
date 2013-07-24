@@ -6,7 +6,7 @@
 <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
         xmlns:html="http://www.w3.org/1999/xhtml" id="outlineDialog" title="&outline.title;"
         buttons="disabled" onload="SIR.outline.init();">
-    <panel id="colorPicker" style="width:520; height: 276; padding: 10px;">
+    <panel id="colorPicker" class='colorPanel'>
     </panel>
 
     <hbox>
