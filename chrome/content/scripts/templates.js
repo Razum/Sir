@@ -56,9 +56,7 @@ SIR.templates = {
                 click: function () {
                     document.getElementById('colorPicker' + data.number).openPopup(this, 'after_start', 0, 0, false);
                 }}),
-            $("<panel>", {id: "colorPicker" + data.number, style: "width:520; height: 276; padding: 10px; 10px;",
-            noautohide: "true", close: "true", titlebar: "normal", label: "&colorpicker.panel.title;"}),
-
+            $("<panel>", {id: "colorPicker" + data.number, style: "width:520; height: 276; padding: 10px;"}),
             $("<panel>", {id: "thepanel" + data.number, class: "controlPanel"}).append(
                 $("<vbox>", {align: "start"}).append(
                     $("<hbox>", {'class': "controlHBox"}).append(
@@ -138,9 +136,7 @@ SIR.templates = {
                     document.getElementById('colorPicker' + data.number).openPopup(this, 'after_start', 0, 0, false);
                 }}),
             $("<checkbox/>", {'class':'insetCheck', label: "Inset"}),
-            $("<panel>", {id: "colorPicker" + data.number, style: "width:520; height: 276; padding: 10px; 10px;",
-                noautohide: "true", close: "true", titlebar: "normal", label: "&colorpicker.panel.title;"}),
-
+            $("<panel>", {id: "colorPicker" + data.number, style: "width:520; height: 276; padding: 10px;"}),
             $("<panel>", {id: "thepanel" + data.number, class: "controlPanel"}).append(
                 $("<vbox>", {align: "start"}).append(
                     $("<hbox>", {'class': "controlHBox"}).append(
@@ -194,8 +190,7 @@ SIR.templates = {
                 click: function () {
                     document.getElementById('colorPicker' + data.number).openPopup(this, 'after_start', 0, 0, false);
                 }}),
-            $("<panel>", {id: "colorPicker" + data.number, style: "width:520; height: 276; padding: 10px; 10px;",
-                noautohide: "true", close: "true", titlebar: "normal", label: "&colorpicker.panel.title;"})
+            $("<panel>", {id: "colorPicker" + data.number, style: "width:520; height: 276; padding: 10px;"})
         );
     },
     radialGradient: function (elm, data, self) {
@@ -223,8 +218,7 @@ SIR.templates = {
                 click: function () {
                     document.getElementById('colorPicker' + data.number).openPopup(this, 'after_start', 0, 0, false);
                 }}),
-            $("<panel>", {id: "colorPicker" + data.number, style: "width:520; height: 276; padding: 10px; 10px;",
-                noautohide: "true", close: "true", titlebar: "normal", label: "&colorpicker.panel.title;"})
+            $("<panel>", {id: "colorPicker" + data.number, style: "width:520; height: 276; padding: 10px;"})
         );
     }
 }

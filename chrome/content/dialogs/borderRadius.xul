@@ -4,9 +4,7 @@
 <!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
 <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml"
         id="borderRadiusDialog" title="&borderRadius.title;" buttons="disabled" onload="SIR.borderRadius.init();">
-    <panel id="colorPicker" style="width:520; height: 276; padding: 10px; 10px" noautohide="true" close="true"
-           titlebar="normal" label="&colorpicker.panel.title;">
-    </panel>
+    <panel id="colorPicker" style="width:520; height: 276; padding: 10px;"> </panel>
 
 
     <hbox>
