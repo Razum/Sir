@@ -546,10 +546,10 @@ menulist menuitem[selected=true ], menulist menuitem:hover {
 
 /************************** Multiple Columns ************************/
 #txtColumnDialog {
-    width: 955px;
+    width: 960px;
     height: 600px;
     min-height: 600px;
-    min-width: 955px;
+    min-width: 960px;
 }
 
 #txtColumnDialog .propLabels {
@@ -602,7 +602,7 @@ menulist menuitem[selected=true ], menulist menuitem:hover {
 }
 
 #lineargradientDialog .propLabels {
-    width: 100px;
+    width: 110px;
 }
 
 #lineargradientDialog .controlLabels {
