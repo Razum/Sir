@@ -11,7 +11,7 @@
         </vbox>
         <vbox id="transformControlBox">
             <hbox>
-                <label class="propLabels" value="Rotate:"/>
+                <label class="propLabelsRotate" value="Rotate:"/>
                 <scale min="0" max="360" class="rotate" value="0" id="TrotDeg"
                        onchange="SIR.transform.onParamsChange();"/>
                 <textbox id="rotVal" class="txtBox" value="" maxlength="3"/>
