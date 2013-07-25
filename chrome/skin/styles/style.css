@@ -1173,7 +1173,7 @@ menulist menuitem[selected=true ], menulist menuitem:hover {
     overflow-y: scroll;
 }
 
-#keyCodesList label:hover {
+#keyCodesList row:hover {
     background: #d1cfcf;
 }
 
