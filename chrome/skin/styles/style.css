@@ -381,10 +381,6 @@ menulist menuitem[selected=true ], menulist menuitem:hover {
     width: 95px;
     font-weight: 500;
 }
-#transformDialog .propLabelsRotate {
-	width: 105px;
-	font-weight: 500;
-}
 
 #transformDialog groupbox {
     padding: 0;
@@ -951,8 +947,8 @@ menulist menuitem[selected=true ], menulist menuitem:hover {
 /****************** Text and Font ********************/
 #textfontDialog {
     width: 1024px;
-    height: 700px;
-    min-height: 700px;
+    height: 680px;
+    min-height: 680px;
     min-width: 1024px;
 }
 
@@ -1190,7 +1186,7 @@ menulist menuitem[selected=true ], menulist menuitem:hover {
     border-radius: 5px 5px 0 0;
 }
 
-#keyCodesList label {
+#keyCodesList label, #keyCodesList description {
     display: block;
     text-align: center;
     font-size: 14px;
@@ -1198,6 +1194,7 @@ menulist menuitem[selected=true ], menulist menuitem:hover {
     margin: 0;
     border-bottom: 1px solid #eae8e8;
     text-shadow: 1px 1px 1px #aaa7a7;
+    white-space: pre-wrap;
 }
 
 

@@ -187,6 +187,9 @@
 
 <!ENTITY bonus.fonts.exmp 'Example'>
 
+<!-- JS KEY CODES -->
+<!ENTITY bonus.keycodes.codes ' JS key codes'>
+
 
 
 <!-- SUPPORT -->

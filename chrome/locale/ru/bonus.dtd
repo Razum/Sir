@@ -190,6 +190,9 @@
 
 <!ENTITY bonus.fonts.exmp 'Образец'>
 
+<!-- JS KEY CODES -->
+<!ENTITY bonus.keycodes.codes ' JS коды клавиш'>
+
 <!-- SUPPORT -->
 
 
