@@ -1045,25 +1045,36 @@ if (!SIR) {
                 'command #radialSize': 'showCode',
                 'mousedown #positionField': 'drag',
                 'keyup #txtX': function (evt) {
-
                     var val = $('#txtX', this.el).val();
-
-
-                    if (!isNaN(val) && Math.abs(val) <= 100) {
-                        val = Math.abs(val);
-                        this.gradposX = val;
-                        $("#circle", this.el).css({'left': val - $("#circle", this.el).width() / 2 + "px"});
-                        this.showCode();
+                    if (isNaN(val)) {
+                        return false;
                     }
+                    if (Math.abs(val) <= 100) {
+                        val = Math.abs(val);
+                    } else {
+                        val = 100;
+                        $('#txtX', this.el).val(val);
+                    }
+                    this.gradposX = val;
+                    $("#circle", this.el).css({'left': val - $("#circle", this.el).width() / 2 + "px"});
+                    this.showCode();
+
                 },
                 'keyup #txtY': function (evt) {
                     var val = $('#txtY', this.el).val();
-                    if (!isNaN(val) && Math.abs(val) <= 100) {
-                        val = Math.abs(val);
-                        this.gradposY = val;
-                        $("#circle", this.el).css({'top': val - $("#circle", this.el).height() / 2 + "px"});
-                        this.showCode();
+                    if (isNaN(val)) {
+                        return false;
                     }
+                    if (Math.abs(val) <= 100) {
+                        val = Math.abs(val);
+                    } else {
+                        val = 100;
+                        $('#txtY', this.el).val(val);
+                    }
+                    this.gradposY = val;
+                    $("#circle", this.el).css({'top': val - $("#circle", this.el).height() / 2 + "px"});
+                    this.showCode();
+
                 }
 
             },
@@ -1156,8 +1167,8 @@ if (!SIR) {
                     down = true;
                 this.moveTo(evt);
 
-                var debounced = _.debounce(moveListener, 80);
-                $(document).on("mousemove", debounced);
+                var throttled = _.throttle(moveListener, 80);
+                $(document).on("mousemove", throttled);
 
                 $(document).on("mouseup", function (evt) {
                     down = false;
