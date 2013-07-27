@@ -65,13 +65,10 @@ SIR.bonus = {
             cell.setAttribute('class', "applyCopy");
             row.appendChild(cell);
 
-
             docFrag.appendChild(row);
         }
         theList.appendChild(docFrag);
-
         theList.addEventListener("click", self.bonusCopyToClipboard, false);
-
     },
 
 
@@ -242,19 +239,17 @@ SIR.bonus = {
             cell.style.background = color.hex;
             row.appendChild(cell);
 
-
             docFrag.appendChild(row);
         }
 
         theList.appendChild(docFrag);
-
         theList.addEventListener("click", self.bonusCopyToClipboard, false);
 
     },
 
     BuildCrossBrowserFontList: function () {
-        var self = this;
-        var theList = document.getElementById("crossFontListRows"),
+        var self = this,
+            theList = document.getElementById("crossFontListRows"),
             docFrag = document.createDocumentFragment();
 
         var fonts = [
@@ -457,8 +452,6 @@ SIR.bonus = {
             var gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);
             gClipboardHelper.copyString(trg.textContent);
         }
-
-
     }
 
 }

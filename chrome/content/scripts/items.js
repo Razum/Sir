@@ -1,64 +1,61 @@
-
 if (!SIR) {
     var SIR = {};
 }
 
+;
 (function () {
-    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-        .getService(Components.interfaces.nsIWindowMediator);
-    var mw = wm.getMostRecentWindow("navigator:browser");
     Components.utils.import("resource://sir/prefs.jsm", SIR);
 
     _.templateSettings = {
-        interpolate:/\{\{(.+?)\}\}/g
+        interpolate: /\{\{(.+?)\}\}/g
     };
 
 
     var BaseView = Backbone.View.extend({
-        CopyCode:function () {
+        CopyCode: function () {
             var val = SIR.sirPrefs.getBool("generators.comments") ? this.txtBox.value : this.txtBox.value.replace(/\/\*[\s\S]*?\*\//g, ""),
                 gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].
                     getService(Components.interfaces.nsIClipboardHelper);
             gClipboardHelper.copyString(val);
             document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copied.png";
         },
-        MozPrefix:function (str) {
+        MozPrefix: function (str) {
             if (SIR.sirPrefs.getBool("generators.moz")) {
                 return "-moz-" + str;
             }
             return "";
         },
-        WebkitPrefix:function (str) {
+        WebkitPrefix: function (str) {
             if (SIR.sirPrefs.getBool("generators.webkit")) {
                 return "-webkit-" + str;
             }
             return "";
         },
-        OperaPrefix:function (str) {
+        OperaPrefix: function (str) {
             if (SIR.sirPrefs.getBool("generators.opera")) {
                 return "-o-" + str;
             }
             return "";
         },
-        iePrefix:function (str) {
+        iePrefix: function (str) {
             if (SIR.sirPrefs.getBool("generators.ms")) {
                 return "-ms-" + str;
             }
             return "";
         },
-        oldIEPrefix:function (str) {
+        oldIEPrefix: function (str) {
             if (SIR.sirPrefs.getBool("generators.oldIE")) {
                 return str;
             }
             return "";
         },
-        khtmlPrefix:function (str) {
+        khtmlPrefix: function (str) {
             if (SIR.sirPrefs.getBool("generators.khtml")) {
                 return "-khtml-" + str;
             }
             return "";
         },
-        PIE:function () {
+        PIE: function () {
             if (SIR.sirPrefs.getBool("generators.pie")) {
                 return "behavior: url(" + SIR.sirPrefs.get("generators.piePath") + ");/*Apply PIE*/";
             }
@@ -258,64 +255,48 @@ if (!SIR) {
             DELIMETER = UNITS === "em" ? 10 : 1;
 
 
-
         var ControlModel = Backbone.Model.extend({
-            defaults:{
-                horLen:HORLENDEF,
-                horLenLimits:{minval:HORLENMIN, maxval:HORLENMAX},
-                verLen:VERLENDEF,
-                verLenLimits:{minval:VERLENMIN, maxval:VERLENMAX},
-                blur:BLURDEF,
-                blurLimits:{minval:BLURMIN, maxval:BLURMAX},
-                color:"#333333",
-                units:UNITS,
-                delimeter:DELIMETER
+            defaults: {
+                horLen: HORLENDEF,
+                horLenLimits: {minval: HORLENMIN, maxval: HORLENMAX},
+                verLen: VERLENDEF,
+                verLenLimits: {minval: VERLENMIN, maxval: VERLENMAX},
+                blur: BLURDEF,
+                blurLimits: {minval: BLURMIN, maxval: BLURMAX},
+                color: "#333333",
+                units: UNITS,
+                delimeter: DELIMETER
             }
         });
 
         var controlsCollection = new Backbone.Collection();
 
         var SingleShadowView = Backbone.View.extend({
-            initialize:function () {
+            initialize: function () {
                 this.delimeter = this.model.get("delimeter");
 
-                var self = this, data = _.extend({number:this.options.index}, this.model.toJSON());
+                var self = this, data = _.extend({number: this.options.index}, this.model.toJSON());
 
                 SIR.templates.txtShadow(this.$el, data, this);
 
             },
-            tagName:'hbox',
-            className:'hboxRow',
-            events:{
-                'change .TShorLen': function (evt) {
-                    var val = $('.TShorLen', this.el).val() / this.delimeter;
-                    this.model.set('horLen', val);
-                    $(".TShorLenvalue", this.el).val(val);
-                },
-                'change .TSverLen':function (evt) {
-                    var val = $('.TSverLen', this.el).val() / this.delimeter;
-                    this.model.set('verLen', val);
-                    $(".TSverLenvalue", this.el).val(val);
-                },
-                'change .TSblurRadius':function (evt) {
-                    var val = $('.TSblurRadius', this.el).val() / this.delimeter;
-                    this.model.set('blur', val);
-                    $(".TSblurRadiusvalue", this.el).val(val);
-                },
-                'keyup .TShorLenvalue':function (evt) {
+            tagName: 'hbox',
+            className: 'hboxRow',
+            events: {
+                'keyup .TShorLenvalue': function (evt) {
                     var val = $(".TShorLenvalue", this.el).val();
                     $(".TShorLen", this.el).val(val * this.delimeter);
                 },
-                'keyup .TSverLenvalue':function (evt) {
+                'keyup .TSverLenvalue': function (evt) {
                     var val = $(".TSverLenvalue", this.el).val();
                     $(".TSverLen", this.el).val(val * this.delimeter);
                 },
-                'keyup .TSblurRadiusvalue':function (evt) {
+                'keyup .TSblurRadiusvalue': function (evt) {
                     var val = $(".TSblurRadiusvalue", this.el).val();
                     $(".TSblurRadius", this.el).val(val * this.delimeter);
                 }
             },
-            render:function () {
+            render: function () {
                 var self = this;
                 this.colorpicker = new SIR.ColourPicker($("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(109, 107, 107));
                 this.colorpicker.addChangeListener(function () {
@@ -329,36 +310,36 @@ if (!SIR) {
 
 
         var txtShadowControlsView = BaseView.extend({
-            initialize:function () {
+            initialize: function () {
                 var self = this;
                 this.addShadow();
                 this.listenTo(this.collection, "change", this.showCode);
                 this.showCode();
                 $(".copyImg", document).on('click', $.proxy(self.CopyCode, self));
             },
-            events:{
-                'click #addShadow':'addShadow',
-                'click #removeShadow':'removeShadow'
+            events: {
+                'click #addShadow': 'addShadow',
+                'click #removeShadow': 'removeShadow'
             },
-            txtBox:document.getElementById("txtShadowResult"),
-            el:document.getElementById("txtShadowControlBox"),
-            addShadow:function () {
+            txtBox: document.getElementById("txtShadowResult"),
+            el: document.getElementById("txtShadowControlBox"),
+            addShadow: function () {
                 if (this.collection.length < 5) {
                     var mdl = new ControlModel;
                     this.collection.add(mdl);
                     var index = this.collection.length;
-                    this.$el.append(new SingleShadowView({model:mdl, index:index}).render().el);
+                    this.$el.append(new SingleShadowView({model: mdl, index: index}).render().el);
                     this.showCode();
                 }
             },
-            removeShadow:function () {
+            removeShadow: function () {
                 if (this.collection.length > 1) {
                     this.collection.remove(this.collection.last());
                     $(".hboxRow:last", this.$el).remove();
                     this.showCode();
                 }
             },
-            showCode:function () {
+            showCode: function () {
                 document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
                 var IEdirection = (Math.round(Math.atan2(this.collection.at(0).get('verLen'), this.collection.at(0).get('horLen')) * 180 / Math.PI) + 90) % 360,
                     IEblurRad = this.collection.at(0).get('blur'),
@@ -378,7 +359,7 @@ if (!SIR) {
             }
         });
 
-        var tsc = new txtShadowControlsView({collection:controlsCollection});
+        var tsc = new txtShadowControlsView({collection: controlsCollection});
     }
 
 
@@ -530,17 +511,17 @@ if (!SIR) {
 
 
         var ControlModel = Backbone.Model.extend({
-            defaults:{
-                horLen:HORLENDEF,
-                horLenLimits:{minval:HORLENMIN, maxval:HORLENMAX},
-                verLen:VERLENDEF,
-                verLenLimits:{minval:VERLENMIN, maxval:VERLENMAX},
-                blur:BLURDEF,
-                blurLimits:{minval:BLURMIN, maxval:BLURMAX},
-                color:"#333333",
-                inset:"",
-                units:UNITS,
-                delimeter:DELIMETER
+            defaults: {
+                horLen: HORLENDEF,
+                horLenLimits: {minval: HORLENMIN, maxval: HORLENMAX},
+                verLen: VERLENDEF,
+                verLenLimits: {minval: VERLENMIN, maxval: VERLENMAX},
+                blur: BLURDEF,
+                blurLimits: {minval: BLURMIN, maxval: BLURMAX},
+                color: "#333333",
+                inset: "",
+                units: UNITS,
+                delimeter: DELIMETER
             }
         });
 
@@ -549,47 +530,32 @@ if (!SIR) {
 
 
         var SingleShadowView = Backbone.View.extend({
-            initialize:function () {
+            initialize: function () {
                 this.delimeter = this.model.get("delimeter");
 
-                var self = this, data = _.extend({number:this.options.index}, this.model.toJSON());
+                var self = this, data = _.extend({number: this.options.index}, this.model.toJSON());
                 SIR.templates.boxShadow(this.$el, data, this);
             },
-            tagName:'hbox',
-            className:'hboxRow',
-            events:{
-                'change .BShorLen':function (evt) {
-                    var val = $('.BShorLen', this.el).val() / this.delimeter;
-                    this.model.set('horLen', val);
-                    $(".BShorLenvalue", this.el).val(val);
-                },
-                'change .BSverLen':function (evt) {
-                    var val = $('.BSverLen', this.el).val() / this.delimeter;
-                    this.model.set('verLen', val);
-                    $(".BSverLenvalue", this.el).val(val);
-                },
-                'change .BSblurRadius':function (evt) {
-                    var val = $('.BSblurRadius', this.el).val() / this.delimeter;
-                    this.model.set('blur', val);
-                    $(".BSblurRadiusvalue", this.el).val(val);
-                },
-                'keyup .BShorLenvalue':function (evt) {
+            tagName: 'hbox',
+            className: 'hboxRow',
+            events: {
+                'keyup .BShorLenvalue': function (evt) {
                     var val = $(".BShorLenvalue", this.el).val();
                     $(".BShorLen", this.el).val(val * this.delimeter);
                 },
-                'keyup .BSverLenvalue':function (evt) {
+                'keyup .BSverLenvalue': function (evt) {
                     var val = $(".BSverLenvalue", this.el).val();
                     $(".BSverLen", this.el).val(val * this.delimeter);
                 },
-                'keyup .BSblurRadiusvalue':function (evt) {
+                'keyup .BSblurRadiusvalue': function (evt) {
                     var val = $(".BSblurRadiusvalue", this.el).val();
                     $(".BSblurRadius", this.el).val(val * this.delimeter);
                 },
-                'command .insetCheck':function () {
+                'command .insetCheck': function () {
                     this.model.set('inset', $('.insetCheck', this.el).attr("checked") ? " inset" : "");
                 }
             },
-            render:function () {
+            render: function () {
                 var self = this;
                 this.colorpicker = new SIR.ColourPicker($("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(109, 107, 107));
                 this.colorpicker.addChangeListener(function () {
@@ -603,36 +569,36 @@ if (!SIR) {
 
 
         var boxShadowControlsView = BaseView.extend({
-            initialize:function () {
+            initialize: function () {
                 var self = this;
                 this.addShadow();
                 this.listenTo(this.collection, "change", this.showCode);
                 this.showCode();
                 $(".copyImg", document).on('click', $.proxy(self.CopyCode, self));
             },
-            events:{
-                'click #addShadow':'addShadow',
-                'click #removeShadow':'removeShadow'
+            events: {
+                'click #addShadow': 'addShadow',
+                'click #removeShadow': 'removeShadow'
             },
-            txtBox:document.getElementById("boxShadowResult"),
-            el:document.getElementById("boxShcontrolBox"),
-            addShadow:function () {
+            txtBox: document.getElementById("boxShadowResult"),
+            el: document.getElementById("boxShcontrolBox"),
+            addShadow: function () {
                 if (this.collection.length < 5) {
                     var mdl = new ControlModel;
                     this.collection.add(mdl);
                     var index = this.collection.length;
-                    this.$el.append(new SingleShadowView({model:mdl, index:index}).render().el);
+                    this.$el.append(new SingleShadowView({model: mdl, index: index}).render().el);
                     this.showCode();
                 }
             },
-            removeShadow:function () {
+            removeShadow: function () {
                 if (this.collection.length > 1) {
                     this.collection.remove(this.collection.last());
                     $(".hboxRow:last", this.$el).remove();
                     this.showCode();
                 }
             },
-            showCode:function () {
+            showCode: function () {
                 document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
                 var IEdirection = (Math.round(Math.atan2(this.collection.at(0).get('verLen'), this.collection.at(0).get('horLen')) * 180 / Math.PI) + 90) % 360,
                     IEblurRad = this.collection.at(0).get('blur'), IEcolor = this.collection.at(0).get('color');
@@ -654,7 +620,7 @@ if (!SIR) {
             }
         });
 
-        var bsc = new boxShadowControlsView({collection:controlsCollection});
+        var bsc = new boxShadowControlsView({collection: controlsCollection});
     }
 
 /////////////////////////
@@ -667,7 +633,7 @@ if (!SIR) {
         this.name = "borderRadius";
         this.unit = SIR.sirPrefs.get("units." + this.name) || "px";
         this.delimeter = 1;
-        this.interfaceOrganize({units:this.unit});
+        this.interfaceOrganize({units: this.unit});
 
         this.brdStl = document.getElementById("border-style-selector");
         this.brdWidth = document.getElementById("borderRadiusWidth");
@@ -871,44 +837,39 @@ if (!SIR) {
     SIR.lineargradient.init = function () {
 
         var GradientModel = Backbone.Model.extend({
-            defaults:{
+            defaults: {
                 color: "#1301FE",
                 stopColorPos: 100
             }
         });
 
         var GradientCollection = Backbone.Collection.extend({
-            model:GradientModel,
-            comparator:function (model) {
+            model: GradientModel,
+            comparator: function (model) {
                 return model.get("stopColorPos");
             }
         });
 
         var gradCol = new GradientCollection([
-            new GradientModel({color:"#1301FE", stopColorPos:0}),
-            new GradientModel({color:"#F4F60C", stopColorPos:100})
+            new GradientModel({color: "#1301FE", stopColorPos: 0}),
+            new GradientModel({color: "#F4F60C", stopColorPos: 100})
         ]);
 
 
         var SingleColorView = Backbone.View.extend({
-            tagName:"hbox",
-            className:"hboxRow",
-            initialize: function(){
-                var self = this, data = _.extend({number:this.options.index}, this.model.toJSON());
+            tagName: "hbox",
+            className: "hboxRow",
+            initialize: function () {
+                var self = this, data = _.extend({number: this.options.index}, this.model.toJSON());
                 SIR.templates.linearGradient(this.$el, data, this);
             },
             events: {
-                'change .LGstopColorPos':function (evt) {
-                    var val = $('.LGstopColorPos', this.el).val();
-                    this.model.set('stopColorPos', val);
-                    $(".LGstopColorPosVal", this.el).val(val);
-                },
-                'keyup .LGstopColorPosVal':function (evt) {
+                'keyup .LGstopColorPosVal': function (evt) {
                     var val = $(".LGstopColorPosVal", this.el).val();
                     $(".LGstopColorPos", this.el).val(val);
                 }
             },
-            render:function () {
+            render: function () {
                 var self = this;
 
                 var rgbHash = SIR.utils.toRGB(this.model.get("color"));
@@ -924,56 +885,50 @@ if (!SIR) {
 
 
         var gradientControlsView = BaseView.extend({
-            el:document.getElementById("gradientControlBox"),
-            txtBox:document.getElementById("gradientResult"),
-            gradientField:document.getElementById("gradientField"),
-            events:{
-                'click #addColor':'addColor',
-                'click #removeColor':'removeColor',
-                'change .LGangle':function (evt) {
-                    var val = $('.LGangle', this.el).val();
-                    $(".LGanglevalue", this.el).val(val);
-                    this.showCode();
-                },
-                'keyup .LGanglevalue':function (evt) {
+            el: document.getElementById("gradientControlBox"),
+            txtBox: document.getElementById("gradientResult"),
+            gradientField: document.getElementById("gradientField"),
+            events: {
+                'click #addColor': 'addColor',
+                'click #removeColor': 'removeColor',
+                'keyup .LGanglevalue': function (evt) {
                     var val = $(".LGanglevalue", this.el).val();
                     $(".LGangle", this.el).val(val);
                 }
             },
-            initialize:function () {
+            initialize: function () {
                 var self = this;
-                document.getElementById("LGangle").onchange = function() {
+                document.getElementById("LGangle").onchange = function () {
                     var val = this.value;
                     $(".LGanglevalue", this.el).val(val);
                     self.showCode();
                 }
 
 
-
                 $(".copyImg", document).on('click', $.proxy(self.CopyCode, self));
-                this.$el.append(new SingleColorView({model:gradCol.at(0), index:1}).render().el,
-                    new SingleColorView({model:gradCol.at(1), index:2}).render().el);
+                this.$el.append(new SingleColorView({model: gradCol.at(0), index: 1}).render().el,
+                    new SingleColorView({model: gradCol.at(1), index: 2}).render().el);
                 this.listenTo(this.collection, "change", this.showCode);
                 this.showCode();
             },
 
-            addColor:function () {
+            addColor: function () {
                 if (this.collection.length < 5) {
                     var mdl = new GradientModel;
                     this.collection.add(mdl);
                     var index = this.collection.length;
-                    this.$el.append(new SingleColorView({model:mdl, index:index}).render().el);
+                    this.$el.append(new SingleColorView({model: mdl, index: index}).render().el);
                     this.showCode();
                 }
             },
-            removeColor:function () {
+            removeColor: function () {
                 if (this.collection.length > 2) {
                     this.collection.remove(this.collection.last());
                     $(".hboxRow:last", this.$el).remove();
                     this.showCode();
                 }
             },
-            showCode:function () {
+            showCode: function () {
                 document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
                 this.collection.sort();
 
@@ -1016,111 +971,10 @@ if (!SIR) {
         });
 
 
-        new gradientControlsView({collection:gradCol});
+        new gradientControlsView({collection: gradCol});
 
 
     };
-
-
-    /*
-     SIR.gradient = new SIR.Item();
-     SIR.gradient.init = function() {
-
-
-
-     var self = this,
-     gradient;
-     this.linearDir = document.getElementById("linearDir");
-     this.radialDir = document.getElementById("radialDir");
-     this.gradSelect = document.getElementById("sir-grad");
-     this.gradient = {};
-     this.gradient["linear"] = {
-     "ltrt": {moz: "left, ",       webkit: "left top, right top,",     ie: "1",    w3c: "to right, "},
-     "ltlb": {moz: "top, ", 	      webkit: "left top, left bottom,",   ie: "0",    w3c: "to bottom, "},
-     "ltrb": {moz: "-45deg, ",     webkit: "left top, right bottom,",  ie: "1",    w3c: "135deg, "},
-     "lbrt": {moz: "45deg, ",      webkit: "left bottom, right top,",  ie: "1",    w3c: "45deg, "}
-     };
-     this.gradient["radial"] = {
-     "top left":     {moz: "top left, ",     webkit: "top left,",        ie: "1",    w3c: "top left, "},
-     "top":          {moz: "top, ",          webkit: "top center,",      ie: "1",    w3c: "top, "},
-     "right top":    {moz: "right top, ",    webkit: "right top,",       ie: "1",    w3c: "right top, "},
-     "left":         {moz: "left, ",	        webkit: "left center,",     ie: "1",    w3c: "left, "},
-     "center":       {moz: "center, ",       webkit: "center center,",   ie: "1",    w3c: "center, "},
-     "right":        {moz: "right, ",        webkit: " right center,",   ie: "1",    w3c: "right, "},
-     "bottom left":  {moz: "bottom left, ",  webkit: "bottom left,",     ie: "1",    w3c: "bottom left, "},
-     "bottom":       {moz: "bottom, ",       webkit: "bottom center,",   ie: "1",    w3c: "bottom, "},
-     "bottom right": {moz: "bottom right, ", webkit: "bottom right,",    ie: "1",    w3c: "bottom right, "}
-     };
-     this.from = document.getElementById("colorButtonFrom");
-     this.to = document.getElementById("colorButtonTo");
-     this.rect = document.getElementById("gradientField");
-     this.txtBox = document.getElementById("gradientResult");
-     this.ColorPickerFrom = new SIR.ColourPicker(document.getElementById('colorPickerFrom'), 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(19, 1, 254));
-     this.ColorPickerTo = new SIR.ColourPicker(document.getElementById('colorPickerTo'), 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(244, 246, 12));
-     this.from.color = "#1301FE";
-     this.to.color = "#F4F60C";
-     this.rect.style.backgroundImage = '-moz-linear-gradient(top, #1301FE, #F4F60C)';
-     this.ColorPickerFrom.addChangeListener(function() {
-     SIR.gradient.onParamsChange.call(self);
-     });
-     this.ColorPickerTo.addChangeListener(function() {
-     SIR.gradient.onParamsChange.call(self);
-     });
-     document.getElementsByClassName("copyImg")[0].addEventListener("click", function() {
-     self.CopyCode.apply(self, arguments)
-     }, false);
-     this.gradSelect.addEventListener("command", function() {
-     var isRadial = (this.value === "radial");
-     document.getElementById("LinearHBox").setAttribute("hidden", isRadial);
-     document.getElementById("radialHBox").setAttribute("hidden", !isRadial);
-     self.onParamsChange();
-     }, false);
-     this.showCode("linear", this.gradient, "ltlb", this.from.color, this.to.color);
-     };
-     SIR.gradient.onParamsChange = function() {
-     var type = this.gradSelect.value;
-     this.from.color = this.ColorPickerFrom.getColour().getCSSHexadecimalRGB();
-     this.to.color = this.ColorPickerTo.getColour().getCSSHexadecimalRGB();
-     var dir = document.getElementById(type + "Dir").value;
-     this.rect.style.backgroundImage = '-moz-' + type + '-gradient(' + this.gradient[type][dir].moz + this.from.color + ',' + this.to.color + ')';
-     this.showCode(type, this.gradient, dir, this.from.color, this.to.color);
-     document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
-     };
-     SIR.gradient.showCode = function(type, grad, dir, from, to) {
-     var str = "";*/
-    //str += "background: " + from + "; /* for non-css3 browsers */\n";
-    // if(SIR.sirPrefs.getBool("generators.moz")){
-    //  str += "background: -moz-" + type + "-gradient(" + grad[type][dir].moz + from + ",  " + to + "); /* for firefox 3.6+ */ \n";
-    //}
-    //if(SIR.sirPrefs.getBool("generators.webkit")){
-    // str += "background: -webkit-gradient(" + type + ", " + grad[type][dir].webkit + " from(" + from + "), to(" + to + ")); /* Safari 4+, Chrome */\n";
-    //str += "background: -webkit-"+type+"-gradient(" + grad[type][dir].webkit + " " + from + ", " + to + "); /* Chrome 10+, Safari 5.1+, iOS 5+ */\n";
-    //}
-    //if(SIR.sirPrefs.getBool("generators.opera")){
-    // str += "background: -o-" + type + "-gradient(" + grad[type][dir].moz + from + "," + to + "); /* Opera 11.10+ */\n";
-    //}
-
-    // if(SIR.sirPrefs.getBool("generators.khtml")){
-    //   str += "background: -khtml-" + type + "-gradient(" + grad[type][dir].moz + from + "," + to + "); /* Konqueror */\n";
-    //}
-
-    //  if(SIR.sirPrefs.getBool("generators.ms") && type === "linear"){
-    //    str += 'background: -ms-filter:"progid:DXImageTransform.Microsoft.Gradient(StartColorStr=' + from + ', EndColorStr=' + to + ', GradientType=' + grad[type][dir].ie + ')";\n';	           
-    //}
-    //str += "background: " + type + "-gradient(" + grad[type][dir].w3c + from + "," + to + "); /* W3C */\n";
-    //if(type === "linear"){
-    //   if(SIR.sirPrefs.getBool("generators.ms")){
-    //      str += "filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='" + from + "', endColorstr='" + to + "', GradientType='" + grad[type][dir].ie + "'); /* for IE */\n";
-    /*	       }
-     if(SIR.sirPrefs.getBool("generators.pie")){
-     str += "-pie-background: " + type + "-gradient(" + grad[type][dir].moz + from + "," + to + ");\n";
-     }
-     str += this.PIE();
-     }
-     this.txtBox.value = str;
-     };
-     */
-
 
 ////////////////////////////////
 //    Radial Gradient        //
@@ -1130,42 +984,37 @@ if (!SIR) {
     SIR.radialgradient.init = function () {
 
         var GradientModel = Backbone.Model.extend({
-                defaults:{
-                    color:"#1301FE",
-                    stopColorPos:100
+                defaults: {
+                    color: "#1301FE",
+                    stopColorPos: 100
                 }
             }),
             GradientCollection = Backbone.Collection.extend({
-                model:GradientModel,
-                comparator:function (model) {
+                model: GradientModel,
+                comparator: function (model) {
                     return model.get("stopColorPos");
                 }
             }),
             gradCol = new GradientCollection([
-                new GradientModel({color:"#1301FE", stopColorPos:0}),
-                new GradientModel({color:"#F4F60C", stopColorPos:100})
+                new GradientModel({color: "#1301FE", stopColorPos: 0}),
+                new GradientModel({color: "#F4F60C", stopColorPos: 100})
             ]);
 
 
         var SingleColorView = Backbone.View.extend({
             initialize: function () {
-                var self = this, data = _.extend({number:this.options.index}, this.model.toJSON());
+                var self = this, data = _.extend({number: this.options.index}, this.model.toJSON());
                 SIR.templates.radialGradient(this.$el, data, this);
             },
-            tagName:"hbox",
-            className:"hboxRow",
-            events:{
-                'change .RGstopColorPos':function (evt) {
-                    var val = $('.RGstopColorPos', this.el).val();
-                    this.model.set('stopColorPos', val);
-                    $(".RGstopColorPosVal", this.el).val(val);
-                },
-                'keyup .RGstopColorPosVal':function (evt) {
+            tagName: "hbox",
+            className: "hboxRow",
+            events: {
+                'keyup .RGstopColorPosVal': function (evt) {
                     var val = $(".RGstopColorPosVal", this.el).val();
                     $('.RGstopColorPos', this.el).val(val);
                 }
             },
-            render:function () {
+            render: function () {
                 var self = this,
                     rgbHash = SIR.utils.toRGB(this.model.get("color"));
                 this.colorpicker = new SIR.ColourPicker($("#colorPicker" + self.options.index, self.el)[0], 'chrome://sir/skin/images/colorpicker/', new SIR.RGBColour(rgbHash.red, rgbHash.green, rgbHash.blue));
@@ -1180,36 +1029,36 @@ if (!SIR) {
 
 
         var gradientControlsView = BaseView.extend({
-            el:document.getElementById("radialgradientControlBox"),
-            txtBox:document.getElementById("gradientResult"),
-            gradType:document.getElementById("sir-grad"),
-            radialSize:document.getElementById("radialSize"),
+            el: document.getElementById("radialgradientControlBox"),
+            txtBox: document.getElementById("gradientResult"),
+            gradType: document.getElementById("sir-grad"),
+            radialSize: document.getElementById("radialSize"),
             gradposX: 50,
             gradposY: 50,
 
 
-            gradientField:document.getElementById("gradientField"),
-            events:{
-                'click #addColor':'addColor',
-                'click #removeColor':'removeColor',
-                'command #sir-grad':'showCode',
-                'command #radialSize':'showCode',
-                'mousedown #positionField':'drag',
+            gradientField: document.getElementById("gradientField"),
+            events: {
+                'click #addColor': 'addColor',
+                'click #removeColor': 'removeColor',
+                'command #sir-grad': 'showCode',
+                'command #radialSize': 'showCode',
+                'mousedown #positionField': 'drag',
                 'keyup #txtX': function (evt) {
 
                     var val = $('#txtX', this.el).val();
 
 
-                    if(!isNaN(val) && Math.abs(val)<=100){
+                    if (!isNaN(val) && Math.abs(val) <= 100) {
                         val = Math.abs(val);
                         this.gradposX = val;
                         $("#circle", this.el).css({'left': val - $("#circle", this.el).width() / 2 + "px"});
                         this.showCode();
                     }
                 },
-                'keyup #txtY':function (evt) {
+                'keyup #txtY': function (evt) {
                     var val = $('#txtY', this.el).val();
-                    if(!isNaN(val) && Math.abs(val) <= 100){
+                    if (!isNaN(val) && Math.abs(val) <= 100) {
                         val = Math.abs(val);
                         this.gradposY = val;
                         $("#circle", this.el).css({'top': val - $("#circle", this.el).height() / 2 + "px"});
@@ -1220,34 +1069,32 @@ if (!SIR) {
             },
 
 
-            initialize:function () {
+            initialize: function () {
                 var self = this;
 
                 $(".copyImg", document).on('click', $.proxy(self.CopyCode, self));
                 this.circle = $("#circle", this.el);
 
-
-                this.$el.append(new SingleColorView({model:gradCol.at(0), index:1}).render().el,
-                    new SingleColorView({model:gradCol.at(1), index:2}).render().el);
+                this.$el.append(new SingleColorView({model: gradCol.at(0), index: 1}).render().el,
+                    new SingleColorView({model: gradCol.at(1), index: 2}).render().el);
 
                 this.listenTo(this.collection, "change", this.showCode);
-
 
                 this.showCode();
 
             },
 
 
-            addColor:function () {
+            addColor: function () {
                 if (this.collection.length < 5) {
                     var mdl = new GradientModel;
                     this.collection.add(mdl);
                     var index = this.collection.length;
-                    this.$el.append(new SingleColorView({model:mdl, index:index}).render().el);
+                    this.$el.append(new SingleColorView({model: mdl, index: index}).render().el);
                     this.showCode();
                 }
             },
-            removeColor:function () {
+            removeColor: function () {
                 if (this.collection.length > 2) {
                     this.collection.remove(this.collection.last());
                     $(".hboxRow:last", this.$el).remove();
@@ -1279,7 +1126,7 @@ if (!SIR) {
                 }
 
 
-                dragobj.css({'top':y - h / 2 + "px", 'left':x - w / 2 + "px"});
+                dragobj.css({'top': y - h / 2 + "px", 'left': x - w / 2 + "px"});
 
                 this.gradposX = x;
                 this.gradposY = y;
@@ -1300,17 +1147,17 @@ if (!SIR) {
                     clientLeft = docElem.clientLeft || 0,
                     top = box.top + scrollTop - clientTop,
                     left = box.left + scrollLeft - clientLeft;
-                return { top:Math.round(top), left:Math.round(left) };
+                return { top: Math.round(top), left: Math.round(left) };
             },
 
 
-            drag:function (evt) {
+            drag: function (evt) {
                 var self = this,
                     down = true;
                 this.moveTo(evt);
 
-                var throttled = _.throttle(moveListener, 80);
-                $(document).on("mousemove", throttled);
+                var debounced = _.debounce(moveListener, 80);
+                $(document).on("mousemove", debounced);
 
                 $(document).on("mouseup", function (evt) {
                     down = false;
@@ -1330,7 +1177,7 @@ if (!SIR) {
 
 
             },
-            showCode:function () {
+            showCode: function () {
 
                 var self = this;
 
@@ -1362,15 +1209,12 @@ if (!SIR) {
 
                 self.txtBox.value = str;
 
-
             }
-
-
 
         });
 
 
-        new gradientControlsView({collection:gradCol});
+        new gradientControlsView({collection: gradCol});
 
 
     }
@@ -1380,14 +1224,14 @@ if (!SIR) {
 //    Converter       //
 ///////////////////////
     SIR.converter = {
-        init:function () {
+        init: function () {
             this.rgbhex.init();
             this.emtopx.init();
         },
-        rgbhex:{
-            RGBisOk:null,
-            HEXisOk:null,
-            init:function () {
+        rgbhex: {
+            RGBisOk: null,
+            HEXisOk: null,
+            init: function () {
                 this.Rin = document.getElementById("convertRin");
                 this.Gin = document.getElementById("convertGin");
                 this.Bin = document.getElementById("convertBin");
@@ -1405,7 +1249,7 @@ if (!SIR) {
                 this.RGBisOk = false;
                 this.HEXisOk = false;
             },
-            Validation:function (obj, type) {
+            Validation: function (obj, type) {
                 var par;
                 switch (type) {
                     case "rgb":
@@ -1419,7 +1263,7 @@ if (!SIR) {
                 }
                 return par;
             },
-            rgbConvert:function () {
+            rgbConvert: function () {
                 this.RGBisOk = this.Validation(this.Rin, "rgb") && this.Validation(this.Gin, "rgb") && this.Validation(this.Bin, "rgb");
                 if (!this.RGBisOk) {
                     return false
@@ -1428,7 +1272,7 @@ if (!SIR) {
                 this.HEXout.value = color;
                 this.rgbExmpBox.style.backgroundColor = color;
             },
-            hexConvert:function () {
+            hexConvert: function () {
                 this.HEXisOk = this.Validation(this.HEXin, "hex");
                 if (!this.HEXisOk) {
                     return false
@@ -1441,9 +1285,9 @@ if (!SIR) {
                 this.Bout.value = rgb.blue
             }
         },
-        emtopx:{
-            emtopxIsOk:null,
-            init:function () {
+        emtopx: {
+            emtopxIsOk: null,
+            init: function () {
                 this.basePX = document.getElementById("basePX");
                 this.measure = document.getElementById("measure");
                 this.result = document.getElementById("emtopxResult");
@@ -1452,7 +1296,7 @@ if (!SIR) {
                 this.emtopxButton = document.getElementById("emtopxButton");
                 this.emtopxIsOk = false;
             },
-            Validation:function (obj, type) {
+            Validation: function (obj, type) {
                 var par;
                 switch (type) {
                     case "em":
@@ -1466,7 +1310,7 @@ if (!SIR) {
                 }
                 return par;
             },
-            emtopxConvert:function () {
+            emtopxConvert: function () {
                 var mes = this.measure.value;
                 this.emtopxIsOk = this.Validation(this.basePX, "px") && this.Validation(this.emtopxVal, mes);
                 if (!this.emtopxIsOk) {
@@ -1489,7 +1333,7 @@ if (!SIR) {
 //       Cleaner      //
 ///////////////////////
     SIR.Cleaner = {
-        init:function () {
+        init: function () {
             this.delTags = document.getElementById("delTags");
             this.delAttr = document.getElementById("delAttr");
             this.delSpec = document.getElementById("delSpec");
@@ -1500,7 +1344,7 @@ if (!SIR) {
             this.txtIn = document.getElementById("tagCleanerTxtBox");
             this.onParamsChange();
         },
-        onParamsChange:function () {
+        onParamsChange: function () {
             document.getElementById("exTagLbl").setAttribute("disabled", !this.delTags.checked);
             if (this.delTags.checked) {
                 this.tagEx.removeAttribute("disabled")
@@ -1508,7 +1352,7 @@ if (!SIR) {
                 this.tagEx.setAttribute("disabled", !this.delTags.checked);
             }
         },
-        txtClean:function () {
+        txtClean: function () {
             var txtCont = this.txtIn.value;
             if (this.delTags.checked) {
                 if (this.tagEx.value) {
@@ -1550,7 +1394,7 @@ if (!SIR) {
         this.name = "outline";
         this.unit = SIR.sirPrefs.get("units." + this.name) || "px";
         this.delimeter = 1;
-        this.interfaceOrganize({units:this.unit});
+        this.interfaceOrganize({units: this.unit});
 
         this.outStyle = document.getElementById("outline-style-selector");
         this.outWidth = document.getElementById("outlineWidth");
@@ -1605,7 +1449,7 @@ if (!SIR) {
 //       COLOR SELECTOR      //
 //////////////////////////////
     SIR.colorSelector = {
-        init:function () {
+        init: function () {
 
             var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                 .getService(Components.interfaces.nsIWindowMediator);
@@ -1722,108 +1566,108 @@ if (!SIR) {
         //MAIN SELECTORS
         this.mainSelects = [
             {
-                elem:document.getElementById("textfont-fontFamily"),
-                ruleName:"font-family",
-                JSruleName:"fontFamily"
+                elem: document.getElementById("textfont-fontFamily"),
+                ruleName: "font-family",
+                JSruleName: "fontFamily"
             },
             {
-                elem:document.getElementById("textfont-textAlign"),
-                ruleName:"text-align",
-                JSruleName:"textAlign"
+                elem: document.getElementById("textfont-textAlign"),
+                ruleName: "text-align",
+                JSruleName: "textAlign"
             },
             {
-                elem:document.getElementById("textfont-fontWeight"),
-                ruleName:"font-weight",
-                JSruleName:"fontWeight"
+                elem: document.getElementById("textfont-fontWeight"),
+                ruleName: "font-weight",
+                JSruleName: "fontWeight"
             },
             {
-                elem:document.getElementById("textfont-textDecor"),
-                ruleName:"text-decoration",
-                JSruleName:"textDecoration"
+                elem: document.getElementById("textfont-textDecor"),
+                ruleName: "text-decoration",
+                JSruleName: "textDecoration"
             },
             {
-                elem:document.getElementById("textfont-textTransform"),
-                ruleName:"text-transform",
-                JSruleName:"textTransform"
+                elem: document.getElementById("textfont-textTransform"),
+                ruleName: "text-transform",
+                JSruleName: "textTransform"
             },
             {
-                elem:document.getElementById("textfont-fontStyle"),
-                ruleName:"font-style",
-                JSruleName:"fontStyle"
+                elem: document.getElementById("textfont-fontStyle"),
+                ruleName: "font-style",
+                JSruleName: "fontStyle"
             }
         ];
         //EXTRA SELECTS
         this.extraSelects = [
             {
-                elem:document.getElementById("textfont-unicodeBidi"),
-                ruleName:"unicode-bidi",
-                JSruleName:"unicodeBidi"
+                elem: document.getElementById("textfont-unicodeBidi"),
+                ruleName: "unicode-bidi",
+                JSruleName: "unicodeBidi"
             },
             {
-                elem:document.getElementById("textfont-Direction"),
-                ruleName:"direction",
-                JSruleName:"direction"
+                elem: document.getElementById("textfont-Direction"),
+                ruleName: "direction",
+                JSruleName: "direction"
             },
             {
-                elem:document.getElementById("textfont-fontVariant"),
-                ruleName:"font-variant",
-                JSruleName:"fontVariant"
+                elem: document.getElementById("textfont-fontVariant"),
+                ruleName: "font-variant",
+                JSruleName: "fontVariant"
             },
             {
-                elem:document.getElementById("textfont-fontStretch"),
-                ruleName:"font-stretch",
-                JSruleName:"fontStretch"
+                elem: document.getElementById("textfont-fontStretch"),
+                ruleName: "font-stretch",
+                JSruleName: "fontStretch"
             },
             {
-                elem:document.getElementById("textfont-WhiteSpace"),
-                ruleName:"white-space",
-                JSruleName:"whiteSpace"
+                elem: document.getElementById("textfont-WhiteSpace"),
+                ruleName: "white-space",
+                JSruleName: "whiteSpace"
             }
         ];
         //SCALES
         this.scales = [
             {
-                elem:document.getElementById("textfont-fontSize"),
-                ruleName:"font-size",
-                JSruleName:"fontSize",
-                lbl:document.getElementById("textfont-fontSizeVal"),
-                getVal:function () {
+                elem: document.getElementById("textfont-fontSize"),
+                ruleName: "font-size",
+                JSruleName: "fontSize",
+                lbl: document.getElementById("textfont-fontSizeVal"),
+                getVal: function () {
                     return this.elem.value + "px";
                 }
             },
             {
-                elem:document.getElementById("textfont-LineHeight"),
-                ruleName:"line-height",
-                JSruleName:"lineHeight",
-                lbl:document.getElementById("textfont-LineHeightVal"),
-                getVal:function () {
+                elem: document.getElementById("textfont-LineHeight"),
+                ruleName: "line-height",
+                JSruleName: "lineHeight",
+                lbl: document.getElementById("textfont-LineHeightVal"),
+                getVal: function () {
                     return this.elem.value / 10;
                 }
             },
             {
-                elem:document.getElementById("textfont-letterSp"),
-                ruleName:"letter-spacing",
-                JSruleName:"letterSpacing",
-                lbl:document.getElementById("textfont-letterSpVal"),
-                getVal:function () {
+                elem: document.getElementById("textfont-letterSp"),
+                ruleName: "letter-spacing",
+                JSruleName: "letterSpacing",
+                lbl: document.getElementById("textfont-letterSpVal"),
+                getVal: function () {
                     return this.elem.value + "px";
                 }
             },
             {
-                elem:document.getElementById("textfont-wordSp"),
-                ruleName:"word-spacing",
-                JSruleName:"wordSpacing",
-                lbl:document.getElementById("textfont-wordSpVal"),
-                getVal:function () {
+                elem: document.getElementById("textfont-wordSp"),
+                ruleName: "word-spacing",
+                JSruleName: "wordSpacing",
+                lbl: document.getElementById("textfont-wordSpVal"),
+                getVal: function () {
                     return this.elem.value + "px";
                 }
             },
             {
-                elem:document.getElementById("textfont-TextIndent"),
-                ruleName:"text-indent",
-                JSruleName:"textIndent",
-                lbl:document.getElementById("textfont-TextIndentVal"),
-                getVal:function () {
+                elem: document.getElementById("textfont-TextIndent"),
+                ruleName: "text-indent",
+                JSruleName: "textIndent",
+                lbl: document.getElementById("textfont-TextIndentVal"),
+                getVal: function () {
                     return this.elem.value + "px";
                 }
             }

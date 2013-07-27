@@ -63,22 +63,6 @@
     </hbox>
 
     <textbox id="gradientResult" class="multiTxtBox" multiline="true" readonly="true" rows="10"/>
-
-
-    <script type="text/html" id="radialGradientTmpl">
-
-        <label class="propLabels" value="Color Stop {{ number }}:"/>
-        <scale min="0" max="100" value="{{ stopColorPos }}" class="RGstopColorPos"/>
-        <textbox class="RGstopColorPosVal txtBox" maxlength="3" value="{{ stopColorPos }}"/>
-        <label class="unitLabel" value="&#176;"/>
-        <colorpicker class="colorButton" type="button" disabled="true" color="{{ color }}"
-                     onclick="document.getElementById('colorPicker{{ number }}').openPopup(this, 'after_start', 0, 0, false);"/>
-        <panel id="colorPicker{{ number }}" style="width:520; height: 276; padding: 10px; 10px" noautohide="true"
-               close="true" titlebar="normal" label="&colorpicker.panel.title;">
-        </panel>
-
-
-    </script>
     <script type="application/x-javascript" src="chrome://sir/content/scripts/colorpicker.js"></script>
     <script type="application/x-javascript" src="chrome://sir/content/libs/jquery-1.8.3.min.js"></script>
     <script type="application/x-javascript" src="chrome://sir/content/libs/underscore-min.js"></script>

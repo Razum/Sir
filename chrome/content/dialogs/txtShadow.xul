@@ -4,8 +4,6 @@
 <!DOCTYPE window SYSTEM "chrome://sir/locale/sir.dtd">
 <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:html="http://www.w3.org/1999/xhtml"
         id="txtShadowDialog" title="&txtShadow.title;" buttons="disabled" onload="SIR.txtShadow.init()">
-
-
     <hbox>
         <vbox class="field">
             <label id="TSinscription" value="Text-shadow"/>

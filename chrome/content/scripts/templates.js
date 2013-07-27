@@ -16,7 +16,7 @@ SIR.templates = {
         hor_scale.setAttribute("max", data.horLenLimits.maxval);
         hor_scale.setAttribute("value", data.horLen);
         hor_scale.setAttribute("class", "TShorLen");
-        hor_scale.onchange = function(){
+        hor_scale.onchange = function () {
             var val = this.value / data.delimeter;
             self.model.set("horLen", val);
             this.nextSibling.value = val;
@@ -28,12 +28,11 @@ SIR.templates = {
         ver_scale.setAttribute("max", data.verLenLimits.maxval);
         ver_scale.setAttribute("value", data.verLen);
         ver_scale.setAttribute("class", "TSverLen");
-        ver_scale.onchange = function(){
+        ver_scale.onchange = function () {
             var val = this.value / data.delimeter;
             self.model.set("verLen", val);
             this.nextSibling.value = val;
         }
-
 
 
         var blur_scale = document.createElement("scale");
@@ -41,17 +40,16 @@ SIR.templates = {
         blur_scale.setAttribute("max", data.blurLimits.maxval);
         blur_scale.setAttribute("value", data.blur);
         blur_scale.setAttribute("class", "TSblurRadius");
-        blur_scale.onchange = function(){
+        blur_scale.onchange = function () {
             var val = this.value / data.delimeter;
             self.model.set("blur", val);
             this.nextSibling.value = val;
         }
 
 
-
         elm.append(
-            $("<label/>", {'class': "propLabels",  value: "Shadow #" + data.number + ":" }),
-            $("<toolbarbutton/>", {'image': "chrome://sir/skin/images/adjustment.png", role: "button", popup:"thepanel"+ data.number}),
+            $("<label/>", {'class': "propLabels", value: "Shadow #" + data.number + ":" }),
+            $("<toolbarbutton/>", {'image': "chrome://sir/skin/images/adjustment.png", role: "button", popup: "thepanel" + data.number}),
             $("<colorpicker/>", {"class": "colorButton", type: "button", disabled: "true", color: data.color,
                 click: function () {
                     document.getElementById('colorPicker' + data.number).openPopup(this, 'after_start', 0, 0, false);
@@ -95,7 +93,7 @@ SIR.templates = {
         hor_scale.setAttribute("max", data.horLenLimits.maxval);
         hor_scale.setAttribute("value", data.horLen);
         hor_scale.setAttribute("class", "BShorLen");
-        hor_scale.onchange = function(){
+        hor_scale.onchange = function () {
             var val = this.value / data.delimeter;
             self.model.set("horLen", val);
             this.nextSibling.value = val;
@@ -107,12 +105,11 @@ SIR.templates = {
         ver_scale.setAttribute("max", data.verLenLimits.maxval);
         ver_scale.setAttribute("value", data.verLen);
         ver_scale.setAttribute("class", "BSverLen");
-        ver_scale.onchange = function(){
+        ver_scale.onchange = function () {
             var val = this.value / data.delimeter;
             self.model.set("verLen", val);
             this.nextSibling.value = val;
         }
-
 
 
         var blur_scale = document.createElement("scale");
@@ -120,22 +117,21 @@ SIR.templates = {
         blur_scale.setAttribute("max", data.blurLimits.maxval);
         blur_scale.setAttribute("value", data.blur);
         blur_scale.setAttribute("class", "BSblurRadius");
-        blur_scale.onchange = function(){
+        blur_scale.onchange = function () {
             var val = this.value / data.delimeter;
             self.model.set("blur", val);
             this.nextSibling.value = val;
         }
 
 
-
         elm.append(
-            $("<label/>", {'class': "propLabels",  value: "Shadow #" + data.number + ":" }),
-            $("<toolbarbutton/>", {'image': "chrome://sir/skin/images/adjustment.png", role: "button", popup:"thepanel"+ data.number}),
+            $("<label/>", {'class': "propLabels", value: "Shadow #" + data.number + ":" }),
+            $("<toolbarbutton/>", {'image': "chrome://sir/skin/images/adjustment.png", role: "button", popup: "thepanel" + data.number}),
             $("<colorpicker/>", {"class": "colorButton", type: "button", disabled: "true", color: data.color,
                 click: function () {
                     document.getElementById('colorPicker' + data.number).openPopup(this, 'after_start', 0, 0, false);
                 }}),
-            $("<checkbox/>", {'class':'insetCheck', label: "Inset"}),
+            $("<checkbox/>", {'class': 'insetCheck', label: "Inset"}),
             $("<panel>", {id: "colorPicker" + data.number, 'class': 'colorPanel'}),
             $("<panel>", {id: "thepanel" + data.number, class: "controlPanel"}).append(
                 $("<vbox>", {align: "start"}).append(
@@ -173,16 +169,15 @@ SIR.templates = {
         stopColor_scale.setAttribute("max", 100);
         stopColor_scale.setAttribute("value", data.stopColorPos);
         stopColor_scale.setAttribute("class", "LGstopColorPos");
-        stopColor_scale.onchange = function(){
+        stopColor_scale.onchange = function () {
             var val = this.value;
             self.model.set("stopColorPos", val);
             this.nextSibling.value = val;
         }
 
 
-
         elm.append(
-            $("<label/>", {'class': "propLabels",  value: "Color Stop #" + data.number + ":" }),
+            $("<label/>", {'class': "propLabels", value: "Color Stop #" + data.number + ":" }),
             stopColor_scale,
             $("<textbox />", {'class': "LGstopColorPosVal txtBox", maxlength: "3", value: data.stopColorPos}),
             $("<label />", {'class': "unitLabel", value: "%"}),
@@ -201,16 +196,15 @@ SIR.templates = {
         stopColor_scale.setAttribute("max", 100);
         stopColor_scale.setAttribute("value", data.stopColorPos);
         stopColor_scale.setAttribute("class", "RGstopColorPos");
-        stopColor_scale.onchange = function(){
+        stopColor_scale.onchange = function () {
             var val = this.value;
             self.model.set("stopColorPos", val);
             this.nextSibling.value = val;
         }
 
 
-
         elm.append(
-            $("<label/>", {'class': "propLabels",  value: "Color Stop #" + data.number + ":" }),
+            $("<label/>", {'class': "propLabels", value: "Color Stop #" + data.number + ":" }),
             stopColor_scale,
             $("<textbox />", {'class': "RGstopColorPosVal txtBox", maxlength: "3", value: data.stopColorPos}),
             $("<label />", {'class': "unitLabel", value: "%"}),
