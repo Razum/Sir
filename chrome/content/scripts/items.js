@@ -809,24 +809,24 @@ if (!SIR) {
         if (SIR.sirPrefs.getBool("generators.moz")) {
             str += "/* FF 3.5+*/\n";
         }
-        str += this.MozPrefix("column-count:" + count + ";\n");
-        str += this.MozPrefix("column-gap:" + gap + "px;\n");
-        str += this.MozPrefix("column-rule:" + rule + ";\n");
+        str += this.MozPrefix("column-count: " + count + ";\n");
+        str += this.MozPrefix("column-gap: " + gap + "px;\n");
+        str += this.MozPrefix("column-rule: " + rule + ";\n");
         if (SIR.sirPrefs.getBool("generators.webkit")) {
             str += "/*Saf3, Chrome*/\n";
         }
-        str += this.WebkitPrefix("column-count:" + count + ";\n");
-        str += this.WebkitPrefix("column-gap:" + gap + "px;\n");
-        str += this.WebkitPrefix("column-rule:" + rule + ";\n");
+        str += this.WebkitPrefix("column-count: " + count + ";\n");
+        str += this.WebkitPrefix("column-gap: " + gap + "px;\n");
+        str += this.WebkitPrefix("column-rule: " + rule + ";\n");
         if (SIR.sirPrefs.getBool("generators.khtml")) {
             str += "/*Konqueror*/\n";
         }
-        str += this.khtmlPrefix("column-count:" + count + ";\n");
-        str += this.khtmlPrefix("column-gap:" + gap + "px;\n");
-        str += this.khtmlPrefix("column-rule:" + rule + ";\n");
-        str += "column-count:" + count + ";\n";
-        str += "column-gap:" + gap + "px;\n";
-        str += "column-rule:" + rule + ";\n";
+        str += this.khtmlPrefix("column-count: " + count + ";\n");
+        str += this.khtmlPrefix("column-gap: " + gap + "px;\n");
+        str += this.khtmlPrefix("column-rule: " + rule + ";\n");
+        str += "column-count: " + count + ";\n";
+        str += "column-gap: " + gap + "px;\n";
+        str += "column-rule: " + rule + ";\n";
         this.txtBox.value = str;
     };
 ////////////////////////////////
@@ -932,7 +932,8 @@ if (!SIR) {
                 document.getElementsByClassName("copyImg")[0].src = "chrome://sir/skin/images/copyToClipboard.png";
                 this.collection.sort();
 
-                var angle = $('.LGangle', this.$el).val(),
+                var W3Cangle = $('.LGangle', this.$el).val(),
+                    angle = (450 - W3Cangle) % 360;
                     ieFrom = this.collection.at(0).get("color"),
                     ieTo = this.collection.last().get("color"),
                     ieType = Math.abs(angle) === 90 ? 0 : 1;
@@ -963,10 +964,11 @@ if (!SIR) {
                 if (SIR.sirPrefs.getBool("generators.oldIE")) {
                     str += "filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='" + ieFrom + "', endColorstr='" + ieTo + "', GradientType='" + ieType + "'); /* for IE */\n";
                 }
-                str += "background: linear-gradient(" + angle + "deg, " + stop_arr.join(", ") + ");/* W3C */"
+                str += "background: linear-gradient(" + W3Cangle + "deg, " + stop_arr.join(", ") + ");/* W3C */"
                 this.txtBox.value = str;
 
-                this.gradientField.style.cssText = "background: linear-gradient(" + angle + "deg," + stop_arr.join(", ") + ");";
+                this.gradientField.style.cssText = "background: -moz-linear-gradient(" + angle + "deg," + stop_arr.join(", ") + "); background: linear-gradient(" + W3Cangle + "deg," + stop_arr.join(", ") + ");";
+
             }
         });
 
@@ -1216,7 +1218,7 @@ if (!SIR) {
                 this.txtBox.value = str;
                 this.gradientField.style.cssText = "background: -moz-radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", " + stop_arr.join(", ") + ");";
 
-                document.getElementById('positionField').style.cssText = "background: -moz-radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", " + stop_arr.join(", ") + ");";
+                document.getElementById('positionField').style.cssText = "background: -moz-radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", " + stop_arr.join(", ") + "); background: -moz-radial-gradient(" + self.gradposX + "% " + self.gradposY + "%, " + self.gradType.value + " " + self.radialSize.value + ", " + stop_arr.join(", ") + ");";
 
                 self.txtBox.value = str;
 
